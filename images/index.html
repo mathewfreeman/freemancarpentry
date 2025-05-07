@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maugans Co. - Visionary Design & Creative Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* --- Google Fonts --- */
+        @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400&family=IBM+Plex+Sans:wght@200;300;400;500;600&display=swap');
+
+        /* --- Variables --- */
+        :root {
+            --bg-dark: #131516;
+            --accent-primary: #04d9c4;
+            --accent-secondary: #00214d; /* Deep Blue */
+            --accent-secondary-glass: rgba(0, 33, 77, 0.85); /* Adjusted for Why Us section */
+            --neutral-gray: #5f6b7a;
+            --text-light: #F4F4F4;
+            --text-dark: #222526;
+            --background-light: #FDFDFD;
+            --background-translucent-light: rgba(255, 255, 255, 0.05); /* For dark backgrounds */
+
+            --font-logo: 'EB Garamond', serif;
+            --font-body: 'IBM Plex Sans', sans-serif;
+
+            --transition-speed-fast: 0.2s;
+            --transition-speed-medium: 0.4s;
+            --transition-speed-slow: 0.6s;
+
+            --shadow-light: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+            --shadow-medium: 0 10px 30px rgba(0,0,0,0.08);
+            --border-radius-main: 12px;
+            --border-radius-large: 16px;
+        }
+
+        /* --- Reset & Base Styles --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        body {
+            font-family: var(--font-body);
+            line-height: 1.8;
+            background-color: var(--background-light);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            font-weight: 300;
+        }
+        body.modal-open {
+            overflow: hidden;
+        }
+        h1, h2, h3, h4 {
+            font-weight: 500;
+            color: var(--text-dark);
+            letter-spacing: -0.02em;
+        }
+        h2 {
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            margin-bottom: 2.5rem;
+            text-align: center;
+            color: var(--accent-secondary);
+            font-weight: 600;
+        }
+        h3 {
+            font-size: clamp(1.5rem, 4vw, 1.8rem);
+            margin-bottom: 1rem;
+            color: var(--accent-primary);
+            font-weight: 500;
+        }
+        p {
+            margin-bottom: 1.5rem;
+            font-size: clamp(1rem, 2.5vw, 1.15rem);
+            color: var(--neutral-gray);
+            font-weight: 300;
+            max-width: 700px; /* Default max width for readability */
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 0;
+        }
+        section {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.165, 0.84, 0.44, 1), transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .highlight {
+            color: var(--accent-primary);
+            font-weight: 500;
+        }
+
+        /* --- Frosted Glass Header --- */
+        .main-header {
+            background: rgba(253, 253, 253, 0.65);
+            backdrop-filter: blur(12px) saturate(180%);
+            -webkit-backdrop-filter: blur(12px) saturate(180%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 1.2rem 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: background var(--transition-speed-medium) ease, box-shadow var(--transition-speed-medium) ease;
+        }
+        .main-header.scrolled {
+             background: rgba(253, 253, 253, 0.85);
+             box-shadow: 0 2px 15px rgba(0,0,0,0.07);
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .logo a {
+            font-family: var(--font-logo);
+            font-size: clamp(1.8rem, 4vw, 2.4rem);
+            font-weight: 500;
+            color: var(--accent-secondary);
+            text-decoration: none;
+            letter-spacing: -0.03em;
+            transition: color var(--transition-speed-fast);
+        }
+        .logo a:hover {
+            color: var(--accent-primary);
+        }
+        .logo-maugans {
+             color: var(--text-dark);
+        }
+        .logo a .co-highlight {
+            color: var(--accent-primary);
+            font-weight: 400; /* Italic removed */
+        }
+        .main-nav ul {
+            list-style: none;
+            display: flex;
+        }
+        .main-nav ul li {
+            margin-left: 30px;
+        }
+        .main-nav ul li a {
+            color: var(--neutral-gray);
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 1rem;
+            padding: 0.3rem 0.1rem;
+            position: relative;
+            transition: color var(--transition-speed-fast) ease;
+        }
+        .main-nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-primary);
+            transition: width var(--transition-speed-medium) cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        .main-nav ul li a:hover,
+        .main-nav ul li a.active {
+            color: var(--text-dark);
+        }
+        .main-nav ul li a:hover::after,
+        .main-nav ul li a.active::after {
+            width: 100%;
+        }
+        .menu-toggle {
+            display: none;
+            font-size: 1.8rem;
+            background: none;
+            border: none;
+            color: var(--text-dark);
+            cursor: pointer;
+            position: relative; /* For line positioning */
+            width: 30px; /* Ensure consistent size */
+            height: 22px;
+        }
+        .menu-toggle .line {
+            width: 25px;
+            height: 2px;
+            background-color: var(--text-dark);
+            margin: 5px 0; /* This margin is overridden by absolute positioning */
+            display: block;
+            transition: all var(--transition-speed-medium) ease-in-out;
+            position: absolute;
+            left: 0;
+        }
+        .menu-toggle .line1 { top: 0px; }
+        .menu-toggle .line2 { top: 8px; } /* (22px height - 3*2px line height) / 2 for middle */
+        .menu-toggle .line3 { top: 16px; } /* top: calc(50% - 1px); for line2 if needed */
+
+        .menu-toggle.open .line1 { transform: rotate(-45deg) translate(-5px, 6px); }
+        .menu-toggle.open .line2 { opacity: 0; }
+        .menu-toggle.open .line3 { transform: rotate(45deg) translate(-5px, -6px); }
+
+        /* --- Hero Section --- */
+        .hero {
+            background: linear-gradient(135deg, #eef4f8 0%, var(--background-light) 100%);
+            color: var(--text-dark);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 100px; /* Account for fixed header */
+            overflow: hidden; /* For any overflow from animated elements */
+            position: relative;
+        }
+        .hero-content {
+            max-width: 950px; /* UPDATED WIDTH */
+            text-align: left;
+            position: relative; /* For z-index stacking if needed */
+            z-index: 2;
+        }
+        .hero-content h1 {
+            font-family: var(--font-body);
+            font-size: clamp(3rem, 7vw, 5.5rem);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+            line-height: 1.1;
+            letter-spacing: -0.04em;
+        }
+        .hero-content h1 .maugans-co-logo-hero {
+            font-family: var(--font-logo);
+            color: var(--accent-secondary);
+            font-weight: 700;
+        }
+        .hero-content .subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.6rem);
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+            color: var(--neutral-gray);
+            max-width: 650px;
+            line-height: 1.6;
+        }
+        .cta-button {
+            background: linear-gradient(135deg, var(--accent-primary), #03b0a0);
+            color: var(--text-light); /* UPDATED FONT COLOR */
+            padding: 1rem 2.8rem;
+            text-decoration: none;
+            font-weight: 500;
+            border-radius: 50px; /* Pill shape */
+            transition: all var(--transition-speed-medium) cubic-bezier(0.19, 1, 0.22, 1);
+            display: inline-block;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(4, 217, 196, 0.3);
+            border: none;
+        }
+        .cta-button:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(4, 217, 196, 0.4);
+        }
+        .hero::before, .hero::after { /* Decorative background shapes */
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.08;
+            z-index: 1;
+            pointer-events: none; /* Important */
+        }
+        .hero::before {
+            width: clamp(300px, 50vw, 600px);
+            height: clamp(300px, 50vw, 600px);
+            background: radial-gradient(circle, var(--accent-primary) 0%, transparent 70%);
+            top: 10%;
+            left: -10%;
+            animation: pulse-bubble 15s infinite alternate ease-in-out;
+        }
+        .hero::after {
+            width: clamp(200px, 40vw, 400px);
+            height: clamp(200px, 40vw, 400px);
+            background: radial-gradient(circle, var(--accent-secondary) 0%, transparent 70%);
+            bottom: 5%;
+            right: -5%;
+            animation: pulse-bubble 18s infinite alternate-reverse ease-in-out;
+        }
+        @keyframes pulse-bubble {
+            0%, 100% { transform: scale(0.9) rotate(0deg); opacity: 0.06; }
+            50% { transform: scale(1.1) rotate(10deg); opacity: 0.1; }
+        }
+
+        /* --- About Section --- Asymmetrical Layout */
+        #about .container {
+            display: grid;
+            grid-template-columns: 1fr; /* Default single column */
+            gap: 3rem;
+            align-items: center;
+        }
+        #about h2 { text-align: left; }
+        #about p { max-width: none; } /* Override default */
+
+        @media (min-width: 768px) {
+            #about .container {
+                grid-template-columns: 2fr 1.5fr; /* Asymmetry */
+                gap: 4rem;
+            }
+            .about-image-placeholder {
+                height: 350px;
+                /* background: linear-gradient(135deg, var(--background-translucent-dark), transparent), url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80') center/cover; */
+                /* Placeholder image set inline in HTML for this example */
+                border-radius: var(--border-radius-main);
+                box-shadow: var(--shadow-light);
+                opacity: 0.85; /* Slightly more opaque for better image visibility */
+            }
+        }
+
+        /* --- Services Section --- Glassmorphism Cards */
+        .service-grid {
+            display: grid;
+            gap: 2.5rem;
+        }
+        @media (min-width: 1024px) { .service-grid { grid-template-columns: repeat(4, 1fr); } }
+        @media (min-width: 600px) and (max-width: 1023px) { .service-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 599px) { .service-grid { grid-template-columns: 1fr; } }
+
+        .service-item {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(18px) saturate(160%);
+            -webkit-backdrop-filter: blur(18px) saturate(160%);
+            border: 1px solid rgba(220, 220, 220, 0.3);
+            padding: 2.5rem 2rem;
+            border-radius: var(--border-radius-main);
+            box-shadow: var(--shadow-light);
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+            transition: transform var(--transition-speed-medium) cubic-bezier(0.19, 1, 0.22, 1),
+                        box-shadow var(--transition-speed-medium) cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        .service-item:hover {
+            transform: translateY(-8px) perspective(1000px) rotateX(2deg) rotateY(-2deg) scale(1.03);
+            box-shadow: 0 18px 45px rgba(0,0,0,0.1);
+        }
+        .service-item::before { /* Shine element */
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -150%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                100deg,
+                transparent,
+                rgba(255, 255, 255, 0.4), /* Shine color */
+                transparent
+            );
+            transition: left var(--transition-speed-slow) cubic-bezier(0.19, 1, 0.22, 1);
+            transform: skewX(-25deg);
+            z-index: 1;
+        }
+        .service-item:hover::before {
+            left: 150%;
+        }
+        .service-item-content { /* Ensure content is above shine */
+            position: relative;
+            z-index: 2;
+        }
+        .service-item-icon {
+            font-size: 2.8rem;
+            color: var(--accent-primary);
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            transition: transform var(--transition-speed-medium) ease;
+        }
+        .service-item:hover .service-item-icon {
+            transform: scale(1.1) rotate(-5deg);
+        }
+        .service-item h3 { color: var(--text-dark); font-weight: 500; }
+
+        /* --- Portfolio Section --- Dynamic Grid & Hover */
+        .portfolio-grid {
+            display: grid;
+            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+        }
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--border-radius-main);
+            box-shadow: var(--shadow-medium);
+            transition: transform var(--transition-speed-medium) ease;
+            aspect-ratio: 4 / 3;
+            cursor: pointer;
+        }
+        .portfolio-item:hover {
+            transform: scale(1.03);
+        }
+        .portfolio-item img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform var(--transition-speed-slow) cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .portfolio-item:hover img {
+            transform: scale(1.1);
+        }
+        .portfolio-item-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(19, 21, 22, 0.85) 0%, rgba(19, 21, 22, 0) 100%);
+            padding: 3rem 1.5rem 1.5rem;
+            transform: translateY(100%);
+            transition: transform var(--transition-speed-medium) cubic-bezier(0.165, 0.84, 0.44, 1);
+            color: var(--text-light);
+        }
+        .portfolio-item:hover .portfolio-item-overlay {
+            transform: translateY(0);
+        }
+        .portfolio-item-overlay h4 {
+            font-size: 1.4rem;
+            color: var(--text-light);
+            margin-bottom: 0.3rem;
+            font-weight: 500;
+        }
+        .portfolio-item-overlay p.category {
+            font-size: 0.9rem;
+            color: var(--accent-primary);
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* --- Why Choose Us Section (#why-us) --- */
+        #why-us {
+            position: relative;
+            padding-top: 3rem;
+            padding-bottom: 3rem;
+        }
+        .why-us-background-wrapper {
+            background-color: var(--accent-secondary-glass); /* Using the new variable */
+            backdrop-filter: blur(5px) saturate(180%); /* Subtle blur */
+            -webkit-backdrop-filter: blur(5px) saturate(180%);
+            border-radius: var(--border-radius-large);
+            padding: 4rem 3rem;
+            margin: 0 auto;
+            border: 1px solid rgba(255, 255, 255, 0.15); /* Slightly more visible border for definition */
+            box-shadow: var(--shadow-medium);
+        }
+        #why-us h2 {
+            color: var(--text-light); /* Text inside is light */
+        }
+        #why-us .why-us-description {
+            color: rgba(244, 244, 244, 0.9);
+            text-align: center;
+            max-width: 750px; /* Narrower description */
+            margin-left: auto; margin-right: auto;
+            font-size: 1.2rem; margin-bottom: 3rem;
+        }
+        .why-us-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); /* Slightly smaller min for tiles */
+            gap: 2rem;
+            max-width: 900px; /* Narrower tile grid */
+            margin-left: auto; margin-right: auto;
+        }
+        .why-us-point {
+            background: var(--background-translucent-light); /* Subtle translucency on dark bg */
+            padding: 2rem;
+            border-radius: var(--border-radius-main);
+            border: 1px solid rgba(255, 255, 255, 0.15); /* Matching border style */
+            text-align: left;
+        }
+        .why-us-point h4 {
+            color: var(--accent-primary);
+            margin-bottom: 0.75rem;
+            font-size: 1.3rem;
+            font-weight: 500;
+        }
+        .why-us-point p {
+             color: rgba(244, 244, 244, 0.85);
+             font-size: 1rem;
+             max-width: none;
+        }
+
+        /* --- Contact Section --- Clean & Modern Form */
+        #contact p {
+            text-align: center;
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .contact-form {
+            max-width: 700px;
+            margin: 0 auto;
+            display: grid;
+            gap: 1.5rem;
+        }
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 1.2rem 1.5rem;
+            border: 1px solid #dde2e7; /* Softer border */
+            border-radius: 8px;
+            background-color: rgba(255,255,255,0.8); /* Slight translucency for inputs too */
+            color: var(--text-dark);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            font-weight: 400;
+            transition: border-color var(--transition-speed-fast), box-shadow var(--transition-speed-fast);
+        }
+         .contact-form input::placeholder,
+         .contact-form textarea::placeholder {
+            color: var(--neutral-gray);
+            opacity: 0.8;
+         }
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 3px rgba(4, 217, 196, 0.2);
+        }
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+        .contact-form button { /* Uses .cta-button styles already defined */
+            justify-self: center; /* Center button in grid */
+            margin-top: 1rem;
+        }
+
+        /* --- Footer --- */
+        .main-footer {
+            background-color: var(--bg-dark);
+            color: var(--neutral-gray);
+            text-align: center;
+            padding: 3rem 1rem;
+            font-size: 0.95rem;
+        }
+        .main-footer p {
+            color: var(--neutral-gray);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+             max-width: none;
+        }
+        .main-footer a {
+            color: var(--accent-primary);
+            text-decoration: none;
+            transition: color var(--transition-speed-fast);
+        }
+        .main-footer a:hover {
+            color: var(--text-light);
+            text-decoration: underline;
+        }
+
+        /* --- Portfolio Modal (Light/Frosted Glass) --- */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(253, 253, 253, 0.6); /* Translucent LIGHT backdrop */
+            backdrop-filter: blur(10px) saturate(160%);
+            -webkit-backdrop-filter: blur(10px) saturate(160%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity var(--transition-speed-medium) cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        visibility var(--transition-speed-medium) cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-content {
+            background-color: var(--background-light); /* Opaque light background for image container */
+            padding: 1rem;
+            border-radius: var(--border-radius-main);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.2); /* Adjusted shadow for light bg */
+            max-width: 90vw;
+            max-height: 90vh;
+            position: relative;
+            transform: scale(0.9) translateY(20px);
+            transition: transform var(--transition-speed-medium) cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Springy pop */
+        }
+        .modal.active .modal-content {
+            transform: scale(1) translateY(0);
+        }
+        .modal-content img {
+            display: block;
+            max-width: 100%;
+            max-height: calc(90vh - 60px); /* Account for padding and close button */
+            object-fit: contain; /* Maintain aspect ratio */
+            border-radius: calc(var(--border-radius-main) - 4px); /* Inner radius */
+        }
+        .modal-close { /* UPDATED POSITIONING */
+            position: absolute;
+            top: 15px; /* Inside corner of modal-content */
+            right: 15px; /* Inside corner of modal-content */
+            width: 38px;
+            height: 38px;
+            background-color: var(--accent-primary);
+            color: var(--bg-dark); /* Text color of X icon */
+            border: none;
+            border-radius: 50%;
+            font-size: 1.4rem;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+            transition: transform var(--transition-speed-fast) cubic-bezier(0.34, 1.56, 0.64, 1),
+                        background-color var(--transition-speed-fast);
+            display: flex; /* For centering icon better */
+            align-items: center;
+            justify-content: center;
+            z-index: 10; /* Ensure it's above the image */
+        }
+        .modal-close:hover {
+            transform: scale(1.1) rotate(90deg);
+            background-color: #03c8b3; /* Lighter primary */
+        }
+
+        /* --- Responsive Adjustments --- */
+        @media (max-width: 768px) {
+            .nav-container { flex-wrap: wrap; }
+            .menu-toggle { display: flex; align-items: center; justify-content: center; }
+            .main-nav {
+                width: 100%;
+                max-height: 0;
+                overflow: hidden;
+                background: rgba(253, 253, 253, 0.95);
+                backdrop-filter: blur(10px) saturate(180%);
+                -webkit-backdrop-filter: blur(10px) saturate(180%);
+                position: absolute;
+                top: 100%; /* Position below header */
+                left: 0;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+                border-top: 1px solid rgba(0,0,0,0.05);
+                transition: max-height 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+            }
+            .main-nav.active {
+                max-height: 350px; /* Adjust as needed */
+            }
+            .main-nav ul {
+                flex-direction: column;
+                align-items: center;
+                padding: 1rem 0;
+            }
+            .main-nav ul li {
+                margin: 1rem 0;
+            }
+
+            .hero-content { text-align: center; padding: 0 1rem;}
+            .hero-content h1 { font-size: clamp(2.5rem, 10vw, 3.5rem); }
+            .hero-content .subtitle { font-size: clamp(1.1rem, 4vw, 1.3rem); }
+            .hero::before, .hero::after { display: none; /* Simplify on mobile */ }
+
+            #about h2 { text-align: center; }
+            .portfolio-item-overlay { padding: 2rem 1rem 1rem; } /* Adjust padding for smaller screens */
+            .modal-close { top: 10px; right: 10px; width: 35px; height: 35px; font-size: 1.2rem; }
+            .modal-content img { max-height: calc(90vh - 50px); }
+
+            #why-us { padding-top: 2rem; padding-bottom: 2rem; }
+            .why-us-background-wrapper { padding: 2.5rem 1.5rem; }
+            #why-us .why-us-description { max-width: 90%; font-size: 1.1rem; }
+            .why-us-points { max-width: 100%; gap: 1.5rem; }
+        }
+        /* Screen reader only class */
+        .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0;}
+
+    </style>
+</head>
+<body>
+
+    <header class="main-header" id="mainHeader">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="#hero"><span class="logo-maugans">Maugans</span> <span class="co-highlight">Co.</span></a>
+            </div>
+            <nav class="main-nav" id="mainNav">
+                <ul>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#services" class="nav-link">Services</a></li>
+                    <li><a href="#portfolio" class="nav-link">Work</a></li>
+                    <li><a href="#contact" class="nav-link">Connect</a></li>
+                </ul>
+            </nav>
+            <button class="menu-toggle" id="menuToggle" aria-label="Open Menu" aria-expanded="false">
+                <span class="line line1"></span>
+                <span class="line line2"></span>
+                <span class="line line3"></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero" class="hero">
+            <div class="hero-content">
+                <h1>Designing with <span class="highlight">Clarity</span> Crafting with <span class="highlight">Care</span><br/> Welcome to <span class="maugans-co-logo-hero">Maugans Co.</span></h1>
+                <p class="subtitle">We create exceptionally clean, modern, and dynamic experiences – from intuitive websites to inspiring home designs. Your vision, brought to life with a personal, friendly touch.</p>
+                <a href="#contact" class="cta-button">Start Your Project</a>
+            </div>
+        </section>
+
+        <section id="about" class="container">
+            <div class="about-content">
+                <h2>Beyond the Blueprint.</h2>
+                <p>At Maugans Co., we believe the best results come from a foundation of understanding and a genuinely collaborative spirit. We're not just designers; we're your creative partners, dedicated to making the journey from idea to reality both exciting and effortless. </p>
+                <p>Whether you're launching a digital presence, reimagining your living space, or seeking unique creative pieces, our diverse expertise is at your service. We pride ourselves on creating a welcoming atmosphere where you feel completely at ease to explore possibilities, ask questions, and see your aspirations take shape—no pretense, just passion and personable guidance.</p>
+            </div>
+            <div class="about-image-placeholder" aria-hidden="true" style="background-image: url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80'); background-size: cover; background-position: center;">
+                </div>
+        </section>
+
+        <section id="services" class="container">
+            <h2>Our Creative Toolkit</h2>
+            <div class="service-grid">
+                <div class="service-item">
+                    <div class="service-item-content">
+                        <div class="service-item-icon"><i class="fas fa-laptop-code"></i></div>
+                        <h3>Website Design & Development</h3>
+                        <p>Intuitive, engaging, and lightning-fast websites that are as smart as they are beautiful. We build digital flagships that reflect your brand and convert visitors.</p>
+                    </div>
+                </div>
+                <div class="service-item">
+                     <div class="service-item-content">
+                        <div class="service-item-icon"><i class="fas fa-home-user"></i></div>
+                        <h3>Home Remodel & Construction Design</h3>
+                        <p>Thoughtful spatial planning and aesthetic design for home remodels and smaller construction. From initial concepts to permit-ready drawings, we help craft your dream space.</p>
+                    </div>
+                </div>
+                <div class="service-item">
+                     <div class="service-item-content">
+                        <div class="service-item-icon"><i class="fas fa-tshirt"></i></div>
+                        <h3>Custom Screenprinted Apparel</h3>
+                        <p>Original, eye-catching designs screenprinted on high-quality apparel. Perfect for your brand, event, or personal expression. Art you can wear.</p>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <div class="service-item-content">
+                        <div class="service-item-icon"><i class="fas fa-camera-retro"></i></div>
+                        <h3>Fine Art Photography</h3>
+                        <p>Captivating, high-quality photographic prints, framed to perfection. Elevate your environment with art that tells a story and evokes emotion.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="portfolio" class="container">
+            <h2>Selected Works</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item" data-img-src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" data-category="Web Design" tabindex="0" role="button" aria-label="View E-commerce Redefined project">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60" alt="Modern data analytics dashboard interface">
+                    <div class="portfolio-item-overlay"><h4>E-commerce Redefined</h4><p class="category">Website Design</p></div>
+                </div>
+                <div class="portfolio-item" data-img-src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" data-category="Web Design" tabindex="0" role="button" aria-label="View Creative Portfolio Hub project">
+                    <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60" alt="Laptop displaying code on a wooden desk">
+                    <div class="portfolio-item-overlay"><h4>Creative Portfolio Hub</h4><p class="category">Website Design</p></div>
+                </div>
+
+                <div class="portfolio-item" data-img-src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" data-category="Photography" tabindex="0" role="button" aria-label="View Cityscape Poetry project">
+                    <img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60" alt="Aerial view of a sprawling cityscape at dusk">
+                    <div class="portfolio-item-overlay"><h4>Cityscape Poetry</h4><p class="category">Photography</p></div>
+                </div>
+                <div class="portfolio-item" data-img-src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" data-category="Photography" tabindex="0" role="button" aria-label="View Macro Worlds project">
+                    <img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60" alt="Close-up of a dewdrop on a blade of grass">
+                    <div class="portfolio-item-overlay"><h4>Macro Worlds</h4><p class="category">Photography</p></div>
+                </div>
+                <div class="portfolio-item" data-img-src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" data-category="Photography" tabindex="0" role="button" aria-label="View Luminous Portraits project">
+                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60" alt="Thoughtful portrait of a man in natural light">
+                    <div class="portfolio-item-overlay"><h4>Luminous Portraits</h4><p class="category">Photography</p></div>
+                </div>
+                <div class="portfolio-item" data-img-src="https://images.unsplash.com/photo-1503220317375-aaad61436b1b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" data-category="Photography" tabindex="0" role="button" aria-label="View Wanderlust Frames project">
+                    <img src="https://images.unsplash.com/photo-1503220317375-aaad61436b1b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60" alt="Person standing on a cliff overlooking a vast landscape">
+                    <div class="portfolio-item-overlay"><h4>Wanderlust Frames</h4><p class="category">Photography</p></div>
+                </div>
+                <div class="portfolio-item" data-img-src="https://images.unsplash.com/photo-1505480450330-0cf25765a531?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" data-category="Photography" tabindex="0" role="button" aria-label="View Timeless Monochrome project">
+                    <img src="https://images.unsplash.com/photo-1505480450330-0cf25765a531?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60" alt="Black and white architectural detail of a spiral staircase">
+                    <div class="portfolio-item-overlay"><h4>Timeless Monochrome</h4><p class="category">Photography</p></div>
+                </div>
+
+                <div class="portfolio-item" data-img-src="https://images.unsplash.com/photo-1527719327859-c6ce80353573?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" data-category="Shirts" tabindex="0" role="button" aria-label="View Statement Tees project">
+                    <img src="https://images.unsplash.com/photo-1527719327859-c6ce80353573?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60" alt="Person wearing a t-shirt with a bold graphic design">
+                    <div class="portfolio-item-overlay"><h4>Statement Tees</h4><p class="category">Screenprinted Shirts</p></div>
+                </div>
+                <div class="portfolio-item" data-img-src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" data-category="Shirts" tabindex="0" role="button" aria-label="View Wearable Graphics project">
+                    <img src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60" alt="Collection of t-shirts with artistic prints hanging on a rack">
+                    <div class="portfolio-item-overlay"><h4>Wearable Graphics</h4><p class="category">Screenprinted Shirts</p></div>
+                </div>
+
+                <div class="portfolio-item" data-img-src="https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" data-category="Remodels" tabindex="0" role="button" aria-label="View Culinary Heaven project">
+                    <img src="https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60" alt="Modern bright kitchen with an island and sleek cabinets">
+                    <div class="portfolio-item-overlay"><h4>Culinary Heaven</h4><p class="category">Home Remodels</p></div>
+                </div>
+                <div class="portfolio-item" data-img-src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" data-category="Remodels" tabindex="0" role="button" aria-label="View Fluid Living Spaces project">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60" alt="Spacious open-concept living room with large windows">
+                    <div class="portfolio-item-overlay"><h4>Fluid Living Spaces</h4><p class="category">Home Remodels</p></div>
+                </div>
+                <div class="portfolio-item" data-img-src="https://images.unsplash.com/photo-1582971805808-749e28597037?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" data-category="Remodels" tabindex="0" role="button" aria-label="View Sanctuary Bathrooms project">
+                    <img src="https://images.unsplash.com/photo-1582971805808-749e28597037?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60" alt="Luxurious bathroom with a freestanding tub and marble tiles">
+                    <div class="portfolio-item-overlay"><h4>Sanctuary Bathrooms</h4><p class="category">Home Remodels</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="why-us" class="container">
+            <div class="why-us-background-wrapper">
+                <h2>The Maugans Co. Difference</h2>
+                <p class="why-us-description">Choosing a design partner is about trust and shared vision. Here’s why clients love working with us:</p>
+                <div class="why-us-points">
+                    <div class="why-us-point">
+                        <h4>Authentically Personal</h4>
+                        <p>We're genuinely invested in you and your project. Expect direct communication, transparency, and a process that feels like a true collaboration, not a transaction.</p>
+                    </div>
+                    <div class="why-us-point">
+                        <h4>Multifaceted Mastery</h4>
+                        <p>Our unique blend of digital design, spatial expertise, and artistic creation means we bring a holistic and innovative perspective to every challenge. One team, many talents.</p>
+                    </div>
+                    <div class="why-us-point">
+                        <h4>Unwavering Dedication</h4>
+                        <p>Your satisfaction is paramount. We meticulously craft every detail and are committed to delivering outcomes that don't just meet expectations, but delightfully exceed them.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="container">
+            <h2>Let's Create Something Remarkable.</h2>
+            <p>Have an idea brewing, a project to discuss, or just curious to learn more? We're always excited to connect with fellow creatives and forward-thinkers. Reach out and let's explore the possibilities.</p>
+            <form class="contact-form" id="contactForm">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" placeholder="Tell us about your vision..." required></textarea>
+                <button type="submit" class="cta-button">Send Your Thoughts</button>
+            </form>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <p><a href="#hero" class="logo-maugans">Maugans Co.</a></p>
+        <p>Designing a friendlier, more beautiful world, one project at a time.</p>
+        <p>&copy; <span id="currentYear"></span> Maugans Co. All Rights Reserved. Lovingly built from scratch.</p>
+    </footer>
+
+    <div class="modal" id="portfolioModal" role="dialog" aria-modal="true" aria-labelledby="modalImageAriaLabel">
+        <div class="modal-content">
+            <img src="" alt="Portfolio Item Large View" id="modalImage" />
+            <span id="modalImageAriaLabel" class="sr-only">Large view of portfolio image</span>
+        </div>
+        <button class="modal-close" id="modalClose" aria-label="Close modal">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+    <div class="sr-only" style="position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0;">
+        This is a screen-reader only class.
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const mainHeader = document.getElementById('mainHeader');
+        const menuToggle = document.getElementById('menuToggle');
+        const mainNav = document.getElementById('mainNav');
+        const navLinks = document.querySelectorAll('.main-nav a.nav-link');
+        const body = document.body;
+
+        // --- Header Scroll Effect ---
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                mainHeader.classList.add('scrolled');
+            } else {
+                mainHeader.classList.remove('scrolled');
+            }
+        });
+
+        // --- Mobile Menu Toggle ---
+        menuToggle.addEventListener('click', function() {
+            const isExpanded = mainNav.classList.toggle('active');
+            menuToggle.classList.toggle('open');
+            menuToggle.setAttribute('aria-expanded', isExpanded);
+            // Prevent body scroll when mobile menu is open and overlaying content
+            body.classList.toggle('modal-open', isExpanded && window.innerWidth < 769);
+        });
+
+        // --- Smooth Scroll, Active Link & Close Mobile Menu ---
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                // Close mobile menu on link click
+                if (mainNav.classList.contains('active')) {
+                    mainNav.classList.remove('active');
+                    menuToggle.classList.remove('open');
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                    body.classList.remove('modal-open');
+                }
+            });
+        });
+
+        // --- Intersection Observer for Section Animations & Active Nav Link ---
+        const sections = document.querySelectorAll('main section');
+        const observerOptions = {
+            root: null,
+            threshold: 0.25, // When 25% of section is visible
+            rootMargin: "-80px 0px -15% 0px" // Adjust for header and trigger point
+        };
+        let activeLinkTimeout;
+
+        const sectionObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                const link = document.querySelector(`.main-nav a[href="#${entry.target.id}"]`);
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    if (link) {
+                        clearTimeout(activeLinkTimeout);
+                        activeLinkTimeout = setTimeout(() => { // Debounce active link setting
+                            navLinks.forEach(l => l.classList.remove('active'));
+                            link.classList.add('active');
+                        }, 50);
+                    }
+                }
+                // No 'else' to remove 'visible' class, so animation happens once per load
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            sectionObserver.observe(section);
+        });
+        
+        // Initial active link check for page load (e.g., if linking directly to a section)
+        function initialActiveLink() { 
+            let current = '';
+            const headerHeight = mainHeader ? mainHeader.offsetHeight + 100 : 150; // Offset for header
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - headerHeight) {
+                    current = section.getAttribute('id');
+                }
+            });
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+            // If above all sections (e.g., top of page, hero is visible but not "current" by above logic)
+            if (!current && pageYOffset < (sections[0] ? sections[0].offsetTop : 0) ) { 
+                 navLinks.forEach(l => l.classList.remove('active'));
+                 // Optionally, activate a "Home" link if you have one pointing to #hero
+            }
+        }
+        initialActiveLink(); // Call on load
+
+        // --- Portfolio Modal Logic ---
+        const portfolioModal = document.getElementById('portfolioModal');
+        const modalImage = document.getElementById('modalImage');
+        const modalCloseButton = document.getElementById('modalClose');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+        let previouslyFocusedElement; // For accessibility: return focus after closing modal
+
+        function openModal(imgSrc, altText) {
+            previouslyFocusedElement = document.activeElement; // Store focus
+            modalImage.src = imgSrc;
+            modalImage.alt = altText || "Large view of portfolio project"; // Fallback alt text
+            portfolioModal.classList.add('active');
+            body.classList.add('modal-open'); // Disable body scroll
+            modalCloseButton.focus(); // Set focus to close button for accessibility
+        }
+
+        function closeModal() {
+            portfolioModal.classList.remove('active');
+            body.classList.remove('modal-open'); // Re-enable body scroll
+            if (previouslyFocusedElement) {
+                previouslyFocusedElement.focus(); // Return focus
+            }
+        }
+
+        portfolioItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const largeImgSrc = item.dataset.imgSrc;
+                const altText = item.querySelector('img').alt; // Get alt from thumbnail
+                if (largeImgSrc) {
+                    openModal(largeImgSrc, altText);
+                }
+            });
+            // Keyboard accessibility for portfolio items
+            item.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault(); // Prevent page scroll on space
+                    const largeImgSrc = item.dataset.imgSrc;
+                    const altText = item.querySelector('img').alt;
+                     if (largeImgSrc) {
+                        openModal(largeImgSrc, altText);
+                    }
+                }
+            });
+        });
+
+        modalCloseButton.addEventListener('click', closeModal);
+        // Click on backdrop to close
+        portfolioModal.addEventListener('click', (e) => {
+            if (e.target === portfolioModal) { // Check if the click is on the backdrop itself
+                closeModal();
+            }
+        });
+        // Escape key to close
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && portfolioModal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+
+        // --- Contact Form Submission (Placeholder) ---
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                // In a real scenario, you'd use fetch() or XMLHttpRequest to send data
+                alert('Thank you for your message! We\'ll be in touch soon.');
+                contactForm.reset();
+            });
+        }
+
+        // --- Update Footer Year ---
+        const currentYearSpan = document.getElementById('currentYear');
+        if (currentYearSpan) {
+            currentYearSpan.textContent = new Date().getFullYear();
+        }
+    });
+    </script>
+
+</body>
+</html>
