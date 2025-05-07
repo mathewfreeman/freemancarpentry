@@ -188,15 +188,14 @@
             border: none;
             color: var(--text-dark);
             cursor: pointer;
-            position: relative; /* For line positioning */
-            width: 30px; /* Ensure consistent size */
+            position: relative;
+            width: 30px;
             height: 22px;
         }
         .menu-toggle .line {
             width: 25px;
             height: 2px;
             background-color: var(--text-dark);
-            /* margin: 5px 0; This margin is overridden by absolute positioning */
             display: block;
             transition: all var(--transition-speed-medium) ease-in-out;
             position: absolute;
@@ -224,17 +223,17 @@
         }
         .hero-content {
             max-width: 950px;
-            text-align: left;
+            /* text-align: left; Default, overridden for mobile */
             position: relative;
             z-index: 2;
         }
         .hero-content h1 {
             font-family: var(--font-body);
-            font-size: clamp(2.2rem, 7vw, 5.5rem); /* Adjusted clamp for smaller base on mobile */
+            font-size: clamp(2.2rem, 7vw, 5.5rem);
             font-weight: 600;
             margin-bottom: 1.5rem;
             color: var(--text-dark);
-            line-height: 1.25; /* Slightly increased for stacked lines */
+            line-height: 1.25;
             letter-spacing: -0.04em;
         }
         .hero-content h1 .maugans-co-logo-hero {
@@ -268,12 +267,8 @@
             box-shadow: 0 8px 25px rgba(4, 217, 196, 0.4);
         }
         .hero::before, .hero::after {
-            content: '';
-            position: absolute;
-            border-radius: 50%;
-            opacity: 0.08;
-            z-index: 1;
-            pointer-events: none;
+            content: ''; position: absolute; border-radius: 50%; opacity: 0.08;
+            z-index: 1; pointer-events: none;
         }
         .hero::before {
             width: clamp(300px, 50vw, 600px); height: clamp(300px, 50vw, 600px);
@@ -292,47 +287,28 @@
 
         /* --- About Section --- */
         #about .container {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 3rem;
-            align-items: center;
+            display: grid; grid-template-columns: 1fr; gap: 3rem; align-items: center;
         }
         #about h2 { text-align: left; }
         #about p { max-width: none; }
-
         @media (min-width: 768px) {
-            #about .container {
-                grid-template-columns: 2fr 1.5fr;
-                gap: 4rem;
-            }
+            #about .container { grid-template-columns: 2fr 1.5fr; gap: 4rem; }
             .about-image-placeholder {
-                height: 350px;
-                border-radius: var(--border-radius-main);
-                box-shadow: var(--shadow-light);
-                opacity: 0.85;
+                height: 350px; border-radius: var(--border-radius-main);
+                box-shadow: var(--shadow-light); opacity: 0.85;
             }
         }
 
         /* --- Services Section --- */
-        .service-grid {
-            display: grid;
-            gap: 2.5rem;
-        }
+        .service-grid { display: grid; gap: 2.5rem; }
         @media (min-width: 1024px) { .service-grid { grid-template-columns: repeat(4, 1fr); } }
         @media (min-width: 600px) and (max-width: 1023px) { .service-grid { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 599px) { .service-grid { grid-template-columns: 1fr; } }
-
         .service-item {
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(18px) saturate(160%);
-            -webkit-backdrop-filter: blur(18px) saturate(160%);
-            border: 1px solid rgba(220, 220, 220, 0.3);
-            padding: 2.5rem 2rem;
-            border-radius: var(--border-radius-main);
-            box-shadow: var(--shadow-light);
-            text-align: left;
-            position: relative;
-            overflow: hidden;
+            background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(18px) saturate(160%);
+            -webkit-backdrop-filter: blur(18px) saturate(160%); border: 1px solid rgba(220, 220, 220, 0.3);
+            padding: 2.5rem 2rem; border-radius: var(--border-radius-main); box-shadow: var(--shadow-light);
+            text-align: left; position: relative; overflow: hidden;
             transition: transform var(--transition-speed-medium) cubic-bezier(0.19, 1, 0.22, 1),
                         box-shadow var(--transition-speed-medium) cubic-bezier(0.19, 1, 0.22, 1);
         }
@@ -357,61 +333,51 @@
 
         /* --- Portfolio Section --- */
         .portfolio-grid {
-            display: grid;
-            gap: 1.5rem;
+            display: grid; gap: 1.5rem;
             grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
         }
         .portfolio-item {
             position: relative;
-            overflow: hidden;
+            /* overflow: hidden; Keep this, but ensure children are visible */
             border-radius: var(--border-radius-main);
             box-shadow: var(--shadow-medium);
             transition: transform var(--transition-speed-medium) ease;
             aspect-ratio: 4 / 3;
             cursor: pointer;
-            background-color: #e9e9e9; /* Fallback bg for item if image fails */
+            background-color: #f0f0f0; /* Fallback for item visibility */
+            opacity: 1; /* Ensure visibility */
+            visibility: visible; /* Ensure visibility */
+            transform: translateZ(0); /* Force hardware acceleration / new stacking context */
+            -webkit-transform: translateZ(0); 
         }
-        .portfolio-item:hover {
-            transform: scale(1.03);
-        }
+        .portfolio-item:hover { transform: scale(1.03); }
         .portfolio-item img {
-            display: block;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            display: block; width: 100%; height: 100%; object-fit: cover;
             transition: transform var(--transition-speed-slow) cubic-bezier(0.165, 0.84, 0.44, 1);
-            position: relative; /* For z-index stacking context */
-            z-index: 1; /* To be above parent's background */
+            position: relative; z-index: 1;
+            opacity: 1; /* Ensure image itself is visible */
+            visibility: visible;
         }
-        .portfolio-item:hover img {
-            transform: scale(1.1);
-        }
+        .portfolio-item:hover img { transform: scale(1.1); }
         .portfolio-item-overlay {
             position: absolute; bottom: 0; left: 0; right: 0;
             background: linear-gradient(to top, rgba(19, 21, 22, 0.85) 0%, rgba(19, 21, 22, 0) 100%);
             padding: 3rem 1.5rem 1.5rem; transform: translateY(100%);
             transition: transform var(--transition-speed-medium) cubic-bezier(0.165, 0.84, 0.44, 1);
-            color: var(--text-light); z-index: 2; /* Above image */
+            color: var(--text-light); z-index: 2;
         }
         .portfolio-item:hover .portfolio-item-overlay { transform: translateY(0); }
         .portfolio-item-overlay h4 { font-size: 1.4rem; color: var(--text-light); margin-bottom: 0.3rem; font-weight: 500; }
         .portfolio-item-overlay p.category { font-size: 0.9rem; color: var(--accent-primary); font-weight: 400; text-transform: uppercase; letter-spacing: 0.05em; }
 
         /* --- Why Choose Us Section (#why-us) --- */
-        #why-us {
-            position: relative;
-            padding-top: 3rem;
-            padding-bottom: 3rem;
-        }
+        #why-us { position: relative; padding-top: 3rem; padding-bottom: 3rem; }
         .why-us-background-wrapper {
             background-color: var(--accent-secondary-glass);
             backdrop-filter: blur(5px) saturate(180%);
             -webkit-backdrop-filter: blur(5px) saturate(180%);
-            border-radius: var(--border-radius-large);
-            padding: 4rem 3rem;
-            margin: 0 auto;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            box-shadow: var(--shadow-medium);
+            border-radius: var(--border-radius-large); padding: 4rem 3rem; margin: 0 auto;
+            border: 1px solid rgba(255, 255, 255, 0.15); box-shadow: var(--shadow-medium);
         }
         #why-us h2 { color: var(--text-light); }
         #why-us .why-us-description {
@@ -481,8 +447,9 @@
         }
         .modal-close {
             position: absolute; top: 15px; right: 15px; width: 38px; height: 38px;
-            background-color: var(--accent-primary); color: var(--bg-dark); border: none;
-            border-radius: 50%; font-size: 1.4rem;
+            background-color: var(--accent-primary); 
+            color: var(--text-light); /* UPDATED X COLOR TO WHITE */
+            border: none; border-radius: 50%; font-size: 1.4rem;
             cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.25);
             transition: transform var(--transition-speed-fast) cubic-bezier(0.34, 1.56, 0.64, 1),
                         background-color var(--transition-speed-fast);
@@ -505,25 +472,37 @@
             .main-nav ul { flex-direction: column; align-items: center; padding: 1rem 0; }
             .main-nav ul li { margin: 1rem 0; }
 
-            .hero-content { text-align: center; padding: 0 1rem;}
-            .hero-content h1 { 
-                font-size: clamp(2.0rem, 8vw, 3.0rem); /* Adjusted for 3 lines on mobile */
-                line-height: 1.3; 
+            .hero-content {
+                text-align: left; /* Mobile hero text left aligned */
+                padding: 0 1.5rem; /* Add some padding */
             }
-             @media (max-width: 400px) { /* Specific for very small screens */
+            .hero-content h1 {
+                font-size: clamp(2.0rem, 8vw, 3.0rem);
+                line-height: 1.3;
+            }
+             @media (max-width: 400px) {
                 .hero-content h1 {
-                    font-size: 1.8rem; 
+                    font-size: 1.8rem;
                     line-height: 1.35;
                 }
-                .hero-content .subtitle {
-                    font-size: 1rem;
-                }
+                .hero-content .subtitle { font-size: 1rem; }
             }
-
             .hero-content .subtitle { font-size: clamp(1.1rem, 4vw, 1.3rem); }
             .hero::before, .hero::after { display: none; }
 
             #about h2 { text-align: center; }
+            
+            /* Portfolio item mobile visibility fix attempt */
+            .portfolio-item {
+                opacity: 1 !important; /* Force visibility */
+                visibility: visible !important; /* Force visibility */
+                min-height: 150px; /* Ensure it has some minimum height if aspect-ratio fails visually */
+            }
+            .portfolio-item img {
+                 opacity: 1 !important;
+                 visibility: visible !important;
+            }
+
             .portfolio-item-overlay { padding: 2rem 1rem 1rem; }
             .modal-close { top: 10px; right: 10px; width: 35px; height: 35px; font-size: 1.2rem; }
             .modal-content img { max-height: calc(90vh - 50px); }
@@ -740,7 +719,6 @@
             const isExpanded = mainNav.classList.toggle('active');
             menuToggle.classList.toggle('open');
             menuToggle.setAttribute('aria-expanded', isExpanded);
-            // Prevent body scroll when mobile menu is open and overlaying content
             body.classList.toggle('modal-open', isExpanded && window.innerWidth < 769);
         });
 
@@ -759,20 +737,17 @@
         // --- Intersection Observer for Section Animations & Active Nav Link ---
         const sections = document.querySelectorAll('main section');
         const observerOptions = {
-            root: null,
-            threshold: 0.25, 
-            rootMargin: "-80px 0px -15% 0px" 
+            root: null, threshold: 0.25, rootMargin: "-80px 0px -15% 0px"
         };
         let activeLinkTimeout;
-
-        const sectionObserver = new IntersectionObserver((entries, observer) => {
+        const sectionObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 const link = document.querySelector(`.main-nav a[href="#${entry.target.id}"]`);
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
                     if (link) {
                         clearTimeout(activeLinkTimeout);
-                        activeLinkTimeout = setTimeout(() => { 
+                        activeLinkTimeout = setTimeout(() => {
                             navLinks.forEach(l => l.classList.remove('active'));
                             link.classList.add('active');
                         }, 50);
@@ -780,27 +755,19 @@
                 }
             });
         }, observerOptions);
-
-        sections.forEach(section => {
-            sectionObserver.observe(section);
-        });
+        sections.forEach(section => sectionObserver.observe(section));
         
         function initialActiveLink() { 
             let current = '';
             const headerHeight = mainHeader ? mainHeader.offsetHeight + 100 : 150;
             sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                if (pageYOffset >= sectionTop - headerHeight) {
-                    current = section.getAttribute('id');
-                }
+                if (pageYOffset >= section.offsetTop - headerHeight) current = section.id;
             });
             navLinks.forEach(link => {
                 link.classList.remove('active');
-                if (link.getAttribute('href') === `#${current}`) {
-                    link.classList.add('active');
-                }
+                if (link.getAttribute('href') === `#${current}`) link.classList.add('active');
             });
-            if (!current && pageYOffset < (sections[0] ? sections[0].offsetTop : 0) ) { 
+            if (!current && pageYOffset < (sections[0] ? sections[0].offsetTop : 0)) {
                  navLinks.forEach(l => l.classList.remove('active'));
             }
         }
@@ -825,42 +792,28 @@
         function closeModal() {
             portfolioModal.classList.remove('active');
             body.classList.remove('modal-open'); 
-            if (previouslyFocusedElement) {
-                previouslyFocusedElement.focus(); 
-            }
+            if (previouslyFocusedElement) previouslyFocusedElement.focus();
         }
 
         portfolioItems.forEach(item => {
             item.addEventListener('click', () => {
                 const largeImgSrc = item.dataset.imgSrc;
                 const altText = item.querySelector('img').alt; 
-                if (largeImgSrc) {
-                    openModal(largeImgSrc, altText);
-                }
+                if (largeImgSrc) openModal(largeImgSrc, altText);
             });
             item.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault(); 
                     const largeImgSrc = item.dataset.imgSrc;
                     const altText = item.querySelector('img').alt;
-                     if (largeImgSrc) {
-                        openModal(largeImgSrc, altText);
-                    }
+                    if (largeImgSrc) openModal(largeImgSrc, altText);
                 }
             });
         });
 
         modalCloseButton.addEventListener('click', closeModal);
-        portfolioModal.addEventListener('click', (e) => {
-            if (e.target === portfolioModal) { 
-                closeModal();
-            }
-        });
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && portfolioModal.classList.contains('active')) {
-                closeModal();
-            }
-        });
+        portfolioModal.addEventListener('click', (e) => { if (e.target === portfolioModal) closeModal(); });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && portfolioModal.classList.contains('active')) closeModal(); });
 
         // --- Contact Form Submission (Placeholder) ---
         const contactForm = document.getElementById('contactForm');
@@ -874,9 +827,7 @@
 
         // --- Update Footer Year ---
         const currentYearSpan = document.getElementById('currentYear');
-        if (currentYearSpan) {
-            currentYearSpan.textContent = new Date().getFullYear();
-        }
+        if (currentYearSpan) currentYearSpan.textContent = new Date().getFullYear();
     });
     </script>
 
