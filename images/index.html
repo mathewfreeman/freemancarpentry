@@ -1,553 +1,521 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maugans Co. - Visionary Design & Creative Solutions</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>My Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* --- Google Fonts --- */
-        @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400&family=IBM+Plex+Sans:wght@200;300;400;500;600&display=swap');
-
-        /* --- Variables --- */
-        :root {
-            --bg-dark: #131516;
-            --accent-primary: #04d9c4;
-            --accent-secondary: #00214d; /* Deep Blue */
-            --accent-secondary-glass: rgba(0, 33, 77, 0.85); /* Adjusted for Why Us section */
-            --neutral-gray: #5f6b7a;
-            --text-light: #F4F4F4;
-            --text-dark: #222526;
-            --background-light: #FDFDFD;
-            --background-translucent-light: rgba(255, 255, 255, 0.05); /* For dark backgrounds */
-
-            --font-logo: 'EB Garamond', serif;
-            --font-body: 'IBM Plex Sans', sans-serif;
-
-            --transition-speed-fast: 0.2s;
-            --transition-speed-medium: 0.4s;
-            --transition-speed-slow: 0.6s;
-
-            --shadow-light: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
-            --shadow-medium: 0 10px 30px rgba(0,0,0,0.08);
-            --border-radius-main: 12px;
-            --border-radius-large: 16px;
-        }
-
-        /* --- Reset & Base Styles --- */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
         body {
-            font-family: var(--font-body); line-height: 1.8; background-color: var(--background-light);
-            color: var(--text-dark); overflow-x: hidden; font-weight: 300;
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.3s, color 0.3s;
         }
-        body.modal-open { overflow: hidden; }
-        h1, h2, h3, h4 { font-weight: 500; color: var(--text-dark); letter-spacing: -0.02em; }
-        h2 { font-size: clamp(2.2rem, 5vw, 3.5rem); margin-bottom: 2.5rem; text-align: center; color: var(--accent-secondary); font-weight: 600; }
-        h3 { font-size: clamp(1.5rem, 4vw, 1.8rem); margin-bottom: 1rem; color: var(--accent-primary); font-weight: 500; }
-        p { margin-bottom: 1.5rem; font-size: clamp(1rem, 2.5vw, 1.15rem); color: var(--neutral-gray); font-weight: 300; max-width: 700px; }
-        .container { width: 90%; max-width: 1200px; margin: 0 auto; padding: 5rem 0; }
-        section { opacity: 0; transform: translateY(40px); transition: opacity 0.8s cubic-bezier(0.165, 0.84, 0.44, 1), transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1); }
-        section.visible { opacity: 1; transform: translateY(0); }
-        .highlight { color: var(--accent-primary); font-weight: 500; }
-
-        /* --- Header --- */
-        .main-header { background: rgba(253, 253, 253, 0.65); backdrop-filter: blur(12px) saturate(180%); -webkit-backdrop-filter: blur(12px) saturate(180%); border-bottom: 1px solid rgba(255, 255, 255, 0.2); padding: 1.2rem 0; position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; transition: background var(--transition-speed-medium) ease, box-shadow var(--transition-speed-medium) ease; }
-        .main-header.scrolled { background: rgba(253, 253, 253, 0.85); box-shadow: 0 2px 15px rgba(0,0,0,0.07); }
-        .nav-container { display: flex; justify-content: space-between; align-items: center; width: 90%; max-width: 1200px; margin: 0 auto; }
-        .logo a { font-family: var(--font-logo); font-size: clamp(1.8rem, 4vw, 2.4rem); font-weight: 500; color: var(--accent-secondary); text-decoration: none; letter-spacing: -0.03em; transition: color var(--transition-speed-fast); }
-        .logo a:hover { color: var(--accent-primary); }
-        .logo-maugans { color: var(--text-dark); }
-        .logo a .co-highlight { color: var(--accent-primary); font-weight: 400; }
-        .main-nav ul { list-style: none; display: flex; }
-        .main-nav ul li { margin-left: 30px; }
-        .main-nav ul li a { color: var(--neutral-gray); text-decoration: none; font-weight: 400; font-size: 1rem; padding: 0.3rem 0.1rem; position: relative; transition: color var(--transition-speed-fast) ease; }
-        .main-nav ul li a::after { content: ''; position: absolute; bottom: -2px; left: 50%; transform: translateX(-50%); width: 0; height: 2px; background-color: var(--accent-primary); transition: width var(--transition-speed-medium) cubic-bezier(0.19, 1, 0.22, 1); }
-        .main-nav ul li a:hover, .main-nav ul li a.active { color: var(--text-dark); }
-        .main-nav ul li a:hover::after, .main-nav ul li a.active::after { width: 100%; }
-        .menu-toggle { display: none; font-size: 1.8rem; background: none; border: none; color: var(--text-dark); cursor: pointer; position: relative; width: 30px; height: 22px; }
-        .menu-toggle .line { width: 25px; height: 2px; background-color: var(--text-dark); display: block; transition: all var(--transition-speed-medium) ease-in-out; position: absolute; left: 0; }
-        .menu-toggle .line1 { top: 0px; } .menu-toggle .line2 { top: 8px; } .menu-toggle .line3 { top: 16px; }
-        .menu-toggle.open .line1 { transform: rotate(-45deg) translate(-5px, 6px); } .menu-toggle.open .line2 { opacity: 0; } .menu-toggle.open .line3 { transform: rotate(45deg) translate(-5px, -6px); }
-
-        /* --- Hero Section --- */
-        .hero { background: linear-gradient(135deg, #eef4f8 0%, var(--background-light) 100%); color: var(--text-dark); min-height: 100vh; display: flex; align-items: center; justify-content: center; padding-top: 100px; overflow: hidden; position: relative; }
-        .hero-content { max-width: 950px; /* text-align: left; Default, overridden for mobile */ position: relative; z-index: 2; }
-        .hero-content h1 { font-family: var(--font-body); font-size: clamp(2.2rem, 7vw, 5.5rem); font-weight: 600; margin-bottom: 1.5rem; color: var(--text-dark); line-height: 1.25; letter-spacing: -0.04em; }
-        .hero-content h1 .maugans-co-logo-hero { font-family: var(--font-logo); color: var(--accent-secondary); font-weight: 700; }
-        .hero-content .subtitle { font-size: clamp(1.2rem, 3vw, 1.6rem); margin-bottom: 2.5rem; font-weight: 300; color: var(--neutral-gray); max-width: 650px; line-height: 1.6; }
-        .cta-button { background: linear-gradient(135deg, var(--accent-primary), #03b0a0); color: var(--text-light); padding: 1rem 2.8rem; text-decoration: none; font-weight: 500; border-radius: 50px; transition: all var(--transition-speed-medium) cubic-bezier(0.19, 1, 0.22, 1); display: inline-block; font-size: 1.1rem; box-shadow: 0 4px 15px rgba(4, 217, 196, 0.3); border: none; }
-        .cta-button:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 8px 25px rgba(4, 217, 196, 0.4); }
-        .hero::before, .hero::after { content: ''; position: absolute; border-radius: 50%; opacity: 0.08; z-index: 1; pointer-events: none; }
-        .hero::before { width: clamp(300px, 50vw, 600px); height: clamp(300px, 50vw, 600px); background: radial-gradient(circle, var(--accent-primary) 0%, transparent 70%); top: 10%; left: -10%; animation: pulse-bubble 15s infinite alternate ease-in-out; }
-        .hero::after { width: clamp(200px, 40vw, 400px); height: clamp(200px, 40vw, 400px); background: radial-gradient(circle, var(--accent-secondary) 0%, transparent 70%); bottom: 5%; right: -5%; animation: pulse-bubble 18s infinite alternate-reverse ease-in-out; }
-        @keyframes pulse-bubble { 0%, 100% { transform: scale(0.9) rotate(0deg); opacity: 0.06; } 50% { transform: scale(1.1) rotate(10deg); opacity: 0.1; } }
-
-        /* --- About Section --- */
-        #about .container { display: grid; grid-template-columns: 1fr; gap: 3rem; align-items: center; }
-        #about h2 { text-align: left; } #about p { max-width: none; }
-        @media (min-width: 768px) { #about .container { grid-template-columns: 2fr 1.5fr; gap: 4rem; } .about-image-placeholder { height: 350px; border-radius: var(--border-radius-main); box-shadow: var(--shadow-light); opacity: 0.85; } }
-
-        /* --- Services Section --- */
-        .service-grid { display: grid; gap: 2.5rem; }
-        @media (min-width: 1024px) { .service-grid { grid-template-columns: repeat(4, 1fr); } }
-        @media (min-width: 600px) and (max-width: 1023px) { .service-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 599px) { .service-grid { grid-template-columns: 1fr; } }
-        .service-item { background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(18px) saturate(160%); -webkit-backdrop-filter: blur(18px) saturate(160%); border: 1px solid rgba(220, 220, 220, 0.3); padding: 2.5rem 2rem; border-radius: var(--border-radius-main); box-shadow: var(--shadow-light); text-align: left; position: relative; overflow: hidden; transition: transform var(--transition-speed-medium) cubic-bezier(0.19, 1, 0.22, 1), box-shadow var(--transition-speed-medium) cubic-bezier(0.19, 1, 0.22, 1); }
-        .service-item:hover { transform: translateY(-8px) perspective(1000px) rotateX(2deg) rotateY(-2deg) scale(1.03); box-shadow: 0 18px 45px rgba(0,0,0,0.1); }
-        .service-item::before { content: ""; position: absolute; top: 0; left: -150%; width: 100%; height: 100%; background: linear-gradient( 100deg, transparent, rgba(255, 255, 255, 0.4), transparent ); transition: left var(--transition-speed-slow) cubic-bezier(0.19, 1, 0.22, 1); transform: skewX(-25deg); z-index: 1; }
-        .service-item:hover::before { left: 150%; }
-        .service-item-content { position: relative; z-index: 2; }
-        .service-item-icon { font-size: 2.8rem; color: var(--accent-primary); margin-bottom: 1.5rem; display: inline-block; transition: transform var(--transition-speed-medium) ease; }
-        .service-item:hover .service-item-icon { transform: scale(1.1) rotate(-5deg); }
-        .service-item h3 { color: var(--text-dark); font-weight: 500; }
-
-        /* --- Portfolio Section --- */
-        .portfolio-grid { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); }
-        .portfolio-item { position: relative; overflow: hidden; border-radius: var(--border-radius-main); box-shadow: var(--shadow-medium); transition: transform var(--transition-speed-medium) ease; aspect-ratio: 4 / 3; cursor: pointer; background-color: #e9e9e9; transform: translateZ(0); -webkit-transform: translateZ(0); }
-        .portfolio-item:hover { transform: scale(1.03); }
-        .portfolio-item img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform var(--transition-speed-slow) cubic-bezier(0.165, 0.84, 0.44, 1); position: relative; z-index: 1; }
-        .portfolio-item:hover img { transform: scale(1.1); }
-        .portfolio-item-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(19, 21, 22, 0.85) 0%, rgba(19, 21, 22, 0) 100%); padding: 3rem 1.5rem 1.5rem; transform: translateY(100%); transition: transform var(--transition-speed-medium) cubic-bezier(0.165, 0.84, 0.44, 1); color: var(--text-light); z-index: 2; }
-        .portfolio-item:hover .portfolio-item-overlay { transform: translateY(0); }
-        .portfolio-item-overlay h4 { font-size: 1.4rem; color: var(--text-light); margin-bottom: 0.3rem; font-weight: 500; }
-        .portfolio-item-overlay p.category { font-size: 0.9rem; color: var(--accent-primary); font-weight: 400; text-transform: uppercase; letter-spacing: 0.05em; }
-
-        /* --- Why Choose Us Section (#why-us) --- */
-        #why-us { position: relative; padding-top: 3rem; padding-bottom: 3rem; }
-        .why-us-background-wrapper { background-color: var(--accent-secondary-glass); backdrop-filter: blur(5px) saturate(180%); -webkit-backdrop-filter: blur(5px) saturate(180%); border-radius: var(--border-radius-large); padding: 4rem 3rem; margin: 0 auto; border: 1px solid rgba(255, 255, 255, 0.15); box-shadow: var(--shadow-medium); }
-        #why-us h2 { color: var(--text-light); }
-        #why-us .why-us-description { color: rgba(244, 244, 244, 0.9); text-align: center; max-width: 750px; margin-left: auto; margin-right: auto; font-size: 1.2rem; margin-bottom: 3rem; }
-        .why-us-points { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 2rem; max-width: 900px; margin-left: auto; margin-right: auto; }
-        .why-us-point { background: var(--background-translucent-light); padding: 2rem; border-radius: var(--border-radius-main); border: 1px solid rgba(255, 255, 255, 0.15); text-align: left; }
-        .why-us-point h4 { color: var(--accent-primary); margin-bottom: 0.75rem; font-size: 1.3rem; font-weight: 500; }
-        .why-us-point p { color: rgba(244, 244, 244, 0.85); font-size: 1rem; max-width: none; }
-
-        /* --- Contact Section --- */
-        #contact p { text-align: center; margin-bottom: 3rem; max-width: 700px; margin-left: auto; margin-right: auto; }
-        .contact-form { max-width: 700px; margin: 0 auto; display: grid; gap: 1.5rem; }
-        .contact-form input, .contact-form textarea { width: 100%; padding: 1.2rem 1.5rem; border: 1px solid #dde2e7; border-radius: 8px; background-color: rgba(255,255,255,0.8); color: var(--text-dark); font-family: var(--font-body); font-size: 1rem; font-weight: 400; transition: border-color var(--transition-speed-fast), box-shadow var(--transition-speed-fast); }
-        .contact-form input::placeholder, .contact-form textarea::placeholder { color: var(--neutral-gray); opacity: 0.8; }
-        .contact-form input:focus, .contact-form textarea:focus { outline: none; border-color: var(--accent-primary); box-shadow: 0 0 0 3px rgba(4, 217, 196, 0.2); }
-        .contact-form textarea { resize: vertical; min-height: 150px; }
-        .contact-form button { justify-self: center; margin-top: 1rem; }
-
-        /* --- Footer --- */
-        .main-footer { background-color: var(--bg-dark); color: var(--neutral-gray); text-align: center; padding: 3rem 1rem; font-size: 0.95rem; }
-        .main-footer p { color: var(--neutral-gray); font-size: 0.9rem; margin-bottom: 0.5rem; max-width: none; }
-        .main-footer a { color: var(--accent-primary); text-decoration: none; transition: color var(--transition-speed-fast); }
-        .main-footer a:hover { color: var(--text-light); text-decoration: underline; }
-
-        /* --- Portfolio Modal --- */
-        .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(253, 253, 253, 0.6); backdrop-filter: blur(10px) saturate(160%); -webkit-backdrop-filter: blur(10px) saturate(160%); display: flex; align-items: center; justify-content: center; z-index: 2000; opacity: 0; visibility: hidden; transition: opacity var(--transition-speed-medium) cubic-bezier(0.25, 0.46, 0.45, 0.94), visibility var(--transition-speed-medium) cubic-bezier(0.25, 0.46, 0.45, 0.94); }
-        .modal.active { opacity: 1; visibility: visible; }
-        .modal-content { background-color: var(--background-light); padding: 1rem; border-radius: var(--border-radius-main); box-shadow: 0 15px 50px rgba(0,0,0,0.2); max-width: 90vw; max-height: 90vh; position: relative; transform: scale(0.9) translateY(20px); transition: transform var(--transition-speed-medium) cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        .modal.active .modal-content { transform: scale(1) translateY(0); }
-        .modal-content img { display: block; max-width: 100%; max-height: calc(90vh - 60px); object-fit: contain; border-radius: calc(var(--border-radius-main) - 4px); }
-        .modal-close { position: absolute; top: 15px; right: 15px; width: 38px; height: 38px; background-color: var(--accent-primary); color: var(--text-light); /* UPDATED X COLOR */ border: none; border-radius: 50%; font-size: 1.4rem; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.25); transition: transform var(--transition-speed-fast) cubic-bezier(0.34, 1.56, 0.64, 1), background-color var(--transition-speed-fast); display: flex; align-items: center; justify-content: center; z-index: 10; }
-        .modal-close:hover { transform: scale(1.1) rotate(90deg); background-color: #03c8b3; }
-
-        /* --- Responsive Adjustments --- */
-        @media (max-width: 768px) {
-            .nav-container { flex-wrap: wrap; }
-            .menu-toggle { display: flex; align-items: center; justify-content: center; }
-            .main-nav { width: 100%; max-height: 0; overflow: hidden; background: rgba(253, 253, 253, 0.95); backdrop-filter: blur(10px) saturate(180%); -webkit-backdrop-filter: blur(10px) saturate(180%); position: absolute; top: 100%; left: 0; box-shadow: 0 10px 20px rgba(0,0,0,0.1); border-top: 1px solid rgba(0,0,0,0.05); transition: max-height 0.5s cubic-bezier(0.19, 1, 0.22, 1); }
-            .main-nav.active { max-height: 350px; }
-            .main-nav ul { flex-direction: column; align-items: center; padding: 1rem 0; }
-            .main-nav ul li { margin: 1rem 0; }
-
-            .hero-content {
-                text-align: left; /* Mobile hero text left aligned */
-                padding: 0 1.5rem;
-            }
-            .hero-content h1 { font-size: clamp(2.0rem, 8vw, 3.0rem); line-height: 1.3; }
-             @media (max-width: 400px) { .hero-content h1 { font-size: 1.8rem; line-height: 1.35; } .hero-content .subtitle { font-size: 1rem; } }
-            .hero-content .subtitle { font-size: clamp(1.1rem, 4vw, 1.3rem); }
-            .hero::before, .hero::after { display: none; }
-
-            #about h2 { text-align: center; }
-
-            /* Portfolio item mobile visibility fix attempt - Revert to v7 + Outline Test */
-            .portfolio-grid {
-                 /* Ensure grid defaults are okay */
-                display: grid;
-                gap: 1.5rem;
-                grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr)); /* Slightly smaller min */
-            }
-            .portfolio-item {
-                /* Revert to original desktop styles first, then override */
-                display: block; /* Ensure block display */
-                position: relative;
-                overflow: hidden; /* Keep overflow hidden for overlay */
-                border-radius: var(--border-radius-main);
-                box-shadow: var(--shadow-medium);
-                transition: none; /* Disable transitions on mobile if desired */
-                aspect-ratio: 4 / 3;
-                cursor: pointer;
-                background-color: #e9e9e9; /* Keep fallback bg */
-                /* Force rendering attempts */
-                transform: translateZ(0);
-                -webkit-transform: translateZ(0);
-                outline: 4px solid orange !important; /* BRIGHT outline test */
-                min-height: 100px; /* Ensure it has *some* height if aspect-ratio fails */
-                opacity: 1;
-                visibility: visible;
-                z-index: 5; /* Ensure it's above general page flow */
-            }
-             .portfolio-item:hover {
-                 transform: none; /* Disable hover effect on mobile */
-             }
-
-            .portfolio-item img {
-                display: block;
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                /* transition: none; /* Disable transitions on mobile if desired */
-                position: relative; /* Can be relative if parent has overflow:hidden */
-                z-index: 1;
-                opacity: 1; /* Ensure visible */
-                visibility: visible; /* Ensure visible */
-                border-radius: var(--border-radius-main); /* Match parent */
-            }
-             .portfolio-item:hover img {
-                 transform: none; /* Disable hover effect on mobile */
-             }
-
-            /* Re-enable overlay, but ensure it doesn't cover initially */
-            .portfolio-item-overlay {
-                display: block; /* Make sure it's not hidden */
-                position: absolute; bottom: 0; left: 0; right: 0;
-                background: linear-gradient(to top, rgba(19, 21, 22, 0.85) 0%, rgba(19, 21, 22, 0) 100%);
-                padding: 2rem 1rem 1rem;
-                transform: translateY(100%); /* Start hidden below */
-                transition: none; /* Disable transitions */
-                color: var(--text-light); z-index: 2;
-                opacity: 1; /* Ensure visible */
-                visibility: visible; /* Ensure visible */
-            }
-             /* Disable hover reveal on mobile */
-             .portfolio-item:hover .portfolio-item-overlay {
-                 transform: translateY(100%);
-             }
-
-            .modal-close { top: 10px; right: 10px; width: 35px; height: 35px; font-size: 1.2rem; color: var(--text-light); /* White X */ }
-            .modal-content img { max-height: calc(90vh - 50px); }
-            #why-us { padding-top: 2rem; padding-bottom: 2rem; }
-            .why-us-background-wrapper { padding: 2.5rem 1.5rem; }
-            #why-us .why-us-description { max-width: 90%; font-size: 1.1rem; }
-            .why-us-points { max-width: 100%; gap: 1.5rem; }
+        .dark body {
+            background-color: #111827; /* dark:bg-gray-900 */
+            color: #f3f4f6; /* dark:text-gray-100 */
         }
-        .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0;}
+        .skill-card-inner {
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+        }
+        .skill-card:hover .skill-card-inner {
+            transform: rotateY(180deg);
+        }
+        .skill-card-front, .skill-card-back {
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+        .skill-card-back {
+            transform: rotateY(180deg);
+        }
+        .modal {
+            display: none; /* Hidden by default */
+            transition: opacity 0.3s ease-in-out;
+        }
+        .modal.open {
+            display: flex;
+        }
+        .modal-content {
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            transform: translateY(-20px) scale(0.95);
+            opacity: 0;
+        }
+        .modal.open .modal-content {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+        }
+        /* Custom scrollbar for Webkit browsers */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        .dark ::-webkit-scrollbar-track {
+            background: #2d3748; /* A bit lighter than pure dark for contrast */
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 10px;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #555;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        .dark ::-webkit-scrollbar-thumb:hover {
+            background: #777;
+        }
+
+        /* Slideshow specific styles */
+        .slideshow-track {
+            display: flex;
+            transition: transform 0.3s ease-in-out;
+        }
+        .slide {
+            min-width: 100%;
+            flex-shrink: 0;
+            box-sizing: border-box;
+        }
+        .slide img {
+            object-fit: cover; /* Ensures images cover the area without distortion */
+        }
+        .slide-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #ccc; /* inactive color */
+            transition: background-color 0.3s ease;
+        }
+        .slide-indicator.active {
+            background-color: #3498db; /* active color */
+        }
+        .dark .slide-indicator {
+            background-color: #555;
+        }
+        .dark .slide-indicator.active {
+            background-color: #3b82f6; /* Tailwind blue-500 */
+        }
 
     </style>
 </head>
-<body>
+<body class="bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100">
 
-    <header class="main-header" id="mainHeader">
-        <div class="nav-container">
-            <div class="logo">
-                <a href="#hero"><span class="logo-maugans">Maugans</span> <span class="co-highlight">Co.</span></a>
+    <nav class="bg-white dark:bg-gray-800 shadow-md fixed w-full z-50">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-indigo-600 dark:text-indigo-400">MyPortfolio</a>
+            <div class="flex items-center space-x-4">
+                <a href="#about" class="text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400">About</a>
+                <a href="#skills" class="text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 hidden md:inline">Skills</a>
+                <a href="#work" class="text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400">Work</a>
+                <a href="#contact" class="text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400">Contact</a>
+                <button id="darkModeToggle" class="p-2 rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700">
+                    <i class="fas fa-moon"></i> </button>
             </div>
-            <nav class="main-nav" id="mainNav">
-                <ul>
-                    <li><a href="#about" class="nav-link">About</a></li>
-                    <li><a href="#services" class="nav-link">Services</a></li>
-                    <li><a href="#portfolio" class="nav-link">Work</a></li>
-                    <li><a href="#contact" class="nav-link">Connect</a></li>
-                </ul>
-            </nav>
-            <button class="menu-toggle" id="menuToggle" aria-label="Open Menu" aria-expanded="false">
-                <span class="line line1"></span>
-                <span class="line line2"></span>
-                <span class="line line3"></span>
-            </button>
+        </div>
+    </nav>
+
+    <header class="bg-indigo-600 dark:bg-indigo-800 text-white pt-32 pb-16 md:pt-40 md:pb-24">
+        <div class="container mx-auto px-6 text-center">
+            <img src="https://placehold.co/150x150/ffffff/3498db?text=JD&font=Inter" alt="John Doe" class="w-32 h-32 md:w-40 md:h-40 mx-auto rounded-full object-cover border-4 border-white dark:border-indigo-400 shadow-lg mb-6">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4">Hi, I'm John Doe</h1>
+            <p class="text-xl md:text-2xl mb-8">A Passionate Web Developer & Designer</p>
+            <a href="#contact" class="bg-white text-indigo-600 dark:bg-indigo-400 dark:text-gray-900 font-semibold py-3 px-8 rounded-lg shadow-md hover:bg-gray-100 dark:hover:bg-indigo-300 transition duration-300">Get In Touch</a>
         </div>
     </header>
 
-    <main>
-        <section id="hero" class="hero">
-            <div class="hero-content">
-                <h1>Designing with <span class="highlight">Clarity</span><br/>Crafting with <span class="highlight">Care</span><br/> Welcome to <span class="maugans-co-logo-hero">Maugans Co.</span></h1>
-                <p class="subtitle">We create exceptionally clean, modern, and dynamic experiences – from intuitive websites to inspiring home designs. Your vision, brought to life with a personal, friendly touch.</p>
-                <a href="#contact" class="cta-button">Start Your Project</a>
+    <section id="about" class="py-16 bg-white dark:bg-gray-800">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center text-gray-800 dark:text-white mb-12">About Me</h2>
+            <div class="max-w-3xl mx-auto text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+                <p class="mb-4">
+                    Hello! I'm John, a dedicated and results-oriented web developer with a knack for creating elegant, efficient, and user-friendly digital experiences. With a strong foundation in front-end and back-end technologies, I enjoy turning complex problems into intuitive solutions.
+                </p>
+                <p class="mb-4">
+                    My journey in web development started with a fascination for how websites could connect people and ideas. Since then, I've honed my skills in various technologies, always striving to stay updated with the latest industry trends. I'm passionate about clean code, responsive design, and creating applications that make a difference.
+                </p>
+                <p>
+                    When I'm not coding, you can find me exploring new hiking trails, reading about emerging tech, or experimenting with new recipes in the kitchen.
+                </p>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="about" class="container">
-            <div class="about-content">
-                <h2>Beyond the Blueprint.</h2>
-                <p>At Maugans Co., we believe the best results come from a foundation of understanding and a genuinely collaborative spirit. We're not just designers; we're your creative partners, dedicated to making the journey from idea to reality both exciting and effortless. </p>
-                <p>Whether you're launching a digital presence, reimagining your living space, or seeking unique creative pieces, our diverse expertise is at your service. We pride ourselves on creating a welcoming atmosphere where you feel completely at ease to explore possibilities, ask questions, and see your aspirations take shape—no pretense, just passion and personable guidance.</p>
+    <section id="skills" class="py-16 bg-gray-50 dark:bg-gray-900 hidden md:block">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center text-gray-800 dark:text-white mb-12">My Skills</h2>
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
+                <div class="skill-card aspect-square bg-white dark:bg-gray-800 rounded-xl shadow-lg p-1 cursor-pointer group perspective">
+                    <div class="relative w-full h-full skill-card-inner">
+                        <div class="absolute w-full h-full skill-card-front flex flex-col items-center justify-center bg-gradient-to-br from-orange-500 to-red-500 dark:from-orange-600 dark:to-red-600 rounded-lg p-4 text-white">
+                            <i class="fab fa-html5 fa-3x mb-3"></i>
+                            <h3 class="text-xl font-semibold">HTML5</h3>
+                        </div>
+                        <div class="absolute w-full h-full skill-card-back flex flex-col items-center justify-center bg-gray-700 dark:bg-gray-600 rounded-lg p-4 text-white">
+                            <h4 class="text-lg font-bold mb-2">HTML5</h4>
+                            <p class="text-xs text-center">Semantic markup, accessibility standards, modern structuring.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-card aspect-square bg-white dark:bg-gray-800 rounded-xl shadow-lg p-1 cursor-pointer group perspective">
+                    <div class="relative w-full h-full skill-card-inner">
+                        <div class="absolute w-full h-full skill-card-front flex flex-col items-center justify-center bg-gradient-to-br from-blue-500 to-sky-500 dark:from-blue-600 dark:to-sky-600 rounded-lg p-4 text-white">
+                            <i class="fab fa-css3-alt fa-3x mb-3"></i>
+                            <h3 class="text-xl font-semibold">CSS3</h3>
+                        </div>
+                        <div class="absolute w-full h-full skill-card-back flex flex-col items-center justify-center bg-gray-700 dark:bg-gray-600 rounded-lg p-4 text-white">
+                            <h4 class="text-lg font-bold mb-2">CSS3</h4>
+                            <p class="text-xs text-center">Flexbox, Grid, animations, responsive design, Tailwind CSS.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-card aspect-square bg-white dark:bg-gray-800 rounded-xl shadow-lg p-1 cursor-pointer group perspective">
+                    <div class="relative w-full h-full skill-card-inner">
+                        <div class="absolute w-full h-full skill-card-front flex flex-col items-center justify-center bg-gradient-to-br from-yellow-400 to-amber-500 dark:from-yellow-500 dark:to-amber-600 rounded-lg p-4 text-white">
+                            <i class="fab fa-js-square fa-3x mb-3"></i>
+                            <h3 class="text-xl font-semibold">JavaScript</h3>
+                        </div>
+                        <div class="absolute w-full h-full skill-card-back flex flex-col items-center justify-center bg-gray-700 dark:bg-gray-600 rounded-lg p-4 text-white">
+                            <h4 class="text-lg font-bold mb-2">JavaScript</h4>
+                            <p class="text-xs text-center">ES6+, DOM manipulation, async operations, modern frameworks.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-card aspect-square bg-white dark:bg-gray-800 rounded-xl shadow-lg p-1 cursor-pointer group perspective">
+                    <div class="relative w-full h-full skill-card-inner">
+                        <div class="absolute w-full h-full skill-card-front flex flex-col items-center justify-center bg-gradient-to-br from-sky-400 to-cyan-400 dark:from-sky-500 dark:to-cyan-500 rounded-lg p-4 text-white">
+                            <i class="fab fa-react fa-3x mb-3"></i>
+                            <h3 class="text-xl font-semibold">React</h3>
+                        </div>
+                        <div class="absolute w-full h-full skill-card-back flex flex-col items-center justify-center bg-gray-700 dark:bg-gray-600 rounded-lg p-4 text-white">
+                            <h4 class="text-lg font-bold mb-2">React</h4>
+                            <p class="text-xs text-center">Component-based architecture, state management, hooks.</p>
+                        </div>
+                    </div>
+                </div>
+                </div>
+        </div>
+    </section>
+
+    <section id="work" class="py-16 bg-white dark:bg-gray-800">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center text-gray-800 dark:text-white mb-12">My Work</h2>
+
+            <div id="work-grid" class="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                </div>
+
+            <div id="work-slideshow-container" class="md:hidden relative overflow-hidden rounded-lg shadow-xl bg-gray-100 dark:bg-gray-700">
+                <div id="slideshow-track" class="slideshow-track">
+                    </div>
+                <button id="prevSlide" aria-label="Previous slide" class="absolute top-1/2 left-2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-3 rounded-full focus:outline-none hover:bg-opacity-75 transition-opacity duration-300">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button id="nextSlide" aria-label="Next slide" class="absolute top-1/2 right-2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-3 rounded-full focus:outline-none hover:bg-opacity-75 transition-opacity duration-300">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                <div id="slide-indicators" class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                    </div>
             </div>
-            <div class="about-image-placeholder" aria-hidden="true" style="background-image: url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80'); background-size: cover; background-position: center;">
+        </div>
+    </section>
+
+    <section id="contact" class="py-16 bg-gray-50 dark:bg-gray-900">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center text-gray-800 dark:text-white mb-12">Contact Me</h2>
+            <div class="max-w-lg mx-auto bg-white dark:bg-gray-800 p-8 rounded-lg shadow-xl">
+                <form action="#" method="POST">
+                    <div class="mb-4">
+                        <label for="name" class="block text-gray-700 dark:text-gray-300 font-semibold mb-2">Name</label>
+                        <input type="text" id="name" name="name" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:text-white" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="email" class="block text-gray-700 dark:text-gray-300 font-semibold mb-2">Email</label>
+                        <input type="email" id="email" name="email" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:text-white" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="message" class="block text-gray-700 dark:text-gray-300 font-semibold mb-2">Message</label>
+                        <textarea id="message" name="message" rows="4" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:text-white" required></textarea>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-8 rounded-lg shadow-md transition duration-300 dark:bg-indigo-500 dark:hover:bg-indigo-600">Send Message</button>
+                    </div>
+                </form>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="services" class="container">
-            <h2>Our Creative Toolkit</h2>
-            <div class="service-grid">
-                <div class="service-item">
-                    <div class="service-item-content">
-                        <div class="service-item-icon"><i class="fas fa-laptop-code"></i></div>
-                        <h3>Website Design & Development</h3>
-                        <p>Intuitive, engaging, and lightning-fast websites that are as smart as they are beautiful. We build digital flagships that reflect your brand and convert visitors.</p>
-                    </div>
-                </div>
-                <div class="service-item">
-                     <div class="service-item-content">
-                        <div class="service-item-icon"><i class="fas fa-home-user"></i></div>
-                        <h3>Home Remodel & Construction Design</h3>
-                        <p>Thoughtful spatial planning and aesthetic design for home remodels and smaller construction. From initial concepts to permit-ready drawings, we help craft your dream space.</p>
-                    </div>
-                </div>
-                <div class="service-item">
-                     <div class="service-item-content">
-                        <div class="service-item-icon"><i class="fas fa-tshirt"></i></div>
-                        <h3>Custom Screenprinted Apparel</h3>
-                        <p>Original, eye-catching designs screenprinted on high-quality apparel. Perfect for your brand, event, or personal expression. Art you can wear.</p>
-                    </div>
-                </div>
-                <div class="service-item">
-                    <div class="service-item-content">
-                        <div class="service-item-icon"><i class="fas fa-camera-retro"></i></div>
-                        <h3>Fine Art Photography</h3>
-                        <p>Captivating, high-quality photographic prints, framed to perfection. Elevate your environment with art that tells a story and evokes emotion.</p>
-                    </div>
-                </div>
+    <footer class="bg-gray-800 dark:bg-black text-gray-300 dark:text-gray-400 py-8 text-center">
+        <div class="container mx-auto px-6">
+            <p>&copy; 2024 John Doe. All rights reserved.</p>
+            <div class="mt-4 flex justify-center space-x-4">
+                <a href="#" class="hover:text-indigo-400"><i class="fab fa-github fa-lg"></i></a>
+                <a href="#" class="hover:text-indigo-400"><i class="fab fa-linkedin fa-lg"></i></a>
+                <a href="#" class="hover:text-indigo-400"><i class="fab fa-twitter fa-lg"></i></a>
             </div>
-        </section>
-
-        <section id="portfolio" class="container">
-            <h2>Selected Works</h2>
-            <div class="portfolio-grid">
-                <div class="portfolio-item" data-img-src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" data-category="Web Design" tabindex="0" role="button" aria-label="View E-commerce Redefined project">
-                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60" alt="Modern data analytics dashboard interface">
-                    <div class="portfolio-item-overlay"><h4>E-commerce Redefined</h4><p class="category">Website Design</p></div>
-                </div>
-                <div class="portfolio-item" data-img-src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" data-category="Web Design" tabindex="0" role="button" aria-label="View Creative Portfolio Hub project">
-                    <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60" alt="Laptop displaying code on a wooden desk">
-                    <div class="portfolio-item-overlay"><h4>Creative Portfolio Hub</h4><p class="category">Website Design</p></div>
-                </div>
-                <div class="portfolio-item" data-img-src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" data-category="Photography" tabindex="0" role="button" aria-label="View Cityscape Poetry project">
-                    <img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60" alt="Aerial view of a sprawling cityscape at dusk">
-                    <div class="portfolio-item-overlay"><h4>Cityscape Poetry</h4><p class="category">Photography</p></div>
-                </div>
-                <div class="portfolio-item" data-img-src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" data-category="Photography" tabindex="0" role="button" aria-label="View Macro Worlds project">
-                    <img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60" alt="Close-up of a dewdrop on a blade of grass">
-                    <div class="portfolio-item-overlay"><h4>Macro Worlds</h4><p class="category">Photography</p></div>
-                </div>
-                <div class="portfolio-item" data-img-src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" data-category="Photography" tabindex="0" role="button" aria-label="View Luminous Portraits project">
-                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60" alt="Thoughtful portrait of a man in natural light">
-                    <div class="portfolio-item-overlay"><h4>Luminous Portraits</h4><p class="category">Photography</p></div>
-                </div>
-                <div class="portfolio-item" data-img-src="https://images.unsplash.com/photo-1503220317375-aaad61436b1b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" data-category="Photography" tabindex="0" role="button" aria-label="View Wanderlust Frames project">
-                    <img src="https://images.unsplash.com/photo-1503220317375-aaad61436b1b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60" alt="Person standing on a cliff overlooking a vast landscape">
-                    <div class="portfolio-item-overlay"><h4>Wanderlust Frames</h4><p class="category">Photography</p></div>
-                </div>
-                <div class="portfolio-item" data-img-src="https://images.unsplash.com/photo-1505480450330-0cf25765a531?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" data-category="Photography" tabindex="0" role="button" aria-label="View Timeless Monochrome project">
-                    <img src="https://images.unsplash.com/photo-1505480450330-0cf25765a531?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60" alt="Black and white architectural detail of a spiral staircase">
-                    <div class="portfolio-item-overlay"><h4>Timeless Monochrome</h4><p class="category">Photography</p></div>
-                </div>
-                <div class="portfolio-item" data-img-src="https://images.unsplash.com/photo-1527719327859-c6ce80353573?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" data-category="Shirts" tabindex="0" role="button" aria-label="View Statement Tees project">
-                    <img src="https://images.unsplash.com/photo-1527719327859-c6ce80353573?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60" alt="Person wearing a t-shirt with a bold graphic design">
-                    <div class="portfolio-item-overlay"><h4>Statement Tees</h4><p class="category">Screenprinted Shirts</p></div>
-                </div>
-                <div class="portfolio-item" data-img-src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" data-category="Shirts" tabindex="0" role="button" aria-label="View Wearable Graphics project">
-                    <img src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60" alt="Collection of t-shirts with artistic prints hanging on a rack">
-                    <div class="portfolio-item-overlay"><h4>Wearable Graphics</h4><p class="category">Screenprinted Shirts</p></div>
-                </div>
-                <div class="portfolio-item" data-img-src="https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" data-category="Remodels" tabindex="0" role="button" aria-label="View Culinary Heaven project">
-                    <img src="https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60" alt="Modern bright kitchen with an island and sleek cabinets">
-                    <div class="portfolio-item-overlay"><h4>Culinary Heaven</h4><p class="category">Home Remodels</p></div>
-                </div>
-                <div class="portfolio-item" data-img-src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" data-category="Remodels" tabindex="0" role="button" aria-label="View Fluid Living Spaces project">
-                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60" alt="Spacious open-concept living room with large windows">
-                    <div class="portfolio-item-overlay"><h4>Fluid Living Spaces</h4><p class="category">Home Remodels</p></div>
-                </div>
-                <div class="portfolio-item" data-img-src="https://images.unsplash.com/photo-1582971805808-749e28597037?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" data-category="Remodels" tabindex="0" role="button" aria-label="View Sanctuary Bathrooms project">
-                    <img src="https://images.unsplash.com/photo-1582971805808-749e28597037?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format=fit&crop&w=600&q=60" alt="Luxurious bathroom with a freestanding tub and marble tiles">
-                    <div class="portfolio-item-overlay"><h4>Sanctuary Bathrooms</h4><p class="category">Home Remodels</p></div>
-                </div>
-            </div>
-        </section>
-
-        <section id="why-us" class="container">
-            <div class="why-us-background-wrapper">
-                <h2>The Maugans Co. Difference</h2>
-                <p class="why-us-description">Choosing a design partner is about trust and shared vision. Here’s why clients love working with us:</p>
-                <div class="why-us-points">
-                    <div class="why-us-point">
-                        <h4>Authentically Personal</h4>
-                        <p>We're genuinely invested in you and your project. Expect direct communication, transparency, and a process that feels like a true collaboration, not a transaction.</p>
-                    </div>
-                    <div class="why-us-point">
-                        <h4>Multifaceted Mastery</h4>
-                        <p>Our unique blend of digital design, spatial expertise, and artistic creation means we bring a holistic and innovative perspective to every challenge. One team, many talents.</p>
-                    </div>
-                    <div class="why-us-point">
-                        <h4>Unwavering Dedication</h4>
-                        <p>Your satisfaction is paramount. We meticulously craft every detail and are committed to delivering outcomes that don't just meet expectations, but delightfully exceed them.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" class="container">
-            <h2>Let's Create Something Remarkable.</h2>
-            <p>Have an idea brewing, a project to discuss, or just curious to learn more? We're always excited to connect with fellow creatives and forward-thinkers. Reach out and let's explore the possibilities.</p>
-            <form class="contact-form" id="contactForm">
-                <input type="text" name="name" placeholder="Your Name" required>
-                <input type="email" name="email" placeholder="Your Email" required>
-                <textarea name="message" placeholder="Tell us about your vision..." required></textarea>
-                <button type="submit" class="cta-button">Send Your Thoughts</button>
-            </form>
-        </section>
-    </main>
-
-    <footer class="main-footer">
-        <p><a href="#hero" class="logo-maugans">Maugans Co.</a></p>
-        <p>Designing a friendlier, more beautiful world, one project at a time.</p>
-        <p>&copy; <span id="currentYear"></span> Maugans Co. All Rights Reserved. Lovingly built from scratch.</p>
+        </div>
     </footer>
 
-    <div class="modal" id="portfolioModal" role="dialog" aria-modal="true" aria-labelledby="modalImageAriaLabel">
-        <div class="modal-content">
-            <img src="" alt="Portfolio Item Large View" id="modalImage" />
-            <span id="modalImageAriaLabel" class="sr-only">Large view of portfolio image</span>
+    <div id="workItemModal" class="modal fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-[60]">
+        <div class="modal-content bg-white dark:bg-gray-800 p-6 md:p-8 rounded-lg shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto relative">
+            <button id="closeModalButton" class="absolute top-4 right-4 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white text-2xl leading-none">&times;</button>
+            <img id="modalImage" src="" alt="Project Image" class="w-full h-64 object-cover rounded-lg mb-6" onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/ffffff?text=Image+Not+Found';">
+            <h3 id="modalTitle" class="text-3xl font-bold text-gray-800 dark:text-white mb-3"></h3>
+            <p id="modalCategory" class="text-indigo-600 dark:text-indigo-400 font-semibold mb-4"></p>
+            <div id="modalDescription" class="text-gray-700 dark:text-gray-300 mb-4"></div>
+            <div id="modalDetails" class="text-gray-600 dark:text-gray-400 mb-6 prose dark:prose-invert max-w-none"></div>
+            <div class="flex space-x-4">
+                <a id="modalLiveLink" href="#" target="_blank" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-6 rounded-lg transition duration-300 dark:bg-indigo-500 dark:hover:bg-indigo-600 inline-block">Live Demo</a>
+                <a id="modalRepoLink" href="#" target="_blank" class="bg-gray-600 hover:bg-gray-700 text-white font-semibold py-2 px-6 rounded-lg transition duration-300 dark:bg-gray-700 dark:hover:bg-gray-600 inline-block">GitHub Repo</a>
+            </div>
         </div>
-        <button class="modal-close" id="modalClose" aria-label="Close modal">
-            <i class="fas fa-times"></i>
-        </button>
-    </div>
-    <div class="sr-only" style="position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0;">
-        This is a screen-reader only class.
     </div>
 
     <script>
-    // --- JavaScript remains the same as previous version ---
-    document.addEventListener('DOMContentLoaded', function() {
-        const mainHeader = document.getElementById('mainHeader');
-        const menuToggle = document.getElementById('menuToggle');
-        const mainNav = document.getElementById('mainNav');
-        const navLinks = document.querySelectorAll('.main-nav a.nav-link');
-        const body = document.body;
+        // Dark Mode Toggle
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const htmlElement = document.documentElement;
+        const moonIcon = '<i class="fas fa-moon"></i>';
+        const sunIcon = '<i class="fas fa-sun"></i>';
 
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) mainHeader.classList.add('scrolled');
-            else mainHeader.classList.remove('scrolled');
+        // Check for saved theme preference or use system preference
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            htmlElement.classList.add('dark');
+            darkModeToggle.innerHTML = sunIcon;
+        } else {
+            darkModeToggle.innerHTML = moonIcon;
+        }
+
+        darkModeToggle.addEventListener('click', () => {
+            htmlElement.classList.toggle('dark');
+            if (htmlElement.classList.contains('dark')) {
+                localStorage.setItem('theme', 'dark');
+                darkModeToggle.innerHTML = sunIcon;
+            } else {
+                localStorage.setItem('theme', 'light');
+                darkModeToggle.innerHTML = moonIcon;
+            }
         });
 
-        menuToggle.addEventListener('click', function() {
-            const isExpanded = mainNav.classList.toggle('active');
-            menuToggle.classList.toggle('open');
-            menuToggle.setAttribute('aria-expanded', isExpanded);
-            body.classList.toggle('modal-open', isExpanded && window.innerWidth < 769);
-        });
+        // Work Items Data
+        const workItems = [
+            {
+                id: 'project1',
+                title: 'E-commerce Platform',
+                category: 'Web Development',
+                imageUrl: 'https://placehold.co/600x400/3498db/ffffff?text=E-commerce+Platform',
+                description: 'A full-featured e-commerce platform with a custom CMS and payment gateway integration.',
+                details: '<p>Built with React, Node.js, and PostgreSQL.</p><p>Developed a scalable backend API, a responsive user interface, and integrated third-party services for shipping and analytics. Implemented advanced search and filtering capabilities.</p>',
+                liveLink: '#project1-live',
+                repoLink: '#project1-repo'
+            },
+            {
+                id: 'project2',
+                title: 'Portfolio Website',
+                category: 'Web Design',
+                imageUrl: 'https://placehold.co/600x400/2ecc71/ffffff?text=Portfolio+Website',
+                description: 'A personal portfolio website to showcase skills and projects, featuring a modern and responsive design.',
+                details: '<p>Designed with Figma and built using HTML, Tailwind CSS, and JavaScript.</p><p>Focused on clean aesthetics, smooth animations, and optimal performance across devices. Includes a dark mode feature.</p>',
+                liveLink: '#project2-live',
+                repoLink: '#project2-repo'
+            },
+            {
+                id: 'project3',
+                title: 'Task Management App',
+                category: 'Mobile App Development',
+                imageUrl: 'https://placehold.co/600x400/e74c3c/ffffff?text=Task+Manager+App',
+                description: 'A cross-platform mobile application for managing tasks and boosting productivity.',
+                details: '<p>Developed using Flutter and Dart, with Firebase for backend services.</p><p>Features include task creation, categorization, reminders, and collaborative lists. User authentication and real-time data synchronization implemented.</p>',
+                liveLink: '#project3-live',
+                repoLink: '#project3-repo'
+            },
+            {
+                id: 'project4',
+                title: 'Data Visualization Dashboard',
+                category: 'Data Science',
+                imageUrl: 'https://placehold.co/600x400/f39c12/ffffff?text=Data+Dashboard',
+                description: 'An interactive dashboard for visualizing complex datasets and extracting insights.',
+                details: '<p>Built with Python (Flask/Dash) and D3.js.</p><p>Allows users to upload data, choose from various chart types, and apply filters to explore trends. Includes export functionality for reports.</p>',
+                liveLink: '#project4-live',
+                repoLink: '#project4-repo'
+            }
+        ];
 
-        navLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
-                if (mainNav.classList.contains('active')) {
-                    mainNav.classList.remove('active');
-                    menuToggle.classList.remove('open');
-                    menuToggle.setAttribute('aria-expanded', 'false');
-                    body.classList.remove('modal-open');
-                }
-            });
-        });
+        document.addEventListener('DOMContentLoaded', () => {
+            const workGrid = document.getElementById('work-grid');
+            const workItemModal = document.getElementById('workItemModal');
+            const closeModalButton = document.getElementById('closeModalButton');
 
-        const sections = document.querySelectorAll('main section');
-        const observerOptions = { root: null, threshold: 0.25, rootMargin: "-80px 0px -15% 0px" };
-        let activeLinkTimeout;
-        const sectionObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                const link = document.querySelector(`.main-nav a[href="#${entry.target.id}"]`);
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    if (link) {
-                        clearTimeout(activeLinkTimeout);
-                        activeLinkTimeout = setTimeout(() => {
-                            navLinks.forEach(l => l.classList.remove('active'));
-                            link.classList.add('active');
-                        }, 50);
+            // Populate Work Grid for Desktop
+            if (workGrid) {
+                workItems.forEach(item => {
+                    const workCard = document.createElement('div');
+                    workCard.className = 'bg-gray-100 dark:bg-gray-700 rounded-lg shadow-lg overflow-hidden cursor-pointer group transform hover:scale-105 transition-transform duration-300';
+                    workCard.innerHTML = `
+                        <img src="${item.imageUrl}" alt="${item.title}" class="w-full h-48 object-cover group-hover:opacity-90 transition-opacity duration-300" onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/ffffff?text=Image+Not+Found';">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-2">${item.title}</h3>
+                            <p class="text-indigo-600 dark:text-indigo-400 text-sm font-medium">${item.category}</p>
+                        </div>
+                    `;
+                    workCard.addEventListener('click', () => openModal(item));
+                    workGrid.appendChild(workCard);
+                });
+            }
+
+            // Modal Functions
+            function openModal(item) {
+                document.getElementById('modalImage').src = item.imageUrl;
+                document.getElementById('modalTitle').textContent = item.title;
+                document.getElementById('modalCategory').textContent = item.category;
+                document.getElementById('modalDescription').textContent = item.description;
+                document.getElementById('modalDetails').innerHTML = item.details; // Use innerHTML for rich text
+                document.getElementById('modalLiveLink').href = item.liveLink;
+                document.getElementById('modalRepoLink').href = item.repoLink;
+                workItemModal.classList.add('open');
+                document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            }
+
+            function closeModal() {
+                workItemModal.classList.remove('open');
+                document.body.style.overflow = ''; // Restore background scrolling
+            }
+
+            if (closeModalButton) {
+                closeModalButton.addEventListener('click', closeModal);
+            }
+            if (workItemModal) {
+                workItemModal.addEventListener('click', (event) => {
+                    if (event.target === workItemModal) { // Click outside the modal content
+                        closeModal();
                     }
+                });
+            }
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape' && workItemModal && workItemModal.classList.contains('open')) {
+                    closeModal();
                 }
             });
-        }, observerOptions);
-        sections.forEach(section => sectionObserver.observe(section));
-        
-        function initialActiveLink() { 
-            let current = '';
-            const headerHeight = mainHeader ? mainHeader.offsetHeight + 100 : 150;
-            sections.forEach(section => {
-                if (pageYOffset >= section.offsetTop - headerHeight) current = section.id;
+
+            // Mobile Slideshow Logic
+            const slideshowContainer = document.getElementById('work-slideshow-container');
+            if (slideshowContainer && getComputedStyle(slideshowContainer).display !== 'none') { // Check if slideshow is visible (i.e., on mobile)
+                initializeSlideshow();
+            }
+        });
+
+        function initializeSlideshow() {
+            const slideshowTrack = document.getElementById('slideshow-track');
+            const prevButton = document.getElementById('prevSlide');
+            const nextButton = document.getElementById('nextSlide');
+            const indicatorsContainer = document.getElementById('slide-indicators');
+            let currentSlideIndex = 0;
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            if (!slideshowTrack || !prevButton || !nextButton || !indicatorsContainer) {
+                console.error("Slideshow elements not found!");
+                return;
+            }
+
+            // Populate Slides
+            workItems.forEach((item, index) => {
+                const slide = document.createElement('div');
+                slide.className = 'slide p-2'; // Added padding around the slide content
+                slide.innerHTML = `
+                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
+                        <img src="${item.imageUrl}" alt="${item.title}" class="w-full h-64 object-cover" onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/ffffff?text=Image+Not+Found';">
+                        <div class="p-4 text-center">
+                            <h3 class="text-lg font-semibold text-gray-800 dark:text-white">${item.title}</h3>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">${item.category}</p>
+                        </div>
+                    </div>
+                `;
+                slideshowTrack.appendChild(slide);
+
+                // Create Indicator
+                const indicator = document.createElement('button');
+                indicator.setAttribute('aria-label', `Go to slide ${index + 1}`);
+                indicator.className = 'slide-indicator';
+                indicator.addEventListener('click', () => showSlide(index));
+                indicatorsContainer.appendChild(indicator);
             });
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${current}`) link.classList.add('active');
+
+            const totalSlides = workItems.length;
+
+            function updateIndicators() {
+                const indicators = indicatorsContainer.children;
+                for (let i = 0; i < indicators.length; i++) {
+                    indicators[i].classList.toggle('active', i === currentSlideIndex);
+                }
+            }
+
+            function showSlide(index) {
+                if (index >= totalSlides) {
+                    currentSlideIndex = 0;
+                } else if (index < 0) {
+                    currentSlideIndex = totalSlides - 1;
+                } else {
+                    currentSlideIndex = index;
+                }
+                slideshowTrack.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
+                updateIndicators();
+                updateNavButtons();
+            }
+            
+            function updateNavButtons() {
+                if (totalSlides <= 1) {
+                    prevButton.style.opacity = '0';
+                    prevButton.style.pointerEvents = 'none';
+                    nextButton.style.opacity = '0';
+                    nextButton.style.pointerEvents = 'none';
+                    indicatorsContainer.style.display = 'none';
+                } else {
+                    prevButton.style.opacity = '1';
+                    prevButton.style.pointerEvents = 'auto';
+                    nextButton.style.opacity = '1';
+                    nextButton.style.pointerEvents = 'auto';
+                    indicatorsContainer.style.display = 'flex';
+                }
+            }
+
+
+            prevButton.addEventListener('click', () => showSlide(currentSlideIndex - 1));
+            nextButton.addEventListener('click', () => showSlide(currentSlideIndex + 1));
+
+            // Touch Swipe Functionality
+            slideshowTrack.addEventListener('touchstart', e => {
+                touchStartX = e.changedTouches[0].screenX;
             });
-            if (!current && pageYOffset < (sections[0] ? sections[0].offsetTop : 0)) {
-                 navLinks.forEach(l => l.classList.remove('active'));
+
+            slideshowTrack.addEventListener('touchend', e => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            });
+
+            function handleSwipe() {
+                const swipeThreshold = 50; // Minimum distance for a swipe
+                if (touchEndX < touchStartX - swipeThreshold) { // Swiped left
+                    showSlide(currentSlideIndex + 1);
+                } else if (touchEndX > touchStartX + swipeThreshold) { // Swiped right
+                    showSlide(currentSlideIndex - 1);
+                }
+            }
+            
+            // Initial setup
+            if (totalSlides > 0) {
+                showSlide(0);
+            } else { // No items, hide slideshow controls
+                prevButton.style.display = 'none';
+                nextButton.style.display = 'none';
+                indicatorsContainer.style.display = 'none';
+                slideshowContainer.innerHTML = '<p class="text-center p-4 text-gray-600 dark:text-gray-400">No projects to display.</p>';
             }
         }
-        initialActiveLink();
 
-        const portfolioModal = document.getElementById('portfolioModal');
-        const modalImage = document.getElementById('modalImage');
-        const modalCloseButton = document.getElementById('modalClose');
-        const portfolioItems = document.querySelectorAll('.portfolio-item');
-        let previouslyFocusedElement; 
-
-        function openModal(imgSrc, altText) {
-            previouslyFocusedElement = document.activeElement; 
-            modalImage.src = imgSrc;
-            modalImage.alt = altText || "Large view of portfolio project"; 
-            portfolioModal.classList.add('active');
-            body.classList.add('modal-open'); 
-            modalCloseButton.focus(); 
-        }
-
-        function closeModal() {
-            portfolioModal.classList.remove('active');
-            body.classList.remove('modal-open'); 
-            if (previouslyFocusedElement) previouslyFocusedElement.focus();
-        }
-
-        portfolioItems.forEach(item => {
-            item.addEventListener('click', () => {
-                const largeImgSrc = item.dataset.imgSrc;
-                const imgTag = item.querySelector('img'); 
-                const altText = imgTag ? imgTag.alt : "Portfolio image"; 
-                if (largeImgSrc) openModal(largeImgSrc, altText);
-            });
-            item.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault(); 
-                    const largeImgSrc = item.dataset.imgSrc;
-                    const imgTag = item.querySelector('img');
-                    const altText = imgTag ? imgTag.alt : "Portfolio image";
-                    if (largeImgSrc) openModal(largeImgSrc, altText);
-                }
-            });
-        });
-
-        modalCloseButton.addEventListener('click', closeModal);
-        portfolioModal.addEventListener('click', (e) => { if (e.target === portfolioModal) closeModal(); });
-        document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && portfolioModal.classList.contains('active')) closeModal(); });
-
-        const contactForm = document.getElementById('contactForm');
-        if (contactForm) {
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                alert('Thank you for your message! We\'ll be in touch soon.');
-                contactForm.reset();
-            });
-        }
-
-        const currentYearSpan = document.getElementById('currentYear');
-        if (currentYearSpan) currentYearSpan.textContent = new Date().getFullYear();
-    });
     </script>
-
 </body>
 </html>
