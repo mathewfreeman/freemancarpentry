@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         /* --- Google Fonts --- */
-        /* Swapped EB Garamond for IBM Plex Serif */
         @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,700;1,400&family=IBM+Plex+Sans:wght@200;300;400;500;600&display=swap');
 
         /* --- Variables --- */
@@ -22,7 +21,7 @@
             --background-light: #FDFDFD;
             --background-translucent-light: rgba(255, 255, 255, 0.05); 
 
-            --font-logo: 'IBM Plex Serif', serif; /* Updated Font */
+            --font-logo: 'IBM Plex Serif', serif; 
             --font-body: 'IBM Plex Sans', sans-serif;
 
             --transition-speed-fast: 0.2s;
@@ -129,7 +128,7 @@
             margin: 0 auto;
         }
         .logo a {
-            font-family: var(--font-logo); /* Uses updated variable */
+            font-family: var(--font-logo); 
             font-size: clamp(1.8rem, 4vw, 2.4rem);
             font-weight: 500;
             color: var(--accent-secondary);
@@ -237,9 +236,9 @@
             letter-spacing: -0.04em;
         }
         .hero-content h1 .maugans-co-logo-hero {
-            font-family: var(--font-logo); /* Uses updated variable */
+            font-family: var(--font-logo); 
             color: var(--accent-secondary);
-            font-weight: 700; /* Adjust weight if needed for new font */
+            font-weight: 700; 
         }
         .hero-content .subtitle {
             font-size: clamp(1.2rem, 3vw, 1.6rem);
@@ -293,18 +292,19 @@
         #about p { max-width: none; }
         .about-image-placeholder {
             display: block; 
-            height: 250px; /* Default mobile height */
+            width: 100%; /* Ensure it takes available width */
+            aspect-ratio: 16 / 9; /* Enforce aspect ratio */
+            /* height: 250px; -- Removed, aspect-ratio controls height */
             border-radius: var(--border-radius-main);
             box-shadow: var(--shadow-light);
             opacity: 0.85;
-            background-size: cover;
+            background-size: cover; /* Equivalent of object-fit: cover for background */
             background-position: center;
         }
         @media (min-width: 768px) {
             #about .container { grid-template-columns: 2fr 1.5fr; gap: 4rem; }
-            .about-image-placeholder {
-                height: 350px; /* Desktop height */
-            }
+            /* aspect-ratio: 16 / 9; -- Already set, applies to desktop too */
+            /* height: 350px; -- Removed, aspect-ratio controls height */
         }
 
         /* --- Services Section --- */
@@ -389,21 +389,19 @@
             background-color: var(--background-light);
             margin-top: 2rem; 
             box-sizing: border-box;
-            touch-action: pan-y; /* Keep this hint */
+            /* touch-action: pan-y; -- Removed, JS handles swipe prevention */
         }
         .slideshow-track-mobile {
             display: flex;
-            /* No explicit height */
             transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
             align-items: stretch; 
             user-select: none; 
             -webkit-user-select: none;
             -webkit-touch-callout: none; 
-            will-change: transform; /* Hint for performance */
+            will-change: transform; 
         }
-        /* Class added during swipe to disable transition */
         .slideshow-track-mobile.is-swiping {
-            transition: none;
+            transition: none; /* Disable transition during swipe */
         }
         .slide-mobile {
             width: 100%; 
@@ -431,11 +429,9 @@
         }
         .slide-mobile img {
             display: block;
-            max-width: 100%; 
-            max-height: 100%; 
-            width: auto;  
-            height: auto; 
-            object-fit: contain; /* Keep contain for now */
+            width: 100%;  /* Make image fill width of wrapper */
+            height: 100%; /* Make image fill height of wrapper */
+            object-fit: cover; /* Fill the 16:9 frame, cropping excess */
             border-radius: calc(var(--border-radius-main) - 8px); 
             pointer-events: none; 
         }
@@ -464,10 +460,14 @@
 
         .slide-nav-mobile {
             position: absolute;
-            /* Adjusting top based on the 16:9 wrapper */
-            top: calc(0.5rem + ((100vw - 20px) * 0.9 * 9 / 16) / 2); /* 90vw container, 10px slide padding each side */
-            /* Fallback / simpler approach if calc is tricky: */
-            /* top: 35%; */ /* Adjust percentage visually */
+            /* Aligning with the visual center of the 16:9 image wrapper */
+            /* Wrapper takes full slide width minus padding (approx 90vw - 20px) */
+            /* Height is width * 9/16 */
+            /* Center Y = container_padding_top + (wrapper_height / 2) */
+            top: calc(0.5rem + ((90vw - 20px) * 9 / 16) / 2); 
+            /* Fallback/Adjustment: Use percentage of container height */
+            /* top: 35%; */ /* Adjust this % visually */
+            
             transform: translateY(-50%); 
             
             background-color: rgba(0, 0, 0, 0.35);
@@ -882,6 +882,33 @@
         const navLinks = document.querySelectorAll('.main-nav a.nav-link');
         const body = document.body;
 
+        // --- Prevent incorrect scroll on refresh with hash ---
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual'; // Prevent browser's default scroll restoration
+        }
+        // On initial load, scroll to hash target if present, after a short delay
+        window.addEventListener('load', () => {
+            if (window.location.hash) {
+                setTimeout(() => { // Delay allows layout to settle
+                    const targetElement = document.querySelector(window.location.hash);
+                    if (targetElement) {
+                         const headerOffset = mainHeader ? mainHeader.offsetHeight + 20 : 80; // Adjust offset as needed
+                         const elementPosition = targetElement.getBoundingClientRect().top;
+                         const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                         window.scrollTo({
+                             top: offsetPosition,
+                             behavior: "smooth" // Optional: smooth scroll
+                         });
+                    }
+                }, 100); // 100ms delay, adjust if needed
+            } else {
+                // Optional: scroll to top if no hash
+                window.scrollTo(0, 0);
+            }
+        });
+
+
         // --- Header Scroll Effect ---
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
@@ -902,11 +929,30 @@
         // --- Smooth Scroll, Active Link & Close Mobile Menu ---
         navLinks.forEach(link => {
             link.addEventListener('click', function(e) {
+                // Close mobile menu if open
                 if (mainNav.classList.contains('active')) {
                     mainNav.classList.remove('active');
                     menuToggle.classList.remove('open');
                     menuToggle.setAttribute('aria-expanded', 'false');
                     body.classList.remove('modal-open');
+                }
+                // Handle smooth scroll for internal links
+                const targetId = this.getAttribute('href');
+                if (targetId.startsWith('#')) {
+                    e.preventDefault(); // Prevent default jump
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                         const headerOffset = mainHeader ? mainHeader.offsetHeight + 20 : 80; 
+                         const elementPosition = targetElement.getBoundingClientRect().top;
+                         const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                         window.scrollTo({
+                             top: offsetPosition,
+                             behavior: 'smooth'
+                         });
+                         // Optionally update URL hash without causing jump
+                         // history.pushState(null, null, targetId); 
+                    }
                 }
             });
         });
@@ -948,7 +994,7 @@
                  navLinks.forEach(l => l.classList.remove('active'));
             }
         }
-        initialActiveLink();
+        initialActiveLink(); // Call on load
 
         // --- Portfolio Modal Logic (Desktop) ---
         const portfolioModal = document.getElementById('portfolioModal');
@@ -994,7 +1040,7 @@
         }
         document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && portfolioModal.classList.contains('active')) closeModal(); });
 
-        // --- Mobile Portfolio Slideshow Logic ---
+        // --- Mobile Portfolio Slideshow Logic (Swipe Disabled) ---
         const slideshowContainer = document.getElementById('portfolioSlideshowMobile');
         const slideshowTrack = document.getElementById('slideshowTrackMobile');
         const prevButton = document.getElementById('slidePrevMobile');
@@ -1003,16 +1049,7 @@
         const portfolioItemsDataSource = document.querySelectorAll('.portfolio-grid .portfolio-item'); 
 
         let currentSlideIndex = 0;
-        let touchInitialX = 0;
-        let touchInitialY = 0;
-        let touchCurrentX = 0; 
-        let touchCurrentY = 0; 
-        let isDragging = false;      
-        let swipeDirection = null; // 'horizontal', 'vertical', or null
         let slideshowInitialized = false;
-
-        const SWIPE_DIRECTION_LOCK_THRESHOLD = 5; // Reduced threshold to lock direction sooner
-        const SWIPE_ACTION_THRESHOLD = 40;      
 
         function initializeMobileSlideshow() {
             if (slideshowInitialized || !slideshowContainer || !slideshowTrack || portfolioItemsDataSource.length === 0) {
@@ -1054,7 +1091,7 @@
                 indicatorsContainer.appendChild(indicator);
             });
             
-            addTouchListeners(); // Add listeners after content is ready
+            // *** NO TOUCH LISTENERS ADDED ***
 
             slideshowInitialized = true; 
             updateSlideshowUI(); 
@@ -1069,7 +1106,7 @@
             else if (index < 0) currentSlideIndex = totalSlides - 1;
             else currentSlideIndex = index;
             
-            // Ensure transition is enabled before moving
+            // Ensure transition is enabled when moving via buttons/indicators
             if (slideshowTrack) slideshowTrack.classList.remove('is-swiping'); 
             
             slideshowTrack.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
@@ -1099,110 +1136,11 @@
             }
         }
 
+        // Button listeners remain
         if (prevButton) prevButton.addEventListener('click', () => showSlide(currentSlideIndex - 1));
         if (nextButton) nextButton.addEventListener('click', () => showSlide(currentSlideIndex + 1));
-
-        function handleTouchStart(e) {
-            if (e.target.closest('.slide-nav-mobile') || e.target.closest('.indicator-dot-mobile')) {
-                isDragging = false; 
-                return;
-            }
-            touchInitialX = e.touches[0].clientX;
-            touchInitialY = e.touches[0].clientY;
-            touchCurrentX = touchInitialX; 
-            touchCurrentY = touchInitialY;
-            isDragging = true;
-            swipeDirection = null; 
-            // Add class to disable transition immediately on touch start
-            if (slideshowTrack) slideshowTrack.classList.add('is-swiping');
-        }
-
-        function handleTouchMove(e) {
-            if (!isDragging) return;
-
-            touchCurrentX = e.touches[0].clientX;
-            touchCurrentY = e.touches[0].clientY;
-
-            const deltaX = touchCurrentX - touchInitialX;
-            const deltaY = touchCurrentY - touchInitialY;
-
-            if (swipeDirection === null) { 
-                if (Math.abs(deltaX) > SWIPE_DIRECTION_LOCK_THRESHOLD || Math.abs(deltaY) > SWIPE_DIRECTION_LOCK_THRESHOLD) {
-                    if (Math.abs(deltaX) > Math.abs(deltaY)) {
-                        swipeDirection = 'horizontal';
-                    } else {
-                        swipeDirection = 'vertical';
-                        isDragging = false; // Stop tracking if vertical
-                    }
-                }
-            }
-
-            if (swipeDirection === 'horizontal') {
-                e.preventDefault(); // Prevent vertical scroll only if horizontal swipe is locked
-                // Optional visual feedback (move track slightly without transition)
-                // const moveOffset = deltaX; // No damping for direct feedback
-                // slideshowTrack.style.transform = `translateX(calc(-${currentSlideIndex * 100}% + ${moveOffset}px))`;
-            }
-        }
-
-        function handleTouchEnd(e) {
-            if (!isDragging) {
-                 resetTouchState(); // Ensure reset even if dragging stopped early
-                 return;
-            }
-            
-            // Re-enable transition before calculating final position
-            if (slideshowTrack) slideshowTrack.classList.remove('is-swiping'); 
-
-            let slideChanged = false;
-            if (swipeDirection === 'horizontal') {
-                const finalDeltaX = touchCurrentX - touchInitialX; 
-                if (Math.abs(finalDeltaX) > SWIPE_ACTION_THRESHOLD) {
-                    if (finalDeltaX < 0) { // Swiped left
-                        showSlide(currentSlideIndex + 1);
-                        slideChanged = true;
-                    } else { // Swiped right
-                        showSlide(currentSlideIndex - 1);
-                        slideChanged = true;
-                    }
-                }
-            } 
-            
-            // If no slide change occurred (or swipe wasn't horizontal), snap back
-            if (!slideChanged) {
-                 showSlide(currentSlideIndex);
-            }
-
-            resetTouchState();
-        }
-
-        function addTouchListeners() {
-             if (slideshowTrack) {
-                // Remove potentially existing listeners before adding new ones
-                slideshowTrack.removeEventListener('touchstart', handleTouchStart);
-                slideshowTrack.removeEventListener('touchmove', handleTouchMove);
-                slideshowTrack.removeEventListener('touchend', handleTouchEnd);
-                slideshowTrack.removeEventListener('touchcancel', resetTouchState);
-
-                // Add new listeners
-                slideshowTrack.addEventListener('touchstart', handleTouchStart, { passive: true }); 
-                slideshowTrack.addEventListener('touchmove', handleTouchMove, { passive: false }); 
-                slideshowTrack.addEventListener('touchend', handleTouchEnd);
-                slideshowTrack.addEventListener('touchcancel', resetTouchState);
-            }
-        }
         
-        function resetTouchState() {
-            isDragging = false;
-            swipeDirection = null;
-            touchInitialX = 0;
-            touchInitialY = 0;
-            touchCurrentX = 0;
-            touchCurrentY = 0;
-            // Ensure transition class is removed
-            if (slideshowTrack) slideshowTrack.classList.remove('is-swiping');
-        }
-        
+        // Check on load and resize if slideshow should be active
         function checkAndInitSlideshow() {
             const isMobileView = window.innerWidth <= 768;
             const desktopGrid = document.querySelector('.portfolio-grid');
@@ -1216,11 +1154,8 @@
             } else { 
                 if (slideshowContainer) slideshowContainer.style.display = 'none';
                 if (desktopGrid) desktopGrid.style.display = 'grid'; 
-                // Consider removing listeners on desktop if performance is an issue
-                // if (slideshowTrack && slideshowInitialized) {
-                //    slideshowTrack.removeEventListener... etc.
-                //    slideshowInitialized = false; // Allow re-init if resized back
-                // }
+                // If slideshow was initialized, maybe reset it or remove listeners if needed
+                // For now, just hiding it is likely sufficient.
             }
         }
 
