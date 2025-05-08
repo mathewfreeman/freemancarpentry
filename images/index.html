@@ -53,7 +53,7 @@
             overflow-x: hidden;
             font-weight: 300;
         }
-        body.modal-open { /* Only for modal, not slideshow swipe */
+        body.modal-open { 
             overflow: hidden;
         }
         h1, h2, h3, h4 {
@@ -331,7 +331,7 @@
         .service-item h3 { color: var(--text-dark); font-weight: 500; }
 
         /* --- Portfolio Section --- */
-        .portfolio-grid { /* This is for DESKTOP */
+        .portfolio-grid { 
             display: grid; gap: 1.5rem;
             grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
         }
@@ -375,53 +375,61 @@
             position: relative;
             width: 100%; 
             overflow: hidden; 
-            padding: 1rem 0; 
+            padding: 0.5rem 0; /* Reduced vertical padding */
             border-radius: var(--border-radius-main);
             background-color: var(--background-light);
             margin-top: 2rem; 
             box-sizing: border-box;
-            touch-action: pan-y; /* Allow vertical scroll, JS handles horizontal */
+            touch-action: pan-y; 
         }
         .slideshow-track-mobile {
             display: flex;
+            height: 58vh; /* Adjusted for landscape photos, tweak as needed */
             transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
             align-items: center; 
-            /* touch-action: pan-y; Already on container, but can be here too. */
-             /* Cautious: if slides themselves are taller than container, this might clip.
-               Better to ensure container is sized appropriately or slides manage their own overflow if needed.
-               For now, assuming slides fit or image scales down. */
         }
         .slide-mobile {
             width: 100%; 
             min-width: 100%; 
             flex-shrink: 0; 
             box-sizing: border-box; 
-            padding: 0 15px; 
+            padding: 0 10px; /* Reduced horizontal padding for slide content */
             
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center; 
-            min-height: 300px; 
+            justify-content: flex-start; /* Align items to start, image will take most space */
+            height: 100%; 
             overflow: hidden; 
+        }
+        /* Wrapper for image to control its flexible space and centering */
+        .slide-image-wrapper-mobile {
+            width: 100%;
+            flex-grow: 1; /* Allows this to take up available vertical space */
+            display: flex;
+            align-items: center; /* Vertically center image within this wrapper */
+            justify-content: center; /* Horizontally center image */
+            min-height: 0; /* Important for flex-grow to work correctly in some browsers */
+            position: relative; /* For potential future relative positioning needs */
         }
         .slide-mobile img {
             display: block;
-            width: 100%; 
             max-width: 100%; 
-            height: auto; 
+            max-height: 100%; /* Image fits within the image-wrapper */
+            width: auto;  /* Let object-fit handle scaling */
+            height: auto; /* Let object-fit handle scaling */
             object-fit: contain; 
-            max-height: 65vh; 
-            border-radius: calc(var(--border-radius-main) - 6px); 
+            border-radius: calc(var(--border-radius-main) - 8px); /* Slightly smaller radius */
             box-shadow: var(--shadow-light);
-            margin-bottom: 1rem; 
-            user-select: none; /* Prevent image selection during swipe */
-            -webkit-user-drag: none; /* Prevent image dragging */
+            user-select: none; 
+            -webkit-user-drag: none; 
         }
         .slide-mobile .slide-caption-mobile {
             width: 100%; 
             text-align: center;
-            padding: 0.5rem 0; 
+            padding: 0.75rem 0 0.25rem; /* Padding for caption, more top padding */
+            flex-shrink: 0; /* Prevent caption from shrinking */
+            box-sizing: border-box;
         }
         .slide-mobile .slide-caption-mobile h4,
         .slide-mobile .slide-caption-mobile p {
@@ -440,33 +448,41 @@
 
         .slide-nav-mobile {
             position: absolute;
-            top: 50%; 
+            /* Centering logic: top is 50% of the .slideshow-track-mobile's height,
+               then translated by its own half-height.
+               The track height is 58vh. Container padding is 0.5rem top/bottom.
+               So, relative to container, top is 0.5rem + (58vh / 2).
+            */
+            top: calc(0.5rem + (58vh / 2)); 
             transform: translateY(-50%);
             background-color: rgba(0, 0, 0, 0.35);
             color: white;
             border: none;
             border-radius: 50%;
-            width: 44px;
-            height: 44px;
-            font-size: 1.2rem;
+            width: 40px; /* Slightly smaller arrows */
+            height: 40px;
+            font-size: 1rem; /* Smaller icon */
             cursor: pointer;
             z-index: 10;
-            transition: background-color var(--transition-speed-fast), transform var(--transition-speed-fast);
+            transition: background-color var(--transition-speed-fast), transform var(--transition-speed-fast), opacity var(--transition-speed-fast);
             display: flex;
             align-items: center;
             justify-content: center;
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            opacity: 0.8; /* Slightly transparent by default */
         }
         .slide-nav-mobile:hover {
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: rgba(0, 0, 0, 0.6);
             transform: translateY(-50%) scale(1.05);
+            opacity: 1;
         }
-        .slide-prev-mobile { left: 15px; }
-        .slide-next-mobile { right: 15px; }
+        .slide-prev-mobile { left: 20px; } /* Pulled in from edge of container */
+        .slide-next-mobile { right: 20px; }
+
 
         .slide-indicators-mobile {
             position: absolute;
-            bottom: 20px; 
+            bottom: 10px; /* Closer to bottom */
             left: 50%;
             transform: translateX(-50%);
             display: flex;
@@ -474,8 +490,8 @@
             z-index: 5; 
         }
         .indicator-dot-mobile {
-            width: 10px; 
-            height: 10px;
+            width: 9px; 
+            height: 9px;
             background-color: rgba(0, 0, 0, 0.25);
             border-radius: 50%;
             cursor: pointer;
@@ -483,12 +499,16 @@
         }
         .indicator-dot-mobile.active {
             background-color: var(--accent-primary);
-            transform: scale(1.2);
+            transform: scale(1.15);
         }
         .slideshow-no-items {
             text-align: center;
             padding: 2rem;
             color: var(--neutral-gray);
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
 
@@ -617,7 +637,6 @@
             .portfolio-item { 
                 min-height: 150px; 
             }
-            /* Portfolio Grid hidden on mobile, Slideshow shown */
             .portfolio-grid {
                 display: none !important; 
             }
@@ -970,14 +989,15 @@
 
         let currentSlideIndex = 0;
         let touchStartX = 0;
-        let touchStartY = 0; // Record Y start position
-        let touchEndX = 0;
-        let touchEndY = 0; // Record Y end position
-        let isSwiping = false; // Flag to track if a horizontal swipe is in progress
+        let touchStartY = 0;
+        let currentX = 0; // To track current X during move for delta calculation
+        let currentY = 0; // To track current Y during move for delta calculation
+        let isSwipeHandledBySlideshow = false; // Flag to indicate if slideshow is handling the swipe
         let slideshowInitialized = false;
 
-        const SWIPE_THRESHOLD = 50; // Min horizontal distance for a swipe to change slide
-        const PREVENT_DEFAULT_THRESHOLD = 5; // Min horizontal distance before we prevent default scroll
+        // Thresholds for swipe detection
+        const HORIZONTAL_SWIPE_INIT_THRESHOLD = 10; // Min horizontal movement (px) to consider it a potential slideshow swipe
+        const SWIPE_TO_CHANGE_SLIDE_THRESHOLD = 50; // Min horizontal movement (px) to actually trigger a slide change
 
         function initializeMobileSlideshow() {
             if (slideshowInitialized || !slideshowContainer || !slideshowTrack || portfolioItemsDataSource.length === 0) {
@@ -999,7 +1019,9 @@
                 const slide = document.createElement('div');
                 slide.className = 'slide-mobile';
                 slide.innerHTML = `
-                    <img src="${imgSrc}" alt="${altText}" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Image+Not+Found&font=Inter';">
+                    <div class="slide-image-wrapper-mobile">
+                        <img src="${imgSrc}" alt="${altText}" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Image+Not+Found&font=Inter';">
+                    </div>
                     <div class="slide-caption-mobile">
                         <h4>${title}</h4>
                         <p>${category}</p>
@@ -1048,76 +1070,75 @@
 
             if (totalSlides === 0 && slideshowContainer) {
                 slideshowContainer.innerHTML = '<p class="slideshow-no-items">No projects to display.</p>';
+                 if(prevButton) prevButton.style.display = 'none'; // Also hide nav if no items
+                if(nextButton) nextButton.style.display = 'none';
             }
         }
 
         if (prevButton) prevButton.addEventListener('click', () => showSlide(currentSlideIndex - 1));
         if (nextButton) nextButton.addEventListener('click', () => showSlide(currentSlideIndex + 1));
 
-        // Touch swipe functionality
         if (slideshowTrack) {
             slideshowTrack.addEventListener('touchstart', e => {
-                touchStartX = e.changedTouches[0].clientX; // Use clientX for consistency
+                touchStartX = e.changedTouches[0].clientX;
                 touchStartY = e.changedTouches[0].clientY;
-                isSwiping = false; // Reset swipe flag
-            }, { passive: true }); // passive: true initially, will be handled in touchmove
+                currentX = touchStartX; // Initialize currentX
+                currentY = touchStartY; // Initialize currentY
+                isSwipeHandledBySlideshow = false; // Reset flag for this new touch sequence
+            }, { passive: true }); // Start passive, switch in touchmove if needed (though direct preventDefault is better)
 
             slideshowTrack.addEventListener('touchmove', e => {
-                if (!touchStartX || !touchStartY) { // If touchstart didn't happen or was reset
-                    return;
+                if (!touchStartX && !touchStartY) return; // No touch has started
+
+                currentX = e.changedTouches[0].clientX;
+                currentY = e.changedTouches[0].clientY;
+                const deltaX = Math.abs(currentX - touchStartX);
+                const deltaY = Math.abs(currentY - touchStartY);
+
+                // If not already decided that slideshow handles it, check now
+                if (!isSwipeHandledBySlideshow) {
+                    if (deltaX > HORIZONTAL_SWIPE_INIT_THRESHOLD && deltaX > deltaY) {
+                        // If horizontal movement is dominant and exceeds threshold, slideshow takes over
+                        isSwipeHandledBySlideshow = true;
+                    }
                 }
 
-                const touchCurrentX = e.changedTouches[0].clientX;
-                const touchCurrentY = e.changedTouches[0].clientY;
-
-                const diffX = touchStartX - touchCurrentX;
-                const diffY = touchStartY - touchCurrentY;
-
-                if (Math.abs(diffX) > PREVENT_DEFAULT_THRESHOLD && Math.abs(diffX) > Math.abs(diffY)) {
-                    // Primarily horizontal swipe and exceeds small threshold
-                    isSwiping = true;
-                    // Only prevent default if we are sure it's a horizontal swipe for the slideshow
-                    // This needs to be non-passive for preventDefault to work
-                    // We can't change passive status mid-event, so the listener itself needs to be non-passive
-                    // For now, we rely on touch-action: pan-y and careful logic.
-                    // If issues persist, the touchmove listener might need to be registered with { passive: false }
-                    // and then we'd call e.preventDefault() here.
-                    // For now, the `touch-action: pan-y` on the container should help the browser.
+                if (isSwipeHandledBySlideshow) {
+                    // This is where we prevent the browser from scrolling vertically
+                    // For this to work, the event listener *must* be registered with { passive: false }
+                    e.preventDefault(); 
                 }
-                // If it's primarily vertical, `isSwiping` remains false, and browser handles scroll
-            }, { passive: true }); // Keep passive: true for now, relying on touch-action CSS
+            }, { passive: false }); // IMPORTANT: Set passive to false to allow preventDefault
 
             slideshowTrack.addEventListener('touchend', e => {
-                if (!isSwiping) { // If not a confirmed horizontal swipe, do nothing for slide change
-                    resetTouchCoordinates();
+                if (!isSwipeHandledBySlideshow) { // If slideshow didn't claim the swipe
+                    resetTouchState();
                     return;
                 }
 
-                touchEndX = e.changedTouches[0].clientX;
-                touchEndY = e.changedTouches[0].clientY; // Though not strictly used for L/R decision
-                handleSwipe();
-                resetTouchCoordinates();
+                const finalDeltaX = currentX - touchStartX; // Use the last known currentX from touchmove
+
+                if (Math.abs(finalDeltaX) > SWIPE_TO_CHANGE_SLIDE_THRESHOLD) {
+                    if (finalDeltaX < 0) { // Swiped left
+                        showSlide(currentSlideIndex + 1);
+                    } else { // Swiped right
+                        showSlide(currentSlideIndex - 1);
+                    }
+                }
+                resetTouchState();
+            });
+
+            slideshowTrack.addEventListener('touchcancel', e => {
+                resetTouchState();
             });
         }
         
-        function resetTouchCoordinates() {
+        function resetTouchState() {
             touchStartX = 0;
             touchStartY = 0;
-            touchEndX = 0;
-            touchEndY = 0;
-            isSwiping = false;
-        }
-
-        function handleSwipe() {
-            const diffX = touchStartX - touchEndX;
-            // Ensure it was a significant horizontal swipe
-            if (Math.abs(diffX) > SWIPE_THRESHOLD) {
-                if (diffX > 0) { // Swiped left (next slide)
-                    showSlide(currentSlideIndex + 1);
-                } else { // Swiped right (previous slide)
-                    showSlide(currentSlideIndex - 1);
-                }
-            }
+            currentX = 0;
+            currentY = 0;
+            isSwipeHandledBySlideshow = false;
         }
         
         function checkAndInitSlideshow() {
