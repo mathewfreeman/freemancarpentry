@@ -53,7 +53,7 @@
             overflow-x: hidden;
             font-weight: 300;
         }
-        body.modal-open, body.slideshow-active { 
+        body.modal-open { /* Only for modal, not slideshow swipe */
             overflow: hidden;
         }
         h1, h2, h3, h4 {
@@ -371,60 +371,65 @@
 
         /* --- Mobile Portfolio Slideshow Styles --- */
         .portfolio-slideshow-mobile-container {
-            display: none; /* Hidden by default, shown via media query */
+            display: none; 
             position: relative;
-            width: 100%; /* Takes full width of its parent (.container's content box) */
-            overflow: hidden; /* CRITICAL: Clips slides outside the viewport */
-            padding: 1rem 0; /* Vertical padding for the container */
+            width: 100%; 
+            overflow: hidden; 
+            padding: 1rem 0; 
             border-radius: var(--border-radius-main);
             background-color: var(--background-light);
             margin-top: 2rem; 
             box-sizing: border-box;
+            touch-action: pan-y; /* Allow vertical scroll, JS handles horizontal */
         }
         .slideshow-track-mobile {
             display: flex;
-            /* height: 70vh; */ /* Temporarily commented out to isolate width issues */
             transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            align-items: center; /* Vertically align slides if their heights differ */
+            align-items: center; 
+            /* touch-action: pan-y; Already on container, but can be here too. */
+             /* Cautious: if slides themselves are taller than container, this might clip.
+               Better to ensure container is sized appropriately or slides manage their own overflow if needed.
+               For now, assuming slides fit or image scales down. */
         }
         .slide-mobile {
-            width: 100%; /* Each slide is 100% of .portfolio-slideshow-mobile-container's width */
-            min-width: 100%; /* Reinforce for flex context */
-            flex-shrink: 0; /* Prevent slides from shrinking */
+            width: 100%; 
+            min-width: 100%; 
+            flex-shrink: 0; 
             box-sizing: border-box; 
-            padding: 0 15px; /* Horizontal padding for content *inside* the slide */
+            padding: 0 15px; 
             
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center; 
-            /* height: 100%; */ /* Commented out as track height is auto for now */
-            min-height: 300px; /* Arbitrary min-height to prevent collapse if image is tiny or not loaded */
-            overflow: hidden; /* Ensure content within slide doesn't break out */
+            min-height: 300px; 
+            overflow: hidden; 
         }
         .slide-mobile img {
             display: block;
-            width: 100%; /* Image fills the content-box of .slide-mobile (slide_width - 30px of padding) */
-            max-width: 100%; /* Safety net */
-            height: auto; /* Maintain aspect ratio */
-            object-fit: contain; /* Ensures entire image is visible, scaled down */
-            max-height: 65vh; /* Limit image height relative to viewport height */
+            width: 100%; 
+            max-width: 100%; 
+            height: auto; 
+            object-fit: contain; 
+            max-height: 65vh; 
             border-radius: calc(var(--border-radius-main) - 6px); 
             box-shadow: var(--shadow-light);
             margin-bottom: 1rem; 
+            user-select: none; /* Prevent image selection during swipe */
+            -webkit-user-drag: none; /* Prevent image dragging */
         }
         .slide-mobile .slide-caption-mobile {
-            width: 100%; /* Caption takes full width of the slide's content box */
+            width: 100%; 
             text-align: center;
-            padding: 0.5rem 0; /* Vertical padding for caption */
+            padding: 0.5rem 0; 
         }
         .slide-mobile .slide-caption-mobile h4,
         .slide-mobile .slide-caption-mobile p {
             color: var(--text-dark);
             margin-bottom: 0.2rem;
             font-weight: 500;
-            word-break: break-word; /* Ensure long text wraps */
-            overflow-wrap: break-word; /* Fallback for word-break */
+            word-break: break-word; 
+            overflow-wrap: break-word; 
         }
         .slide-mobile .slide-caption-mobile p {
             font-size: 0.85rem;
@@ -609,22 +614,15 @@
 
             #about h2 { text-align: center; }
             
-            .portfolio-item { /* These are desktop items, should be hidden by grid's display:none */
-                /* opacity: 1 !important; 
-                visibility: visible !important;  */
+            .portfolio-item { 
                 min-height: 150px; 
             }
-             .portfolio-item img { /* These are desktop items, should be hidden by grid's display:none */
-                 /* opacity: 1 !important;
-                 visibility: visible !important; */
-            }
-
             /* Portfolio Grid hidden on mobile, Slideshow shown */
             .portfolio-grid {
-                display: none !important; /* Ensure desktop grid is hidden */
+                display: none !important; 
             }
             .portfolio-slideshow-mobile-container {
-                display: block; /* Ensure slideshow is visible */
+                display: block; 
             }
 
             .portfolio-item-overlay { padding: 2rem 1rem 1rem; }
@@ -635,13 +633,12 @@
             #why-us .why-us-description { max-width: 90%; font-size: 1.1rem; }
             .why-us-points { max-width: 100%; gap: 1.5rem; }
         }
-        /* Ensure slideshow is hidden on desktop if JS somehow fails or for print */
         @media (min-width: 769px) {
             .portfolio-slideshow-mobile-container {
                 display: none !important;
             }
-             .portfolio-grid { /* Ensure grid is displayed on desktop */
-                display: grid !important; /* Use !important if needed to override inline styles from JS */
+             .portfolio-grid { 
+                display: grid !important; 
             }
         }
         .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0;}
@@ -969,16 +966,20 @@
         const prevButton = document.getElementById('slidePrevMobile');
         const nextButton = document.getElementById('slideNextMobile');
         const indicatorsContainer = document.getElementById('slideIndicatorsMobile');
-        // Source data from the desktop grid items
         const portfolioItemsDataSource = document.querySelectorAll('.portfolio-grid .portfolio-item'); 
 
         let currentSlideIndex = 0;
         let touchStartX = 0;
+        let touchStartY = 0; // Record Y start position
         let touchEndX = 0;
+        let touchEndY = 0; // Record Y end position
+        let isSwiping = false; // Flag to track if a horizontal swipe is in progress
         let slideshowInitialized = false;
 
+        const SWIPE_THRESHOLD = 50; // Min horizontal distance for a swipe to change slide
+        const PREVENT_DEFAULT_THRESHOLD = 5; // Min horizontal distance before we prevent default scroll
+
         function initializeMobileSlideshow() {
-            // Check if slideshow should run (elements exist, data exists)
             if (slideshowInitialized || !slideshowContainer || !slideshowTrack || portfolioItemsDataSource.length === 0) {
                 if (slideshowContainer && portfolioItemsDataSource.length === 0) {
                     slideshowContainer.innerHTML = '<p class="slideshow-no-items">No projects to display.</p>';
@@ -986,8 +987,8 @@
                 return;
             }
             
-            slideshowTrack.innerHTML = ''; // Clear previous slides
-            indicatorsContainer.innerHTML = ''; // Clear previous indicators
+            slideshowTrack.innerHTML = ''; 
+            indicatorsContainer.innerHTML = ''; 
 
             portfolioItemsDataSource.forEach((itemData, index) => {
                 const imgSrc = itemData.dataset.imgSrc || (itemData.querySelector('img') ? itemData.querySelector('img').src : 'https://placehold.co/600x400/cccccc/333333?text=Image+Missing&font=Inter');
@@ -1013,23 +1014,21 @@
                 indicatorsContainer.appendChild(indicator);
             });
             
-            slideshowInitialized = true; // Mark as initialized
-            updateSlideshowUI(); // Update visibility of nav buttons/indicators
-            showSlide(0); // Go to the first slide
+            slideshowInitialized = true; 
+            updateSlideshowUI(); 
+            showSlide(0); 
         }
 
         function showSlide(index) {
             const totalSlides = portfolioItemsDataSource.length;
-            if (totalSlides === 0) return; // No slides to show
+            if (totalSlides === 0) return; 
 
-            // Loop around
             if (index >= totalSlides) currentSlideIndex = 0;
             else if (index < 0) currentSlideIndex = totalSlides - 1;
             else currentSlideIndex = index;
             
-            // Apply the transform to move the track
             slideshowTrack.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
-            updateIndicators(); // Update active indicator dot
+            updateIndicators(); 
         }
 
         function updateIndicators() {
@@ -1041,68 +1040,105 @@
         
         function updateSlideshowUI() {
             const totalSlides = portfolioItemsDataSource.length;
-            const displayStyle = totalSlides <= 1 ? 'none' : 'flex'; // 'flex' for nav buttons
+            const displayStyle = totalSlides <= 1 ? 'none' : 'flex'; 
 
             if(prevButton) prevButton.style.display = displayStyle;
             if(nextButton) nextButton.style.display = displayStyle;
-            if(indicatorsContainer) indicatorsContainer.style.display = totalSlides <= 1 ? 'none' : 'flex'; // indicators use flex too
+            if(indicatorsContainer) indicatorsContainer.style.display = totalSlides <= 1 ? 'none' : 'flex'; 
 
             if (totalSlides === 0 && slideshowContainer) {
                 slideshowContainer.innerHTML = '<p class="slideshow-no-items">No projects to display.</p>';
             }
         }
 
-        // Attach event listeners to nav buttons
         if (prevButton) prevButton.addEventListener('click', () => showSlide(currentSlideIndex - 1));
         if (nextButton) nextButton.addEventListener('click', () => showSlide(currentSlideIndex + 1));
 
         // Touch swipe functionality
         if (slideshowTrack) {
             slideshowTrack.addEventListener('touchstart', e => {
-                touchStartX = e.changedTouches[0].screenX;
-                // body.classList.add('slideshow-active'); // Optional: if scroll prevention is needed
-            }, { passive: true }); 
+                touchStartX = e.changedTouches[0].clientX; // Use clientX for consistency
+                touchStartY = e.changedTouches[0].clientY;
+                isSwiping = false; // Reset swipe flag
+            }, { passive: true }); // passive: true initially, will be handled in touchmove
+
+            slideshowTrack.addEventListener('touchmove', e => {
+                if (!touchStartX || !touchStartY) { // If touchstart didn't happen or was reset
+                    return;
+                }
+
+                const touchCurrentX = e.changedTouches[0].clientX;
+                const touchCurrentY = e.changedTouches[0].clientY;
+
+                const diffX = touchStartX - touchCurrentX;
+                const diffY = touchStartY - touchCurrentY;
+
+                if (Math.abs(diffX) > PREVENT_DEFAULT_THRESHOLD && Math.abs(diffX) > Math.abs(diffY)) {
+                    // Primarily horizontal swipe and exceeds small threshold
+                    isSwiping = true;
+                    // Only prevent default if we are sure it's a horizontal swipe for the slideshow
+                    // This needs to be non-passive for preventDefault to work
+                    // We can't change passive status mid-event, so the listener itself needs to be non-passive
+                    // For now, we rely on touch-action: pan-y and careful logic.
+                    // If issues persist, the touchmove listener might need to be registered with { passive: false }
+                    // and then we'd call e.preventDefault() here.
+                    // For now, the `touch-action: pan-y` on the container should help the browser.
+                }
+                // If it's primarily vertical, `isSwiping` remains false, and browser handles scroll
+            }, { passive: true }); // Keep passive: true for now, relying on touch-action CSS
 
             slideshowTrack.addEventListener('touchend', e => {
-                touchEndX = e.changedTouches[0].screenX;
+                if (!isSwiping) { // If not a confirmed horizontal swipe, do nothing for slide change
+                    resetTouchCoordinates();
+                    return;
+                }
+
+                touchEndX = e.changedTouches[0].clientX;
+                touchEndY = e.changedTouches[0].clientY; // Though not strictly used for L/R decision
                 handleSwipe();
-                // body.classList.remove('slideshow-active'); // Optional
+                resetTouchCoordinates();
             });
+        }
+        
+        function resetTouchCoordinates() {
+            touchStartX = 0;
+            touchStartY = 0;
+            touchEndX = 0;
+            touchEndY = 0;
+            isSwiping = false;
         }
 
         function handleSwipe() {
-            const swipeThreshold = 50; // Minimum pixels for a swipe
-            if (touchEndX < touchStartX - swipeThreshold) { // Swiped left
-                showSlide(currentSlideIndex + 1);
-            } else if (touchEndX > touchStartX + swipeThreshold) { // Swiped right
-                showSlide(currentSlideIndex - 1);
+            const diffX = touchStartX - touchEndX;
+            // Ensure it was a significant horizontal swipe
+            if (Math.abs(diffX) > SWIPE_THRESHOLD) {
+                if (diffX > 0) { // Swiped left (next slide)
+                    showSlide(currentSlideIndex + 1);
+                } else { // Swiped right (previous slide)
+                    showSlide(currentSlideIndex - 1);
+                }
             }
         }
         
-        // Check on load and resize if slideshow should be active
         function checkAndInitSlideshow() {
             const isMobileView = window.innerWidth <= 768;
             const desktopGrid = document.querySelector('.portfolio-grid');
 
             if (isMobileView) {
-                if (!slideshowInitialized) { // Only initialize if not already done for this view
+                if (!slideshowInitialized) { 
                     initializeMobileSlideshow();
                 }
                 if (slideshowContainer) slideshowContainer.style.display = 'block';
                 if (desktopGrid) desktopGrid.style.display = 'none';
-            } else { // Desktop view
+            } else { 
                 if (slideshowContainer) slideshowContainer.style.display = 'none';
                 if (desktopGrid) desktopGrid.style.display = 'grid'; 
-                // slideshowInitialized = false; // Reset if you want it to re-init if resized back to mobile
-                                             // For now, let's keep it simple. If it's initialized once,
-                                             // it has its content. Hiding/showing is enough.
             }
         }
 
-        window.addEventListener('resize', checkAndInitSlideshow); // Re-check on resize
-        checkAndInitSlideshow(); // Initial check on load
+        window.addEventListener('resize', checkAndInitSlideshow); 
+        checkAndInitSlideshow(); 
 
-        // --- Contact Form Submission (Placeholder) ---
         const contactForm = document.getElementById('contactForm');
         if (contactForm) {
             contactForm.addEventListener('submit', function(e) {
@@ -1118,7 +1154,6 @@
             });
         }
 
-        // --- Update Footer Year ---
         const currentYearSpan = document.getElementById('currentYear');
         if (currentYearSpan) currentYearSpan.textContent = new Date().getFullYear();
     });
