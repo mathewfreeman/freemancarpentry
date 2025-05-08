@@ -53,7 +53,7 @@
             overflow-x: hidden;
             font-weight: 300;
         }
-        body.modal-open {
+        body.modal-open, body.slideshow-active { /* Add slideshow-active to prevent scroll */
             overflow: hidden;
         }
         h1, h2, h3, h4 {
@@ -223,7 +223,6 @@
         }
         .hero-content {
             max-width: 950px;
-            /* text-align: left; Default, overridden for mobile */
             position: relative;
             z-index: 2;
         }
@@ -338,24 +337,24 @@
         }
         .portfolio-item {
             position: relative;
-            /* overflow: hidden; Keep this, but ensure children are visible */
             border-radius: var(--border-radius-main);
             box-shadow: var(--shadow-medium);
             transition: transform var(--transition-speed-medium) ease;
             aspect-ratio: 4 / 3;
             cursor: pointer;
-            background-color: #f0f0f0; /* Fallback for item visibility */
-            opacity: 1; /* Ensure visibility */
-            visibility: visible; /* Ensure visibility */
-            transform: translateZ(0); /* Force hardware acceleration / new stacking context */
+            background-color: #f0f0f0; 
+            opacity: 1; 
+            visibility: visible; 
+            transform: translateZ(0); 
             -webkit-transform: translateZ(0); 
+            overflow: hidden; /* Added to contain child elements properly */
         }
         .portfolio-item:hover { transform: scale(1.03); }
         .portfolio-item img {
             display: block; width: 100%; height: 100%; object-fit: cover;
             transition: transform var(--transition-speed-slow) cubic-bezier(0.165, 0.84, 0.44, 1);
             position: relative; z-index: 1;
-            opacity: 1; /* Ensure image itself is visible */
+            opacity: 1; 
             visibility: visible;
         }
         .portfolio-item:hover img { transform: scale(1.1); }
@@ -369,6 +368,116 @@
         .portfolio-item:hover .portfolio-item-overlay { transform: translateY(0); }
         .portfolio-item-overlay h4 { font-size: 1.4rem; color: var(--text-light); margin-bottom: 0.3rem; font-weight: 500; }
         .portfolio-item-overlay p.category { font-size: 0.9rem; color: var(--accent-primary); font-weight: 400; text-transform: uppercase; letter-spacing: 0.05em; }
+
+        /* --- Mobile Portfolio Slideshow Styles --- */
+        .portfolio-slideshow-mobile-container {
+            display: none; /* Hidden by default, shown via media query */
+            position: relative;
+            overflow: hidden;
+            padding: 1rem 0;
+            border-radius: var(--border-radius-main);
+            background-color: var(--background-light);
+            margin-top: 2rem; /* Add some space if needed */
+        }
+        .slideshow-track-mobile {
+            display: flex;
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            height: 70vh; /* Give track a substantial height */
+            align-items: center; /* Vertically center items if they are shorter */
+        }
+        .slide-mobile {
+            min-width: 100%;
+            flex-shrink: 0;
+            padding: 0 15px; /* Horizontal padding for each slide */
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center; /* Center content vertically within the slide */
+            height: 100%; /* Make slide take full height of track */
+        }
+        .slide-mobile img {
+            display: block;
+            width: 100%; /* Make image responsive within the slide */
+            max-width: 100%; /* Allow image to take full width of slide padding */
+            height: auto; 
+            max-height: calc(100% - 70px); /* Max height for image, leave space for caption */
+            object-fit: contain; /* As per modal style */
+            border-radius: calc(var(--border-radius-main) - 6px); /* Slightly smaller radius than container */
+            box-shadow: var(--shadow-light);
+            margin-bottom: 1rem; /* Space between image and caption */
+        }
+        .slide-mobile .slide-caption-mobile {
+            text-align: center;
+            padding: 0.5rem;
+            width: 100%;
+        }
+        .slide-mobile .slide-caption-mobile h4 {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            margin-bottom: 0.2rem;
+            font-weight: 500;
+        }
+        .slide-mobile .slide-caption-mobile p {
+            font-size: 0.85rem;
+            color: var(--neutral-gray);
+            margin-bottom: 0;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+        .slide-nav-mobile {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.35);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            font-size: 1.2rem; /* Adjusted for icon size */
+            cursor: pointer;
+            z-index: 10;
+            transition: background-color var(--transition-speed-fast), transform var(--transition-speed-fast);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        .slide-nav-mobile:hover {
+            background-color: rgba(0, 0, 0, 0.5);
+            transform: translateY(-50%) scale(1.05);
+        }
+        .slide-prev-mobile { left: 15px; }
+        .slide-next-mobile { right: 15px; }
+
+        .slide-indicators-mobile {
+            position: absolute;
+            bottom: 20px; /* Increased distance from bottom */
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px; /* Increased gap */
+            z-index: 5; /* Ensure indicators are above track but below nav if overlapping */
+        }
+        .indicator-dot-mobile {
+            width: 10px; /* Slightly larger dots */
+            height: 10px;
+            background-color: rgba(0, 0, 0, 0.25);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color var(--transition-speed-fast), transform var(--transition-speed-fast);
+        }
+        .indicator-dot-mobile.active {
+            background-color: var(--accent-primary);
+            transform: scale(1.2);
+        }
+        .slideshow-no-items {
+            text-align: center;
+            padding: 2rem;
+            color: var(--neutral-gray);
+        }
+
 
         /* --- Why Choose Us Section (#why-us) --- */
         #why-us { position: relative; padding-top: 3rem; padding-bottom: 3rem; }
@@ -492,15 +601,22 @@
 
             #about h2 { text-align: center; }
             
-            /* Portfolio item mobile visibility fix attempt */
             .portfolio-item {
-                opacity: 1 !important; /* Force visibility */
-                visibility: visible !important; /* Force visibility */
-                min-height: 150px; /* Ensure it has some minimum height if aspect-ratio fails visually */
+                opacity: 1 !important; 
+                visibility: visible !important; 
+                min-height: 150px; 
             }
             .portfolio-item img {
                  opacity: 1 !important;
                  visibility: visible !important;
+            }
+
+            /* Portfolio Grid hidden on mobile, Slideshow shown */
+            .portfolio-grid {
+                display: none !important; 
+            }
+            .portfolio-slideshow-mobile-container {
+                display: block; 
             }
 
             .portfolio-item-overlay { padding: 2rem 1rem 1rem; }
@@ -510,6 +626,15 @@
             .why-us-background-wrapper { padding: 2.5rem 1.5rem; }
             #why-us .why-us-description { max-width: 90%; font-size: 1.1rem; }
             .why-us-points { max-width: 100%; gap: 1.5rem; }
+        }
+        /* Ensure slideshow is hidden on desktop if JS somehow fails or for print */
+        @media (min-width: 769px) {
+            .portfolio-slideshow-mobile-container {
+                display: none !important;
+            }
+             .portfolio-grid { /* Ensure grid is displayed on desktop */
+                display: grid !important;
+            }
         }
         .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0;}
 
@@ -643,6 +768,19 @@
                     <div class="portfolio-item-overlay"><h4>Sanctuary Bathrooms</h4><p class="category">Home Remodels</p></div>
                 </div>
             </div>
+
+            <div class="portfolio-slideshow-mobile-container" id="portfolioSlideshowMobile">
+                <div class="slideshow-track-mobile" id="slideshowTrackMobile">
+                    </div>
+                <button class="slide-nav-mobile slide-prev-mobile" id="slidePrevMobile" aria-label="Previous project">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="slide-nav-mobile slide-next-mobile" id="slideNextMobile" aria-label="Next project">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                <div class="slide-indicators-mobile" id="slideIndicatorsMobile">
+                    </div>
+            </div>
         </section>
 
         <section id="why-us" class="container">
@@ -719,6 +857,7 @@
             const isExpanded = mainNav.classList.toggle('active');
             menuToggle.classList.toggle('open');
             menuToggle.setAttribute('aria-expanded', isExpanded);
+            // Check if window.innerWidth < 769 to only apply modal-open for mobile menu
             body.classList.toggle('modal-open', isExpanded && window.innerWidth < 769);
         });
 
@@ -773,11 +912,11 @@
         }
         initialActiveLink();
 
-        // --- Portfolio Modal Logic ---
+        // --- Portfolio Modal Logic (Desktop) ---
         const portfolioModal = document.getElementById('portfolioModal');
         const modalImage = document.getElementById('modalImage');
         const modalCloseButton = document.getElementById('modalClose');
-        const portfolioItems = document.querySelectorAll('.portfolio-item');
+        const portfolioItemsGrid = document.querySelectorAll('.portfolio-grid .portfolio-item'); // Target only grid items
         let previouslyFocusedElement; 
 
         function openModal(imgSrc, altText) {
@@ -795,33 +934,194 @@
             if (previouslyFocusedElement) previouslyFocusedElement.focus();
         }
 
-        portfolioItems.forEach(item => {
+        portfolioItemsGrid.forEach(item => { // Iterate only over grid items for modal
             item.addEventListener('click', () => {
                 const largeImgSrc = item.dataset.imgSrc;
-                const altText = item.querySelector('img').alt; 
+                const altText = item.querySelector('img') ? item.querySelector('img').alt : 'Portfolio image'; 
                 if (largeImgSrc) openModal(largeImgSrc, altText);
             });
             item.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault(); 
                     const largeImgSrc = item.dataset.imgSrc;
-                    const altText = item.querySelector('img').alt;
+                    const altText = item.querySelector('img') ? item.querySelector('img').alt : 'Portfolio image';
                     if (largeImgSrc) openModal(largeImgSrc, altText);
                 }
             });
         });
 
-        modalCloseButton.addEventListener('click', closeModal);
-        portfolioModal.addEventListener('click', (e) => { if (e.target === portfolioModal) closeModal(); });
+        if (modalCloseButton) modalCloseButton.addEventListener('click', closeModal);
+        if (portfolioModal) {
+            portfolioModal.addEventListener('click', (e) => { if (e.target === portfolioModal) closeModal(); });
+        }
         document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && portfolioModal.classList.contains('active')) closeModal(); });
+
+        // --- Mobile Portfolio Slideshow Logic ---
+        const slideshowContainer = document.getElementById('portfolioSlideshowMobile');
+        const slideshowTrack = document.getElementById('slideshowTrackMobile');
+        const prevButton = document.getElementById('slidePrevMobile');
+        const nextButton = document.getElementById('slideNextMobile');
+        const indicatorsContainer = document.getElementById('slideIndicatorsMobile');
+        const portfolioItemsData = document.querySelectorAll('.portfolio-grid .portfolio-item'); // Get data from original grid items
+
+        let currentSlideIndex = 0;
+        let touchStartX = 0;
+        let touchEndX = 0;
+        let slideshowInitialized = false;
+
+        function initializeMobileSlideshow() {
+            if (slideshowInitialized || !slideshowContainer || !slideshowTrack || portfolioItemsData.length === 0) {
+                if (slideshowContainer && portfolioItemsData.length === 0) {
+                    slideshowContainer.innerHTML = '<p class="slideshow-no-items">No projects to display.</p>';
+                }
+                return;
+            }
+            
+            // Clear any existing slides or indicators (e.g., if re-initializing on resize)
+            slideshowTrack.innerHTML = '';
+            indicatorsContainer.innerHTML = '';
+
+            portfolioItemsData.forEach((item, index) => {
+                const imgSrc = item.dataset.imgSrc || (item.querySelector('img') ? item.querySelector('img').src : '');
+                const altText = item.querySelector('img') ? item.querySelector('img').alt : 'Portfolio project image';
+                const title = item.querySelector('.portfolio-item-overlay h4') ? item.querySelector('.portfolio-item-overlay h4').textContent : 'Project';
+                const category = item.querySelector('.portfolio-item-overlay p.category') ? item.querySelector('.portfolio-item-overlay p.category').textContent : 'Category';
+
+                const slide = document.createElement('div');
+                slide.className = 'slide-mobile';
+                slide.innerHTML = `
+                    <img src="${imgSrc}" alt="${altText}" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Image+Not+Found&font=Inter';">
+                    <div class="slide-caption-mobile">
+                        <h4>${title}</h4>
+                        <p>${category}</p>
+                    </div>
+                `;
+                slideshowTrack.appendChild(slide);
+
+                const indicator = document.createElement('button');
+                indicator.className = 'indicator-dot-mobile';
+                indicator.setAttribute('aria-label', `Go to project ${index + 1}: ${title}`);
+                indicator.addEventListener('click', () => showSlide(index));
+                indicatorsContainer.appendChild(indicator);
+            });
+            
+            slideshowInitialized = true;
+            updateSlideshowUI();
+            showSlide(0); // Show the first slide initially
+        }
+
+        function showSlide(index) {
+            const totalSlides = portfolioItemsData.length;
+            if (totalSlides === 0) return;
+
+            if (index >= totalSlides) {
+                currentSlideIndex = 0;
+            } else if (index < 0) {
+                currentSlideIndex = totalSlides - 1;
+            } else {
+                currentSlideIndex = index;
+            }
+            slideshowTrack.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
+            updateIndicators();
+        }
+
+        function updateIndicators() {
+            const indicators = indicatorsContainer.children;
+            for (let i = 0; i < indicators.length; i++) {
+                indicators[i].classList.toggle('active', i === currentSlideIndex);
+            }
+        }
+        
+        function updateSlideshowUI() {
+            const totalSlides = portfolioItemsData.length;
+            if (totalSlides <= 1) {
+                if(prevButton) prevButton.style.display = 'none';
+                if(nextButton) nextButton.style.display = 'none';
+                if(indicatorsContainer) indicatorsContainer.style.display = 'none';
+            } else {
+                if(prevButton) prevButton.style.display = 'flex';
+                if(nextButton) nextButton.style.display = 'flex';
+                if(indicatorsContainer) indicatorsContainer.style.display = 'flex';
+            }
+             if (totalSlides === 0 && slideshowContainer) {
+                slideshowContainer.innerHTML = '<p class="slideshow-no-items">No projects to display.</p>';
+            }
+        }
+
+        if (prevButton) prevButton.addEventListener('click', () => showSlide(currentSlideIndex - 1));
+        if (nextButton) nextButton.addEventListener('click', () => showSlide(currentSlideIndex + 1));
+
+        if (slideshowTrack) {
+            slideshowTrack.addEventListener('touchstart', e => {
+                touchStartX = e.changedTouches[0].screenX;
+                body.classList.add('slideshow-active'); // Prevent page scroll during swipe
+            }, { passive: true }); // Use passive true if not preventing default scroll
+
+            slideshowTrack.addEventListener('touchmove', e => {
+                // Optional: Add visual feedback during move if desired
+                // e.preventDefault(); // Be cautious with this, can block vertical scroll if not handled well
+            }, { passive: false }); // Passive false if preventDefault might be called
+
+            slideshowTrack.addEventListener('touchend', e => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+                body.classList.remove('slideshow-active');
+            });
+        }
+
+        function handleSwipe() {
+            const swipeThreshold = 50; // Minimum pixels for a swipe
+            if (touchEndX < touchStartX - swipeThreshold) {
+                showSlide(currentSlideIndex + 1);
+            } else if (touchEndX > touchStartX + swipeThreshold) {
+                showSlide(currentSlideIndex - 1);
+            }
+        }
+        
+        // Check on load and resize if slideshow should be active
+        function checkAndInitSlideshow() {
+            if (window.innerWidth <= 768) {
+                if (!slideshowInitialized) {
+                    initializeMobileSlideshow();
+                }
+                 if (slideshowContainer) slideshowContainer.style.display = 'block';
+                 const grid = document.querySelector('.portfolio-grid');
+                 if (grid) grid.style.display = 'none';
+
+            } else {
+                // On desktop, ensure grid is visible and slideshow hidden
+                if (slideshowContainer) slideshowContainer.style.display = 'none';
+                const grid = document.querySelector('.portfolio-grid');
+                if (grid) grid.style.display = 'grid'; // Or your default display for grid
+                // Optionally, "de-initialize" slideshow to free resources if needed,
+                // but for now, just hiding it is fine.
+                // slideshowInitialized = false; 
+            }
+        }
+
+        window.addEventListener('resize', () => {
+            // Reset initialization flag on resize to re-evaluate
+            // This is a simple approach; more complex scenarios might need debouncing
+            // and careful state management if elements are drastically changed.
+            slideshowInitialized = false; 
+            checkAndInitSlideshow();
+        });
+        checkAndInitSlideshow(); // Initial check
 
         // --- Contact Form Submission (Placeholder) ---
         const contactForm = document.getElementById('contactForm');
         if (contactForm) {
             contactForm.addEventListener('submit', function(e) {
                 e.preventDefault();
-                alert('Thank you for your message! We\'ll be in touch soon.');
+                // A more user-friendly notification would be better than alert
+                const tempMsg = document.createElement('p');
+                tempMsg.textContent = 'Thank you for your message! We\'ll be in touch soon.';
+                tempMsg.style.textAlign = 'center';
+                tempMsg.style.color = 'var(--accent-primary)';
+                tempMsg.style.marginTop = '1rem';
+                contactForm.parentNode.insertBefore(tempMsg, contactForm.nextSibling);
                 contactForm.reset();
+                setTimeout(() => tempMsg.remove(), 5000);
             });
         }
 
