@@ -375,41 +375,45 @@
             position: relative;
             width: 100%; 
             overflow: hidden; 
-            padding: 0.5rem 0; 
+            padding: 0.5rem 0; /* Container padding top/bottom */
             border-radius: var(--border-radius-main);
             background-color: var(--background-light);
             margin-top: 2rem; 
             box-sizing: border-box;
-            touch-action: pan-y; /* Critical for allowing vertical scroll while JS handles horizontal */
+            /* touch-action: pan-y; -- Let JS handle this with preventDefault */
         }
         .slideshow-track-mobile {
             display: flex;
-            height: 50vh; /* Reduced height to make portrait images shorter */
+            /* No explicit height, will be determined by slides */
             transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            align-items: center; 
+            align-items: stretch; /* Stretch slides to fill track height if they are different */
+            user-select: none; /* Prevent text selection during swipe on track */
+            -webkit-user-select: none;
+            -webkit-touch-callout: none; /* Disable callouts on iOS */
         }
         .slide-mobile {
             width: 100%; 
             min-width: 100%; 
             flex-shrink: 0; 
             box-sizing: border-box; 
-            padding: 0 10px; 
+            padding: 0 10px; /* Horizontal padding for content within the slide */
             
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-start; 
-            height: 100%; 
+            /* justify-content: flex-start; -- Let flex-grow handle image wrapper */
             overflow: hidden; 
         }
         .slide-image-wrapper-mobile {
-            width: 100%;
-            flex-grow: 1; 
+            width: 100%; /* Takes full width of slide's content area */
+            aspect-ratio: 16 / 9; /* Strict landscape aspect ratio */
             display: flex;
             align-items: center; 
             justify-content: center; 
-            min-height: 0; 
-            position: relative; 
+            overflow: hidden; /* Clip image if it somehow overflows */
+            background-color: #e9e9e9; /* Fallback bg for pillarbox area */
+            border-radius: calc(var(--border-radius-main) - 8px); /* Match image radius */
+            margin-bottom: 0.75rem; /* Space between image frame and caption */
         }
         .slide-mobile img {
             display: block;
@@ -417,17 +421,18 @@
             max-height: 100%; 
             width: auto;  
             height: auto; 
-            object-fit: contain; 
-            border-radius: calc(var(--border-radius-main) - 8px); 
-            box-shadow: var(--shadow-light);
+            object-fit: contain; /* Fit within wrapper, pillar/letterbox */
+            border-radius: calc(var(--border-radius-main) - 8px); /* Consistent rounding */
+            /* box-shadow: var(--shadow-light); -- Shadow now on wrapper if needed */
             user-select: none; 
             -webkit-user-drag: none; 
+            pointer-events: none; /* Prevent image from capturing touch events */
         }
         .slide-mobile .slide-caption-mobile {
             width: 100%; 
             text-align: center;
-            padding: 1rem 0 0.5rem; /* Increased top padding for space from image */
-            margin-bottom: 0.75rem; /* Space between caption and indicators */
+            padding: 0.5rem 0; /* Reduced top padding as margin-bottom on wrapper handles space */
+            margin-bottom: 1rem; /* More space between caption and indicators */
             flex-shrink: 0; 
             box-sizing: border-box;
         }
@@ -448,15 +453,34 @@
 
         .slide-nav-mobile {
             position: absolute;
-            top: calc(0.5rem + (50vh / 2)); /* Adjusted to new track height (50vh) */
+            /* Vertical centering:
+               The image wrapper's height is (slide_width - 2*slide_padding) * 9 / 16.
+               The arrows are relative to portfolio-slideshow-mobile-container.
+               Top = container_padding_top + (image_wrapper_height / 2)
+               This is hard to do purely in CSS if slide_width is %-based.
+               Let's target the visual center of the image wrapper area.
+               The image wrapper itself has aspect-ratio 16/9.
+               The container has 0.5rem top padding.
+            */
+            top: calc(0.5rem + ((100vw - 20px) * (9 / 16)) / 2); /* Approx. center of image wrapper */
+            /* (100vw - 20px) is approx slide content width. (9/16) is aspect ratio. Divide by 2 for center. */
+            /* This calculation might need JS if 100vw isn't precise enough due to parent constraints */
+            /* A simpler approach: if image wrapper is the dominant height element: */
+            /* top: 30%; */ /* Adjust this percentage based on visual inspection */
+            /* Let's try a fixed vh unit for the image wrapper, and center arrows to that */
+            /* If .slide-image-wrapper-mobile effectively determines the main visual height before caption: */
+            /* Assuming slide-image-wrapper-mobile height is approx 40-45vh due to aspect ratio and width */
+            top: calc(0.5rem + 22vh); /* (0.5rem for container padding) + (approx 44vh image wrapper height / 2) */
+
+
             transform: translateY(-50%);
             background-color: rgba(0, 0, 0, 0.35);
             color: white;
             border: none;
             border-radius: 50%;
-            width: 40px; 
-            height: 40px;
-            font-size: 1rem; 
+            width: 38px; /* Slightly smaller */
+            height: 38px;
+            font-size: 0.9rem; 
             cursor: pointer;
             z-index: 10;
             transition: background-color var(--transition-speed-fast), transform var(--transition-speed-fast), opacity var(--transition-speed-fast);
@@ -471,13 +495,13 @@
             transform: translateY(-50%) scale(1.05);
             opacity: 1;
         }
-        .slide-prev-mobile { left: 20px; } 
-        .slide-next-mobile { right: 20px; }
+        .slide-prev-mobile { left: 15px; } /* Slightly further from edge */
+        .slide-next-mobile { right: 15px; }
 
 
         .slide-indicators-mobile {
             position: absolute;
-            bottom: 15px; /* Adjusted for more space from bottom edge */
+            bottom: 10px; 
             left: 50%;
             transform: translateX(-50%);
             display: flex;
@@ -500,7 +524,7 @@
             text-align: center;
             padding: 2rem;
             color: var(--neutral-gray);
-            height: 100%;
+            min-height: 200px; /* Ensure it has some height */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -983,16 +1007,16 @@
         const portfolioItemsDataSource = document.querySelectorAll('.portfolio-grid .portfolio-item'); 
 
         let currentSlideIndex = 0;
-        let touchStartX = 0;
-        let touchStartY = 0;
-        let currentX = 0; 
-        let currentY = 0; 
-        let isSwipeInProgress = false; // More descriptive: true if user is actively dragging
-        let isHorizontalSwipeIntent = false; // True if the swipe is determined to be for the slideshow
+        let touchInitialX = 0;
+        let touchInitialY = 0;
+        let touchCurrentX = 0; // Last known X position during touchmove
+        let touchCurrentY = 0; // Last known Y position during touchmove
+        let isDragging = false;      // True if finger is down and has started moving
+        let swipeDirection = null; // 'horizontal', 'vertical', or null
         let slideshowInitialized = false;
 
-        const HORIZONTAL_SWIPE_ANGLE_THRESHOLD = Math.PI / 6; // Approx 30 degrees. Swipe more horizontal than this.
-        const SWIPE_DISTANCE_THRESHOLD = 30; // Min distance (px) to register as a swipe to change slide
+        const SWIPE_DIRECTION_LOCK_THRESHOLD = 10; // Min pixels moved before swipe direction is locked
+        const SWIPE_ACTION_THRESHOLD = 40;      // Min horizontal pixels for a swipe to change slide
 
         function initializeMobileSlideshow() {
             if (slideshowInitialized || !slideshowContainer || !slideshowTrack || portfolioItemsDataSource.length === 0) {
@@ -1075,53 +1099,55 @@
 
         if (slideshowTrack) {
             slideshowTrack.addEventListener('touchstart', e => {
-                touchStartX = e.changedTouches[0].clientX;
-                touchStartY = e.changedTouches[0].clientY;
-                isSwipeInProgress = true; // User has started touching
-                isHorizontalSwipeIntent = false; // Reset intent for this new touch
+                touchInitialX = e.changedTouches[0].clientX;
+                touchInitialY = e.changedTouches[0].clientY;
+                touchCurrentX = touchInitialX; // Initialize current positions
+                touchCurrentY = touchInitialY;
+                isDragging = true;
+                swipeDirection = null; // Reset swipe direction
+                // No preventDefault here, listener is passive by default
             }, { passive: true }); 
 
             slideshowTrack.addEventListener('touchmove', e => {
-                if (!isSwipeInProgress) return; // Only process if touchstart occurred
+                if (!isDragging) return;
 
-                currentX = e.changedTouches[0].clientX;
-                currentY = e.changedTouches[0].clientY;
-                
-                const deltaX = currentX - touchStartX;
-                const deltaY = currentY - touchStartY;
+                touchCurrentX = e.changedTouches[0].clientX;
+                touchCurrentY = e.changedTouches[0].clientY;
 
-                // If we haven't decided the swipe intent yet
-                if (!isHorizontalSwipeIntent) {
-                    // Check if movement is primarily horizontal
-                    // Math.atan2(Math.abs(deltaY), Math.abs(deltaX)) gives angle from horizontal
-                    // If angle is small (e.g., < 30 degrees), it's mostly horizontal
-                    if (Math.abs(deltaX) > 5 && (Math.abs(deltaY) === 0 || Math.abs(deltaX) > Math.abs(deltaY) * 1.5) ) { // More horizontal than vertical by a factor
-                        isHorizontalSwipeIntent = true;
-                    } else if (Math.abs(deltaY) > 5) {
-                        // If movement is primarily vertical, let browser handle it and stop our processing for this swipe
-                        isSwipeInProgress = false; // Stop processing this swipe for slideshow
-                        return;
+                const deltaX = touchCurrentX - touchInitialX;
+                const deltaY = touchCurrentY - touchInitialY;
+
+                if (swipeDirection === null) { // Determine direction if not already locked
+                    // Check after a minimum movement to avoid locking on small jitters
+                    if (Math.abs(deltaX) > SWIPE_DIRECTION_LOCK_THRESHOLD || Math.abs(deltaY) > SWIPE_DIRECTION_LOCK_THRESHOLD) {
+                        if (Math.abs(deltaX) > Math.abs(deltaY)) {
+                            swipeDirection = 'horizontal';
+                        } else {
+                            swipeDirection = 'vertical';
+                        }
                     }
                 }
 
-                if (isHorizontalSwipeIntent) {
-                    e.preventDefault(); // Prevent vertical scroll if it's a horizontal swipe for slideshow
+                if (swipeDirection === 'horizontal') {
+                    e.preventDefault(); // Prevent vertical scroll if we've locked to horizontal
                 }
-            }, { passive: false }); 
+                // If swipeDirection is 'vertical', we do nothing, browser handles scroll.
+            }, { passive: false }); // IMPORTANT: Listener must be non-passive for preventDefault
 
             slideshowTrack.addEventListener('touchend', e => {
-                if (!isSwipeInProgress || !isHorizontalSwipeIntent) { // If not a swipe in progress or not horizontal
+                if (!isDragging) { // If not dragging (e.g., touchmove decided it's vertical scroll)
                     resetTouchState();
                     return;
                 }
 
-                const finalDeltaX = currentX - touchStartX;
-
-                if (Math.abs(finalDeltaX) > SWIPE_DISTANCE_THRESHOLD) {
-                    if (finalDeltaX < 0) { // Swiped left
-                        showSlide(currentSlideIndex + 1);
-                    } else { // Swiped right
-                        showSlide(currentSlideIndex - 1);
+                if (swipeDirection === 'horizontal') {
+                    const finalDeltaX = touchCurrentX - touchInitialX; 
+                    if (Math.abs(finalDeltaX) > SWIPE_ACTION_THRESHOLD) {
+                        if (finalDeltaX < 0) { // Swiped left
+                            showSlide(currentSlideIndex + 1);
+                        } else { // Swiped right
+                            showSlide(currentSlideIndex - 1);
+                        }
                     }
                 }
                 resetTouchState();
@@ -1133,12 +1159,12 @@
         }
         
         function resetTouchState() {
-            touchStartX = 0;
-            touchStartY = 0;
-            currentX = 0;
-            currentY = 0;
-            isSwipeInProgress = false;
-            isHorizontalSwipeIntent = false;
+            isDragging = false;
+            swipeDirection = null;
+            touchInitialX = 0;
+            touchInitialY = 0;
+            touchCurrentX = 0;
+            touchCurrentY = 0;
         }
         
         function checkAndInitSlideshow() {
