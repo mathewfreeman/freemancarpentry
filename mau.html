@@ -52,13 +52,11 @@
             color: var(--text-dark);
             overflow-x: hidden;
             font-weight: 300;
-            /* For cursor follower - will be hidden on mobile via CSS */
             cursor: none; 
         }
         body.modal-open { 
             overflow: hidden;
         }
-        /* Custom Cursor Follower */
         .cursor-follower {
             position: fixed;
             top: 0;
@@ -71,9 +69,9 @@
             z-index: 9999;
             mix-blend-mode: difference; 
             transition: transform 0.1s ease-out, width 0.2s ease-out, height 0.2s ease-out, background-color 0.2s ease-out;
-            transform: translate(-50%, -50%) scale(0); /* Initially hidden */
+            transform: translate(-50%, -50%) scale(0); 
         }
-        body:hover .cursor-follower { /* Only show if body is hovered, implies mouse is present */
+        body:hover .cursor-follower { 
             transform: translate(-50%, -50%) scale(1);
         }
         .cursor-follower.hover-link {
@@ -85,11 +83,6 @@
             mix-blend-mode: normal;
             background-color: rgba(4, 217, 196, 0.3); 
         }
-
-        a, button, [role="button"], input[type="submit"], .menu-toggle {
-             /* cursor: none; CSS for this will be in mobile media query */
-        }
-
 
         h1, h2, h3, h4 {
             font-weight: 500;
@@ -122,17 +115,14 @@
             margin: 0 auto;
             padding: 5rem 0;
         }
-        /* Initial section state for GSAP */
-        main section { /* More specific to avoid affecting header/footer if they become sections */
+        main section { 
             opacity: 0; 
         }
-
         .highlight {
             color: var(--accent-primary);
             font-weight: 500;
         }
 
-        /* --- Frosted Glass Header --- */
         .main-header {
             background: rgba(253, 253, 253, 0.65);
             backdrop-filter: blur(12px) saturate(180%);
@@ -228,7 +218,6 @@
             background: none;
             border: none;
             color: var(--text-dark);
-            /* cursor: pointer; */ /* Handled by mobile media query */
             position: relative;
             width: 30px;
             height: 22px;
@@ -250,7 +239,6 @@
         .menu-toggle.open .line2 { opacity: 0; }
         .menu-toggle.open .line3 { transform: rotate(45deg) translate(-5px, -6px); }
 
-        /* --- Hero Section --- */
         .hero {
             background: linear-gradient(135deg, #eef4f8 0%, var(--background-light) 100%);
             color: var(--text-dark);
@@ -277,7 +265,7 @@
             color: var(--text-dark);
             line-height: 1.25;
             letter-spacing: -0.04em;
-            overflow: hidden; 
+            /* overflow: hidden; GSAP will handle if SplitText is used */
         }
         .hero-content h1 .line-wrapper { 
              display: block; 
@@ -336,7 +324,6 @@
              transform: translateX(100%) translateY(-25%) rotate(10deg);
         }
 
-        /* Re-add original pulse for hero blobs as GSAP direct pseudo-element animation is tricky */
         .hero::before, .hero::after {
             content: ''; position: absolute; border-radius: 50%; opacity: 0.08;
             z-index: 1; pointer-events: none;
@@ -351,13 +338,11 @@
             background: radial-gradient(circle, var(--accent-secondary) 0%, transparent 70%);
             bottom: 5%; right: -5%; animation: pulse-bubble 18s infinite alternate-reverse ease-in-out;
         }
-        @keyframes pulse-bubble { /* Keep original pulse animation */
+        @keyframes pulse-bubble { 
             0%, 100% { transform: scale(0.9) rotate(0deg); opacity: 0.06; }
             50% { transform: scale(1.1) rotate(10deg); opacity: 0.1; }
         }
 
-
-        /* --- About Section --- */
         #about .container {
             display: grid; grid-template-columns: 1fr; gap: 3rem; align-items: center;
         }
@@ -391,7 +376,6 @@
             }
         }
 
-        /* --- Services Section --- */
         #services h2 { opacity: 0; transform: translateY(20px); } 
         .service-grid { display: grid; gap: 2.5rem; }
         @media (min-width: 1024px) { .service-grid { grid-template-columns: repeat(4, 1fr); } }
@@ -428,7 +412,6 @@
         }
         .service-item h3 { color: var(--text-dark); font-weight: 500; }
 
-        /* --- Portfolio Section --- */
         #portfolio h2 { opacity: 0; transform: translateY(20px); } 
         .portfolio-grid { 
             display: grid; gap: 1.5rem;
@@ -440,7 +423,6 @@
             box-shadow: var(--shadow-medium);
             transition: transform var(--transition-speed-medium) ease, box-shadow var(--transition-speed-medium) ease;
             aspect-ratio: 4 / 3;
-            /* cursor: pointer; */ /* Handled by mobile media query */
             background-color: #f0f0f0; 
             overflow: hidden; 
             opacity: 0; 
@@ -473,8 +455,6 @@
             opacity: 1;
         }
 
-
-        /* --- Mobile Portfolio Slideshow Styles --- */
         .portfolio-slideshow-mobile-container {
             display: none; 
             position: relative;
@@ -502,7 +482,6 @@
             flex-shrink: 0; 
             box-sizing: border-box; 
             padding: 0 10px; 
-            
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -537,83 +516,46 @@
             box-sizing: border-box;
         }
         .slide-mobile .slide-caption-mobile h4 {
-            color: var(--text-dark);
-            margin-bottom: 0.2rem;
-            font-weight: 500;
-            word-break: break-word; 
-            overflow-wrap: break-word; 
-            font-size: 1.1rem; 
+            color: var(--text-dark); margin-bottom: 0.2rem; font-weight: 500;
+            word-break: break-word; overflow-wrap: break-word; font-size: 1.1rem; 
         }
         .slide-mobile .slide-caption-mobile p {
-            color: var(--neutral-gray);
-            text-transform: uppercase;
-            letter-spacing: 0.03em;
-            font-size: 0.8rem; 
-            margin-bottom: 0; 
+            color: var(--neutral-gray); text-transform: uppercase;
+            letter-spacing: 0.03em; font-size: 0.8rem; margin-bottom: 0; 
         }
-
         .slide-nav-mobile {
-            position: absolute;
-            top: calc(0.5rem + ((90vw - 20px) * 9 / 16) / 2); 
-            transform: translateY(-50%); 
-            background-color: rgba(0, 0, 0, 0.35);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 38px; 
-            height: 38px;
-            font-size: 0.9rem; 
-            /* cursor: pointer; */ /* Handled by mobile media query */
+            position: absolute; top: calc(0.5rem + ((90vw - 20px) * 9 / 16) / 2); 
+            transform: translateY(-50%); background-color: rgba(0, 0, 0, 0.35);
+            color: white; border: none; border-radius: 50%;
+            width: 38px; height: 38px; font-size: 0.9rem; 
             z-index: 10;
             transition: background-color var(--transition-speed-fast), transform var(--transition-speed-fast), opacity var(--transition-speed-fast);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-            opacity: 0.8; 
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2); opacity: 0.8; 
         }
         .slide-nav-mobile:hover {
             background-color: rgba(0, 0, 0, 0.6);
-            transform: translateY(-50%) scale(1.1); 
-            opacity: 1;
+            transform: translateY(-50%) scale(1.1); opacity: 1;
         }
         .slide-prev-mobile { left: 15px; } 
         .slide-next-mobile { right: 15px; }
-
-
         .slide-indicators-mobile {
-            position: absolute;
-            bottom: 10px; 
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 10px; 
-            z-index: 5; 
+            position: absolute; bottom: 10px; left: 50%;
+            transform: translateX(-50%); display: flex; gap: 10px; z-index: 5; 
         }
         .indicator-dot-mobile {
-            width: 9px; 
-            height: 9px;
-            background-color: rgba(0, 0, 0, 0.25);
+            width: 9px; height: 9px; background-color: rgba(0, 0, 0, 0.25);
             border-radius: 50%;
-            /* cursor: pointer; */ /* Handled by mobile media query */
             transition: background-color var(--transition-speed-fast), transform var(--transition-speed-fast);
         }
         .indicator-dot-mobile.active {
-            background-color: var(--accent-primary);
-            transform: scale(1.15);
+            background-color: var(--accent-primary); transform: scale(1.15);
         }
         .slideshow-no-items {
-            text-align: center;
-            padding: 2rem;
-            color: var(--neutral-gray);
-            min-height: 200px; 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            text-align: center; padding: 2rem; color: var(--neutral-gray);
+            min-height: 200px; display: flex; align-items: center; justify-content: center;
         }
 
-
-        /* --- Why Choose Us Section (#why-us) --- */
         #why-us { position: relative; padding-top: 3rem; padding-bottom: 3rem; }
         .why-us-background-wrapper {
             background-color: var(--accent-secondary-glass);
@@ -621,8 +563,7 @@
             -webkit-backdrop-filter: blur(5px) saturate(180%);
             border-radius: var(--border-radius-large); padding: 4rem 3rem; margin: 0 auto;
             border: 1px solid rgba(255, 255, 255, 0.15); box-shadow: var(--shadow-medium);
-            opacity: 0; 
-            transform: scale(0.9) translateY(30px); 
+            opacity: 0; transform: scale(0.9) translateY(30px); 
         }
         #why-us h2 { color: var(--text-light); opacity: 0; transform: translateY(20px); } 
         #why-us .why-us-description {
@@ -638,25 +579,20 @@
             background: var(--background-translucent-light); padding: 2rem;
             border-radius: var(--border-radius-main);
             border: 1px solid rgba(255, 255, 255, 0.15); text-align: left;
-            opacity: 0; 
-            transform: translateY(30px); 
+            opacity: 0; transform: translateY(30px); 
             transition: background-color 0.3s ease, border-color 0.3s ease; 
         }
         .why-us-point:hover {
-            background: rgba(255,255,255,0.1);
-            border-color: var(--accent-primary);
+            background: rgba(255,255,255,0.1); border-color: var(--accent-primary);
         }
         .why-us-point h4 { color: var(--accent-primary); margin-bottom: 0.75rem; font-size: 1.3rem; font-weight: 500; }
         .why-us-point p { color: rgba(244, 244, 244, 0.85); font-size: 1rem; max-width: none; }
 
-        /* --- Contact Section --- */
         #contact h2 { opacity: 0; transform: translateY(20px); } 
         #contact > p { text-align: center; margin-bottom: 3rem; max-width: 700px; margin-left: auto; margin-right: auto; opacity: 0; transform: translateY(20px); } 
         .contact-form { max-width: 700px; margin: 0 auto; display: grid; gap: 1.5rem; opacity: 0; transform: translateY(30px); }
         .contact-form .form-field { 
-            position: relative;
-            opacity: 0; 
-            transform: translateY(20px); 
+            position: relative; opacity: 0; transform: translateY(20px); 
         }
         .contact-form input, .contact-form textarea {
             width: 100%; padding: 1.2rem 1.5rem; border: 1px solid #dde2e7; border-radius: 8px;
@@ -671,17 +607,10 @@
         }
         .contact-form textarea { resize: vertical; min-height: 150px; }
         .contact-form button { justify-self: center; margin-top: 1rem; opacity: 0; transform: translateY(20px); }
-
         .form-field .focus-border {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background-color: var(--accent-primary);
-            transform: scaleX(0);
-            transform-origin: center;
-            transition: transform 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+            position: absolute; bottom: 0; left: 0; width: 100%; height: 2px;
+            background-color: var(--accent-primary); transform: scaleX(0);
+            transform-origin: center; transition: transform 0.3s cubic-bezier(0.19, 1, 0.22, 1);
             z-index: 1; 
         }
         .form-field input:focus ~ .focus-border,
@@ -689,51 +618,33 @@
             transform: scaleX(1);
         }
 
-
-        /* --- Footer --- */
         .main-footer {
             background-color: var(--bg-dark); color: var(--neutral-gray); text-align: center;
-            padding: 2rem 1rem; 
-            font-size: 0.95rem;
+            padding: 2rem 1rem; font-size: 0.95rem;
             opacity:0; transform: translateY(20px); 
         }
         .main-footer p { 
-            color: var(--neutral-gray); 
-            font-size: 0.9rem; 
-            margin-bottom: 0.4rem; 
-            max-width: none; 
+            color: var(--neutral-gray); font-size: 0.9rem; 
+            margin-bottom: 0.4rem; max-width: none; 
         }
         .main-footer .footer-copyright .maugans-co-footer {
              font-family: var(--font-logo); 
         }
         .main-footer a { 
-            color: var(--accent-primary); 
-            text-decoration: none; 
-            transition: color var(--transition-speed-fast); 
-            position: relative;
+            color: var(--accent-primary); text-decoration: none; 
+            transition: color var(--transition-speed-fast); position: relative;
         }
         .main-footer a::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            transform: scaleX(0);
-            height: 1px;
-            bottom: -2px;
-            left: 0;
-            background-color: var(--text-light);
-            transform-origin: bottom right;
+            content: ''; position: absolute; width: 100%; transform: scaleX(0);
+            height: 1px; bottom: -2px; left: 0;
+            background-color: var(--text-light); transform-origin: bottom right;
             transition: transform 0.25s ease-out;
         }
-        .main-footer a:hover { 
-            color: var(--text-light); 
-        }
+        .main-footer a:hover { color: var(--text-light); }
         .main-footer a:hover::after {
-            transform: scaleX(1);
-            transform-origin: bottom left;
+            transform: scaleX(1); transform-origin: bottom left;
         }
 
-
-        /* --- Portfolio Modal --- */
         .modal {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-color: rgba(253, 253, 253, 0.6);
@@ -758,10 +669,8 @@
         }
         .modal-close {
             position: absolute; top: 15px; right: 15px; width: 38px; height: 38px;
-            background-color: var(--accent-primary); 
-            color: var(--text-light); 
+            background-color: var(--accent-primary); color: var(--text-light); 
             border: none; border-radius: 50%; font-size: 1.4rem;
-            /* cursor: pointer; */ /* Handled by mobile media query */
             box-shadow: 0 2px 8px rgba(0,0,0,0.25);
             transition: transform var(--transition-speed-fast) cubic-bezier(0.34, 1.56, 0.64, 1),
                         background-color var(--transition-speed-fast);
@@ -769,14 +678,12 @@
         }
         .modal-close:hover { transform: scale(1.1) rotate(90deg); background-color: #03c8b3; }
 
-        /* --- Responsive Adjustments --- */
         @media (max-width: 768px) {
-            .cursor-follower { display: none !important; } /* Ensure it's hidden */
+            .cursor-follower { display: none !important; } 
             a, button, [role="button"], input[type="submit"], .menu-toggle,
             .indicator-dot-mobile, .portfolio-item, .slide-nav-mobile, .modal-close { 
-                cursor: pointer !important; /* Restore default cursor on mobile */
+                cursor: pointer !important; 
             }
-
             .nav-container { flex-wrap: wrap; }
             .menu-toggle { display: flex; align-items: center; justify-content: center; }
             .main-nav {
@@ -790,38 +697,17 @@
             .main-nav ul { flex-direction: column; align-items: center; padding: 1rem 0; }
             .main-nav ul li { margin: 1rem 0; opacity: 1; transform: none; }
 
-            .hero-content {
-                text-align: left; 
-                padding: 0 1.5rem; 
-            }
-            .hero-content h1 {
-                font-size: clamp(2.0rem, 8vw, 3.0rem);
-                line-height: 1.3;
-            }
-             @media (max-width: 400px) {
-                .hero-content h1 {
-                    font-size: 1.8rem;
-                    line-height: 1.35;
-                }
+            .hero-content { text-align: left; padding: 0 1.5rem; }
+            .hero-content h1 { font-size: clamp(2.0rem, 8vw, 3.0rem); line-height: 1.3; }
+            @media (max-width: 400px) {
+                .hero-content h1 { font-size: 1.8rem; line-height: 1.35; }
                 .hero-content .subtitle { font-size: 1rem; }
             }
             .hero-content .subtitle { font-size: clamp(1.1rem, 4vw, 1.3rem); }
-
-
             #about h2 { text-align: center; }
-            
-            .portfolio-item { 
-                min-height: 150px; 
-                opacity: 1; transform: none; 
-            }
-            .portfolio-grid {
-                display: none !important; 
-            }
-            .portfolio-slideshow-mobile-container {
-                display: block; 
-                 opacity: 0; transform: translateY(20px); 
-            }
-
+            .portfolio-item { min-height: 150px; opacity: 1; transform: none; }
+            .portfolio-grid { display: none !important; }
+            .portfolio-slideshow-mobile-container { display: block; opacity: 0; transform: translateY(20px); }
             .portfolio-item-overlay { padding: 2rem 1rem 1rem; }
             .modal-close { top: 10px; right: 10px; width: 35px; height: 35px; font-size: 1.2rem; }
             .modal-content img { max-height: calc(90vh - 50px); }
@@ -829,23 +715,17 @@
             .why-us-background-wrapper { padding: 2.5rem 1.5rem; }
             #why-us .why-us-description { max-width: 90%; font-size: 1.1rem; }
             .why-us-points { max-width: 100%; gap: 1.5rem; }
-             .why-us-point { opacity: 1; transform: none; }
+            .why-us-point { opacity: 1; transform: none; }
         }
         @media (min-width: 769px) {
-            .portfolio-slideshow-mobile-container {
-                display: none !important;
-            }
-             .portfolio-grid { 
-                display: grid !important; 
-            }
-            /* Apply no-cursor only for desktop */
-             a, button, [role="button"], input[type="submit"], .menu-toggle,
+            .portfolio-slideshow-mobile-container { display: none !important; }
+            .portfolio-grid { display: grid !important; }
+            a, button, [role="button"], input[type="submit"], .menu-toggle,
             .indicator-dot-mobile, .portfolio-item, .slide-nav-mobile, .modal-close { 
                  cursor: none; 
             }
         }
         .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0;}
-
     </style>
 </head>
 <body>
@@ -886,7 +766,7 @@
 
         <section id="about" class="container">
             <div class="about-content">
-                <h2 data-splitting>Our Approach</h2> 
+                <h2>Our Approach</h2> 
                 <p>At Maugans Co., we believe the best results come from a foundation of understanding and a genuinely collaborative spirit. We're not just designers; we're your creative partners, dedicated to making the journey from idea to reality both exciting and effortless. </p>
                 <p>Whether you're launching a new digital presence or elevating an existing one, our dedicated website design expertise is at your service. We pride ourselves on creating a welcoming atmosphere where you feel completely at ease to explore possibilities, ask questions, and see your aspirations take shape—no pretense, just passion and personable guidance.</p>
             </div>
@@ -896,33 +776,33 @@
         </section>
 
         <section id="services" class="container">
-            <h2 data-splitting>Our Creative Toolkit</h2>
+            <h2>Our Creative Toolkit</h2>
             <div class="service-grid">
                 <div class="service-item" data-cursor-hover="target">
                     <div class="service-item-content">
                         <div class="service-item-icon"><i class="fas fa-drafting-compass"></i></div>
-                        <h3 data-splitting>Strategic UI/UX Design</h3>
+                        <h3>Strategic UI/UX Design</h3>
                         <p>We craft user-centric interfaces and experiences, focusing on intuitive navigation, clear pathways, and engaging interactions that delight your audience and achieve your business goals.</p>
                     </div>
                 </div>
                 <div class="service-item" data-cursor-hover="target">
                      <div class="service-item-content">
                         <div class="service-item-icon"><i class="fas fa-laptop-code"></i></div>
-                        <h3 data-splitting>Responsive Web Development</h3>
+                        <h3>Responsive Web Development</h3>
                         <p>Beautifully functional websites built with clean, modern code. We ensure your site performs flawlessly across all devices—desktops, tablets, and mobiles—for a seamless user experience.</p>
                     </div>
                 </div>
                 <div class="service-item" data-cursor-hover="target">
                     <div class="service-item-content">
                        <div class="service-item-icon"><i class="fas fa-chart-line"></i></div>
-                       <h3 data-splitting>SEO & Performance Optimization</h3>
+                       <h3>SEO & Performance Optimization</h3>
                        <p>Enhancing your website's visibility on search engines and optimizing its speed for a superior user experience and better rankings.</p>
                     </div>
                 </div>
                 <div class="service-item" data-cursor-hover="target">
                     <div class="service-item-content">
                         <div class="service-item-icon"><i class="fas fa-tools"></i></div>
-                        <h3 data-splitting>Website Maintenance & Support</h3>
+                        <h3>Website Maintenance & Support</h3>
                         <p>Providing ongoing support, updates, and maintenance to ensure your website remains secure, up-to-date, and performing optimally.</p>
                     </div>
                 </div>
@@ -930,7 +810,7 @@
         </section>
 
         <section id="portfolio" class="container">
-            <h2 data-splitting>Selected Works</h2>
+            <h2>Selected Works</h2>
             <div class="portfolio-grid">
                 <div class="portfolio-item" data-img-src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" data-category="Web Design" tabindex="0" role="button" aria-label="View E-commerce Redefined project" data-cursor-hover="target">
                     <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60" alt="Modern data analytics dashboard interface">
@@ -998,19 +878,19 @@
 
         <section id="why-us" class="container">
             <div class="why-us-background-wrapper" data-cursor-hover="target">
-                <h2 data-splitting>The Maugans Co. Difference</h2>
+                <h2>The Maugans Co. Difference</h2>
                 <p class="why-us-description">Choosing a design partner is about trust and shared vision. Here’s why clients love working with us:</p>
                 <div class="why-us-points">
                     <div class="why-us-point" data-cursor-hover="target">
-                        <h4 data-splitting>Authentically Personal</h4>
+                        <h4>Authentically Personal</h4>
                         <p>We're genuinely invested in you and your project. Expect direct communication, transparency, and a process that feels like a true collaboration, not a transaction.</p>
                     </div>
                     <div class="why-us-point" data-cursor-hover="target">
-                        <h4 data-splitting>Multifaceted Mastery</h4>
+                        <h4>Multifaceted Mastery</h4>
                         <p>Our deep expertise in digital design and web technologies means we bring a holistic and innovative perspective to every website project. We focus our many talents on creating exceptional online experiences.</p>
                     </div>
                     <div class="why-us-point" data-cursor-hover="target">
-                        <h4 data-splitting>Unwavering Dedication</h4>
+                        <h4>Unwavering Dedication</h4>
                         <p>Your satisfaction is paramount. We meticulously craft every detail and are committed to delivering outcomes that don't just meet expectations, but delightfully exceed them.</p>
                     </div>
                 </div>
@@ -1018,7 +898,7 @@
         </section>
 
         <section id="contact" class="container">
-            <h2 data-splitting>Let's Create Something Remarkable.</h2>
+            <h2>Let's Create Something Remarkable.</h2>
             <p>Have an idea brewing, a project to discuss, or just curious to learn more? Reach out and let's explore the possibilities.</p>
             <form class="contact-form" id="contactForm">
                 <div class="form-field">
@@ -1064,10 +944,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/SplitText.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
 
-
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-        gsap.registerPlugin(ScrollTrigger, SplitText, ScrollToPlugin); // Added ScrollToPlugin
+        gsap.registerPlugin(ScrollTrigger, SplitText, ScrollToPlugin); 
 
         const mainHeader = document.getElementById('mainHeader');
         const menuToggle = document.getElementById('menuToggle');
@@ -1075,40 +954,38 @@
         const navLinks = document.querySelectorAll('.main-nav a.nav-link');
         const body = document.body;
         const cursorFollower = document.querySelector('.cursor-follower');
-        let sections = []; // Initialize sections array
+        let sections = []; 
 
-        // --- Prevent incorrect scroll on refresh with hash ---
         if ('scrollRestoration' in history) {
              history.scrollRestoration = 'manual';
         }
         window.addEventListener('load', () => {
              window.scrollTo(0, 0);
-             sections = gsap.utils.toArray('main section'); // Populate sections after DOM is fully loaded
-             playInitialAnimations(); // Start animations
-             setupScrollTriggers();   // Setup scroll-based nav highlighting
-             ScrollTrigger.refresh(); // Initial refresh
+             sections = gsap.utils.toArray('main section'); 
+             try {
+                playInitialAnimations(); 
+                setupScrollTriggers();   
+                ScrollTrigger.refresh(); 
+             } catch (e) {
+                console.error("Error during initial setup on load:", e);
+                // As a fallback, make sections visible if JS errors occur
+                document.querySelectorAll('main section').forEach(s => s.style.opacity = 1);
+             }
+             checkAndInitSlideshow(); // Initialize or adjust mobile slideshow
         });
 
-        // --- Custom Cursor Follower ---
         if (cursorFollower && window.matchMedia("(min-width: 769px)").matches) {
-            body.classList.add('desktop-cursor'); // To help with CSS if needed
+            body.classList.add('desktop-cursor');
             window.addEventListener('mousemove', e => {
                 gsap.to(cursorFollower, {
-                    duration: 0.3,
-                    x: e.clientX,
-                    y: e.clientY,
-                    ease: "power2.out"
+                    duration: 0.3, x: e.clientX, y: e.clientY, ease: "power2.out"
                 });
             });
-
             document.querySelectorAll('[data-cursor-hover]').forEach(el => {
                 el.addEventListener('mouseenter', () => {
                     const hoverType = el.dataset.cursorHover;
-                    if (hoverType === 'link') {
-                        cursorFollower.classList.add('hover-link');
-                    } else if (hoverType === 'target') {
-                         cursorFollower.classList.add('hover-target');
-                    }
+                    if (hoverType === 'link') cursorFollower.classList.add('hover-link');
+                    else if (hoverType === 'target') cursorFollower.classList.add('hover-target');
                 });
                 el.addEventListener('mouseleave', () => {
                     cursorFollower.classList.remove('hover-link', 'hover-target');
@@ -1116,34 +993,21 @@
             });
         }
 
-
-        // --- Header Scroll Effect & Hide/Show ---
         let lastScrollTop = 0;
         window.addEventListener('scroll', () => {
             let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            if (mainHeader) { // Check if mainHeader exists
-                if (scrollTop > 50) {
-                    mainHeader.classList.add('scrolled');
-                } else {
-                    mainHeader.classList.remove('scrolled');
-                }
-
-                if (scrollTop > lastScrollTop && scrollTop > 200){ 
-                    mainHeader.classList.add('hidden');
-                } else { 
-                    mainHeader.classList.remove('hidden');
-                }
+            if (mainHeader) {
+                mainHeader.classList.toggle('scrolled', scrollTop > 50);
+                mainHeader.classList.toggle('hidden', scrollTop > lastScrollTop && scrollTop > 200);
             }
             lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
         }, false);
 
-
-        // --- Mobile Menu Toggle ---
-        if (menuToggle && mainNav) { // Check if elements exist
+        if (menuToggle && mainNav) {
             menuToggle.addEventListener('click', function() {
                 const isExpanded = mainNav.classList.toggle('active');
                 menuToggle.classList.toggle('open');
-                menuToggle.setAttribute('aria-expanded', isExpanded);
+                menuToggle.setAttribute('aria-expanded', String(isExpanded)); // Ensure string value
                 body.classList.toggle('modal-open', isExpanded && window.innerWidth <= 768);
 
                 if (isExpanded && window.innerWidth <= 768) {
@@ -1158,12 +1022,11 @@
             });
         }
 
-        // --- Smooth Scroll, Active Link & Close Mobile Menu ---
         navLinks.forEach(link => {
             link.addEventListener('click', function(e) {
-                if (mainNav && mainNav.classList.contains('active')) { // Check mainNav
+                if (mainNav && mainNav.classList.contains('active')) {
                     mainNav.classList.remove('active');
-                    if (menuToggle) { // Check menuToggle
+                    if (menuToggle) {
                         menuToggle.classList.remove('open');
                         menuToggle.setAttribute('aria-expanded', 'false');
                     }
@@ -1174,16 +1037,13 @@
                     e.preventDefault(); 
                     const targetElement = document.querySelector(targetId);
                     if (targetElement) {
-                         let offsetYValue = 60; // Default offset
+                         let offsetYValue = 60; 
                          if (mainHeader) {
                             offsetYValue = mainHeader.offsetHeight + (window.innerWidth <= 768 ? 10 : 20);
                          }
                          gsap.to(window, {
-                            duration: 1.2, 
-                            scrollTo: { 
-                                y: targetId, 
-                                offsetY: offsetYValue
-                            },
+                            duration: 1.0, // Slightly faster scroll
+                            scrollTo: { y: targetId, offsetY: offsetYValue },
                             ease: "power2.inOut"
                         });
                     }
@@ -1192,14 +1052,18 @@
         });
         
         function setupScrollTriggers() {
-            if (sections.length === 0) return; // Don't run if no sections
-
+            if (sections.length === 0) {
+                console.warn("Sections array is empty for ScrollTrigger setup.");
+                return;
+            }
             sections.forEach((section) => {
-                if (!section) return; // Skip if a section is somehow null
+                if (!section || !section.id) { // Added check for section.id
+                    // console.warn("Skipping ScrollTrigger for invalid section:", section);
+                    return; 
+                }
                 ScrollTrigger.create({
                     trigger: section,
-                    start: "top 60%", 
-                    end: "bottom 40%", 
+                    start: "top 60%", end: "bottom 40%", 
                     onEnter: () => setActiveNavLink(section.id),
                     onEnterBack: () => setActiveNavLink(section.id),
                     onLeave: () => clearActiveNavLink(section.id),
@@ -1207,27 +1071,25 @@
                 });
             });
             
-            // Initial active link check
             setTimeout(() => {
-                 ScrollTrigger.refresh(); // Refresh again after everything might have settled
+                 ScrollTrigger.refresh(true); 
                  let currentSectionId = null;
                  const headerHeight = mainHeader ? mainHeader.offsetHeight + 100 : 150;
-                 
-                 for(let i = sections.length -1; i >=0; i--){ // Iterate backwards
-                    if(sections[i] && sections[i].getBoundingClientRect().top <= headerHeight){
-                        currentSectionId = sections[i].id;
-                        break;
-                    }
+                 if (sections.length > 0) {
+                     for(let i = sections.length -1; i >=0; i--){
+                        if(sections[i] && sections[i].getBoundingClientRect().top <= headerHeight){
+                            currentSectionId = sections[i].id;
+                            break;
+                        }
+                     }
+                     if (currentSectionId) {
+                         setActiveNavLink(currentSectionId);
+                     } else if (window.pageYOffset < (sections[0] && sections[0].offsetTop ? sections[0].offsetTop - headerHeight : 0)) {
+                         navLinks.forEach(l => l.classList.remove('active'));
+                     }
                  }
-
-                 if (currentSectionId) {
-                     setActiveNavLink(currentSectionId);
-                 } else if (window.pageYOffset < (sections[0] && sections[0].offsetTop ? sections[0].offsetTop - headerHeight : 0)) {
-                     navLinks.forEach(l => l.classList.remove('active'));
-                 }
-             }, 350); // Increased timeout slightly
+             }, 350);
         }
-
 
         function setActiveNavLink(sectionId) {
             if (!sectionId) return;
@@ -1247,194 +1109,81 @@
              }
         }
         
-
-        // --- GSAP Animations ---
         function playInitialAnimations() {
+            console.log("playInitialAnimations called");
             const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
 
-            if (mainHeader) { // Check mainHeader
+            // Header
+            if (mainHeader) {
                 const logoLink = mainHeader.querySelector('.logo a');
                 const mainNavLis = mainHeader.querySelectorAll('.main-nav ul li');
-                if (logoLink) {
-                    tl.fromTo(logoLink, { y: -20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6 });
-                }
-                if (mainNavLis.length > 0) {
-                     tl.fromTo(mainNavLis, 
-                        { y: -20, opacity: 0 }, 
-                        { y: 0, opacity: 1, stagger: 0.1, duration: 0.4 }, "-=0.3");
-                }
+                if (logoLink) tl.fromTo(logoLink, { y: -20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6 });
+                if (mainNavLis.length > 0) tl.fromTo(mainNavLis, { y: -20, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.1, duration: 0.4 }, "-=0.3");
+            } else {
+                console.warn("Main header not found for initial animation.");
             }
-
+            
+            // --- SIMPLIFIED HERO ANIMATION ---
             const heroH1 = document.querySelector('.hero-content h1');
             const heroSubtitle = document.querySelector('.hero-content .subtitle');
             const heroCTA = document.querySelector('.hero-content .cta-button');
 
-            if (heroH1) {
-                try {
-                    const splitH1 = new SplitText(heroH1, { type: "lines,words", linesClass: "line-wrapper" }); // Simplified to lines,words
-                    tl.fromTo(splitH1.lines, 
-                        { y: "100%", opacity: 0.8 }, 
-                        { y: "0%", opacity: 1, duration: 0.8, stagger: 0.15, ease: "power3.out" }, "heroStart");
-                } catch(e) { console.error("SplitText error on Hero H1:", e); }
-            }
+            if (heroH1) { // Just make H1 visible for now, remove SplitText temporarily
+                tl.to(heroH1, {opacity: 1, y:0, duration: 0.1}, "heroStart"); // Simple reveal
+            } else { console.warn("Hero H1 not found");}
+
             if (heroSubtitle) {
-                tl.fromTo(heroSubtitle, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.7 }, tl.recent().endTime() - 0.5); // Relative timing
-            }
+                tl.fromTo(heroSubtitle, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.7, delay:0.2 }, "heroStart");
+            } else { console.warn("Hero subtitle not found"); }
             if (heroCTA) {
-                tl.fromTo(heroCTA, { opacity: 0, y: 30, scale:0.9 }, { opacity: 1, y: 0, scale:1, duration: 0.7, ease: "back.out(1.7)" }, tl.recent().endTime() - 0.4); // Relative timing
-            }
+                tl.fromTo(heroCTA, { opacity: 0, y: 30, scale:0.9 }, { opacity: 1, y: 0, scale:1, duration: 0.7, ease: "back.out(1.7)", delay:0.4 }, "heroStart");
+            } else { console.warn("Hero CTA not found"); }
 
-            // Pseudo-element animation for hero blobs was removed from GSAP. Original CSS keyframe animation is now active.
-            
-            gsap.utils.toArray('main section:not(#hero)').forEach(section => {
+
+            // --- SIMPLIFIED SECTION REVEALS ---
+            // Make all main sections visible with a basic fade-in
+            // This is a broad stroke; specific staggered animations will be layered back in once this works.
+             gsap.utils.toArray('main section').forEach((section, index) => {
                 if (!section) return;
-                gsap.fromTo(section, 
-                    { opacity: 0, y: 50 }, 
-                    {
-                        opacity: 1, y: 0, duration: 0.8,
-                        scrollTrigger: {
-                            trigger: section,
-                            start: "top 85%", 
-                            toggleActions: "play none none none",
-                        }
+                gsap.to(section, {
+                    opacity: 1,
+                    y: 0, // Assuming initial transform is handled by CSS if any for setup
+                    duration: 0.8,
+                    delay: 0.5 + (index * 0.1), // Basic stagger
+                    scrollTrigger: {
+                        trigger: section,
+                        start: "top 90%", // Trigger a bit earlier
+                        toggleActions: "play none none none",
+                        once: true // Play animation only once for simplicity now
                     }
-                );
-            });
-
-            const aboutSection = document.getElementById('about');
-            if (aboutSection) {
-                const aboutH2 = aboutSection.querySelector('h2');
-                const aboutParas = aboutSection.querySelectorAll('.about-content p');
-                const aboutImg = aboutSection.querySelector('.about-image-placeholder');
-                const aboutTl = gsap.timeline({
-                    scrollTrigger: { trigger: aboutSection, start: "top 70%", toggleActions: "play none none none" }
                 });
-                if(aboutH2) aboutTl.fromTo(aboutH2, {opacity:0, y:30, skewX:-5}, {opacity:1, y:0, skewX:0, duration:0.7});
-                if(aboutParas.length > 0) aboutTl.fromTo(aboutParas, {opacity:0, y:20}, {opacity:1, y:0, stagger:0.2, duration:0.6}, "-=0.4");
-                if(aboutImg) aboutTl.fromTo(aboutImg, {opacity:0, scale:0.9, y:20}, {opacity:1, scale:1, y:0, duration:0.8, ease:"power2.out"}, "-=0.5");
-            }
+            });
+            
+            // Commenting out more complex, element-specific animations for now to ensure basic visibility
+            /*
+            const aboutSection = document.getElementById('about');
+            if (aboutSection) { // ... (complex about animations) ... }
 
             const servicesSection = document.getElementById('services');
-            if (servicesSection) {
-                const servicesH2 = servicesSection.querySelector('h2');
-                const serviceItems = gsap.utils.toArray('.service-item');
-                const serviceItemH3s = gsap.utils.toArray('.service-item h3');
-
-                if(servicesH2) gsap.fromTo(servicesH2,
-                    { opacity: 0, y: 30, skewX: -5 },
-                    { opacity: 1, y: 0, skewX: 0, duration: 0.7, scrollTrigger: { trigger: servicesH2, start: "top 85%", toggleActions: "play none none none" } }
-                );
-                if(serviceItems.length > 0) gsap.fromTo(serviceItems,
-                    { opacity: 0, y: 40, scale: 0.95 },
-                    {
-                        opacity: 1, y: 0, scale: 1, duration: 0.6, stagger: 0.15, ease: "power2.out",
-                        scrollTrigger: { trigger: '.service-grid', start: "top 80%", toggleActions: "play none none none" }
-                    }
-                );
-                if (serviceItemH3s.length > 0) {
-                    serviceItemH3s.forEach(h3 => {
-                        if (h3) {
-                             try {
-                                const split = new SplitText(h3, { type: "chars, words" });
-                                gsap.from(split.chars, {
-                                    duration: 0.5, opacity: 0, scale: 0, y: 20, rotationX: -90, transformOrigin: "0% 50% -50",
-                                    ease: "back.out(1.7)", stagger: 0.03,
-                                    scrollTrigger: { trigger: h3.closest('.service-item'), start: "top 85%", toggleActions: "play none none none" }
-                                });
-                            } catch(e) { console.error("SplitText error on Service H3:", e); }
-                        }
-                    });
-                }
-            }
-
+            if (servicesSection) { // ... (complex service animations) ... }
+            
             const portfolioSection = document.getElementById('portfolio');
-            if (portfolioSection) {
-                const portfolioH2 = portfolioSection.querySelector('h2');
-                const portfolioGridItems = gsap.utils.toArray('.portfolio-item'); // Desktop grid items
-                const mobileSlideshowContainer = document.querySelector('.portfolio-slideshow-mobile-container');
-
-                if(portfolioH2) gsap.fromTo(portfolioH2,
-                    { opacity: 0, y: 30, skewX: -5 },
-                    { opacity: 1, y: 0, skewX: 0, duration: 0.7, scrollTrigger: { trigger: portfolioH2, start: "top 85%", toggleActions: "play none none none" } }
-                );
-                if (portfolioGridItems.length > 0) {
-                    gsap.fromTo(portfolioGridItems,
-                        { opacity: 0, y: 40, scale: 0.9 },
-                        {
-                            opacity: 1, y: 0, scale: 1, duration: 0.5, stagger: 0.1, ease: "power2.out",
-                            scrollTrigger: { trigger: '.portfolio-grid', start: "top 80%", toggleActions: "play none none none" }
-                        }
-                    );
-                }
-                if (mobileSlideshowContainer) { // Animate mobile slideshow container itself
-                     gsap.fromTo(mobileSlideshowContainer,
-                         { opacity:0, y:30 },
-                         { opacity:1, y:0, duration:0.7, scrollTrigger: { trigger: mobileSlideshowContainer, start: "top 90%", toggleActions: "play none none none"}}
-                    );
-                }
-            }
+            if (portfolioSection) { // ... (complex portfolio animations) ... }
 
             const whyUsSection = document.getElementById('why-us');
-            if (whyUsSection) {
-                const whyUsWrapper = whyUsSection.querySelector('.why-us-background-wrapper');
-                const whyUsH2 = whyUsSection.querySelector('h2');
-                const whyUsDesc = whyUsSection.querySelector('.why-us-description');
-                const whyUsPoints = gsap.utils.toArray('.why-us-point');
-                const whyUsPointH4s = gsap.utils.toArray('#why-us .why-us-point h4');
-
-                const whyUsTl = gsap.timeline({
-                    scrollTrigger: { trigger: whyUsSection, start: "top 70%", toggleActions: "play none none none" }
-                });
-                if(whyUsWrapper) whyUsTl.fromTo(whyUsWrapper, {opacity:0, scale:0.85, y:50}, {opacity:1, scale:1, y:0, duration:0.9, ease: "elastic.out(1, 0.75)"});
-                if(whyUsH2) whyUsTl.fromTo(whyUsH2, {opacity:0, y:20}, {opacity:1, y:0, duration:0.6}, "-=0.6");
-                if(whyUsDesc) whyUsTl.fromTo(whyUsDesc, {opacity:0, y:20}, {opacity:1, y:0, duration:0.6}, "-=0.4");
-                if(whyUsPoints.length > 0) whyUsTl.fromTo(whyUsPoints, {opacity:0, y:30, scale:0.9}, {opacity:1, y:0, scale:1, stagger:0.15, duration:0.5, ease:"back.out(1.4)"}, "-=0.3");
-                
-                if (whyUsPointH4s.length > 0) {
-                    whyUsPointH4s.forEach(h4 => {
-                        if (h4) {
-                            try {
-                                const split = new SplitText(h4, { type: "chars" });
-                                gsap.from(split.chars, {
-                                    duration: 0.4, opacity: 0, scale: 0, y: 15, transformOrigin: "0% 50% -50",
-                                    ease: "back.out(1.7)", stagger: 0.02,
-                                    scrollTrigger: { trigger: h4.closest('.why-us-point'), start: "top 85%", toggleActions: "play none none none"}
-                                });
-                            } catch(e) { console.error("SplitText error on WhyUs H4:", e); }
-                        }
-                    });
-                }
-            }
+            if (whyUsSection) { // ... (complex why-us animations) ... }
 
             const contactSection = document.getElementById('contact');
-            if (contactSection) {
-                const contactH2 = contactSection.querySelector('h2');
-                const contactP = contactSection.querySelector('#contact > p');
-                const contactFormEl = contactSection.querySelector('.contact-form');
-                const contactFormFields = contactSection.querySelectorAll('.contact-form .form-field');
-                const contactButton = contactSection.querySelector('.contact-form button');
-
-                const contactTl = gsap.timeline({
-                    scrollTrigger: { trigger: contactSection, start: "top 75%", toggleActions: "play none none none" }
-                });
-                if(contactH2) contactTl.fromTo(contactH2, {opacity:0, y:30, skewX:-5}, {opacity:1, y:0, skewX:0, duration:0.7});
-                if(contactP) contactTl.fromTo(contactP, {opacity:0, y:20}, {opacity:1, y:0, duration:0.6}, "-=0.4");
-                if(contactFormEl) contactTl.fromTo(contactFormEl, {opacity:0, y:30}, {opacity:1, y:0, duration:0.7}, "-=0.4");
-                if(contactFormFields.length > 0) contactTl.fromTo(contactFormFields, {opacity:0, y:20}, {opacity:1, y:0, stagger:0.15, duration:0.5}, "-=0.5");
-                if(contactButton) contactTl.fromTo(contactButton, {opacity:0, y:20, scale:0.9}, {opacity:1, y:0, scale:1, duration:0.6, ease:"back.out(1.7)"}, "-=0.3");
-            }
+            if (contactSection) { // ... (complex contact animations) ... }
             
             const footerEl = document.querySelector('.main-footer');
-            if (footerEl) {
-                gsap.fromTo(footerEl, 
-                    { opacity:0, y:30 }, 
-                    { opacity:1, y:0, duration: 0.8, scrollTrigger: { trigger: footerEl, start: "top 95%", toggleActions: "play none none none"}}
-                );
-            }
+            if (footerEl) { // ... (footer animation) ... }
+            */
+            console.log("playInitialAnimations finished basic setup");
+
         }
 
 
-        // --- Portfolio Modal Logic (Desktop) ---
         const portfolioModal = document.getElementById('portfolioModal');
         const modalImage = document.getElementById('modalImage');
         const modalCloseButton = document.getElementById('modalClose');
@@ -1442,7 +1191,7 @@
         let previouslyFocusedElement; 
 
         function openModal(imgSrc, altText) {
-            if (!portfolioModal || !modalImage || !modalCloseButton) return; // Guard
+            if (!portfolioModal || !modalImage || !modalCloseButton) return;
             previouslyFocusedElement = document.activeElement; 
             modalImage.src = imgSrc;
             modalImage.alt = altText || "Large view of portfolio project"; 
@@ -1459,7 +1208,7 @@
         }
 
         function closeModal() {
-            if (!portfolioModal) return; // Guard
+            if (!portfolioModal) return; 
             const modalContent = portfolioModal.querySelector('.modal-content');
             if (modalContent) {
                 gsap.to(modalContent, {
@@ -1470,7 +1219,7 @@
                         if (previouslyFocusedElement) previouslyFocusedElement.focus();
                     }
                 });
-            } else { // Fallback if modal-content not found
+            } else { 
                 portfolioModal.classList.remove('active');
                 body.classList.remove('modal-open'); 
                 if (previouslyFocusedElement) previouslyFocusedElement.focus();
@@ -1503,7 +1252,6 @@
             if (portfolioModal && e.key === 'Escape' && portfolioModal.classList.contains('active')) closeModal(); 
         });
 
-        // --- Mobile Portfolio Slideshow Logic ---
         const slideshowContainer = document.getElementById('portfolioSlideshowMobile');
         const slideshowTrack = document.getElementById('slideshowTrackMobile');
         const prevButton = document.getElementById('slidePrevMobile');
@@ -1516,8 +1264,8 @@
         let mobileSlides = []; 
 
         function initializeMobileSlideshow() {
-            if (slideshowInitialized || !slideshowContainer || !slideshowTrack || portfolioItemsDataSource.length === 0) {
-                 if (slideshowContainer && portfolioItemsDataSource.length === 0) {
+            if (slideshowInitialized || !slideshowContainer || !slideshowTrack || !portfolioItemsDataSource || portfolioItemsDataSource.length === 0) {
+                 if (slideshowContainer && (!portfolioItemsDataSource || portfolioItemsDataSource.length === 0)) {
                     slideshowContainer.innerHTML = '<p class="slideshow-no-items">No projects to display.</p>';
                     if(prevButton) prevButton.style.display = 'none'; 
                     if(nextButton) nextButton.style.display = 'none';
@@ -1571,35 +1319,19 @@
             if (!slideshowTrack || mobileSlides.length === 0) return;
             const totalSlides = mobileSlides.length;
         
-            const oldSlideIndex = currentSlideIndex;
-            currentSlideIndex = (index % totalSlides + totalSlides) % totalSlides; // Loop correctly
+            currentSlideIndex = (index % totalSlides + totalSlides) % totalSlides;
 
-            if (!instant && oldSlideIndex !== currentSlideIndex) {
-                const direction = (oldSlideIndex < currentSlideIndex || (oldSlideIndex === totalSlides - 1 && currentSlideIndex === 0)) && !(oldSlideIndex === 0 && currentSlideIndex === totalSlides -1) ? 1 : -1;
-                
-                // Ensure current slide is visible and positioned correctly for animation
-                gsap.set(mobileSlides[currentSlideIndex], { xPercent: 100 * direction, opacity: 0.3 });
-                gsap.set(slideshowTrack, { xPercent: -oldSlideIndex * 100 }); // Position track to old slide
-
-                // Animate track to new slide
-                gsap.to(slideshowTrack, { 
-                    xPercent: -currentSlideIndex * 100, 
-                    duration: 0.6, 
-                    ease: "power3.inOut"
-                });
-                // Fade in new slide, fade out old slide (relative to their own position)
-                gsap.to(mobileSlides[oldSlideIndex], { opacity: 0.3, duration: 0.3, ease: "power2.in" });
-                gsap.to(mobileSlides[currentSlideIndex], { opacity: 1, duration: 0.4, delay:0.2, ease: "power2.out" });
-
-            } else { // Instant positioning
-                 gsap.set(slideshowTrack, { xPercent: -currentSlideIndex * 100 });
-                 mobileSlides.forEach((slide, i) => {
-                     gsap.set(slide, { opacity: i === currentSlideIndex ? 1 : 0.3 });
-                 });
-            }
+            // Simplified transition for debugging
+            gsap.to(slideshowTrack, { 
+                xPercent: -currentSlideIndex * 100, 
+                duration: instant ? 0 : 0.5, 
+                ease: "power2.inOut"
+            });
+            mobileSlides.forEach((slide, i) => {
+                 gsap.to(slide, { opacity: i === currentSlideIndex ? 1 : 0.5, duration: instant ? 0 : 0.3 });
+            });
             updateIndicators(); 
         }
-
 
         function updateIndicators() {
             if (!indicatorsContainer) return;
@@ -1610,6 +1342,7 @@
         }
         
         function updateSlideshowUI() {
+            if (!portfolioItemsDataSource) return;
             const totalSlides = portfolioItemsDataSource.length;
             const displayStyle = totalSlides <= 1 ? 'none' : 'flex'; 
 
@@ -1628,6 +1361,7 @@
         if (nextButton) nextButton.addEventListener('click', () => goToSlide(currentSlideIndex + 1));
         
         function checkAndInitSlideshow() {
+            if (typeof window === 'undefined') return; // Guard against non-browser environments
             const isMobileView = window.innerWidth <= 768;
             const desktopGrid = document.querySelector('.portfolio-grid');
 
@@ -1640,19 +1374,18 @@
             } else { 
                 if (slideshowContainer) slideshowContainer.style.display = 'none';
                 if (desktopGrid) desktopGrid.style.display = 'grid'; 
-                // If returning to desktop and slideshow was initialized,
-                // you might want to ensure portfolio items are visible if GSAP hid them
                 if (slideshowInitialized && desktopGrid) {
-                     gsap.set(desktopGrid.querySelectorAll('.portfolio-item'), {opacity:1, y:0, scale:1});
+                     const gridItems = desktopGrid.querySelectorAll('.portfolio-item');
+                     if (gridItems.length > 0) gsap.set(gridItems, {opacity:1, y:0, scale:1});
                 }
             }
         }
 
         window.addEventListener('resize', () => {
             checkAndInitSlideshow();
-            ScrollTrigger.refresh(true); // true to kill and recreate
+            if (ScrollTrigger) ScrollTrigger.refresh(true); 
         }); 
-        checkAndInitSlideshow(); 
+        // checkAndInitSlideshow() is called from window.load
 
         const contactForm = document.getElementById('contactForm');
         if (contactForm) {
@@ -1660,10 +1393,9 @@
                 e.preventDefault();
                 const button = contactForm.querySelector('button[type="submit"]');
                 if (!button) return;
-                const originalButtonText = button.innerHTML; // Assuming first child is text node or simple html
                 
                 gsap.to(button, {duration: 0.2, autoAlpha:0.5, pointerEvents: 'none'});
-                button.innerHTML = 'Sending... <i class="fas fa-spinner fa-spin" style="display:inline-block; margin-left:5px;"></i>'; // Ensure spinner icon shows
+                button.innerHTML = 'Sending... <i class="fas fa-spinner fa-spin" style="display:inline-block; margin-left:5px;"></i>'; 
                 button.disabled = true;
 
                 setTimeout(() => {
@@ -1679,7 +1411,7 @@
                                 successMsg.style.color = 'var(--accent-primary)';
                                 successMsg.style.fontSize = '1.2rem';
                                 successMsg.style.opacity = '0';
-                                successMsgContainer.insertBefore(successMsg, contactForm);
+                                successMsgContainer.insertBefore(successMsg, contactForm); // Insert before the hidden form
                                 gsap.fromTo(successMsg, {opacity:0, y:20}, {opacity:1, y:0, duration:0.6, ease:'power2.out'});
                             }
                         }
@@ -1692,4 +1424,3 @@
 
 </body>
 </html>
-
