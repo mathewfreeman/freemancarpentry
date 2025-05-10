@@ -14,29 +14,28 @@
             --bg-dark: #131516;
             /* Primary brand colors */
             --twin-elm-cobalt: #0047AB; /* More prominent Cobalt Blue */
-            --twin-elm-black: #222526;  /* True black for text, or keep as var(--text-dark) */
-            
+            --twin-elm-black: #222526;  
+
             /* Accent colors - Teal can be a secondary accent if needed */
             --accent-primary-original: #04d9c4; /* Kept original teal for specific highlights if desired */
-            --accent-secondary-original: #3a5ba0; /* Kept original deep blue if needed */
-
+            
             --neutral-gray: #5f6b7a;
             --text-light: #F4F4F4;
-            --text-dark: var(--twin-elm-black); /* Using the defined black */
-            --background-light: #FFFFFF; /* Changed to pure white for cleaner base */
-            --background-section-alt: #F8F9FA; /* Light grey for alternate sections */
+            --text-dark: var(--twin-elm-black); 
+            --background-light: #FFFFFF; 
+            --background-section-alt: #F8F9FA; 
 
             --font-logo: 'Lato', sans-serif;
             --font-body: 'Lato', sans-serif;
 
             --transition-speed-fast: 0.2s;
-            --transition-speed-medium: 0.35s; /* Slightly adjusted medium speed */
-            --transition-speed-slow: 0.5s;  /* Slightly adjusted slow speed */
+            --transition-speed-medium: 0.35s; 
+            --transition-speed-slow: 0.5s;  
 
-            --shadow-light: 0 6px 24px 0 rgba(0, 71, 171, 0.06); /* Adjusted shadow, slightly softer */
-            --shadow-medium: 0 8px 28px rgba(0, 71, 171, 0.08); /* Adjusted shadow */
-            --border-radius-main: 10px; /* Slightly sharper radius */
-            --border-radius-large: 14px; /* Slightly sharper radius */
+            --shadow-light: 0 6px 24px 0 rgba(0, 71, 171, 0.06); 
+            --shadow-medium: 0 8px 28px rgba(0, 71, 171, 0.08); 
+            --border-radius-main: 10px; 
+            --border-radius-large: 14px; 
         }
 
         /* --- Reset & Base Styles --- */
@@ -52,7 +51,7 @@
         }
         body {
             font-family: var(--font-body);
-            line-height: 1.7; /* Slightly adjusted line height */
+            line-height: 1.7; 
             background-color: var(--background-light);
             color: var(--text-dark);
             overflow-x: hidden;
@@ -64,52 +63,57 @@
         h1, h2, h3, h4 {
             font-weight: 700; 
             color: var(--text-dark);
-            letter-spacing: -0.01em; /* Adjusted letter spacing */
+            letter-spacing: -0.01em; 
         }
         h2 {
-            font-size: clamp(2rem, 4.5vw, 3.2rem); /* Slightly adjusted h2 size */
+            font-size: clamp(2rem, 4.5vw, 3.2rem); 
             margin-bottom: 2.5rem;
             text-align: center;
-            color: var(--twin-elm-black); /* Section titles in black for stronger contrast */
+            color: var(--twin-elm-black); 
             font-weight: 700;
         }
         h3 {
-            font-size: clamp(1.4rem, 3.5vw, 1.7rem); /* Adjusted h3 size */
+            font-size: clamp(1.4rem, 3.5vw, 1.7rem); 
             margin-bottom: 1rem;
-            color: var(--twin-elm-cobalt); /* h3 uses cobalt blue */
+            color: var(--twin-elm-cobalt); 
             font-weight: 700;
         }
         p {
             margin-bottom: 1.5rem;
-            font-size: clamp(1rem, 2.5vw, 1.1rem); /* Slightly adjusted p size */
+            font-size: clamp(1rem, 2.5vw, 1.1rem); 
             color: var(--neutral-gray);
             font-weight: 400; 
-            max-width: 680px; /* Adjusted max-width for p */
+            max-width: 680px; 
         }
         .container {
             width: 90%;
-            max-width: 1080px; /* Slightly adjusted max-width */
+            max-width: 1080px; 
             margin: 0 auto;
-            padding: 4.5rem 0; /* Adjusted section padding */
+            padding: 4.5rem 0; 
         }
         section {
             opacity: 0;
-            transform: translateY(30px); /* Adjusted transform */
+            transform: translateY(30px); 
             transition: opacity 0.7s cubic-bezier(0.165, 0.84, 0.44, 1), transform 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
         section.visible {
             opacity: 1;
             transform: translateY(0);
         }
-        .highlight { /* Kept original teal for this specific highlight for now */
+        .highlight { /* Default highlight for other potential uses */
             color: var(--accent-primary-original); 
             font-weight: 700; 
         }
+        .hero .subtitle .highlight { /* Specific highlight for hero price */
+            color: var(--twin-elm-cobalt);
+            font-weight: 700;
+        }
+
 
         /* --- Header Style Change --- */
         .main-header {
-            background: var(--background-section-alt); /* Solid light background */
-            border-bottom: 1px solid #E0E2E5; /* More defined border */
+            background: var(--background-section-alt); 
+            border-bottom: 1px solid #E0E2E5; 
             padding: 0.5rem 0; 
             position: fixed;
             top: 0;
@@ -119,8 +123,8 @@
             transition: background var(--transition-speed-medium) ease, box-shadow var(--transition-speed-medium) ease, padding var(--transition-speed-medium) ease;
         }
         .main-header.scrolled {
-             background: var(--background-section-alt); /* Keep light color */
-             box-shadow: 0 3px 10px rgba(0,0,0,0.05); /* More subtle but noticeable shadow */
+             background: var(--background-section-alt); 
+             box-shadow: 0 3px 10px rgba(0,0,0,0.05); 
              padding: 0.3rem 0; 
         }
         .nav-container {
@@ -133,21 +137,21 @@
         }
         .logo a {
             font-family: var(--font-logo); 
-            font-size: clamp(1.7rem, 3.5vw, 2rem); /* Slightly adjusted logo size */
+            font-size: clamp(1.7rem, 3.5vw, 2rem); 
             font-weight: 700; 
-            color: var(--twin-elm-cobalt); /* Logo uses cobalt blue */
+            color: var(--twin-elm-cobalt); 
             text-decoration: none;
             letter-spacing: -0.03em;
-            transition: color var(--transition-speed-fast);
+            transition: opacity var(--transition-speed-fast); /* Changed to opacity */
         }
         .logo a:hover {
-            opacity: 0.8; /* Simpler hover for logo */
+            opacity: 0.8; 
         }
-        .logo-maintext { /* This class was not directly used in <a>, ensure it's applied if needed */
-             color: var(--twin-elm-cobalt); /* If used, make it cobalt */
+        .logo-maintext { 
+             color: var(--twin-elm-cobalt); 
         }
-        .logo a .co-highlight { /* "Banners" part of logo */
-            color: var(--twin-elm-black); /* Black for contrast with cobalt */
+        .logo a .co-highlight { 
+            color: var(--twin-elm-black); 
             font-weight: 700; 
         }
         .main-nav ul {
@@ -155,13 +159,13 @@
             display: flex;
         }
         .main-nav ul li {
-            margin-left: 35px; /* Adjusted spacing */
+            margin-left: 35px; 
         }
         .main-nav ul li a {
             color: var(--neutral-gray);
             text-decoration: none;
-            font-weight: 700; /* Bolder nav links */
-            font-size: 0.95rem; /* Adjusted nav link size */
+            font-weight: 700; 
+            font-size: 0.95rem; 
             padding: 0.3rem 0.1rem;
             position: relative;
             transition: color var(--transition-speed-fast) ease;
@@ -169,33 +173,57 @@
         .main-nav ul li a::after {
             content: '';
             position: absolute;
-            bottom: -3px; /* Adjusted position */
-            left: 0; /* Start underline from left */
+            bottom: -3px; 
+            left: 0; 
             transform: none;
             width: 0;
             height: 2px;
-            background-color: var(--twin-elm-cobalt); /* Underline uses cobalt */
+            background-color: var(--twin-elm-cobalt); 
             transition: width var(--transition-speed-medium) cubic-bezier(0.19, 1, 0.22, 1);
         }
         .main-nav ul li a:hover,
         .main-nav ul li a.active {
-            color: var(--twin-elm-cobalt); /* Hover/active uses cobalt */
+            color: var(--twin-elm-cobalt); 
         }
         .main-nav ul li a:hover::after,
         .main-nav ul li a.active::after {
             width: 100%;
-            left:0; transform: none; /* Ensure it expands from left */
+            left:0; transform: none; 
         }
-        .menu-toggle { display: none; /* ... rest of menu-toggle styles are fine ... */ }
-        .menu-toggle .line { background-color: var(--twin-elm-black); }
-        /* ... keep .menu-toggle.open styles ... */
+        .menu-toggle {
+            display: none;
+            font-size: 1.8rem;
+            background: none;
+            border: none;
+            color: var(--text-dark);
+            cursor: pointer;
+            position: relative;
+            width: 30px;
+            height: 22px;
+        }
+        .menu-toggle .line {
+            width: 25px;
+            height: 2px;
+            background-color: var(--twin-elm-black);
+            display: block;
+            transition: all var(--transition-speed-medium) ease-in-out;
+            position: absolute;
+            left: 0;
+        }
+        .menu-toggle .line1 { top: 0px; }
+        .menu-toggle .line2 { top: 8px; }
+        .menu-toggle .line3 { top: 16px; }
+
+        .menu-toggle.open .line1 { transform: rotate(-45deg) translate(-5px, 6px); }
+        .menu-toggle.open .line2 { opacity: 0; }
+        .menu-toggle.open .line3 { transform: rotate(45deg) translate(-5px, -6px); }
 
 
         /* --- Hero Section --- */
         .hero {
-            background: linear-gradient(135deg, #EBF3F8 0%, var(--background-light) 100%); /* Softer gradient */
+            background: linear-gradient(135deg, #EBF3F8 0%, var(--background-light) 100%); 
             color: var(--text-dark);
-            min-height: 90vh; /* Slightly reduced height */
+            min-height: 90vh; 
             display: flex;
             align-items: center;
             justify-content: center;
@@ -204,7 +232,12 @@
             overflow: hidden;
             position: relative;
         }
-        .hero-content { max-width: 900px; /* ... rest fine ... */ }
+        .hero-content { 
+            max-width: 900px; 
+            position: relative;
+            z-index: 2;
+            text-align: center; 
+        }
 
         .hero-content h1 {
             font-family: var(--font-body); 
@@ -213,12 +246,12 @@
             margin-bottom: 1.5rem;
             color: var(--text-dark);
             line-height: 1.25; 
-            letter-spacing: -0.03em; /* Adjusted */
+            letter-spacing: -0.03em; 
         }
         .hero-content h1 .hero-line { display: inline; }
         .hero-content h1 .hero-line-brand {
             font-family: var(--font-logo); 
-            color: var(--twin-elm-cobalt); /* Brand line is cobalt on desktop too */
+            color: var(--twin-elm-cobalt); 
             font-weight: 900; 
         }
         .hero-content h1 .hero-line-descriptor {
@@ -228,98 +261,171 @@
 
         .hero-content .subtitle {
             font-size: clamp(1.1rem, 2.8vw, 1.5rem); 
-            margin-bottom: 3rem; /* Increased space before CTA */
+            margin-bottom: 3rem; 
             font-weight: 300; 
             color: var(--neutral-gray);
             max-width: 650px; 
+            margin-left: auto;
+            margin-right: auto;
             line-height: 1.65;
         }
         /* --- Button Style Change --- */
         .cta-button {
-            background: var(--twin-elm-cobalt); /* Solid cobalt background */
+            background: var(--twin-elm-cobalt); 
             color: var(--text-light); 
-            padding: 0.9rem 2.5rem; /* Adjusted padding */
+            padding: 0.9rem 2.5rem; 
             text-decoration: none;
             font-weight: 700; 
-            border-radius: 8px; /* Sharper radius */
-            transition: background-color var(--transition-speed-medium) ease, transform var(--transition-speed-fast) ease;
+            border-radius: 8px; 
+            transition: background-color var(--transition-speed-medium) ease, transform var(--transition-speed-fast) ease, box-shadow var(--transition-speed-medium) ease;
             display: inline-block;
-            font-size: 1.05rem; /* Adjusted size */
-            box-shadow: 0 2px 8px rgba(0, 71, 171, 0.2); /* Subtle shadow related to cobalt */
+            font-size: 1.05rem; 
+            box-shadow: 0 2px 8px rgba(0, 71, 171, 0.2); 
             border: none;
         }
         .cta-button:hover {
-            background-color: #003A8C; /* Darker cobalt on hover */
+            background-color: #003A8C; 
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(0, 71, 171, 0.25);
         }
-        /* Removed .hero::before, .hero::after for cleaner look */
+        /* Removed .hero::before, .hero::after */
 
         /* --- About Section --- */
-        #about .container { /* ... structure fine ... */ }
+        #about .container {
+            display: grid; 
+            grid-template-columns: 1fr; 
+            gap: 3rem; 
+            align-items: center;
+        }
         #about h2 { text-align: left; }
         #about p { max-width: none; }
         
-        /* --- Modern Stall Sign CSS (styles are good from previous turn) --- */
-        .stall-sign-wrapper { /* ... styles fine ... */ }
-        .stall-sign-container { /* ... styles fine, uses new border-radius-main ... */ }
-        /* ... other stall sign styles fine ... */
+        /* --- Modern Stall Sign CSS (Re-inserted and confirmed) --- */
+        .stall-sign-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            padding: 1rem 0; 
+        }
+        .stall-sign-container {
+            width: 280px; 
+            height: 420px; 
+            background-color: #ffffff; 
+            border: 1px solid #e0e0e0; 
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); 
+            border-radius: 12px; /* Specific radius for this element to match "perfect" version */
+            padding: 25px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            font-family: var(--font-body); /* Lato */
+            text-align: center;
+            margin: 0 auto;
+        }
+        .stall-sign-container .horse-name {
+            font-size: 1.7em; 
+            color: var(--twin-elm-black); 
+            font-weight: 700; /* Bold Lato */
+            margin-bottom: 15px;
+            width: 100%;
+            line-height: 1.3;
+        }
+        .stall-sign-container .photo-area {
+            width: 100%; 
+            height: 200px; 
+            border: 2px dashed var(--twin-elm-cobalt); 
+            background-color: #f8f9fa; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--neutral-gray);
+            font-style: italic;
+            font-size: 0.9em;
+            font-weight: 300; /* Light Lato for placeholder */
+            margin-bottom: 20px;
+            border-radius: calc(12px - 6px); /* Inner radius relative to container's 12px */
+            overflow: hidden;
+        }
+        .stall-sign-container .photo-area img { 
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .stall-sign-container .barn-name {
+            font-size: 1.3em; 
+            color: var(--twin-elm-cobalt); 
+            font-weight: 700; /* Bold Lato */
+            width: 100%;
+            text-transform: uppercase; 
+            letter-spacing: 0.05em; 
+            padding-top: 10px; 
+            border-top: 1px solid #e0e0e0; 
+        }
+
 
         @media (min-width: 768px) {
             #about .container { 
-                grid-template-columns: 2fr 1.2fr; /* Adjusted ratio slightly */
+                grid-template-columns: 2fr 1.2fr; 
                 gap: 3.5rem; 
             }
         }
 
         /* --- Banner Features Section --- */
         #banner-features { 
-            background-color: var(--background-section-alt); /* Use alt background */
+            background-color: var(--background-section-alt); 
         }
-        .feature-grid { /* ... structure fine ... */ } 
+        .feature-grid { 
+            display: grid; 
+            gap: 2.5rem; 
+        } 
+        @media (min-width: 1024px) { .feature-grid { grid-template-columns: repeat(4, 1fr); } }
+        @media (min-width: 600px) and (max-width: 1023px) { .feature-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 599px) { .feature-grid { grid-template-columns: 1fr; } }
         
         /* --- Feature Item Interaction Change --- */
         .feature-item { 
-            background: var(--background-light); /* Items on light bg for contrast */
-            border: 1px solid #E0E2E5; /* Defined border */
-            padding: 2.2rem 1.8rem; /* Adjusted padding */
+            background: var(--background-light); 
+            border: 1px solid #E0E2E5; 
+            padding: 2.2rem 1.8rem; 
             border-radius: var(--border-radius-main); 
             box-shadow: var(--shadow-light);
             text-align: left; 
             position: relative; 
-            overflow: hidden; /* Keep for potential future effects */
+            overflow: hidden; 
             transition: transform var(--transition-speed-medium) ease,
                         box-shadow var(--transition-speed-medium) ease;
         }
         .feature-item:hover {
-            transform: translateY(-6px); /* Simpler lift */
-            box-shadow: var(--shadow-medium); /* Slightly more pronounced shadow on hover */
+            transform: translateY(-6px); 
+            box-shadow: var(--shadow-medium); 
         }
         /* Removed .feature-item::before (shimmer effect) */
         .feature-item-content { position: relative; z-index: 2; }
         .feature-item-icon {
-            font-size: 2.5rem; /* Adjusted icon size */
-            color: var(--twin-elm-cobalt); /* Icon uses cobalt by default */
+            font-size: 2.5rem; 
+            color: var(--twin-elm-cobalt); 
             margin-bottom: 1.25rem; 
             display: inline-block;
             transition: color var(--transition-speed-medium) ease, transform var(--transition-speed-medium) ease;
         }
         .feature-item:hover .feature-item-icon {
-            /* color: #003A8C; Darker cobalt on hover for icon if desired */
-            transform: scale(1.05); /* Slight scale for icon */
+            transform: scale(1.05); 
         }
         .feature-item h3 { color: var(--twin-elm-black); font-weight: 700; }
 
 
         /* --- Contact Section --- */
-        #contact { background-color: var(--background-light); } /* Ensure consistent bg */
+        #contact { background-color: var(--background-light); } 
         #contact p { text-align: center; margin-bottom: 3rem; max-width: 650px; margin-left: auto; margin-right: auto; }
         .contact-form { max-width: 650px; margin: 0 auto; display: grid; gap: 1.25rem; }
         .contact-form input, .contact-form textarea {
             width: 100%; padding: 1rem 1.25rem; 
-            border: 1px solid #CFD8DC; /* Slightly different border color */
-            border-radius: 6px; /* Sharper input fields */
-            background-color: #FBFDFF; /* Very light input background */
+            border: 1px solid #CFD8DC; 
+            border-radius: 6px; 
+            background-color: #FBFDFF; 
             color: var(--text-dark);
             font-family: var(--font-body); 
             font-size: 0.95rem; 
@@ -329,17 +435,17 @@
         .contact-form input::placeholder, .contact-form textarea::placeholder { color: var(--neutral-gray); opacity: 0.9; }
         .contact-form input:focus, .contact-form textarea:focus {
             outline: none; border-color: var(--twin-elm-cobalt);
-            box-shadow: 0 0 0 3px rgba(0, 71, 171, 0.15); /* Cobalt focus ring */
+            box-shadow: 0 0 0 3px rgba(0, 71, 171, 0.15); 
         }
         .contact-form textarea { resize: vertical; min-height: 140px; }
         .contact-form button { justify-self: center; margin-top: 1rem; }
 
         /* --- Footer --- */
         .main-footer {
-            background-color: var(--twin-elm-black); /* Darker footer */
-            color: #A0AEC0; /* Lighter gray for footer text */
+            background-color: var(--twin-elm-black); 
+            color: #A0AEC0; 
             text-align: center;
-            padding: 2.5rem 1rem; /* Increased padding */
+            padding: 2.5rem 1rem; 
         }
         .main-footer p { 
             color: #A0AEC0; 
@@ -351,10 +457,10 @@
         .main-footer .footer-copyright .brand-name-footer { 
              font-family: var(--font-logo); 
              font-weight: 700; 
-             color: #CBD5E0; /* Slightly brighter for brand name */
+             color: #CBD5E0; 
         }
         .main-footer a { 
-            color: var(--accent-primary-original); /* Teal for links in footer for a touch of contrast */
+            color: var(--accent-primary-original); 
             text-decoration: none; 
             transition: color var(--transition-speed-fast); 
             font-weight: 400; 
@@ -370,22 +476,21 @@
             .menu-toggle { display: flex; align-items: center; justify-content: center; }
             .main-nav {
                 width: 100%; max-height: 0; overflow: hidden; 
-                background: var(--background-section-alt); /* Match header bg */
+                background: var(--background-section-alt); 
                 position: absolute; top: 100%; left: 0; 
                 box-shadow: 0 10px 20px rgba(0,0,0,0.07);
                 border-top: 1px solid #E0E2E5;
-                transition: max-height 0.4s cubic-bezier(0.19, 1, 0.22, 1); /* Adjusted speed */
+                transition: max-height 0.4s cubic-bezier(0.19, 1, 0.22, 1); 
             }
-            .main-nav.active { max-height: 300px; }  /* Adjusted height */
-            .main-nav ul { flex-direction: column; align-items: center; padding: 0.5rem 0; } /* Adjusted padding */
-            .main-nav ul li { margin: 0.8rem 0; } /* Adjusted margin */
+            .main-nav.active { max-height: 300px; }  
+            .main-nav ul { flex-direction: column; align-items: center; padding: 0.5rem 0; } 
+            .main-nav ul li { margin: 0.8rem 0; } 
 
             .hero-content {
-                padding: 0 1rem; /* Adjusted padding */
+                padding: 0 1rem; 
             }
-            /* Mobile adjustments for Hero H1 */
             .hero-content h1 {
-                font-size: clamp(1.7rem, 6.5vw, 2.3rem); /* Adjusted mobile hero H1 */
+                font-size: clamp(1.7rem, 6.5vw, 2.3rem); 
                 line-height: 1.3;
             }
             .hero-content h1 .hero-line {
@@ -410,11 +515,11 @@
                     line-height: 1.3;
                 }
                 .hero-content h1 .hero-line-descriptor {
-                    font-size: 0.8em; /* Adjusted */
+                    font-size: 0.8em; 
                 }
-                .hero-content .subtitle { font-size: 0.95rem; } /* Adjusted */
+                .hero-content .subtitle { font-size: 0.95rem; } 
             }
-            .hero-content .subtitle { font-size: clamp(1rem, 3.5vw, 1.2rem); } /* Adjusted */
+            .hero-content .subtitle { font-size: clamp(1rem, 3.5vw, 1.2rem); } 
             /* .hero::before, .hero::after already removed */
 
             #about .container { grid-template-columns: 1fr; } 
@@ -552,7 +657,7 @@
         });
 
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 30) { // Adjusted scroll threshold
+            if (window.scrollY > 30) { 
                 mainHeader.classList.add('scrolled');
             } else {
                 mainHeader.classList.remove('scrolled');
@@ -579,7 +684,7 @@
                     e.preventDefault(); 
                     const targetElement = document.querySelector(targetId);
                     if (targetElement) {
-                         const headerOffset = mainHeader ? mainHeader.offsetHeight + 15 : 75; // Adjusted offset
+                         const headerOffset = mainHeader ? mainHeader.offsetHeight + 15 : 75; 
                          const elementPosition = targetElement.getBoundingClientRect().top;
                          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
                          window.scrollTo({
@@ -593,7 +698,7 @@
 
         const sections = document.querySelectorAll('main section');
         const observerOptions = {
-            root: null, threshold: 0.2, rootMargin: "-70px 0px -10% 0px" // Adjusted observer margins
+            root: null, threshold: 0.2, rootMargin: "-70px 0px -10% 0px" 
         };
         let activeLinkTimeout;
         const sectionObserver = new IntersectionObserver((entries) => {
@@ -606,7 +711,7 @@
                         activeLinkTimeout = setTimeout(() => {
                             navLinks.forEach(l => l.classList.remove('active'));
                             link.classList.add('active');
-                        }, 40); // Adjusted timeout
+                        }, 40); 
                     }
                 }
             });
@@ -615,7 +720,7 @@
         
         function initialActiveLink() { 
             let current = '';
-            const headerHeight = mainHeader ? mainHeader.offsetHeight + 90 : 140; // Adjusted
+            const headerHeight = mainHeader ? mainHeader.offsetHeight + 90 : 140; 
             sections.forEach(section => {
                 if (section.getBoundingClientRect().top <= headerHeight) {
                     current = section.id;
@@ -633,7 +738,7 @@
                 navLinks.forEach(l => l.classList.remove('active'));
             }
         }
-        setTimeout(initialActiveLink, 120); // Adjusted
+        setTimeout(initialActiveLink, 120); 
         window.addEventListener('scroll', initialActiveLink); 
 
         const contactForm = document.getElementById('contactForm');
@@ -643,7 +748,7 @@
                 const tempMsg = document.createElement('p');
                 tempMsg.textContent = 'Thank you for your banner request! We\'ll be in touch soon to confirm details.';
                 tempMsg.style.textAlign = 'center';
-                tempMsg.style.color = 'var(--twin-elm-cobalt)'; // Use cobalt for message
+                tempMsg.style.color = 'var(--twin-elm-cobalt)'; 
                 tempMsg.style.marginTop = '1rem';
                 tempMsg.style.fontWeight = '700';
                 contactForm.parentNode.insertBefore(tempMsg, contactForm.nextSibling);
