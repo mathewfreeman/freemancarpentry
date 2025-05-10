@@ -52,7 +52,7 @@
             color: var(--text-dark);
             overflow-x: hidden;
             font-weight: 300;
-            /* For cursor follower */
+            /* For cursor follower - will be hidden on mobile via CSS */
             cursor: none; 
         }
         body.modal-open { 
@@ -69,11 +69,11 @@
             border-radius: 50%;
             pointer-events: none;
             z-index: 9999;
-            mix-blend-mode: difference; /* Or screen, multiply, etc. */
+            mix-blend-mode: difference; 
             transition: transform 0.1s ease-out, width 0.2s ease-out, height 0.2s ease-out, background-color 0.2s ease-out;
             transform: translate(-50%, -50%) scale(0); /* Initially hidden */
         }
-        body:hover .cursor-follower {
+        body:hover .cursor-follower { /* Only show if body is hovered, implies mouse is present */
             transform: translate(-50%, -50%) scale(1);
         }
         .cursor-follower.hover-link {
@@ -83,11 +83,11 @@
         .cursor-follower.hover-target {
             transform: translate(-50%, -50%) scale(3.5);
             mix-blend-mode: normal;
-            background-color: rgba(4, 217, 196, 0.3); /* Lighter accent */
+            background-color: rgba(4, 217, 196, 0.3); 
         }
 
         a, button, [role="button"], input[type="submit"], .menu-toggle {
-            cursor: none; /* Hide default cursor for elements we want to interact with custom one */
+             /* cursor: none; CSS for this will be in mobile media query */
         }
 
 
@@ -123,9 +123,8 @@
             padding: 5rem 0;
         }
         /* Initial section state for GSAP */
-        section {
-            opacity: 0; /* GSAP will handle this */
-            /* transform: translateY(40px); Removed as GSAP handles it */
+        main section { /* More specific to avoid affecting header/footer if they become sections */
+            opacity: 0; 
         }
 
         .highlight {
@@ -171,7 +170,7 @@
             text-decoration: none;
             letter-spacing: -0.03em;
             transition: color var(--transition-speed-fast);
-            display: inline-block; /* For GSAP transforms */
+            display: inline-block; 
         }
         .logo a:hover {
             color: var(--accent-primary);
@@ -191,8 +190,8 @@
         }
         .main-nav ul li {
             margin-left: 30px;
-            opacity: 0; /* For GSAP stagger */
-            transform: translateY(-10px); /* For GSAP stagger */
+            opacity: 0; 
+            transform: translateY(-10px); 
         }
         .main-nav ul li a {
             color: var(--neutral-gray);
@@ -202,7 +201,7 @@
             padding: 0.3rem 0.1rem;
             position: relative;
             transition: color var(--transition-speed-fast) ease;
-            display: inline-block; /* For GSAP transforms */
+            display: inline-block; 
         }
         .main-nav ul li a::after {
             content: '';
@@ -229,7 +228,7 @@
             background: none;
             border: none;
             color: var(--text-dark);
-            cursor: pointer;
+            /* cursor: pointer; */ /* Handled by mobile media query */
             position: relative;
             width: 30px;
             height: 22px;
@@ -268,9 +267,8 @@
             max-width: 950px;
             position: relative;
             z-index: 2;
-            text-align: center; /* Center align for split text */
+            text-align: center; 
         }
-         /* For SplitText animation */
         .hero-content h1 {
             font-family: var(--font-body);
             font-size: clamp(2.2rem, 6.5vw, 4.8rem); 
@@ -279,17 +277,17 @@
             color: var(--text-dark);
             line-height: 1.25;
             letter-spacing: -0.04em;
-            overflow: hidden; /* For line reveals */
+            overflow: hidden; 
         }
-        .hero-content h1 .line-wrapper { /* GSAP will create this for lines */
-             display: block; /* Ensure lines are block */
-             overflow: hidden; /* For char reveals */
+        .hero-content h1 .line-wrapper { 
+             display: block; 
+             overflow: hidden; 
         }
         .hero-content h1 .maugans-co-logo-hero {
             font-family: var(--font-logo); 
             color: var(--accent-secondary);
             font-weight: 700; 
-            white-space: nowrap; /* Prevent breaking of logo text */
+            white-space: nowrap; 
         }
         .hero-content .subtitle {
             font-size: clamp(1.2rem, 3vw, 1.6rem);
@@ -298,9 +296,9 @@
             color: var(--neutral-gray);
             max-width: 650px;
             line-height: 1.6;
-            opacity: 0; /* For GSAP */
-            transform: translateY(20px); /* For GSAP */
-            margin-left: auto; margin-right: auto; /* Center if text-align center is on parent */
+            opacity: 0; 
+            transform: translateY(20px); 
+            margin-left: auto; margin-right: auto; 
         }
         .cta-button {
             background: linear-gradient(135deg, var(--accent-primary), #03b0a0);
@@ -314,10 +312,10 @@
             font-size: 1.1rem;
             box-shadow: 0 4px 15px rgba(4, 217, 196, 0.3);
             border: none;
-            position: relative; /* For shimmer */
-            overflow: hidden; /* For shimmer */
-            opacity: 0; /* For GSAP */
-            transform: translateY(20px); /* For GSAP */
+            position: relative; 
+            overflow: hidden; 
+            opacity: 0; 
+            transform: translateY(20px); 
         }
         .cta-button:hover {
             transform: translateY(-4px) scale(1.02);
@@ -338,43 +336,44 @@
              transform: translateX(100%) translateY(-25%) rotate(10deg);
         }
 
-
-        .hero::before, .hero::after { /* These will be our interactive blobs */
-            content: ''; position: absolute; border-radius: 50%; 
+        /* Re-add original pulse for hero blobs as GSAP direct pseudo-element animation is tricky */
+        .hero::before, .hero::after {
+            content: ''; position: absolute; border-radius: 50%; opacity: 0.08;
             z-index: 1; pointer-events: none;
-            /* GSAP will handle opacity and initial transform */
         }
         .hero::before {
             width: clamp(300px, 50vw, 600px); height: clamp(300px, 50vw, 600px);
             background: radial-gradient(circle, var(--accent-primary) 0%, transparent 70%);
-            top: 10%; left: -10%; 
-            /* animation: pulse-bubble 15s infinite alternate ease-in-out; Removed, GSAP will handle */
+            top: 10%; left: -10%; animation: pulse-bubble 15s infinite alternate ease-in-out;
         }
         .hero::after {
             width: clamp(200px, 40vw, 400px); height: clamp(200px, 40vw, 400px);
             background: radial-gradient(circle, var(--accent-secondary) 0%, transparent 70%);
-            bottom: 5%; right: -5%; 
-            /* animation: pulse-bubble 18s infinite alternate-reverse ease-in-out; Removed, GSAP will handle */
+            bottom: 5%; right: -5%; animation: pulse-bubble 18s infinite alternate-reverse ease-in-out;
         }
-        /* @keyframes pulse-bubble removed */
+        @keyframes pulse-bubble { /* Keep original pulse animation */
+            0%, 100% { transform: scale(0.9) rotate(0deg); opacity: 0.06; }
+            50% { transform: scale(1.1) rotate(10deg); opacity: 0.1; }
+        }
+
 
         /* --- About Section --- */
         #about .container {
             display: grid; grid-template-columns: 1fr; gap: 3rem; align-items: center;
         }
-        #about h2 { text-align: left; opacity: 0; transform: translateY(20px); } /* For GSAP */
-        #about p { max-width: none; opacity: 0; transform: translateY(20px); } /* For GSAP */
+        #about h2 { text-align: left; opacity: 0; transform: translateY(20px); } 
+        #about p { max-width: none; opacity: 0; transform: translateY(20px); } 
         .about-image-placeholder {
             display: block; 
             width: 100%; 
             aspect-ratio: 16 / 9; 
             border-radius: var(--border-radius-main);
             box-shadow: var(--shadow-light);
-            opacity: 0; /* For GSAP */
-            transform: scale(0.95) translateY(20px); /* For GSAP */
+            opacity: 0; 
+            transform: scale(0.95) translateY(20px); 
             background-size: cover; 
             background-position: center;
-            overflow: hidden; /* For image zoom */
+            overflow: hidden; 
             position: relative;
         }
         .about-image-placeholder img {
@@ -393,7 +392,7 @@
         }
 
         /* --- Services Section --- */
-        #services h2 { opacity: 0; transform: translateY(20px); } /* For GSAP */
+        #services h2 { opacity: 0; transform: translateY(20px); } 
         .service-grid { display: grid; gap: 2.5rem; }
         @media (min-width: 1024px) { .service-grid { grid-template-columns: repeat(4, 1fr); } }
         @media (min-width: 600px) and (max-width: 1023px) { .service-grid { grid-template-columns: repeat(2, 1fr); } }
@@ -405,14 +404,14 @@
             text-align: left; position: relative; overflow: hidden;
             transition: transform var(--transition-speed-medium) cubic-bezier(0.19, 1, 0.22, 1),
                         box-shadow var(--transition-speed-medium) cubic-bezier(0.19, 1, 0.22, 1);
-            opacity: 0; /* For GSAP stagger */
-            transform: translateY(30px); /* For GSAP stagger */
+            opacity: 0; 
+            transform: translateY(30px); 
         }
         .service-item:hover {
             transform: translateY(-10px) perspective(1200px) rotateX(3deg) rotateY(-3deg) scale(1.04);
             box-shadow: 0 20px 50px rgba(0,0,0,0.12);
         }
-        .service-item::before { /* Keep existing shimmer */
+        .service-item::before { 
             content: ""; position: absolute; top: 0; left: -150%; width: 100%; height: 100%;
             background: linear-gradient( 100deg, transparent, rgba(255, 255, 255, 0.4), transparent );
             transition: left var(--transition-speed-slow) cubic-bezier(0.19, 1, 0.22, 1);
@@ -430,7 +429,7 @@
         .service-item h3 { color: var(--text-dark); font-weight: 500; }
 
         /* --- Portfolio Section --- */
-        #portfolio h2 { opacity: 0; transform: translateY(20px); } /* For GSAP */
+        #portfolio h2 { opacity: 0; transform: translateY(20px); } 
         .portfolio-grid { 
             display: grid; gap: 1.5rem;
             grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
@@ -441,11 +440,11 @@
             box-shadow: var(--shadow-medium);
             transition: transform var(--transition-speed-medium) ease, box-shadow var(--transition-speed-medium) ease;
             aspect-ratio: 4 / 3;
-            cursor: pointer;
+            /* cursor: pointer; */ /* Handled by mobile media query */
             background-color: #f0f0f0; 
             overflow: hidden; 
-            opacity: 0; /* For GSAP stagger */
-            transform: translateY(30px) scale(0.95); /* For GSAP stagger */
+            opacity: 0; 
+            transform: translateY(30px) scale(0.95); 
         }
         .portfolio-item:hover { 
             transform: scale(1.03) translateY(-5px); 
@@ -461,7 +460,7 @@
             position: absolute; bottom: 0; left: 0; right: 0;
             background: linear-gradient(to top, rgba(19, 21, 22, 0.85) 0%, rgba(19, 21, 22, 0) 100%);
             padding: 3rem 1.5rem 1.5rem; 
-            transform: translateY(101%); /* Ensure it's fully hidden initially */
+            transform: translateY(101%); 
             transition: transform var(--transition-speed-medium) cubic-bezier(0.165, 0.84, 0.44, 1);
             color: var(--text-light); z-index: 2;
         }
@@ -486,12 +485,11 @@
             background-color: var(--background-light);
             margin-top: 2rem; 
             box-sizing: border-box;
-            opacity: 0; /* For GSAP */
-            transform: translateY(20px); /* For GSAP */
+            opacity: 0; 
+            transform: translateY(20px); 
         }
         .slideshow-track-mobile {
             display: flex;
-            /* transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); GSAP will handle */
             align-items: stretch; 
             user-select: none; 
             -webkit-user-select: none;
@@ -565,7 +563,7 @@
             width: 38px; 
             height: 38px;
             font-size: 0.9rem; 
-            cursor: pointer;
+            /* cursor: pointer; */ /* Handled by mobile media query */
             z-index: 10;
             transition: background-color var(--transition-speed-fast), transform var(--transition-speed-fast), opacity var(--transition-speed-fast);
             display: flex;
@@ -597,7 +595,7 @@
             height: 9px;
             background-color: rgba(0, 0, 0, 0.25);
             border-radius: 50%;
-            cursor: pointer;
+            /* cursor: pointer; */ /* Handled by mobile media query */
             transition: background-color var(--transition-speed-fast), transform var(--transition-speed-fast);
         }
         .indicator-dot-mobile.active {
@@ -623,14 +621,14 @@
             -webkit-backdrop-filter: blur(5px) saturate(180%);
             border-radius: var(--border-radius-large); padding: 4rem 3rem; margin: 0 auto;
             border: 1px solid rgba(255, 255, 255, 0.15); box-shadow: var(--shadow-medium);
-            opacity: 0; /* For GSAP */
-            transform: scale(0.9) translateY(30px); /* For GSAP */
+            opacity: 0; 
+            transform: scale(0.9) translateY(30px); 
         }
-        #why-us h2 { color: var(--text-light); opacity: 0; transform: translateY(20px); } /* For GSAP */
+        #why-us h2 { color: var(--text-light); opacity: 0; transform: translateY(20px); } 
         #why-us .why-us-description {
             color: rgba(244, 244, 244, 0.9); text-align: center; max-width: 750px;
             margin-left: auto; margin-right: auto; font-size: 1.2rem; margin-bottom: 3rem;
-            opacity: 0; transform: translateY(20px); /* For GSAP */
+            opacity: 0; transform: translateY(20px); 
         }
         .why-us-points {
             display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
@@ -640,9 +638,9 @@
             background: var(--background-translucent-light); padding: 2rem;
             border-radius: var(--border-radius-main);
             border: 1px solid rgba(255, 255, 255, 0.15); text-align: left;
-            opacity: 0; /* For GSAP stagger */
-            transform: translateY(30px); /* For GSAP stagger */
-            transition: background-color 0.3s ease, border-color 0.3s ease; /* For hover */
+            opacity: 0; 
+            transform: translateY(30px); 
+            transition: background-color 0.3s ease, border-color 0.3s ease; 
         }
         .why-us-point:hover {
             background: rgba(255,255,255,0.1);
@@ -652,13 +650,13 @@
         .why-us-point p { color: rgba(244, 244, 244, 0.85); font-size: 1rem; max-width: none; }
 
         /* --- Contact Section --- */
-        #contact h2 { opacity: 0; transform: translateY(20px); } /* For GSAP */
-        #contact > p { text-align: center; margin-bottom: 3rem; max-width: 700px; margin-left: auto; margin-right: auto; opacity: 0; transform: translateY(20px); } /* For GSAP, target direct child p */
-        .contact-form { max-width: 700px; margin: 0 auto; display: grid; gap: 1.5rem; opacity: 0; transform: translateY(30px); /* For GSAP */}
-        .contact-form .form-field { /* Wrapper for input + animated border */
+        #contact h2 { opacity: 0; transform: translateY(20px); } 
+        #contact > p { text-align: center; margin-bottom: 3rem; max-width: 700px; margin-left: auto; margin-right: auto; opacity: 0; transform: translateY(20px); } 
+        .contact-form { max-width: 700px; margin: 0 auto; display: grid; gap: 1.5rem; opacity: 0; transform: translateY(30px); }
+        .contact-form .form-field { 
             position: relative;
-            opacity: 0; /* For GSAP stagger */
-            transform: translateY(20px); /* For GSAP stagger */
+            opacity: 0; 
+            transform: translateY(20px); 
         }
         .contact-form input, .contact-form textarea {
             width: 100%; padding: 1.2rem 1.5rem; border: 1px solid #dde2e7; border-radius: 8px;
@@ -672,9 +670,8 @@
             box-shadow: 0 0 0 3px rgba(4, 217, 196, 0.2);
         }
         .contact-form textarea { resize: vertical; min-height: 150px; }
-        .contact-form button { justify-self: center; margin-top: 1rem; opacity: 0; transform: translateY(20px); /* For GSAP */ }
+        .contact-form button { justify-self: center; margin-top: 1rem; opacity: 0; transform: translateY(20px); }
 
-        /* Animated underline for form fields */
         .form-field .focus-border {
             position: absolute;
             bottom: 0;
@@ -685,7 +682,7 @@
             transform: scaleX(0);
             transform-origin: center;
             transition: transform 0.3s cubic-bezier(0.19, 1, 0.22, 1);
-            z-index: 1; /* Ensure it's above default border visually if needed */
+            z-index: 1; 
         }
         .form-field input:focus ~ .focus-border,
         .form-field textarea:focus ~ .focus-border {
@@ -698,7 +695,7 @@
             background-color: var(--bg-dark); color: var(--neutral-gray); text-align: center;
             padding: 2rem 1rem; 
             font-size: 0.95rem;
-            opacity:0; transform: translateY(20px); /* For GSAP */
+            opacity:0; transform: translateY(20px); 
         }
         .main-footer p { 
             color: var(--neutral-gray); 
@@ -729,7 +726,6 @@
         }
         .main-footer a:hover { 
             color: var(--text-light); 
-            /* text-decoration: underline; */
         }
         .main-footer a:hover::after {
             transform: scaleX(1);
@@ -765,7 +761,8 @@
             background-color: var(--accent-primary); 
             color: var(--text-light); 
             border: none; border-radius: 50%; font-size: 1.4rem;
-            cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+            /* cursor: pointer; */ /* Handled by mobile media query */
+            box-shadow: 0 2px 8px rgba(0,0,0,0.25);
             transition: transform var(--transition-speed-fast) cubic-bezier(0.34, 1.56, 0.64, 1),
                         background-color var(--transition-speed-fast);
             display: flex; align-items: center; justify-content: center; z-index: 10;
@@ -774,8 +771,11 @@
 
         /* --- Responsive Adjustments --- */
         @media (max-width: 768px) {
-            .cursor-follower { display: none; } /* Hide custom cursor on mobile */
-            a, button, [role="button"], input[type="submit"], .menu-toggle { cursor: pointer; } /* Restore default cursor */
+            .cursor-follower { display: none !important; } /* Ensure it's hidden */
+            a, button, [role="button"], input[type="submit"], .menu-toggle,
+            .indicator-dot-mobile, .portfolio-item, .slide-nav-mobile, .modal-close { 
+                cursor: pointer !important; /* Restore default cursor on mobile */
+            }
 
             .nav-container { flex-wrap: wrap; }
             .menu-toggle { display: flex; align-items: center; justify-content: center; }
@@ -788,7 +788,7 @@
             }
             .main-nav.active { max-height: 350px; }
             .main-nav ul { flex-direction: column; align-items: center; padding: 1rem 0; }
-            .main-nav ul li { margin: 1rem 0; opacity: 1; transform: none; /* Reset GSAP for mobile nav */ }
+            .main-nav ul li { margin: 1rem 0; opacity: 1; transform: none; }
 
             .hero-content {
                 text-align: left; 
@@ -806,22 +806,20 @@
                 .hero-content .subtitle { font-size: 1rem; }
             }
             .hero-content .subtitle { font-size: clamp(1.1rem, 4vw, 1.3rem); }
-            /* Keep hero blobs for tablets, remove for very small screens if desired */
-            /* .hero::before, .hero::after { display: none; } */
 
 
             #about h2 { text-align: center; }
             
             .portfolio-item { 
                 min-height: 150px; 
-                opacity: 1; transform: none; /* Reset GSAP for mobile portfolio items if grid is shown */
+                opacity: 1; transform: none; 
             }
             .portfolio-grid {
                 display: none !important; 
             }
             .portfolio-slideshow-mobile-container {
                 display: block; 
-                 opacity: 0; transform: translateY(20px); /* Ensure GSAP can animate it in */
+                 opacity: 0; transform: translateY(20px); 
             }
 
             .portfolio-item-overlay { padding: 2rem 1rem 1rem; }
@@ -831,7 +829,7 @@
             .why-us-background-wrapper { padding: 2.5rem 1.5rem; }
             #why-us .why-us-description { max-width: 90%; font-size: 1.1rem; }
             .why-us-points { max-width: 100%; gap: 1.5rem; }
-             .why-us-point { opacity: 1; transform: none; /* Reset GSAP for mobile */ }
+             .why-us-point { opacity: 1; transform: none; }
         }
         @media (min-width: 769px) {
             .portfolio-slideshow-mobile-container {
@@ -839,6 +837,11 @@
             }
              .portfolio-grid { 
                 display: grid !important; 
+            }
+            /* Apply no-cursor only for desktop */
+             a, button, [role="button"], input[type="submit"], .menu-toggle,
+            .indicator-dot-mobile, .portfolio-item, .slide-nav-mobile, .modal-close { 
+                 cursor: none; 
             }
         }
         .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0;}
@@ -883,7 +886,8 @@
 
         <section id="about" class="container">
             <div class="about-content">
-                <h2 data-splitting>Our Approach</h2> <p>At Maugans Co., we believe the best results come from a foundation of understanding and a genuinely collaborative spirit. We're not just designers; we're your creative partners, dedicated to making the journey from idea to reality both exciting and effortless. </p>
+                <h2 data-splitting>Our Approach</h2> 
+                <p>At Maugans Co., we believe the best results come from a foundation of understanding and a genuinely collaborative spirit. We're not just designers; we're your creative partners, dedicated to making the journey from idea to reality both exciting and effortless. </p>
                 <p>Whether you're launching a new digital presence or elevating an existing one, our dedicated website design expertise is at your service. We pride ourselves on creating a welcoming atmosphere where you feel completely at ease to explore possibilities, ask questions, and see your aspirations take shape—no pretense, just passion and personable guidance.</p>
             </div>
             <div class="about-image-placeholder" aria-hidden="true" data-cursor-hover="target">
@@ -980,7 +984,7 @@
 
             <div class="portfolio-slideshow-mobile-container" id="portfolioSlideshowMobile">
                 <div class="slideshow-track-mobile" id="slideshowTrackMobile">
-                    </div>
+                </div>
                 <button class="slide-nav-mobile slide-prev-mobile" id="slidePrevMobile" aria-label="Previous project" data-cursor-hover="link">
                     <i class="fas fa-chevron-left"></i>
                 </button>
@@ -988,7 +992,7 @@
                     <i class="fas fa-chevron-right"></i>
                 </button>
                 <div class="slide-indicators-mobile" id="slideIndicatorsMobile">
-                    </div>
+                </div>
             </div>
         </section>
 
@@ -1058,10 +1062,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/SplitText.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-        gsap.registerPlugin(ScrollTrigger, SplitText);
+        gsap.registerPlugin(ScrollTrigger, SplitText, ScrollToPlugin); // Added ScrollToPlugin
 
         const mainHeader = document.getElementById('mainHeader');
         const menuToggle = document.getElementById('menuToggle');
@@ -1069,6 +1075,7 @@
         const navLinks = document.querySelectorAll('.main-nav a.nav-link');
         const body = document.body;
         const cursorFollower = document.querySelector('.cursor-follower');
+        let sections = []; // Initialize sections array
 
         // --- Prevent incorrect scroll on refresh with hash ---
         if ('scrollRestoration' in history) {
@@ -1076,12 +1083,15 @@
         }
         window.addEventListener('load', () => {
              window.scrollTo(0, 0);
-             // Initial animations after load
-             playInitialAnimations();
+             sections = gsap.utils.toArray('main section'); // Populate sections after DOM is fully loaded
+             playInitialAnimations(); // Start animations
+             setupScrollTriggers();   // Setup scroll-based nav highlighting
+             ScrollTrigger.refresh(); // Initial refresh
         });
 
         // --- Custom Cursor Follower ---
-        if (cursorFollower && window.matchMedia("(min-width: 769px)").matches) { // Only on desktop
+        if (cursorFollower && window.matchMedia("(min-width: 769px)").matches) {
+            body.classList.add('desktop-cursor'); // To help with CSS if needed
             window.addEventListener('mousemove', e => {
                 gsap.to(cursorFollower, {
                     duration: 0.3,
@@ -1111,44 +1121,52 @@
         let lastScrollTop = 0;
         window.addEventListener('scroll', () => {
             let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            if (scrollTop > 50) {
-                mainHeader.classList.add('scrolled');
-            } else {
-                mainHeader.classList.remove('scrolled');
-            }
+            if (mainHeader) { // Check if mainHeader exists
+                if (scrollTop > 50) {
+                    mainHeader.classList.add('scrolled');
+                } else {
+                    mainHeader.classList.remove('scrolled');
+                }
 
-            if (scrollTop > lastScrollTop && scrollTop > 200){ // Scrolling Down & past 200px
-                mainHeader.classList.add('hidden');
-            } else { // Scrolling Up
-                mainHeader.classList.remove('hidden');
+                if (scrollTop > lastScrollTop && scrollTop > 200){ 
+                    mainHeader.classList.add('hidden');
+                } else { 
+                    mainHeader.classList.remove('hidden');
+                }
             }
-            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
         }, false);
 
 
         // --- Mobile Menu Toggle ---
-        menuToggle.addEventListener('click', function() {
-            const isExpanded = mainNav.classList.toggle('active');
-            menuToggle.classList.toggle('open');
-            menuToggle.setAttribute('aria-expanded', isExpanded);
-            body.classList.toggle('modal-open', isExpanded && window.innerWidth < 769);
+        if (menuToggle && mainNav) { // Check if elements exist
+            menuToggle.addEventListener('click', function() {
+                const isExpanded = mainNav.classList.toggle('active');
+                menuToggle.classList.toggle('open');
+                menuToggle.setAttribute('aria-expanded', isExpanded);
+                body.classList.toggle('modal-open', isExpanded && window.innerWidth <= 768);
 
-            // GSAP animation for mobile nav items if menu opens
-            if (isExpanded && window.innerWidth <= 768) {
-                gsap.fromTo(mainNav.querySelectorAll('ul li'),
-                    { opacity: 0, y: -15 },
-                    { opacity: 1, y: 0, duration: 0.3, stagger: 0.07, ease: "power2.out", delay: 0.1 }
-                );
-            }
-        });
+                if (isExpanded && window.innerWidth <= 768) {
+                    const mobileNavItems = mainNav.querySelectorAll('ul li');
+                    if (mobileNavItems.length > 0) {
+                         gsap.fromTo(mobileNavItems,
+                            { opacity: 0, y: -15 },
+                            { opacity: 1, y: 0, duration: 0.3, stagger: 0.07, ease: "power2.out", delay: 0.1 }
+                        );
+                    }
+                }
+            });
+        }
 
         // --- Smooth Scroll, Active Link & Close Mobile Menu ---
         navLinks.forEach(link => {
             link.addEventListener('click', function(e) {
-                if (mainNav.classList.contains('active')) {
+                if (mainNav && mainNav.classList.contains('active')) { // Check mainNav
                     mainNav.classList.remove('active');
-                    menuToggle.classList.remove('open');
-                    menuToggle.setAttribute('aria-expanded', 'false');
+                    if (menuToggle) { // Check menuToggle
+                        menuToggle.classList.remove('open');
+                        menuToggle.setAttribute('aria-expanded', 'false');
+                    }
                     body.classList.remove('modal-open');
                 }
                 const targetId = this.getAttribute('href');
@@ -1156,12 +1174,15 @@
                     e.preventDefault(); 
                     const targetElement = document.querySelector(targetId);
                     if (targetElement) {
-                         // Use GSAP for smooth scrolling for better control
+                         let offsetYValue = 60; // Default offset
+                         if (mainHeader) {
+                            offsetYValue = mainHeader.offsetHeight + (window.innerWidth <= 768 ? 10 : 20);
+                         }
                          gsap.to(window, {
                             duration: 1.2, 
                             scrollTo: { 
                                 y: targetId, 
-                                offsetY: mainHeader ? mainHeader.offsetHeight + 10 : 70 // Adjusted offset
+                                offsetY: offsetYValue
                             },
                             ease: "power2.inOut"
                         });
@@ -1169,24 +1190,47 @@
                 }
             });
         });
+        
+        function setupScrollTriggers() {
+            if (sections.length === 0) return; // Don't run if no sections
 
-        // --- GSAP Based Section Animations & Active Nav Link ---
-        // Replaces the old IntersectionObserver for sections for more control
-        sections = gsap.utils.toArray('main section');
-        sections.forEach((section, i) => {
-            ScrollTrigger.create({
-                trigger: section,
-                start: "top 60%", // When top of section hits 60% from top of viewport
-                end: "bottom 40%", // When bottom of section hits 40% from top of viewport
-                // markers: true, // For debugging
-                onEnter: () => setActiveNavLink(section.id),
-                onEnterBack: () => setActiveNavLink(section.id),
-                onLeave: () => clearActiveNavLink(section.id),
-                onLeaveBack: () => clearActiveNavLink(section.id, true) // True indicates leaving upwards
+            sections.forEach((section) => {
+                if (!section) return; // Skip if a section is somehow null
+                ScrollTrigger.create({
+                    trigger: section,
+                    start: "top 60%", 
+                    end: "bottom 40%", 
+                    onEnter: () => setActiveNavLink(section.id),
+                    onEnterBack: () => setActiveNavLink(section.id),
+                    onLeave: () => clearActiveNavLink(section.id),
+                    onLeaveBack: () => clearActiveNavLink(section.id, true) 
+                });
             });
-        });
+            
+            // Initial active link check
+            setTimeout(() => {
+                 ScrollTrigger.refresh(); // Refresh again after everything might have settled
+                 let currentSectionId = null;
+                 const headerHeight = mainHeader ? mainHeader.offsetHeight + 100 : 150;
+                 
+                 for(let i = sections.length -1; i >=0; i--){ // Iterate backwards
+                    if(sections[i] && sections[i].getBoundingClientRect().top <= headerHeight){
+                        currentSectionId = sections[i].id;
+                        break;
+                    }
+                 }
+
+                 if (currentSectionId) {
+                     setActiveNavLink(currentSectionId);
+                 } else if (window.pageYOffset < (sections[0] && sections[0].offsetTop ? sections[0].offsetTop - headerHeight : 0)) {
+                     navLinks.forEach(l => l.classList.remove('active'));
+                 }
+             }, 350); // Increased timeout slightly
+        }
+
 
         function setActiveNavLink(sectionId) {
+            if (!sectionId) return;
             navLinks.forEach(link => {
                 link.classList.remove('active');
                 if (link.getAttribute('href') === `#${sectionId}`) {
@@ -1195,222 +1239,199 @@
             });
         }
         function clearActiveNavLink(sectionId, goingUp = false) {
+            if (!sectionId) return;
              const link = document.querySelector(`.main-nav a[href="#${sectionId}"]`);
              if (link) link.classList.remove('active');
-             // If going up from the first section, clear all
-             if (goingUp && sectionId === sections[0].id) {
+             if (goingUp && sections.length > 0 && sectionId === sections[0].id) {
                  navLinks.forEach(l => l.classList.remove('active'));
              }
         }
-        // Initial active link check (can be refined)
-        ScrollTrigger.refresh(); // Refresh ScrollTrigger after dynamic content or on load
-         setTimeout(() => {
-             ScrollTrigger.refresh();
-             let currentSection = null;
-             const headerHeight = mainHeader ? mainHeader.offsetHeight + 100 : 150;
-             sections.forEach(section => {
-                 if (section.getBoundingClientRect().top <= headerHeight) {
-                     currentSection = section.id;
-                 }
-             });
-             if (currentSection) {
-                 setActiveNavLink(currentSection);
-             } else if (window.pageYOffset < (sections[0] ? sections[0].offsetTop - headerHeight : 0)) {
-                 navLinks.forEach(l => l.classList.remove('active'));
-             }
-         }, 300);
-
+        
 
         // --- GSAP Animations ---
-
         function playInitialAnimations() {
             const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
 
-            // Header elements
-            tl.fromTo(mainHeader.querySelector('.logo a'), { y: -20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6 })
-              .fromTo(mainHeader.querySelectorAll('.main-nav ul li'), 
-                { y: -20, opacity: 0 }, 
-                { y: 0, opacity: 1, stagger: 0.1, duration: 0.4 }, "-=0.3");
+            if (mainHeader) { // Check mainHeader
+                const logoLink = mainHeader.querySelector('.logo a');
+                const mainNavLis = mainHeader.querySelectorAll('.main-nav ul li');
+                if (logoLink) {
+                    tl.fromTo(logoLink, { y: -20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6 });
+                }
+                if (mainNavLis.length > 0) {
+                     tl.fromTo(mainNavLis, 
+                        { y: -20, opacity: 0 }, 
+                        { y: 0, opacity: 1, stagger: 0.1, duration: 0.4 }, "-=0.3");
+                }
+            }
 
-            // Hero Content Animation
             const heroH1 = document.querySelector('.hero-content h1');
             const heroSubtitle = document.querySelector('.hero-content .subtitle');
             const heroCTA = document.querySelector('.hero-content .cta-button');
 
             if (heroH1) {
-                const splitH1 = new SplitText(heroH1, { type: "lines,words,chars", linesClass: "line-wrapper" });
-                // Animate lines
-                tl.fromTo(splitH1.lines, 
-                    { y: "100%", opacity: 0.8 }, 
-                    { y: "0%", opacity: 1, duration: 0.8, stagger: 0.15, ease: "power3.out" }, "heroStart");
-                 // Animate chars within lines for a finer effect (optional, can be heavy)
-                /* tl.fromTo(splitH1.chars,
-                    { y: "100%", opacity: 0 },
-                    { y: "0%", opacity: 1, duration: 0.5, stagger: 0.02, ease: "circ.out" }, "heroStart+=0.2"); */
+                try {
+                    const splitH1 = new SplitText(heroH1, { type: "lines,words", linesClass: "line-wrapper" }); // Simplified to lines,words
+                    tl.fromTo(splitH1.lines, 
+                        { y: "100%", opacity: 0.8 }, 
+                        { y: "0%", opacity: 1, duration: 0.8, stagger: 0.15, ease: "power3.out" }, "heroStart");
+                } catch(e) { console.error("SplitText error on Hero H1:", e); }
             }
             if (heroSubtitle) {
-                tl.fromTo(heroSubtitle, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.7 }, "-=0.5");
+                tl.fromTo(heroSubtitle, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.7 }, tl.recent().endTime() - 0.5); // Relative timing
             }
             if (heroCTA) {
-                tl.fromTo(heroCTA, { opacity: 0, y: 30, scale:0.9 }, { opacity: 1, y: 0, scale:1, duration: 0.7, ease: "back.out(1.7)" }, "-=0.4");
+                tl.fromTo(heroCTA, { opacity: 0, y: 30, scale:0.9 }, { opacity: 1, y: 0, scale:1, duration: 0.7, ease: "back.out(1.7)" }, tl.recent().endTime() - 0.4); // Relative timing
             }
 
-            // Hero Blobs Animation
-            const heroBefore = CSSRulePlugin.getRule(".hero::before"); // Requires CSSRulePlugin for pseudo-elements
-            const heroAfter = CSSRulePlugin.getRule(".hero::after");   // Or target actual elements if you change them from pseudo
-
-            // For simplicity, let's animate actual divs if pseudo-elements are tricky with GSAP without CSSRulePlugin (often a premium plugin)
-            // Assuming we change .hero::before and .hero::after to actual divs like <div class="hero-blob blob-before"></div>
-            // For now, I'll leave the CSS-based animation for blobs, or you can replace them with actual elements to control with GSAP.
-            // If using actual elements:
-             gsap.fromTo('.hero::before', // if it was a div, otherwise CSSRulePlugin is needed
-                 { scale: 0.8, opacity: 0 },
-                 { scale: 1, opacity: 0.08, duration: 2, ease: "elastic.out(1, 0.5)", delay: 0.5,
-                   scrollTrigger: { trigger: "#hero", start: "top bottom" } 
-                 });
-             gsap.fromTo('.hero::after',
-                 { scale: 0.8, opacity: 0 },
-                 { scale: 1, opacity: 0.08, duration: 2.2, ease: "elastic.out(1, 0.5)", delay: 0.7,
-                   scrollTrigger: { trigger: "#hero", start: "top bottom" }
-                 });
-            // Interactive Hero Blobs (Mouse Move)
-            const heroSection = document.getElementById('hero');
-            if (heroSection && window.matchMedia("(min-width: 769px)").matches) {
-                const blobBefore = heroSection.querySelector('.hero-blob-before'); // Assuming you create these
-                const blobAfter = heroSection.querySelector('.hero-blob-after');   // Assuming you create these
-
-                // If still using pseudo-elements, this part is more complex without CSSRulePlugin.
-                // The existing CSS keyframe animation for blobs will continue to work.
-                // To make them interactive with mouse, they really should be actual DOM elements.
-                // For this example, I will skip direct mouse interaction on pseudo-element blobs.
-            }
-
-
-            // General Section Fade-ins (more controlled)
+            // Pseudo-element animation for hero blobs was removed from GSAP. Original CSS keyframe animation is now active.
+            
             gsap.utils.toArray('main section:not(#hero)').forEach(section => {
+                if (!section) return;
                 gsap.fromTo(section, 
                     { opacity: 0, y: 50 }, 
                     {
                         opacity: 1, y: 0, duration: 0.8,
                         scrollTrigger: {
                             trigger: section,
-                            start: "top 85%", // A bit earlier trigger
+                            start: "top 85%", 
                             toggleActions: "play none none none",
-                            // markers: true, // for debugging
                         }
                     }
                 );
             });
 
-            // --- About Section Specific Animations ---
             const aboutSection = document.getElementById('about');
             if (aboutSection) {
+                const aboutH2 = aboutSection.querySelector('h2');
+                const aboutParas = aboutSection.querySelectorAll('.about-content p');
+                const aboutImg = aboutSection.querySelector('.about-image-placeholder');
                 const aboutTl = gsap.timeline({
-                    scrollTrigger: { trigger: aboutSection, start: "top 70%" }
+                    scrollTrigger: { trigger: aboutSection, start: "top 70%", toggleActions: "play none none none" }
                 });
-                aboutTl.fromTo(aboutSection.querySelector('h2'), {opacity:0, y:30, skewX:-5}, {opacity:1, y:0, skewX:0, duration:0.7})
-                       .fromTo(aboutSection.querySelectorAll('.about-content p'), {opacity:0, y:20}, {opacity:1, y:0, stagger:0.2, duration:0.6}, "-=0.4")
-                       .fromTo(aboutSection.querySelector('.about-image-placeholder'), {opacity:0, scale:0.9, y:20}, {opacity:1, scale:1, y:0, duration:0.8, ease:"power2.out"}, "-=0.5");
+                if(aboutH2) aboutTl.fromTo(aboutH2, {opacity:0, y:30, skewX:-5}, {opacity:1, y:0, skewX:0, duration:0.7});
+                if(aboutParas.length > 0) aboutTl.fromTo(aboutParas, {opacity:0, y:20}, {opacity:1, y:0, stagger:0.2, duration:0.6}, "-=0.4");
+                if(aboutImg) aboutTl.fromTo(aboutImg, {opacity:0, scale:0.9, y:20}, {opacity:1, scale:1, y:0, duration:0.8, ease:"power2.out"}, "-=0.5");
             }
 
-            // --- Services Section Animations ---
             const servicesSection = document.getElementById('services');
             if (servicesSection) {
-                gsap.fromTo(servicesSection.querySelector('h2'),
+                const servicesH2 = servicesSection.querySelector('h2');
+                const serviceItems = gsap.utils.toArray('.service-item');
+                const serviceItemH3s = gsap.utils.toArray('.service-item h3');
+
+                if(servicesH2) gsap.fromTo(servicesH2,
                     { opacity: 0, y: 30, skewX: -5 },
-                    { opacity: 1, y: 0, skewX: 0, duration: 0.7, scrollTrigger: { trigger: servicesSection.querySelector('h2'), start: "top 85%" } }
+                    { opacity: 1, y: 0, skewX: 0, duration: 0.7, scrollTrigger: { trigger: servicesH2, start: "top 85%", toggleActions: "play none none none" } }
                 );
-                gsap.fromTo('.service-item',
+                if(serviceItems.length > 0) gsap.fromTo(serviceItems,
                     { opacity: 0, y: 40, scale: 0.95 },
                     {
                         opacity: 1, y: 0, scale: 1, duration: 0.6, stagger: 0.15, ease: "power2.out",
-                        scrollTrigger: { trigger: '.service-grid', start: "top 80%" }
+                        scrollTrigger: { trigger: '.service-grid', start: "top 80%", toggleActions: "play none none none" }
                     }
                 );
-                 // Animate service item H3s with SplitText
-                gsap.utils.toArray('.service-item h3').forEach(h3 => {
-                    const split = new SplitText(h3, { type: "chars, words" });
-                    gsap.from(split.chars, {
-                        duration: 0.5,
-                        opacity: 0,
-                        scale: 0,
-                        y: 20,
-                        rotationX: -90,
-                        transformOrigin: "0% 50% -50",
-                        ease: "back.out(1.7)",
-                        stagger: 0.03,
-                        scrollTrigger: {
-                            trigger: h3.closest('.service-item'),
-                            start: "top 85%",
-                            toggleActions: "play none none none"
+                if (serviceItemH3s.length > 0) {
+                    serviceItemH3s.forEach(h3 => {
+                        if (h3) {
+                             try {
+                                const split = new SplitText(h3, { type: "chars, words" });
+                                gsap.from(split.chars, {
+                                    duration: 0.5, opacity: 0, scale: 0, y: 20, rotationX: -90, transformOrigin: "0% 50% -50",
+                                    ease: "back.out(1.7)", stagger: 0.03,
+                                    scrollTrigger: { trigger: h3.closest('.service-item'), start: "top 85%", toggleActions: "play none none none" }
+                                });
+                            } catch(e) { console.error("SplitText error on Service H3:", e); }
                         }
                     });
-                });
+                }
             }
 
-            // --- Portfolio Section Animations ---
-             const portfolioSection = document.getElementById('portfolio');
+            const portfolioSection = document.getElementById('portfolio');
             if (portfolioSection) {
-                 gsap.fromTo(portfolioSection.querySelector('h2'),
+                const portfolioH2 = portfolioSection.querySelector('h2');
+                const portfolioGridItems = gsap.utils.toArray('.portfolio-item'); // Desktop grid items
+                const mobileSlideshowContainer = document.querySelector('.portfolio-slideshow-mobile-container');
+
+                if(portfolioH2) gsap.fromTo(portfolioH2,
                     { opacity: 0, y: 30, skewX: -5 },
-                    { opacity: 1, y: 0, skewX: 0, duration: 0.7, scrollTrigger: { trigger: portfolioSection.querySelector('h2'), start: "top 85%" } }
+                    { opacity: 1, y: 0, skewX: 0, duration: 0.7, scrollTrigger: { trigger: portfolioH2, start: "top 85%", toggleActions: "play none none none" } }
                 );
-                gsap.fromTo('.portfolio-item',
-                    { opacity: 0, y: 40, scale: 0.9 },
-                    {
-                        opacity: 1, y: 0, scale: 1, duration: 0.5, stagger: 0.1, ease: "power2.out",
-                        scrollTrigger: { trigger: '.portfolio-grid', start: "top 80%" }
-                    }
-                );
-                gsap.fromTo('.portfolio-slideshow-mobile-container',
-                     { opacity:0, y:30 },
-                     { opacity:1, y:0, duration:0.7, scrollTrigger: { trigger: '.portfolio-slideshow-mobile-container', start: "top 90%"}}
-                );
+                if (portfolioGridItems.length > 0) {
+                    gsap.fromTo(portfolioGridItems,
+                        { opacity: 0, y: 40, scale: 0.9 },
+                        {
+                            opacity: 1, y: 0, scale: 1, duration: 0.5, stagger: 0.1, ease: "power2.out",
+                            scrollTrigger: { trigger: '.portfolio-grid', start: "top 80%", toggleActions: "play none none none" }
+                        }
+                    );
+                }
+                if (mobileSlideshowContainer) { // Animate mobile slideshow container itself
+                     gsap.fromTo(mobileSlideshowContainer,
+                         { opacity:0, y:30 },
+                         { opacity:1, y:0, duration:0.7, scrollTrigger: { trigger: mobileSlideshowContainer, start: "top 90%", toggleActions: "play none none none"}}
+                    );
+                }
             }
 
-
-            // --- Why Us Section Animations ---
             const whyUsSection = document.getElementById('why-us');
             if (whyUsSection) {
+                const whyUsWrapper = whyUsSection.querySelector('.why-us-background-wrapper');
+                const whyUsH2 = whyUsSection.querySelector('h2');
+                const whyUsDesc = whyUsSection.querySelector('.why-us-description');
+                const whyUsPoints = gsap.utils.toArray('.why-us-point');
+                const whyUsPointH4s = gsap.utils.toArray('#why-us .why-us-point h4');
+
                 const whyUsTl = gsap.timeline({
-                    scrollTrigger: { trigger: whyUsSection, start: "top 70%" }
+                    scrollTrigger: { trigger: whyUsSection, start: "top 70%", toggleActions: "play none none none" }
                 });
-                whyUsTl.fromTo(whyUsSection.querySelector('.why-us-background-wrapper'), {opacity:0, scale:0.85, y:50}, {opacity:1, scale:1, y:0, duration:0.9, ease: "elastic.out(1, 0.75)"})
-                       .fromTo(whyUsSection.querySelector('h2'), {opacity:0, y:20}, {opacity:1, y:0, duration:0.6}, "-=0.6")
-                       .fromTo(whyUsSection.querySelector('.why-us-description'), {opacity:0, y:20}, {opacity:1, y:0, duration:0.6}, "-=0.4")
-                       .fromTo('.why-us-point', {opacity:0, y:30, scale:0.9}, {opacity:1, y:0, scale:1, stagger:0.15, duration:0.5, ease:"back.out(1.4)"}, "-=0.3");
+                if(whyUsWrapper) whyUsTl.fromTo(whyUsWrapper, {opacity:0, scale:0.85, y:50}, {opacity:1, scale:1, y:0, duration:0.9, ease: "elastic.out(1, 0.75)"});
+                if(whyUsH2) whyUsTl.fromTo(whyUsH2, {opacity:0, y:20}, {opacity:1, y:0, duration:0.6}, "-=0.6");
+                if(whyUsDesc) whyUsTl.fromTo(whyUsDesc, {opacity:0, y:20}, {opacity:1, y:0, duration:0.6}, "-=0.4");
+                if(whyUsPoints.length > 0) whyUsTl.fromTo(whyUsPoints, {opacity:0, y:30, scale:0.9}, {opacity:1, y:0, scale:1, stagger:0.15, duration:0.5, ease:"back.out(1.4)"}, "-=0.3");
                 
-                gsap.utils.toArray('#why-us .why-us-point h4').forEach(h4 => {
-                    const split = new SplitText(h4, { type: "chars" });
-                    gsap.from(split.chars, {
-                        duration: 0.4, opacity: 0, scale: 0, y: 15, transformOrigin: "0% 50% -50",
-                        ease: "back.out(1.7)", stagger: 0.02,
-                        scrollTrigger: { trigger: h4.closest('.why-us-point'), start: "top 85%", toggleActions: "play none none none"}
+                if (whyUsPointH4s.length > 0) {
+                    whyUsPointH4s.forEach(h4 => {
+                        if (h4) {
+                            try {
+                                const split = new SplitText(h4, { type: "chars" });
+                                gsap.from(split.chars, {
+                                    duration: 0.4, opacity: 0, scale: 0, y: 15, transformOrigin: "0% 50% -50",
+                                    ease: "back.out(1.7)", stagger: 0.02,
+                                    scrollTrigger: { trigger: h4.closest('.why-us-point'), start: "top 85%", toggleActions: "play none none none"}
+                                });
+                            } catch(e) { console.error("SplitText error on WhyUs H4:", e); }
+                        }
                     });
-                });
+                }
             }
 
-            // --- Contact Section Animations ---
             const contactSection = document.getElementById('contact');
             if (contactSection) {
-                const contactTl = gsap.timeline({
-                    scrollTrigger: { trigger: contactSection, start: "top 75%" }
-                });
-                contactTl.fromTo(contactSection.querySelector('h2'), {opacity:0, y:30, skewX:-5}, {opacity:1, y:0, skewX:0, duration:0.7})
-                         .fromTo(contactSection.querySelector('#contact > p'), {opacity:0, y:20}, {opacity:1, y:0, duration:0.6}, "-=0.4") // Direct child p
-                         .fromTo(contactSection.querySelector('.contact-form'), {opacity:0, y:30}, {opacity:1, y:0, duration:0.7}, "-=0.4")
-                         .fromTo(contactSection.querySelectorAll('.contact-form .form-field'), {opacity:0, y:20}, {opacity:1, y:0, stagger:0.15, duration:0.5}, "-=0.5")
-                         .fromTo(contactSection.querySelector('.contact-form button'), {opacity:0, y:20, scale:0.9}, {opacity:1, y:0, scale:1, duration:0.6, ease:"back.out(1.7)"}, "-=0.3");
+                const contactH2 = contactSection.querySelector('h2');
+                const contactP = contactSection.querySelector('#contact > p');
+                const contactFormEl = contactSection.querySelector('.contact-form');
+                const contactFormFields = contactSection.querySelectorAll('.contact-form .form-field');
+                const contactButton = contactSection.querySelector('.contact-form button');
 
+                const contactTl = gsap.timeline({
+                    scrollTrigger: { trigger: contactSection, start: "top 75%", toggleActions: "play none none none" }
+                });
+                if(contactH2) contactTl.fromTo(contactH2, {opacity:0, y:30, skewX:-5}, {opacity:1, y:0, skewX:0, duration:0.7});
+                if(contactP) contactTl.fromTo(contactP, {opacity:0, y:20}, {opacity:1, y:0, duration:0.6}, "-=0.4");
+                if(contactFormEl) contactTl.fromTo(contactFormEl, {opacity:0, y:30}, {opacity:1, y:0, duration:0.7}, "-=0.4");
+                if(contactFormFields.length > 0) contactTl.fromTo(contactFormFields, {opacity:0, y:20}, {opacity:1, y:0, stagger:0.15, duration:0.5}, "-=0.5");
+                if(contactButton) contactTl.fromTo(contactButton, {opacity:0, y:20, scale:0.9}, {opacity:1, y:0, scale:1, duration:0.6, ease:"back.out(1.7)"}, "-=0.3");
             }
             
-            // --- Footer Animation ---
-            gsap.fromTo('.main-footer', 
-                { opacity:0, y:30 }, 
-                { opacity:1, y:0, duration: 0.8, scrollTrigger: { trigger: '.main-footer', start: "top 95%"}}
-            );
-
-        } // End of playInitialAnimations
+            const footerEl = document.querySelector('.main-footer');
+            if (footerEl) {
+                gsap.fromTo(footerEl, 
+                    { opacity:0, y:30 }, 
+                    { opacity:1, y:0, duration: 0.8, scrollTrigger: { trigger: footerEl, start: "top 95%", toggleActions: "play none none none"}}
+                );
+            }
+        }
 
 
         // --- Portfolio Modal Logic (Desktop) ---
@@ -1421,40 +1442,54 @@
         let previouslyFocusedElement; 
 
         function openModal(imgSrc, altText) {
+            if (!portfolioModal || !modalImage || !modalCloseButton) return; // Guard
             previouslyFocusedElement = document.activeElement; 
             modalImage.src = imgSrc;
             modalImage.alt = altText || "Large view of portfolio project"; 
             portfolioModal.classList.add('active');
             body.classList.add('modal-open'); 
-            gsap.fromTo(portfolioModal.querySelector('.modal-content'), 
-                { scale: 0.8, opacity: 0, y: 20 }, 
-                { scale: 1, opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }
-            );
+            const modalContent = portfolioModal.querySelector('.modal-content');
+            if (modalContent) {
+                gsap.fromTo(modalContent, 
+                    { scale: 0.8, opacity: 0, y: 20 }, 
+                    { scale: 1, opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }
+                );
+            }
             modalCloseButton.focus(); 
         }
 
         function closeModal() {
-            gsap.to(portfolioModal.querySelector('.modal-content'), {
-                scale: 0.8, opacity: 0, y: 20, duration: 0.3, ease: "power2.in",
-                onComplete: () => {
-                    portfolioModal.classList.remove('active');
-                    body.classList.remove('modal-open'); 
-                    if (previouslyFocusedElement) previouslyFocusedElement.focus();
-                }
-            });
+            if (!portfolioModal) return; // Guard
+            const modalContent = portfolioModal.querySelector('.modal-content');
+            if (modalContent) {
+                gsap.to(modalContent, {
+                    scale: 0.8, opacity: 0, y: 20, duration: 0.3, ease: "power2.in",
+                    onComplete: () => {
+                        portfolioModal.classList.remove('active');
+                        body.classList.remove('modal-open'); 
+                        if (previouslyFocusedElement) previouslyFocusedElement.focus();
+                    }
+                });
+            } else { // Fallback if modal-content not found
+                portfolioModal.classList.remove('active');
+                body.classList.remove('modal-open'); 
+                if (previouslyFocusedElement) previouslyFocusedElement.focus();
+            }
         }
 
         portfolioItemsGrid.forEach(item => { 
             item.addEventListener('click', () => {
                 const largeImgSrc = item.dataset.imgSrc;
-                const altText = item.querySelector('img') ? item.querySelector('img').alt : 'Portfolio image'; 
+                const itemImg = item.querySelector('img');
+                const altText = itemImg ? itemImg.alt : 'Portfolio image'; 
                 if (largeImgSrc) openModal(largeImgSrc, altText);
             });
             item.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault(); 
                     const largeImgSrc = item.dataset.imgSrc;
-                    const altText = item.querySelector('img') ? item.querySelector('img').alt : 'Portfolio image';
+                     const itemImg = item.querySelector('img');
+                    const altText = itemImg ? itemImg.alt : 'Portfolio image';
                     if (largeImgSrc) openModal(largeImgSrc, altText);
                 }
             });
@@ -1464,9 +1499,11 @@
         if (portfolioModal) {
             portfolioModal.addEventListener('click', (e) => { if (e.target === portfolioModal) closeModal(); });
         }
-        document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && portfolioModal.classList.contains('active')) closeModal(); });
+        document.addEventListener('keydown', (e) => { 
+            if (portfolioModal && e.key === 'Escape' && portfolioModal.classList.contains('active')) closeModal(); 
+        });
 
-        // --- Mobile Portfolio Slideshow Logic (Swipe Disabled) ---
+        // --- Mobile Portfolio Slideshow Logic ---
         const slideshowContainer = document.getElementById('portfolioSlideshowMobile');
         const slideshowTrack = document.getElementById('slideshowTrackMobile');
         const prevButton = document.getElementById('slidePrevMobile');
@@ -1476,7 +1513,7 @@
 
         let currentSlideIndex = 0;
         let slideshowInitialized = false;
-        let mobileSlides = []; // To store slide elements
+        let mobileSlides = []; 
 
         function initializeMobileSlideshow() {
             if (slideshowInitialized || !slideshowContainer || !slideshowTrack || portfolioItemsDataSource.length === 0) {
@@ -1490,14 +1527,17 @@
             }
             
             slideshowTrack.innerHTML = ''; 
-            indicatorsContainer.innerHTML = ''; 
-            mobileSlides = []; // Reset
+            if (indicatorsContainer) indicatorsContainer.innerHTML = ''; 
+            mobileSlides = []; 
 
             portfolioItemsDataSource.forEach((itemData, index) => {
-                const imgSrc = itemData.dataset.imgSrc || (itemData.querySelector('img') ? itemData.querySelector('img').src : 'https://placehold.co/600x400/cccccc/333333?text=Image+Missing&font=Inter');
-                const altText = itemData.querySelector('img') ? itemData.querySelector('img').alt : 'Portfolio project image';
-                const title = itemData.querySelector('.portfolio-item-overlay h4') ? itemData.querySelector('.portfolio-item-overlay h4').textContent : 'Project Title';
-                const category = itemData.querySelector('.portfolio-item-overlay p.category') ? itemData.querySelector('.portfolio-item-overlay p.category').textContent : 'Category';
+                const itemImgEl = itemData.querySelector('img');
+                const imgSrc = itemData.dataset.imgSrc || (itemImgEl ? itemImgEl.src : 'https://placehold.co/600x400/cccccc/333333?text=Image+Missing&font=Inter');
+                const altText = itemImgEl ? itemImgEl.alt : 'Portfolio project image';
+                const titleEl = itemData.querySelector('.portfolio-item-overlay h4');
+                const title = titleEl ? titleEl.textContent : 'Project Title';
+                const categoryEl = itemData.querySelector('.portfolio-item-overlay p.category');
+                const category = categoryEl ? categoryEl.textContent : 'Category';
 
                 const slide = document.createElement('div');
                 slide.className = 'slide-mobile';
@@ -1513,55 +1553,53 @@
                 slideshowTrack.appendChild(slide);
                 mobileSlides.push(slide);
 
-                const indicator = document.createElement('button');
-                indicator.className = 'indicator-dot-mobile';
-                indicator.setAttribute('aria-label', `Go to project ${index + 1}: ${title}`);
-                indicator.addEventListener('click', () => goToSlide(index));
-                indicatorsContainer.appendChild(indicator);
+                if (indicatorsContainer) {
+                    const indicator = document.createElement('button');
+                    indicator.className = 'indicator-dot-mobile';
+                    indicator.setAttribute('aria-label', `Go to project ${index + 1}: ${title}`);
+                    indicator.addEventListener('click', () => goToSlide(index));
+                    indicatorsContainer.appendChild(indicator);
+                }
             });
             
             slideshowInitialized = true; 
             updateSlideshowUI(); 
-            goToSlide(0, true); // true for initial setup, no animation
+            goToSlide(0, true); 
         }
 
         function goToSlide(index, instant = false) {
+            if (!slideshowTrack || mobileSlides.length === 0) return;
             const totalSlides = mobileSlides.length;
-            if (totalSlides === 0) return; 
-
+        
             const oldSlideIndex = currentSlideIndex;
-            if (index >= totalSlides) currentSlideIndex = 0;
-            else if (index < 0) currentSlideIndex = totalSlides - 1;
-            else currentSlideIndex = index;
-            
-            // Animate slide transition
+            currentSlideIndex = (index % totalSlides + totalSlides) % totalSlides; // Loop correctly
+
             if (!instant && oldSlideIndex !== currentSlideIndex) {
-                const direction = oldSlideIndex < currentSlideIndex ? 1 : -1;
-                // Outgoing slide
-                gsap.to(mobileSlides[oldSlideIndex], { 
-                    xPercent: -100 * direction, 
-                    opacity: 0.3, 
-                    duration: 0.5, 
-                    ease: "power2.inOut" 
+                const direction = (oldSlideIndex < currentSlideIndex || (oldSlideIndex === totalSlides - 1 && currentSlideIndex === 0)) && !(oldSlideIndex === 0 && currentSlideIndex === totalSlides -1) ? 1 : -1;
+                
+                // Ensure current slide is visible and positioned correctly for animation
+                gsap.set(mobileSlides[currentSlideIndex], { xPercent: 100 * direction, opacity: 0.3 });
+                gsap.set(slideshowTrack, { xPercent: -oldSlideIndex * 100 }); // Position track to old slide
+
+                // Animate track to new slide
+                gsap.to(slideshowTrack, { 
+                    xPercent: -currentSlideIndex * 100, 
+                    duration: 0.6, 
+                    ease: "power3.inOut"
                 });
-                // Incoming slide
-                gsap.fromTo(mobileSlides[currentSlideIndex], 
-                    { xPercent: 100 * direction, opacity: 0.3 },
-                    { xPercent: 0, opacity: 1, duration: 0.5, ease: "power2.inOut" }
-                );
-            } else {
-                 // Instant positioning for initial load or when direction doesn't change (e.g. clicking same dot)
+                // Fade in new slide, fade out old slide (relative to their own position)
+                gsap.to(mobileSlides[oldSlideIndex], { opacity: 0.3, duration: 0.3, ease: "power2.in" });
+                gsap.to(mobileSlides[currentSlideIndex], { opacity: 1, duration: 0.4, delay:0.2, ease: "power2.out" });
+
+            } else { // Instant positioning
+                 gsap.set(slideshowTrack, { xPercent: -currentSlideIndex * 100 });
                  mobileSlides.forEach((slide, i) => {
-                     gsap.set(slide, { xPercent: (i - currentSlideIndex) * 100, opacity: i === currentSlideIndex ? 1: 0.3 });
+                     gsap.set(slide, { opacity: i === currentSlideIndex ? 1 : 0.3 });
                  });
             }
-             // Correctly position all slides relative to the current one
-            slideshowTrack.style.transform = `translateX(-${currentSlideIndex * 100}%)`; // This might be redundant if GSAP handles all xPercent
-            gsap.set(slideshowTrack, {xPercent: -currentSlideIndex * 100}); // Let GSAP manage track positioning for consistency
-
-
             updateIndicators(); 
         }
+
 
         function updateIndicators() {
             if (!indicatorsContainer) return;
@@ -1602,51 +1640,48 @@
             } else { 
                 if (slideshowContainer) slideshowContainer.style.display = 'none';
                 if (desktopGrid) desktopGrid.style.display = 'grid'; 
+                // If returning to desktop and slideshow was initialized,
+                // you might want to ensure portfolio items are visible if GSAP hid them
+                if (slideshowInitialized && desktopGrid) {
+                     gsap.set(desktopGrid.querySelectorAll('.portfolio-item'), {opacity:1, y:0, scale:1});
+                }
             }
         }
 
         window.addEventListener('resize', () => {
             checkAndInitSlideshow();
-            ScrollTrigger.refresh(); // Refresh ScrollTrigger on resize
+            ScrollTrigger.refresh(true); // true to kill and recreate
         }); 
         checkAndInitSlideshow(); 
 
-        // Contact Form
         const contactForm = document.getElementById('contactForm');
         if (contactForm) {
             contactForm.addEventListener('submit', function(e) {
                 e.preventDefault();
                 const button = contactForm.querySelector('button[type="submit"]');
-                const originalButtonText = button.innerHTML;
-                button.innerHTML = 'Sending... <i class="fas fa-spinner fa-spin"></i>';
+                if (!button) return;
+                const originalButtonText = button.innerHTML; // Assuming first child is text node or simple html
+                
+                gsap.to(button, {duration: 0.2, autoAlpha:0.5, pointerEvents: 'none'});
+                button.innerHTML = 'Sending... <i class="fas fa-spinner fa-spin" style="display:inline-block; margin-left:5px;"></i>'; // Ensure spinner icon shows
                 button.disabled = true;
 
-                // Simulate API call
                 setTimeout(() => {
                     gsap.to(contactForm, {
                         opacity: 0, duration: 0.5, 
                         onComplete: () => {
                             contactForm.style.display = 'none';
-                            const successMsg = document.createElement('p');
-                            successMsg.innerHTML = 'Thank you! <br/>Your vision is on its way to us.';
-                            successMsg.style.textAlign = 'center';
-                            successMsg.style.color = 'var(--accent-primary)';
-                            successMsg.style.fontSize = '1.2rem';
-                            successMsg.style.opacity = '0';
-                            contactForm.parentNode.insertBefore(successMsg, contactForm);
-                            gsap.fromTo(successMsg, {opacity:0, y:20}, {opacity:1, y:0, duration:0.6, ease:'power2.out'});
-                            
-                            // No reset needed if form is hidden
-                            // setTimeout(() => { // Option to bring form back
-                            //    gsap.to(successMsg, {opacity:0, duration:0.5, onComplete: () => {
-                            //        successMsg.remove();
-                            //        contactForm.style.display = 'grid';
-                            //        gsap.to(contactForm, {opacity:1, duration:0.5});
-                            //        button.innerHTML = originalButtonText;
-                            //        button.disabled = false;
-                            //        contactForm.reset();
-                            //    }});
-                            // }, 5000);
+                            const successMsgContainer = contactForm.parentNode;
+                            if (successMsgContainer) {
+                                const successMsg = document.createElement('p');
+                                successMsg.innerHTML = 'Thank you! <br/>Your vision is on its way to us.';
+                                successMsg.style.textAlign = 'center';
+                                successMsg.style.color = 'var(--accent-primary)';
+                                successMsg.style.fontSize = '1.2rem';
+                                successMsg.style.opacity = '0';
+                                successMsgContainer.insertBefore(successMsg, contactForm);
+                                gsap.fromTo(successMsg, {opacity:0, y:20}, {opacity:1, y:0, duration:0.6, ease:'power2.out'});
+                            }
                         }
                     });
                 }, 1500);
@@ -1657,3 +1692,4 @@
 
 </body>
 </html>
+
