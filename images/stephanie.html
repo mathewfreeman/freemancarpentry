@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twin Elm Banners - Custom Horse Stall Banners</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* --- Google Fonts --- */
+        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,700;1,400&family=IBM+Plex+Sans:wght@200;300;400;500;600&display=swap');
+
+        /* --- Variables --- */
+        :root {
+            --bg-dark: #131516;
+            --accent-primary: #04d9c4; /* Teal/Turquoise - can be themed for equestrian if desired */
+            --accent-secondary: #3a5ba0; /* Deep Blue - can be themed */
+            --accent-secondary-glass: rgba(0, 33, 77, 0.85); 
+            --neutral-gray: #5f6b7a;
+            --text-light: #F4F4F4;
+            --text-dark: #222526;
+            --background-light: #FDFDFD;
+            --background-translucent-light: rgba(255, 255, 255, 0.05); 
+
+            --font-logo: 'IBM Plex Serif', serif; 
+            --font-body: 'IBM Plex Sans', sans-serif;
+
+            --transition-speed-fast: 0.2s;
+            --transition-speed-medium: 0.4s;
+            --transition-speed-slow: 0.6s;
+
+            --shadow-light: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+            --shadow-medium: 0 10px 30px rgba(0,0,0,0.08);
+            --border-radius-main: 12px;
+            --border-radius-large: 16px;
+        }
+
+        /* --- Reset & Base Styles --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        body {
+            font-family: var(--font-body);
+            line-height: 1.8;
+            background-color: var(--background-light);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            font-weight: 300;
+        }
+        body.modal-open { 
+            overflow: hidden;
+        }
+        h1, h2, h3, h4 {
+            font-weight: 500;
+            color: var(--text-dark);
+            letter-spacing: -0.02em;
+        }
+        h2 {
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            margin-bottom: 2.5rem;
+            text-align: center;
+            color: var(--accent-secondary);
+            font-weight: 600;
+        }
+        h3 {
+            font-size: clamp(1.5rem, 4vw, 1.8rem);
+            margin-bottom: 1rem;
+            color: var(--accent-primary);
+            font-weight: 500;
+        }
+        p {
+            margin-bottom: 1.5rem;
+            font-size: clamp(1rem, 2.5vw, 1.15rem);
+            color: var(--neutral-gray);
+            font-weight: 300;
+            max-width: 700px; 
+        }
+        .container {
+            width: 90%;
+            max-width: 1100px; 
+            margin: 0 auto;
+            padding: 5rem 0;
+        }
+        section {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.165, 0.84, 0.44, 1), transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .highlight {
+            color: var(--accent-primary);
+            font-weight: 500;
+        }
+
+        /* --- Frosted Glass Header --- */
+        .main-header {
+            background: rgba(253, 253, 253, 0.65);
+            backdrop-filter: blur(12px) saturate(180%);
+            -webkit-backdrop-filter: blur(12px) saturate(180%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.4rem 0; 
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: background var(--transition-speed-medium) ease, box-shadow var(--transition-speed-medium) ease, padding var(--transition-speed-medium) ease;
+        }
+        .main-header.scrolled {
+             background: rgba(253, 253, 253, 0.85);
+             box-shadow: 0 2px 15px rgba(0,0,0,0.07);
+             padding: 0.1rem 0; 
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 90%;
+            max-width: 1100px; 
+            margin: 0 auto;
+        }
+        .logo a {
+            font-family: var(--font-logo); 
+            font-size: clamp(1.8rem, 4vw, 2.2rem); 
+            font-weight: 500;
+            color: var(--accent-secondary);
+            text-decoration: none;
+            letter-spacing: -0.03em;
+            transition: color var(--transition-speed-fast);
+        }
+        .logo a:hover {
+            color: var(--accent-primary);
+        }
+        .logo-maintext { /* Updated class name */
+             color: var(--text-dark);
+             font-family: var(--font-logo); 
+        }
+        .logo a .co-highlight { /* This can be adjusted or removed if the new name doesn't use it */
+            color: var(--accent-primary);
+            font-weight: 400; 
+             font-family: var(--font-logo); 
+        }
+        .main-nav ul {
+            list-style: none;
+            display: flex;
+        }
+        .main-nav ul li {
+            margin-left: 30px;
+        }
+        .main-nav ul li a {
+            color: var(--neutral-gray);
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 1rem;
+            padding: 0.3rem 0.1rem;
+            position: relative;
+            transition: color var(--transition-speed-fast) ease;
+        }
+        .main-nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-primary);
+            transition: width var(--transition-speed-medium) cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        .main-nav ul li a:hover,
+        .main-nav ul li a.active {
+            color: var(--text-dark);
+        }
+        .main-nav ul li a:hover::after,
+        .main-nav ul li a.active::after {
+            width: 100%;
+        }
+        .menu-toggle {
+            display: none;
+            font-size: 1.8rem;
+            background: none;
+            border: none;
+            color: var(--text-dark);
+            cursor: pointer;
+            position: relative;
+            width: 30px;
+            height: 22px;
+        }
+        .menu-toggle .line {
+            width: 25px;
+            height: 2px;
+            background-color: var(--text-dark);
+            display: block;
+            transition: all var(--transition-speed-medium) ease-in-out;
+            position: absolute;
+            left: 0;
+        }
+        .menu-toggle .line1 { top: 0px; }
+        .menu-toggle .line2 { top: 8px; }
+        .menu-toggle .line3 { top: 16px; }
+
+        .menu-toggle.open .line1 { transform: rotate(-45deg) translate(-5px, 6px); }
+        .menu-toggle.open .line2 { opacity: 0; }
+        .menu-toggle.open .line3 { transform: rotate(45deg) translate(-5px, -6px); }
+
+        /* --- Hero Section --- */
+        .hero {
+            background: linear-gradient(135deg, #eef4f8 0%, var(--background-light) 100%); /* Consider horse-themed subtle background image/pattern later */
+            color: var(--text-dark);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 120px; 
+            padding-bottom: 8rem; 
+            overflow: hidden;
+            position: relative;
+        }
+        .hero-content {
+            max-width: 950px;
+            position: relative;
+            z-index: 2;
+            text-align: center; /* Center hero text */
+        }
+        .hero-content h1 {
+            font-family: var(--font-body);
+            font-size: clamp(2.2rem, 6vw, 4.5rem); /* Adjusted size slightly */
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+            line-height: 1.25;
+            letter-spacing: -0.04em;
+        }
+        .hero-content h1 .brand-name-hero { /* Updated class name */
+            font-family: var(--font-logo); 
+            color: var(--accent-secondary);
+            font-weight: 700; 
+        }
+        .hero-content .subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.6rem);
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+            color: var(--neutral-gray);
+            max-width: 700px; /* Increased max-width for centered text */
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+        .cta-button {
+            background: linear-gradient(135deg, var(--accent-primary), #03b0a0);
+            color: var(--text-light); 
+            padding: 1rem 2.8rem;
+            text-decoration: none;
+            font-weight: 500;
+            border-radius: 50px;
+            transition: all var(--transition-speed-medium) cubic-bezier(0.19, 1, 0.22, 1);
+            display: inline-block;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(4, 217, 196, 0.3);
+            border: none;
+        }
+        .cta-button:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(4, 217, 196, 0.4);
+        }
+        .hero::before, .hero::after { /* Decorative elements, can be kept or modified */
+            content: ''; position: absolute; border-radius: 50%; opacity: 0.08;
+            z-index: 1; pointer-events: none;
+        }
+        .hero::before {
+            width: clamp(300px, 50vw, 600px); height: clamp(300px, 50vw, 600px);
+            background: radial-gradient(circle, var(--accent-primary) 0%, transparent 70%);
+            top: 10%; left: -10%; animation: pulse-bubble 15s infinite alternate ease-in-out;
+        }
+        .hero::after {
+            width: clamp(200px, 40vw, 400px); height: clamp(200px, 40vw, 400px);
+            background: radial-gradient(circle, var(--accent-secondary) 0%, transparent 70%);
+            bottom: 5%; right: -5%; animation: pulse-bubble 18s infinite alternate-reverse ease-in-out;
+        }
+        @keyframes pulse-bubble {
+            0%, 100% { transform: scale(0.9) rotate(0deg); opacity: 0.06; }
+            50% { transform: scale(1.1) rotate(10deg); opacity: 0.1; }
+        }
+
+        /* --- About Section --- */
+        #about .container {
+            display: grid; grid-template-columns: 1fr; gap: 3rem; align-items: center;
+        }
+        #about h2 { text-align: left; }
+        #about p { max-width: none; }
+        
+        /* --- Stall Sign CSS (from previous step) --- */
+        .stall-sign-wrapper { /* Added wrapper for layout control if needed */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+        .stall-sign-container {
+            width: 300px; 
+            height: 450px; 
+            border: 3px solid #654321; 
+            background-color: #f0e6d2; 
+            padding: 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Georgia', serif; 
+            text-align: center;
+            margin: 0 auto; /* Centered within its column */
+            box-shadow: 5px 5px 10px rgba(0,0,0,0.2); 
+        }
+        .horse-name {
+            font-size: 1.8em; 
+            color: #5d4037; 
+            margin-bottom: 15px;
+            font-weight: bold;
+            width: 100%;
+            padding: 10px 0;
+            border-bottom: 1px dashed #8d6e63; 
+        }
+        .photo-area {
+            width: 220px; 
+            height: 220px; 
+            border: 2px dashed #8d6e63; 
+            background-color: #ffffff; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #a1887f; 
+            font-style: italic;
+            margin-bottom: 15px;
+            overflow: hidden; 
+        }
+        .photo-area img { 
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .barn-name {
+            font-size: 1.4em;
+            color: #5d4037; 
+            font-weight: bold;
+            width: 100%;
+            padding-top: 10px;
+            border-top: 1px dashed #8d6e63; 
+        }
+
+        @media (min-width: 768px) {
+            #about .container { 
+                grid-template-columns: 2fr 1fr; /* Adjusted ratio for text and sign */
+                gap: 4rem; 
+            }
+        }
+
+        /* --- Services Section (Now "Banner Features") --- */
+        #banner-features { /* Renamed ID for clarity, update HTML and Nav link */
+            background-color: #f9f9f9; /* Light grey background for visual separation */
+        }
+        .feature-grid { display: grid; gap: 2.5rem; } /* Renamed class */
+        @media (min-width: 1024px) { .feature-grid { grid-template-columns: repeat(4, 1fr); } }
+        @media (min-width: 600px) and (max-width: 1023px) { .feature-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 599px) { .feature-grid { grid-template-columns: 1fr; } }
+        
+        .feature-item { /* Renamed class */
+            background: rgba(255, 255, 255, 0.8); 
+            backdrop-filter: blur(10px) saturate(160%);
+            -webkit-backdrop-filter: blur(10px) saturate(160%); 
+            border: 1px solid rgba(220, 220, 220, 0.3);
+            padding: 2.5rem 2rem; border-radius: var(--border-radius-main); box-shadow: var(--shadow-light);
+            text-align: left; position: relative; overflow: hidden;
+            transition: transform var(--transition-speed-medium) cubic-bezier(0.19, 1, 0.22, 1),
+                        box-shadow var(--transition-speed-medium) cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        .feature-item:hover {
+            transform: translateY(-8px) perspective(1000px) rotateX(2deg) rotateY(-2deg) scale(1.03);
+            box-shadow: 0 18px 45px rgba(0,0,0,0.1);
+        }
+        .feature-item::before {
+            content: ""; position: absolute; top: 0; left: -150%; width: 100%; height: 100%;
+            background: linear-gradient( 100deg, transparent, rgba(255, 255, 255, 0.4), transparent );
+            transition: left var(--transition-speed-slow) cubic-bezier(0.19, 1, 0.22, 1);
+            transform: skewX(-25deg); z-index: 1;
+        }
+        .feature-item:hover::before { left: 150%; }
+        .feature-item-content { position: relative; z-index: 2; }
+        .feature-item-icon {
+            font-size: 2.8rem; color: var(--accent-primary); margin-bottom: 1.5rem; display: inline-block;
+            transition: transform var(--transition-speed-medium) ease;
+        }
+        .feature-item:hover .feature-item-icon { transform: scale(1.1) rotate(-5deg); }
+        .feature-item h3 { color: var(--text-dark); font-weight: 500; }
+
+
+        /* --- Contact Section --- */
+        #contact p { text-align: center; margin-bottom: 3rem; max-width: 700px; margin-left: auto; margin-right: auto; }
+        .contact-form { max-width: 700px; margin: 0 auto; display: grid; gap: 1.5rem; }
+        .contact-form input, .contact-form textarea {
+            width: 100%; padding: 1.2rem 1.5rem; border: 1px solid #dde2e7; border-radius: 8px;
+            background-color: rgba(255,255,255,0.8); color: var(--text-dark);
+            font-family: var(--font-body); font-size: 1rem; font-weight: 400;
+            transition: border-color var(--transition-speed-fast), box-shadow var(--transition-speed-fast);
+        }
+        .contact-form input::placeholder, .contact-form textarea::placeholder { color: var(--neutral-gray); opacity: 0.8; }
+        .contact-form input:focus, .contact-form textarea:focus {
+            outline: none; border-color: var(--accent-primary);
+            box-shadow: 0 0 0 3px rgba(4, 217, 196, 0.2);
+        }
+        .contact-form textarea { resize: vertical; min-height: 150px; }
+        .contact-form button { justify-self: center; margin-top: 1rem; }
+
+        /* --- Footer --- */
+        .main-footer {
+            background-color: var(--bg-dark); color: var(--neutral-gray); text-align: center;
+            padding: 2rem 1rem;
+            font-size: 0.95rem;
+        }
+        .main-footer p { 
+            color: var(--neutral-gray); 
+            font-size: 0.9rem; 
+            margin-bottom: 0.4rem; 
+            max-width: none; 
+        }
+        .main-footer .footer-copyright .brand-name-footer { /* Updated class */
+             font-family: var(--font-logo); 
+        }
+        .main-footer a { 
+            color: var(--accent-primary); 
+            text-decoration: none; 
+            transition: color var(--transition-speed-fast); 
+        }
+        .main-footer a:hover { 
+            color: var(--text-light); 
+            text-decoration: underline; 
+        }
+
+        /* --- Responsive Adjustments --- */
+        @media (max-width: 768px) {
+            .nav-container { flex-wrap: wrap; }
+            .menu-toggle { display: flex; align-items: center; justify-content: center; }
+            .main-nav {
+                width: 100%; max-height: 0; overflow: hidden; background: rgba(253, 253, 253, 0.95);
+                backdrop-filter: blur(10px) saturate(180%); -webkit-backdrop-filter: blur(10px) saturate(180%);
+                position: absolute; top: 100%; left: 0; box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+                border-top: 1px solid rgba(0,0,0,0.05);
+                transition: max-height 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+            }
+            .main-nav.active { max-height: 350px; } /* Adjust if more/less nav items */
+            .main-nav ul { flex-direction: column; align-items: center; padding: 1rem 0; }
+            .main-nav ul li { margin: 1rem 0; }
+
+            .hero-content {
+                text-align: center; /* Ensured center for mobile */
+                padding: 0 1.5rem; 
+            }
+            .hero-content h1 {
+                font-size: clamp(2.0rem, 8vw, 3.0rem);
+                line-height: 1.3;
+            }
+             @media (max-width: 400px) {
+                .hero-content h1 {
+                    font-size: 1.8rem;
+                    line-height: 1.35;
+                }
+                .hero-content .subtitle { font-size: 1rem; }
+            }
+            .hero-content .subtitle { font-size: clamp(1.1rem, 4vw, 1.3rem); }
+            .hero::before, .hero::after { display: none; }
+
+            #about .container { grid-template-columns: 1fr; } /* Stack About content on mobile */
+            #about h2 { text-align: center; }
+            .stall-sign-container { margin-top: 2rem; margin-bottom: 2rem;} /* Add some space around sign on mobile */
+            
+        }
+        .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0;}
+
+    </style>
+</head>
+<body>
+
+    <header class="main-header" id="mainHeader">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="#hero"><span class="logo-maintext">Twin Elm</span> <span class="co-highlight">Banners</span></a>
+            </div>
+            <nav class="main-nav" id="mainNav">
+                <ul>
+                    <li><a href="#about" class="nav-link">About Us</a></li>
+                    <li><a href="#banner-features" class="nav-link">Banner Features</a></li>
+                    <li><a href="#contact" class="nav-link">Order Banners</a></li>
+                </ul>
+            </nav>
+            <button class="menu-toggle" id="menuToggle" aria-label="Open Menu" aria-expanded="false">
+                <span class="line line1"></span>
+                <span class="line line2"></span>
+                <span class="line line3"></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero" class="hero">
+            <div class="hero-content">
+                <h1>Show-Stopping Stall Banners for <span class="brand-name-hero">Twin Elm Training</span></h1>
+                <p class="subtitle">Elevate your presence at every show with custom-designed, professional stall banners for your Twin Elm Training horse. <span class="highlight">Only $50 per horse!</span> Skip the DIY hassle and showcase your champion in style.</p>
+                <a href="#contact" class="cta-button">Order Your Banner Today</a>
+            </div>
+        </section>
+
+        <section id="about" class="container">
+            <div class="about-content">
+                <h2>Quality Craftsmanship for Twin Elm</h2>
+                <p>At Twin Elm Banners, we're passionate about supporting Twin Elm Training's show team. We specialize in creating beautiful, durable, and professional stall sign banners that reflect the hard work and dedication that goes into every horse and rider.</p>
+                <p>Our goal is to provide an effortless way for you to obtain high-quality, personalized banners that make your horses stand out and ensure all essential information is presented elegantly. We handle the design and printing, so you can focus on what you do best – preparing for a successful show!</p>
+            </div>
+            <div class="stall-sign-wrapper">
+                <div class="stall-sign-container">
+                    <div class="horse-name">
+                        HORSE'S NAME
+                    </div>
+                    <div class="photo-area">
+                        Horse Photo Here
+                    </div>
+                    <div class="barn-name">
+                        Twin Elm Training
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="banner-features" class="container"> <h2>Premium Banners, Unbeatable Value</h2>
+            <div class="feature-grid"> <div class="feature-item"> <div class="feature-item-content">
+                        <div class="feature-item-icon"><i class="fas fa-horse-head"></i></div> <h3>Exclusive Twin Elm Focus & Value</h3>
+                        <p>Specializing in banners for Twin Elm Training allows us to offer custom design and premium printing for just $50 per horse – an unbeatable value compared to DIY materials and effort.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                     <div class="feature-item-content">
+                        <div class="feature-item-icon"><i class="fas fa-palette"></i></div> <h3>Professional & Prestige Design</h3>
+                        <p>Our designs are clean, professional, and tailored to reflect the prestige of Twin Elm Training, ensuring your horse's stall is both informative and impressive.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-item-content">
+                       <div class="feature-item-icon"><i class="fas fa-shield-alt"></i></div> <h3>Premium Quality & Durability</h3>
+                       <p>Crafted from durable, weather-resistant materials with vibrant, fade-resistant inks, our banners are built to last through the demanding show season.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-item-content">
+                        <div class="feature-item-icon"><i class="fas fa-magic"></i></div> <h3>Effortless Process, Stunning Results</h3>
+                        <p>Simply provide your horse's details, and we handle the rest – from design to print. Get a polished, professional banner without the DIY hassle.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="container">
+            <h2>Order Your Twin Elm Stall Banner Today!</h2>
+            <p>Ready to give your Twin Elm Training show horse the standout stall banner they deserve for only $50? Fill out the form below, and we'll get started on your custom design!</p>
+            <form class="contact-form" id="contactForm">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" placeholder="Tell us your horse's name(s) and any specific requests for your banner(s)..." required></textarea>
+                <button type="submit" class="cta-button">Request Your Banner</button>
+            </form>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <p class="footer-copyright">&copy; <span id="currentYear">2025</span> <span class="brand-name-footer">Twin Elm Banners</span>. All Rights Reserved.</p>
+        <p>Proudly supporting Twin Elm Training with show-quality banners.</p>
+    </footer>
+
+    <div class="sr-only" style="position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0;">
+        This is a screen-reader only class.
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const mainHeader = document.getElementById('mainHeader');
+        const menuToggle = document.getElementById('menuToggle');
+        const mainNav = document.getElementById('mainNav');
+        const navLinks = document.querySelectorAll('.main-nav a.nav-link');
+        const body = document.body;
+
+        if ('scrollRestoration' in history) {
+             history.scrollRestoration = 'manual';
+        }
+        window.addEventListener('load', () => {
+             window.scrollTo(0, 0);
+        });
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                mainHeader.classList.add('scrolled');
+            } else {
+                mainHeader.classList.remove('scrolled');
+            }
+        });
+
+        menuToggle.addEventListener('click', function() {
+            const isExpanded = mainNav.classList.toggle('active');
+            menuToggle.classList.toggle('open');
+            menuToggle.setAttribute('aria-expanded', isExpanded);
+            body.classList.toggle('modal-open', isExpanded && window.innerWidth < 769);
+        });
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                if (mainNav.classList.contains('active')) {
+                    mainNav.classList.remove('active');
+                    menuToggle.classList.remove('open');
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                    body.classList.remove('modal-open');
+                }
+                const targetId = this.getAttribute('href');
+                if (targetId && targetId.startsWith('#')) {
+                    e.preventDefault(); 
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                         const headerOffset = mainHeader ? mainHeader.offsetHeight + 20 : 80; 
+                         const elementPosition = targetElement.getBoundingClientRect().top;
+                         const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                         window.scrollTo({
+                             top: offsetPosition,
+                             behavior: 'smooth'
+                         });
+                    }
+                }
+            });
+        });
+
+        const sections = document.querySelectorAll('main section');
+        const observerOptions = {
+            root: null, threshold: 0.25, rootMargin: "-80px 0px -15% 0px"
+        };
+        let activeLinkTimeout;
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const link = document.querySelector(`.main-nav a[href="#${entry.target.id}"]`);
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    if (link) {
+                        clearTimeout(activeLinkTimeout);
+                        activeLinkTimeout = setTimeout(() => {
+                            navLinks.forEach(l => l.classList.remove('active'));
+                            link.classList.add('active');
+                        }, 50);
+                    }
+                }
+            });
+        }, observerOptions);
+        sections.forEach(section => sectionObserver.observe(section));
+        
+        function initialActiveLink() { 
+            let current = '';
+            const headerHeight = mainHeader ? mainHeader.offsetHeight + 100 : 150;
+            sections.forEach(section => {
+                if (section.getBoundingClientRect().top <= headerHeight) {
+                    current = section.id;
+                }
+            });
+             navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+            if (!current && sections.length > 0 && window.pageYOffset < (sections[0] ? sections[0].offsetTop - headerHeight : 0)) {
+                 navLinks.forEach(l => l.classList.remove('active'));
+            } else if (!current && sections.length === 0) { // If no sections, no active links
+                navLinks.forEach(l => l.classList.remove('active'));
+            }
+        }
+        setTimeout(initialActiveLink, 150); 
+        window.addEventListener('scroll', initialActiveLink); 
+
+        // Contact Form Submission
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                // You would typically send data to a server here
+                const tempMsg = document.createElement('p');
+                tempMsg.textContent = 'Thank you for your banner request! We\'ll be in touch soon to confirm details.';
+                tempMsg.style.textAlign = 'center';
+                tempMsg.style.color = 'var(--accent-primary)';
+                tempMsg.style.marginTop = '1rem';
+                contactForm.parentNode.insertBefore(tempMsg, contactForm.nextSibling);
+                contactForm.reset();
+                setTimeout(() => tempMsg.remove(), 5000);
+            });
+        }
+
+        // Static year in footer is 2025, so no JS needed to update it.
+    });
+    </script>
+
+</body>
+</html>
