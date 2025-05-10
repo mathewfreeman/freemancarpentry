@@ -116,7 +116,9 @@
             padding: 5rem 0;
         }
         main section { 
-            opacity: 0; 
+            /* MODIFIED FOR DEBUGGING: Force sections to be visible to test if content exists */
+            opacity: 1; /* Was 0. Animations will make this 0 then 1 if JS runs. */
+            /* transform: none !important; */ /* Optional: if transforms are also hiding things */
         }
         .highlight {
             color: var(--accent-primary);
@@ -180,8 +182,8 @@
         }
         .main-nav ul li {
             margin-left: 30px;
-            opacity: 0; 
-            transform: translateY(-10px); 
+            opacity: 0; /* GSAP animates this */
+            transform: translateY(-10px);  /* GSAP animates this */
         }
         .main-nav ul li a {
             color: var(--neutral-gray);
@@ -213,7 +215,7 @@
             width: 100%;
         }
         .menu-toggle {
-            display: none;
+            display: none; /* Made visible in @media query */
             font-size: 1.8rem;
             background: none;
             border: none;
@@ -265,7 +267,7 @@
             color: var(--text-dark);
             line-height: 1.25;
             letter-spacing: -0.04em;
-            /* overflow: hidden; GSAP will handle if SplitText is used */
+             opacity: 0; /* GSAP animates this */
         }
         .hero-content h1 .line-wrapper { 
              display: block; 
@@ -284,8 +286,8 @@
             color: var(--neutral-gray);
             max-width: 650px;
             line-height: 1.6;
-            opacity: 0; 
-            transform: translateY(20px); 
+            opacity: 0; /* GSAP animates this */
+            transform: translateY(20px); /* GSAP animates this */
             margin-left: auto; margin-right: auto; 
         }
         .cta-button {
@@ -302,8 +304,8 @@
             border: none;
             position: relative; 
             overflow: hidden; 
-            opacity: 0; 
-            transform: translateY(20px); 
+            opacity: 0; /* GSAP animates this */
+            transform: translateY(20px); /* GSAP animates this */
         }
         .cta-button:hover {
             transform: translateY(-4px) scale(1.02);
@@ -346,16 +348,16 @@
         #about .container {
             display: grid; grid-template-columns: 1fr; gap: 3rem; align-items: center;
         }
-        #about h2 { text-align: left; opacity: 0; transform: translateY(20px); } 
-        #about p { max-width: none; opacity: 0; transform: translateY(20px); } 
+        #about h2 { text-align: left; opacity: 0; transform: translateY(20px); }  /* GSAP animates this */
+        #about p { max-width: none; opacity: 0; transform: translateY(20px); }  /* GSAP animates this */
         .about-image-placeholder {
             display: block; 
             width: 100%; 
             aspect-ratio: 16 / 9; 
             border-radius: var(--border-radius-main);
             box-shadow: var(--shadow-light);
-            opacity: 0; 
-            transform: scale(0.95) translateY(20px); 
+            opacity: 0; /* GSAP animates this */
+            transform: scale(0.95) translateY(20px); /* GSAP animates this */
             background-size: cover; 
             background-position: center;
             overflow: hidden; 
@@ -376,7 +378,7 @@
             }
         }
 
-        #services h2 { opacity: 0; transform: translateY(20px); } 
+        #services h2 { opacity: 0; transform: translateY(20px); } /* GSAP animates this */
         .service-grid { display: grid; gap: 2.5rem; }
         @media (min-width: 1024px) { .service-grid { grid-template-columns: repeat(4, 1fr); } }
         @media (min-width: 600px) and (max-width: 1023px) { .service-grid { grid-template-columns: repeat(2, 1fr); } }
@@ -388,8 +390,8 @@
             text-align: left; position: relative; overflow: hidden;
             transition: transform var(--transition-speed-medium) cubic-bezier(0.19, 1, 0.22, 1),
                         box-shadow var(--transition-speed-medium) cubic-bezier(0.19, 1, 0.22, 1);
-            opacity: 0; 
-            transform: translateY(30px); 
+            opacity: 0; /* GSAP animates this */
+            transform: translateY(30px); /* GSAP animates this */
         }
         .service-item:hover {
             transform: translateY(-10px) perspective(1200px) rotateX(3deg) rotateY(-3deg) scale(1.04);
@@ -412,7 +414,7 @@
         }
         .service-item h3 { color: var(--text-dark); font-weight: 500; }
 
-        #portfolio h2 { opacity: 0; transform: translateY(20px); } 
+        #portfolio h2 { opacity: 0; transform: translateY(20px); } /* GSAP animates this */
         .portfolio-grid { 
             display: grid; gap: 1.5rem;
             grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
@@ -425,8 +427,8 @@
             aspect-ratio: 4 / 3;
             background-color: #f0f0f0; 
             overflow: hidden; 
-            opacity: 0; 
-            transform: translateY(30px) scale(0.95); 
+            opacity: 0; /* GSAP animates this */
+            transform: translateY(30px) scale(0.95); /* GSAP animates this */
         }
         .portfolio-item:hover { 
             transform: scale(1.03) translateY(-5px); 
@@ -465,8 +467,8 @@
             background-color: var(--background-light);
             margin-top: 2rem; 
             box-sizing: border-box;
-            opacity: 0; 
-            transform: translateY(20px); 
+            opacity: 0; /* GSAP animates this, or set by @media rule */
+            transform: translateY(20px); /* GSAP animates this, or set by @media rule */
         }
         .slideshow-track-mobile {
             display: flex;
@@ -563,13 +565,13 @@
             -webkit-backdrop-filter: blur(5px) saturate(180%);
             border-radius: var(--border-radius-large); padding: 4rem 3rem; margin: 0 auto;
             border: 1px solid rgba(255, 255, 255, 0.15); box-shadow: var(--shadow-medium);
-            opacity: 0; transform: scale(0.9) translateY(30px); 
+            opacity: 0; transform: scale(0.9) translateY(30px); /* GSAP animates this */
         }
-        #why-us h2 { color: var(--text-light); opacity: 0; transform: translateY(20px); } 
+        #why-us h2 { color: var(--text-light); opacity: 0; transform: translateY(20px); } /* GSAP animates this */
         #why-us .why-us-description {
             color: rgba(244, 244, 244, 0.9); text-align: center; max-width: 750px;
             margin-left: auto; margin-right: auto; font-size: 1.2rem; margin-bottom: 3rem;
-            opacity: 0; transform: translateY(20px); 
+            opacity: 0; transform: translateY(20px); /* GSAP animates this */
         }
         .why-us-points {
             display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
@@ -579,7 +581,7 @@
             background: var(--background-translucent-light); padding: 2rem;
             border-radius: var(--border-radius-main);
             border: 1px solid rgba(255, 255, 255, 0.15); text-align: left;
-            opacity: 0; transform: translateY(30px); 
+            opacity: 0; transform: translateY(30px); /* GSAP animates this */
             transition: background-color 0.3s ease, border-color 0.3s ease; 
         }
         .why-us-point:hover {
@@ -588,11 +590,11 @@
         .why-us-point h4 { color: var(--accent-primary); margin-bottom: 0.75rem; font-size: 1.3rem; font-weight: 500; }
         .why-us-point p { color: rgba(244, 244, 244, 0.85); font-size: 1rem; max-width: none; }
 
-        #contact h2 { opacity: 0; transform: translateY(20px); } 
-        #contact > p { text-align: center; margin-bottom: 3rem; max-width: 700px; margin-left: auto; margin-right: auto; opacity: 0; transform: translateY(20px); } 
-        .contact-form { max-width: 700px; margin: 0 auto; display: grid; gap: 1.5rem; opacity: 0; transform: translateY(30px); }
+        #contact h2 { opacity: 0; transform: translateY(20px); } /* GSAP animates this */
+        #contact > p { text-align: center; margin-bottom: 3rem; max-width: 700px; margin-left: auto; margin-right: auto; opacity: 0; transform: translateY(20px); } /* GSAP animates this */
+        .contact-form { max-width: 700px; margin: 0 auto; display: grid; gap: 1.5rem; opacity: 0; transform: translateY(30px); } /* GSAP animates this */
         .contact-form .form-field { 
-            position: relative; opacity: 0; transform: translateY(20px); 
+            position: relative; opacity: 0; transform: translateY(20px); /* GSAP animates this */
         }
         .contact-form input, .contact-form textarea {
             width: 100%; padding: 1.2rem 1.5rem; border: 1px solid #dde2e7; border-radius: 8px;
@@ -606,7 +608,7 @@
             box-shadow: 0 0 0 3px rgba(4, 217, 196, 0.2);
         }
         .contact-form textarea { resize: vertical; min-height: 150px; }
-        .contact-form button { justify-self: center; margin-top: 1rem; opacity: 0; transform: translateY(20px); }
+        .contact-form button { justify-self: center; margin-top: 1rem; opacity: 0; transform: translateY(20px); } /* GSAP animates this */
         .form-field .focus-border {
             position: absolute; bottom: 0; left: 0; width: 100%; height: 2px;
             background-color: var(--accent-primary); transform: scaleX(0);
@@ -621,7 +623,7 @@
         .main-footer {
             background-color: var(--bg-dark); color: var(--neutral-gray); text-align: center;
             padding: 2rem 1rem; font-size: 0.95rem;
-            opacity:0; transform: translateY(20px); 
+            opacity:0; transform: translateY(20px); /* GSAP animates this */
         }
         .main-footer p { 
             color: var(--neutral-gray); font-size: 0.9rem; 
@@ -693,29 +695,33 @@
                 border-top: 1px solid rgba(0,0,0,0.05);
                 transition: max-height 0.5s cubic-bezier(0.19, 1, 0.22, 1);
             }
-            .main-nav.active { max-height: 350px; }
+            .main-nav.active { max-height: 350px; } /* Make sure this is enough height for nav items */
             .main-nav ul { flex-direction: column; align-items: center; padding: 1rem 0; }
-            .main-nav ul li { margin: 1rem 0; opacity: 1; transform: none; }
+            .main-nav ul li { margin: 1rem 0; opacity: 1; transform: none; } /* Made visible for mobile menu directly */
 
             .hero-content { text-align: left; padding: 0 1.5rem; }
-            .hero-content h1 { font-size: clamp(2.0rem, 8vw, 3.0rem); line-height: 1.3; }
+            .hero-content h1 { font-size: clamp(2.0rem, 8vw, 3.0rem); line-height: 1.3; opacity:1; /* DEBUG: Ensure hero H1 visible on mobile */ }
             @media (max-width: 400px) {
                 .hero-content h1 { font-size: 1.8rem; line-height: 1.35; }
                 .hero-content .subtitle { font-size: 1rem; }
             }
-            .hero-content .subtitle { font-size: clamp(1.1rem, 4vw, 1.3rem); }
+            .hero-content .subtitle { font-size: clamp(1.1rem, 4vw, 1.3rem); opacity:1; transform:none; /* DEBUG: Ensure hero subtitle visible on mobile */ }
             #about h2 { text-align: center; }
-            .portfolio-item { min-height: 150px; opacity: 1; transform: none; }
-            .portfolio-grid { display: none !important; }
-            .portfolio-slideshow-mobile-container { display: block; opacity: 0; transform: translateY(20px); }
+            .portfolio-item { min-height: 150px; /* opacity: 1; transform: none; */ /* This is part of portfolio-grid, which is hidden on mobile */ }
+            .portfolio-grid { display: none !important; } /* Correctly hides desktop grid on mobile */
+            .portfolio-slideshow-mobile-container { 
+                display: block; 
+                opacity: 1; /* DEBUG: Force mobile slideshow container visible */
+                transform: none; /* DEBUG: Force mobile slideshow container visible */
+            }
             .portfolio-item-overlay { padding: 2rem 1rem 1rem; }
             .modal-close { top: 10px; right: 10px; width: 35px; height: 35px; font-size: 1.2rem; }
             .modal-content img { max-height: calc(90vh - 50px); }
             #why-us { padding-top: 2rem; padding-bottom: 2rem; }
-            .why-us-background-wrapper { padding: 2.5rem 1.5rem; }
+            .why-us-background-wrapper { padding: 2.5rem 1.5rem; /* opacity: 1; transform: none; */ /* DEBUG: Let section rule handle this */ }
             #why-us .why-us-description { max-width: 90%; font-size: 1.1rem; }
             .why-us-points { max-width: 100%; gap: 1.5rem; }
-            .why-us-point { opacity: 1; transform: none; }
+            .why-us-point { /* opacity: 1; transform: none; */ /* DEBUG: Let section rule handle this */ }
         }
         @media (min-width: 769px) {
             .portfolio-slideshow-mobile-container { display: none !important; }
@@ -723,6 +729,9 @@
             a, button, [role="button"], input[type="submit"], .menu-toggle,
             .indicator-dot-mobile, .portfolio-item, .slide-nav-mobile, .modal-close { 
                  cursor: none; 
+            }
+            main section { /* Restore default opacity for desktop animations if debug change was too broad */
+                 /* opacity: 0; Set by individual element rules or JS */
             }
         }
         .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0;}
@@ -922,7 +931,7 @@
     </main>
 
     <footer class="main-footer">
-        <p class="footer-copyright">&copy; <span id="currentYear">2025 Maugans Co. All Rights Reserved.</p>
+        <p class="footer-copyright">&copy; <span id="currentYear">2025</span> Maugans Co. All Rights Reserved.</p>
         <p>Designing a more beautiful world, one project at a time.</p>
     </footer>
 
@@ -945,8 +954,35 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
 
     <script>
+    // Wrapped in DOMContentLoaded to ensure elements are available for selection
     document.addEventListener('DOMContentLoaded', function() {
-        gsap.registerPlugin(ScrollTrigger, SplitText, ScrollToPlugin); 
+        console.log('DOM fully loaded and parsed.');
+
+        // Check if GSAP is loaded
+        if (typeof gsap === 'undefined') {
+            console.error('CRITICAL: GSAP library not loaded! Animations and some functionality will fail.');
+            // Fallback: Make sure essential content is visible if GSAP fails
+            document.querySelectorAll('main section, .hero-content h1, .hero-content .subtitle, .hero-content .cta-button, .portfolio-slideshow-mobile-container').forEach(el => {
+                if(el) {
+                    el.style.opacity = '1';
+                    el.style.transform = 'none';
+                }
+            });
+            // Try to make menu items visible if GSAP for nav fails
+            document.querySelectorAll('.main-nav ul li').forEach(el => {
+                if(el) el.style.opacity = '1';
+            });
+            // If GSAP isn't loaded, no point in proceeding with GSAP-dependent code
+            // return; // Optionally return early
+        } else {
+            console.log('GSAP library loaded.');
+            try {
+                gsap.registerPlugin(ScrollTrigger, SplitText, ScrollToPlugin); 
+                console.log('GSAP plugins registered.');
+            } catch(e) {
+                console.error('Error registering GSAP plugins:', e);
+            }
+        }
 
         const mainHeader = document.getElementById('mainHeader');
         const menuToggle = document.getElementById('menuToggle');
@@ -956,20 +992,49 @@
         const cursorFollower = document.querySelector('.cursor-follower');
         let sections = []; 
 
+        // Current Year
+        const currentYearEl = document.getElementById('currentYear');
+        if (currentYearEl) {
+            currentYearEl.textContent = new Date().getFullYear();
+        }
+
         if ('scrollRestoration' in history) {
              history.scrollRestoration = 'manual';
         }
+
         window.addEventListener('load', () => {
+             console.log('Window load event fired.');
              window.scrollTo(0, 0);
              sections = gsap.utils.toArray('main section'); 
+             console.log('Sections found for GSAP:', sections.length);
              try {
                 playInitialAnimations(); 
                 setupScrollTriggers();   
                 ScrollTrigger.refresh(); 
+                console.log('Initial animations and ScrollTriggers setup attempted.');
              } catch (e) {
-                console.error("Error during initial setup on load:", e);
-                // As a fallback, make sections visible if JS errors occur
-                document.querySelectorAll('main section').forEach(s => s.style.opacity = 1);
+                console.error("Error during initial GSAP setup on window.load:", e);
+                // Enhanced Fallback: Attempt to make all animated sections visible due to error.
+                const elementsToForceShow = [
+                    'main section', // covers all sections directly
+                    '.hero-content h1', '.hero-content .subtitle', '.hero-content .cta-button',
+                    '#about h2', '#about p', '.about-image-placeholder',
+                    '#services h2', '.service-item',
+                    '#portfolio h2', '.portfolio-item', '.portfolio-slideshow-mobile-container',
+                    '#why-us h2', '#why-us .why-us-description', '.why-us-background-wrapper', '.why-us-point',
+                    '#contact h2', '#contact > p', '.contact-form', '.contact-form .form-field', '.contact-form button',
+                    '.main-footer',
+                    '.main-nav ul li' // for header nav items
+                ];
+                elementsToForceShow.forEach(selector => {
+                    document.querySelectorAll(selector).forEach(el => {
+                        if(el) {
+                            el.style.opacity = '1';
+                            el.style.transform = 'none'; // Reset transform as well
+                        }
+                    });
+                });
+                console.log('Fallback: Attempted to make all animated elements visible due to GSAP setup error.');
              }
              checkAndInitSlideshow(); // Initialize or adjust mobile slideshow
         });
@@ -1004,27 +1069,47 @@
         }, false);
 
         if (menuToggle && mainNav) {
+            console.log('DEBUG: Menu toggle and mainNav found. Attaching listener.');
             menuToggle.addEventListener('click', function() {
+                console.log('DEBUG: Menu toggle clicked.');
                 const isExpanded = mainNav.classList.toggle('active');
                 menuToggle.classList.toggle('open');
-                menuToggle.setAttribute('aria-expanded', String(isExpanded)); // Ensure string value
+                menuToggle.setAttribute('aria-expanded', String(isExpanded));
                 body.classList.toggle('modal-open', isExpanded && window.innerWidth <= 768);
 
                 if (isExpanded && window.innerWidth <= 768) {
+                    console.log('DEBUG: Mobile menu expanded, attempting to animate items.');
                     const mobileNavItems = mainNav.querySelectorAll('ul li');
                     if (mobileNavItems.length > 0) {
-                         gsap.fromTo(mobileNavItems,
-                            { opacity: 0, y: -15 },
-                            { opacity: 1, y: 0, duration: 0.3, stagger: 0.07, ease: "power2.out", delay: 0.1 }
-                        );
+                         console.log(`DEBUG: Found ${mobileNavItems.length} mobile nav items to animate.`);
+                         // Ensure GSAP is available before using it here
+                         if (typeof gsap !== 'undefined') {
+                            gsap.fromTo(mobileNavItems,
+                                { opacity: 0, y: -15 },
+                                { opacity: 1, y: 0, duration: 0.3, stagger: 0.07, ease: "power2.out", delay: 0.1 }
+                            );
+                         } else {
+                             console.warn('GSAP not available for mobile menu item animation. Setting opacity directly.');
+                             mobileNavItems.forEach(item => item.style.opacity = '1');
+                         }
+                    } else {
+                        console.log('DEBUG: No mobile nav items found to animate.');
                     }
+                } else {
+                     console.log('DEBUG: Mobile menu collapsed or not in mobile view for item animation.');
                 }
             });
+        } else {
+            console.error('DEBUG: Menu toggle or mainNav element NOT FOUND!');
         }
 
         navLinks.forEach(link => {
             link.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                console.log(`Nav link clicked: ${targetId}`);
+
                 if (mainNav && mainNav.classList.contains('active')) {
+                    console.log('Closing active mobile menu due to nav link click.');
                     mainNav.classList.remove('active');
                     if (menuToggle) {
                         menuToggle.classList.remove('open');
@@ -1032,7 +1117,7 @@
                     }
                     body.classList.remove('modal-open');
                 }
-                const targetId = this.getAttribute('href');
+                
                 if (targetId && targetId.startsWith('#')) {
                     e.preventDefault(); 
                     const targetElement = document.querySelector(targetId);
@@ -1041,24 +1126,39 @@
                          if (mainHeader) {
                             offsetYValue = mainHeader.offsetHeight + (window.innerWidth <= 768 ? 10 : 20);
                          }
-                         gsap.to(window, {
-                            duration: 1.0, // Slightly faster scroll
-                            scrollTo: { y: targetId, offsetY: offsetYValue },
-                            ease: "power2.inOut"
-                        });
+                         console.log(`Scrolling to ${targetId} with offset ${offsetYValue}`);
+                         if (typeof gsap !== 'undefined') {
+                            gsap.to(window, {
+                                duration: 1.0,
+                                scrollTo: { y: targetId, offsetY: offsetYValue },
+                                ease: "power2.inOut"
+                            });
+                         } else {
+                             // Fallback scroll if GSAP not available or ScrollToPlugin failed
+                             const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - offsetYValue;
+                             window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+                             console.warn('GSAP ScrollTo not available, using native scroll.');
+                         }
+                    } else {
+                        console.warn(`Target element for ${targetId} not found.`);
                     }
                 }
             });
         });
         
         function setupScrollTriggers() {
+            if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+                console.warn('GSAP or ScrollTrigger not available for setupScrollTriggers.');
+                return;
+            }
             if (sections.length === 0) {
                 console.warn("Sections array is empty for ScrollTrigger setup.");
                 return;
             }
+            console.log("Setting up ScrollTriggers for sections.");
             sections.forEach((section) => {
-                if (!section || !section.id) { // Added check for section.id
-                    // console.warn("Skipping ScrollTrigger for invalid section:", section);
+                if (!section || !section.id) {
+                    console.warn("Skipping ScrollTrigger for invalid section:", section);
                     return; 
                 }
                 ScrollTrigger.create({
@@ -1084,7 +1184,7 @@
                      }
                      if (currentSectionId) {
                          setActiveNavLink(currentSectionId);
-                     } else if (window.pageYOffset < (sections[0] && sections[0].offsetTop ? sections[0].offsetTop - headerHeight : 0)) {
+                     } else if (sections[0] && window.pageYOffset < (sections[0].offsetTop - headerHeight) ) {
                          navLinks.forEach(l => l.classList.remove('active'));
                      }
                  }
@@ -1104,14 +1204,26 @@
             if (!sectionId) return;
              const link = document.querySelector(`.main-nav a[href="#${sectionId}"]`);
              if (link) link.classList.remove('active');
-             if (goingUp && sections.length > 0 && sectionId === sections[0].id) {
+             if (goingUp && sections.length > 0 && sections[0] && sectionId === sections[0].id) {
                  navLinks.forEach(l => l.classList.remove('active'));
              }
         }
         
         function playInitialAnimations() {
             console.log("playInitialAnimations called");
-            const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
+            if (typeof gsap === 'undefined') {
+                console.warn('GSAP not available for playInitialAnimations.');
+                // Manually ensure visibility if CSS didn't catch it or was reverted
+                 document.querySelectorAll('.main-nav ul li, .hero-content h1, .hero-content .subtitle, .hero-content .cta-button').forEach(el => {
+                    if(el) el.style.opacity = '1';
+                });
+                return;
+            }
+
+            const tl = gsap.timeline({ 
+                defaults: { ease: "power2.out" },
+                onComplete: () => console.log("Initial animation timeline complete.") 
+            });
 
             // Header
             if (mainHeader) {
@@ -1123,64 +1235,50 @@
                 console.warn("Main header not found for initial animation.");
             }
             
-            // --- SIMPLIFIED HERO ANIMATION ---
             const heroH1 = document.querySelector('.hero-content h1');
             const heroSubtitle = document.querySelector('.hero-content .subtitle');
             const heroCTA = document.querySelector('.hero-content .cta-button');
 
-            if (heroH1) { // Just make H1 visible for now, remove SplitText temporarily
-                tl.to(heroH1, {opacity: 1, y:0, duration: 0.1}, "heroStart"); // Simple reveal
+            if (heroH1) { 
+                tl.fromTo(heroH1, {opacity: 0, y:20}, {opacity: 1, y:0, duration: 0.6}, "heroStart"); 
             } else { console.warn("Hero H1 not found");}
 
             if (heroSubtitle) {
-                tl.fromTo(heroSubtitle, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.7, delay:0.2 }, "heroStart");
+                tl.fromTo(heroSubtitle, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.7, delay:0.1 }, "heroStart");
             } else { console.warn("Hero subtitle not found"); }
             if (heroCTA) {
-                tl.fromTo(heroCTA, { opacity: 0, y: 30, scale:0.9 }, { opacity: 1, y: 0, scale:1, duration: 0.7, ease: "back.out(1.7)", delay:0.4 }, "heroStart");
+                tl.fromTo(heroCTA, { opacity: 0, y: 30, scale:0.9 }, { opacity: 1, y: 0, scale:1, duration: 0.7, ease: "back.out(1.7)", delay:0.2 }, "heroStart");
             } else { console.warn("Hero CTA not found"); }
 
 
-            // --- SIMPLIFIED SECTION REVEALS ---
-            // Make all main sections visible with a basic fade-in
-            // This is a broad stroke; specific staggered animations will be layered back in once this works.
-             gsap.utils.toArray('main section').forEach((section, index) => {
+            // General Section Reveals (using ScrollTrigger)
+            // The global CSS change `main section { opacity: 1; }` makes this less critical for initial visibility
+            // but these animations add the staggered scroll effect.
+            // If the global CSS is reverted, these become primary for reveal.
+            gsap.utils.toArray('main section').forEach((section, index) => {
                 if (!section) return;
+                // Ensure section starts at opacity 0 if it's meant to be animated in by ScrollTrigger
+                // This might conflict with the global CSS opacity: 1 for debugging.
+                // For now, let's assume the global CSS rule is temporary for debugging.
+                // To make animations work as intended later, section opacity should be 0 initially.
+                 gsap.set(section, { opacity: 0, y: 20 }); // Set initial state for animation
+
                 gsap.to(section, {
                     opacity: 1,
-                    y: 0, // Assuming initial transform is handled by CSS if any for setup
+                    y: 0, 
                     duration: 0.8,
-                    delay: 0.5 + (index * 0.1), // Basic stagger
+                    // delay: 0.1 + (index * 0.05), // Removed page-load delay, rely on ScrollTrigger
                     scrollTrigger: {
                         trigger: section,
-                        start: "top 90%", // Trigger a bit earlier
+                        start: "top 85%", // Trigger a bit earlier
                         toggleActions: "play none none none",
-                        once: true // Play animation only once for simplicity now
+                        once: true,
+                        onEnter: () => console.log(`ScrollTrigger entered for section: ${section.id || index}`)
                     }
                 });
             });
             
-            // Commenting out more complex, element-specific animations for now to ensure basic visibility
-            /*
-            const aboutSection = document.getElementById('about');
-            if (aboutSection) { // ... (complex about animations) ... }
-
-            const servicesSection = document.getElementById('services');
-            if (servicesSection) { // ... (complex service animations) ... }
-            
-            const portfolioSection = document.getElementById('portfolio');
-            if (portfolioSection) { // ... (complex portfolio animations) ... }
-
-            const whyUsSection = document.getElementById('why-us');
-            if (whyUsSection) { // ... (complex why-us animations) ... }
-
-            const contactSection = document.getElementById('contact');
-            if (contactSection) { // ... (complex contact animations) ... }
-            
-            const footerEl = document.querySelector('.main-footer');
-            if (footerEl) { // ... (footer animation) ... }
-            */
-            console.log("playInitialAnimations finished basic setup");
-
+            console.log("playInitialAnimations setup finished.");
         }
 
 
@@ -1198,11 +1296,14 @@
             portfolioModal.classList.add('active');
             body.classList.add('modal-open'); 
             const modalContent = portfolioModal.querySelector('.modal-content');
-            if (modalContent) {
+            if (modalContent && typeof gsap !== 'undefined') {
                 gsap.fromTo(modalContent, 
                     { scale: 0.8, opacity: 0, y: 20 }, 
                     { scale: 1, opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }
                 );
+            } else if (modalContent) { // Fallback if GSAP not available
+                modalContent.style.transform = 'scale(1) translateY(0)';
+                modalContent.style.opacity = '1';
             }
             modalCloseButton.focus(); 
         }
@@ -1210,7 +1311,7 @@
         function closeModal() {
             if (!portfolioModal) return; 
             const modalContent = portfolioModal.querySelector('.modal-content');
-            if (modalContent) {
+            if (modalContent && typeof gsap !== 'undefined') {
                 gsap.to(modalContent, {
                     scale: 0.8, opacity: 0, y: 20, duration: 0.3, ease: "power2.in",
                     onComplete: () => {
@@ -1219,7 +1320,11 @@
                         if (previouslyFocusedElement) previouslyFocusedElement.focus();
                     }
                 });
-            } else { 
+            } else { // Fallback if GSAP not available
+                if (modalContent) {
+                    modalContent.style.transform = 'scale(0.8) translateY(20px)';
+                    modalContent.style.opacity = '0';
+                }
                 portfolioModal.classList.remove('active');
                 body.classList.remove('modal-open'); 
                 if (previouslyFocusedElement) previouslyFocusedElement.focus();
@@ -1264,12 +1369,16 @@
         let mobileSlides = []; 
 
         function initializeMobileSlideshow() {
+            console.log("Initializing mobile slideshow...");
             if (slideshowInitialized || !slideshowContainer || !slideshowTrack || !portfolioItemsDataSource || portfolioItemsDataSource.length === 0) {
                  if (slideshowContainer && (!portfolioItemsDataSource || portfolioItemsDataSource.length === 0)) {
+                    console.log("No portfolio items to display in slideshow.");
                     slideshowContainer.innerHTML = '<p class="slideshow-no-items">No projects to display.</p>';
                     if(prevButton) prevButton.style.display = 'none'; 
                     if(nextButton) nextButton.style.display = 'none';
                     if(indicatorsContainer) indicatorsContainer.style.display = 'none';
+                } else {
+                    console.log("Slideshow already initialized or missing essential elements/data.");
                 }
                 return;
             }
@@ -1311,6 +1420,7 @@
             });
             
             slideshowInitialized = true; 
+            console.log("Mobile slideshow initialized with slides:", mobileSlides.length);
             updateSlideshowUI(); 
             goToSlide(0, true); 
         }
@@ -1319,17 +1429,24 @@
             if (!slideshowTrack || mobileSlides.length === 0) return;
             const totalSlides = mobileSlides.length;
         
-            currentSlideIndex = (index % totalSlides + totalSlides) % totalSlides;
+            currentSlideIndex = (index % totalSlides + totalSlides) % totalSlides; // Ensure positive index
 
-            // Simplified transition for debugging
-            gsap.to(slideshowTrack, { 
-                xPercent: -currentSlideIndex * 100, 
-                duration: instant ? 0 : 0.5, 
-                ease: "power2.inOut"
-            });
-            mobileSlides.forEach((slide, i) => {
-                 gsap.to(slide, { opacity: i === currentSlideIndex ? 1 : 0.5, duration: instant ? 0 : 0.3 });
-            });
+            console.log(`Going to slide ${currentSlideIndex}`);
+            if (typeof gsap !== 'undefined') {
+                gsap.to(slideshowTrack, { 
+                    xPercent: -currentSlideIndex * 100, 
+                    duration: instant ? 0 : 0.5, 
+                    ease: "power2.inOut"
+                });
+                mobileSlides.forEach((slide, i) => {
+                     gsap.to(slide, { opacity: i === currentSlideIndex ? 1 : 0.5, duration: instant ? 0 : 0.3 });
+                });
+            } else { // Fallback if GSAP not available
+                slideshowTrack.style.transform = `translateX(${-currentSlideIndex * 100}%)`;
+                mobileSlides.forEach((slide, i) => {
+                    slide.style.opacity = i === currentSlideIndex ? '1' : '0.5';
+                });
+            }
             updateIndicators(); 
         }
 
@@ -1361,9 +1478,11 @@
         if (nextButton) nextButton.addEventListener('click', () => goToSlide(currentSlideIndex + 1));
         
         function checkAndInitSlideshow() {
-            if (typeof window === 'undefined') return; // Guard against non-browser environments
+            if (typeof window === 'undefined') return; 
             const isMobileView = window.innerWidth <= 768;
             const desktopGrid = document.querySelector('.portfolio-grid');
+
+            console.log(`checkAndInitSlideshow: isMobileView = ${isMobileView}, slideshowInitialized = ${slideshowInitialized}`);
 
             if (isMobileView) {
                 if (!slideshowInitialized) { 
@@ -1374,48 +1493,79 @@
             } else { 
                 if (slideshowContainer) slideshowContainer.style.display = 'none';
                 if (desktopGrid) desktopGrid.style.display = 'grid'; 
-                if (slideshowInitialized && desktopGrid) {
+                // If desktop items were hidden by GSAP, ensure they are visible
+                if (slideshowInitialized && desktopGrid && typeof gsap !== 'undefined') {
                      const gridItems = desktopGrid.querySelectorAll('.portfolio-item');
-                     if (gridItems.length > 0) gsap.set(gridItems, {opacity:1, y:0, scale:1});
+                     if (gridItems.length > 0) gsap.set(gridItems, {opacity:1, y:0, scale:1}); // Ensure desktop items are visible if animations had set them to 0
+                } else if (desktopGrid) { // No GSAP, ensure visibility
+                    const gridItems = desktopGrid.querySelectorAll('.portfolio-item');
+                    gridItems.forEach(item => {
+                        item.style.opacity = '1';
+                        item.style.transform = 'none';
+                    });
                 }
             }
         }
 
         window.addEventListener('resize', () => {
+            console.log('Window resize event fired.');
             checkAndInitSlideshow();
-            if (ScrollTrigger) ScrollTrigger.refresh(true); 
+            if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh(true); 
         }); 
-        // checkAndInitSlideshow() is called from window.load
+        // Initial call to checkAndInitSlideshow is now from window.load event.
 
         const contactForm = document.getElementById('contactForm');
         if (contactForm) {
             contactForm.addEventListener('submit', function(e) {
                 e.preventDefault();
+                console.log("Contact form submitted.");
                 const button = contactForm.querySelector('button[type="submit"]');
                 if (!button) return;
                 
-                gsap.to(button, {duration: 0.2, autoAlpha:0.5, pointerEvents: 'none'});
-                button.innerHTML = 'Sending... <i class="fas fa-spinner fa-spin" style="display:inline-block; margin-left:5px;"></i>'; 
+                const originalButtonText = button.childNodes[0].nodeValue.trim(); // Get text before shimmer
+                button.innerHTML = 'Sending... <i class="fas fa-spinner fa-spin" style="display:inline-block; margin-left:5px;"></i><span class="shimmer"></span>'; 
                 button.disabled = true;
+                if (typeof gsap !== 'undefined') {
+                    gsap.to(button, {duration: 0.2, autoAlpha:0.5, pointerEvents: 'none'});
+                } else {
+                    button.style.opacity = '0.5';
+                    button.style.pointerEvents = 'none';
+                }
 
-                setTimeout(() => {
-                    gsap.to(contactForm, {
-                        opacity: 0, duration: 0.5, 
-                        onComplete: () => {
-                            contactForm.style.display = 'none';
-                            const successMsgContainer = contactForm.parentNode;
-                            if (successMsgContainer) {
-                                const successMsg = document.createElement('p');
-                                successMsg.innerHTML = 'Thank you! <br/>Your vision is on its way to us.';
-                                successMsg.style.textAlign = 'center';
-                                successMsg.style.color = 'var(--accent-primary)';
-                                successMsg.style.fontSize = '1.2rem';
-                                successMsg.style.opacity = '0';
-                                successMsgContainer.insertBefore(successMsg, contactForm); // Insert before the hidden form
-                                gsap.fromTo(successMsg, {opacity:0, y:20}, {opacity:1, y:0, duration:0.6, ease:'power2.out'});
+
+                setTimeout(() => { // Simulate form submission
+                    if (typeof gsap !== 'undefined') {
+                        gsap.to(contactForm, {
+                            opacity: 0, duration: 0.5, 
+                            onComplete: () => {
+                                contactForm.style.display = 'none';
+                                const successMsgContainer = contactForm.parentNode;
+                                if (successMsgContainer) {
+                                    const successMsg = document.createElement('p');
+                                    successMsg.innerHTML = 'Thank you! <br/>Your vision is on its way to us.';
+                                    successMsg.style.textAlign = 'center';
+                                    successMsg.style.color = 'var(--accent-primary)';
+                                    successMsg.style.fontSize = '1.2rem';
+                                    successMsg.style.opacity = '0';
+                                    successMsgContainer.insertBefore(successMsg, contactForm); 
+                                    gsap.fromTo(successMsg, {opacity:0, y:20}, {opacity:1, y:0, duration:0.6, ease:'power2.out'});
+                                }
                             }
+                        });
+                    } else { // Fallback if GSAP not available
+                        contactForm.style.opacity = '0';
+                        contactForm.style.display = 'none';
+                        const successMsgContainer = contactForm.parentNode;
+                        if (successMsgContainer) {
+                            const successMsg = document.createElement('p');
+                            successMsg.innerHTML = 'Thank you! <br/>Your vision is on its way to us.';
+                            successMsg.style.textAlign = 'center';
+                            successMsg.style.color = 'var(--accent-primary)';
+                            successMsg.style.fontSize = '1.2rem';
+                            successMsg.style.opacity = '1'; // Show directly
+                            successMsgContainer.insertBefore(successMsg, contactForm);
                         }
-                    });
+                    }
                 }, 1500);
             });
         }
@@ -1424,3 +1574,4 @@
 
 </body>
 </html>
+
