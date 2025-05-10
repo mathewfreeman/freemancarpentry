@@ -4,25 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Twin Elm Banners - Custom Horse Stall Banners</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         /* --- Google Fonts --- */
-        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,700;1,400&family=IBM+Plex+Sans:wght@200;300;400;500;600&display=swap');
+        /* Lato is now imported via <link> tag in <head> */
 
         /* --- Variables --- */
         :root {
             --bg-dark: #131516;
             --accent-primary: #04d9c4; /* Teal/Turquoise - can be themed for equestrian if desired */
-            --accent-secondary: #3a5ba0; /* Deep Blue - can be themed */
+            --accent-secondary: #3a5ba0; /* Deep Blue - can be themed, kept for general accents */
             --accent-secondary-glass: rgba(0, 33, 77, 0.85); 
             --neutral-gray: #5f6b7a;
             --text-light: #F4F4F4;
-            --text-dark: #222526;
+            --text-dark: #222526; /* This will serve as 'Black' */
             --background-light: #FDFDFD;
             --background-translucent-light: rgba(255, 255, 255, 0.05); 
 
-            --font-logo: 'IBM Plex Serif', serif; 
-            --font-body: 'IBM Plex Sans', sans-serif;
+            /* Twin Elm Training Specific Colors */
+            --twin-elm-cobalt: #0047AB; /* Standard Cobalt Blue */
+            --twin-elm-black: var(--text-dark); /* Using existing dark text for black */
+
+            --font-logo: 'Lato', sans-serif; /* Changed to Lato */
+            --font-body: 'Lato', sans-serif; /* Changed to Lato */
 
             --transition-speed-fast: 0.2s;
             --transition-speed-medium: 0.4s;
@@ -51,13 +58,13 @@
             background-color: var(--background-light);
             color: var(--text-dark);
             overflow-x: hidden;
-            font-weight: 300;
+            font-weight: 400; /* Lato default regular weight */
         }
         body.modal-open { 
             overflow: hidden;
         }
         h1, h2, h3, h4 {
-            font-weight: 500;
+            font-weight: 700; /* Bolder Lato for headings */
             color: var(--text-dark);
             letter-spacing: -0.02em;
         }
@@ -65,20 +72,20 @@
             font-size: clamp(2.2rem, 5vw, 3.5rem);
             margin-bottom: 2.5rem;
             text-align: center;
-            color: var(--accent-secondary);
-            font-weight: 600;
+            color: var(--accent-secondary); /* Keeping general accent for section titles */
+            font-weight: 700;
         }
         h3 {
             font-size: clamp(1.5rem, 4vw, 1.8rem);
             margin-bottom: 1rem;
             color: var(--accent-primary);
-            font-weight: 500;
+            font-weight: 700;
         }
         p {
             margin-bottom: 1.5rem;
             font-size: clamp(1rem, 2.5vw, 1.15rem);
             color: var(--neutral-gray);
-            font-weight: 300;
+            font-weight: 400; /* Regular Lato for paragraphs */
             max-width: 700px; 
         }
         .container {
@@ -98,7 +105,7 @@
         }
         .highlight {
             color: var(--accent-primary);
-            font-weight: 500;
+            font-weight: 700; /* Bold Lato for highlight */
         }
 
         /* --- Frosted Glass Header --- */
@@ -131,7 +138,7 @@
         .logo a {
             font-family: var(--font-logo); 
             font-size: clamp(1.8rem, 4vw, 2.2rem); 
-            font-weight: 500;
+            font-weight: 700; /* Bold Lato for logo */
             color: var(--accent-secondary);
             text-decoration: none;
             letter-spacing: -0.03em;
@@ -140,13 +147,13 @@
         .logo a:hover {
             color: var(--accent-primary);
         }
-        .logo-maintext { /* Updated class name */
+        .logo-maintext {
              color: var(--text-dark);
              font-family: var(--font-logo); 
         }
-        .logo a .co-highlight { /* This can be adjusted or removed if the new name doesn't use it */
+        .logo a .co-highlight { 
             color: var(--accent-primary);
-            font-weight: 400; 
+            font-weight: 700; 
              font-family: var(--font-logo); 
         }
         .main-nav ul {
@@ -159,7 +166,7 @@
         .main-nav ul li a {
             color: var(--neutral-gray);
             text-decoration: none;
-            font-weight: 400;
+            font-weight: 400; /* Regular Lato for nav links */
             font-size: 1rem;
             padding: 0.3rem 0.1rem;
             position: relative;
@@ -214,7 +221,7 @@
 
         /* --- Hero Section --- */
         .hero {
-            background: linear-gradient(135deg, #eef4f8 0%, var(--background-light) 100%); /* Consider horse-themed subtle background image/pattern later */
+            background: linear-gradient(135deg, #eef4f8 0%, var(--background-light) 100%);
             color: var(--text-dark);
             min-height: 100vh;
             display: flex;
@@ -229,28 +236,36 @@
             max-width: 950px;
             position: relative;
             z-index: 2;
-            text-align: center; /* Center hero text */
+            text-align: center; 
         }
+        /* --- Hero Text Styling & Responsive Adjustments --- */
         .hero-content h1 {
-            font-family: var(--font-body);
-            font-size: clamp(2.2rem, 6vw, 4.5rem); /* Adjusted size slightly */
-            font-weight: 600;
+            font-family: var(--font-body); /* Lato */
+            font-size: clamp(2.2rem, 6vw, 4.0rem); 
+            font-weight: 700; /* Bold Lato */
             margin-bottom: 1.5rem;
             color: var(--text-dark);
-            line-height: 1.25;
+            line-height: 1.2; 
             letter-spacing: -0.04em;
         }
-        .hero-content h1 .brand-name-hero { /* Updated class name */
-            font-family: var(--font-logo); 
-            color: var(--accent-secondary);
-            font-weight: 700; 
+        .hero-content h1 .hero-line {
+            display: inline; 
         }
+        .hero-content h1 .hero-line-brand {
+            font-family: var(--font-logo); /* Lato, but can be styled distinctively */
+            color: var(--accent-secondary); /* Default desktop color for brand */
+            font-weight: 900; /* Extra Bold Lato for brand */
+        }
+        .hero-content h1 .hero-line-descriptor {
+           font-weight: 700; /* Bold Lato */
+        }
+
         .hero-content .subtitle {
             font-size: clamp(1.2rem, 3vw, 1.6rem);
             margin-bottom: 2.5rem;
-            font-weight: 300;
+            font-weight: 300; /* Light Lato for subtitle */
             color: var(--neutral-gray);
-            max-width: 700px; /* Increased max-width for centered text */
+            max-width: 700px; 
             margin-left: auto;
             margin-right: auto;
             line-height: 1.6;
@@ -260,7 +275,7 @@
             color: var(--text-light); 
             padding: 1rem 2.8rem;
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 700; /* Bold Lato for button */
             border-radius: 50px;
             transition: all var(--transition-speed-medium) cubic-bezier(0.19, 1, 0.22, 1);
             display: inline-block;
@@ -272,7 +287,7 @@
             transform: translateY(-4px) scale(1.02);
             box-shadow: 0 8px 25px rgba(4, 217, 196, 0.4);
         }
-        .hero::before, .hero::after { /* Decorative elements, can be kept or modified */
+        .hero::before, .hero::after { 
             content: ''; position: absolute; border-radius: 50%; opacity: 0.08;
             z-index: 1; pointer-events: none;
         }
@@ -298,82 +313,88 @@
         #about h2 { text-align: left; }
         #about p { max-width: none; }
         
-        /* --- Stall Sign CSS (from previous step) --- */
-        .stall-sign-wrapper { /* Added wrapper for layout control if needed */
+        /* --- Modern Stall Sign CSS --- */
+        .stall-sign-wrapper {
             display: flex;
             justify-content: center;
             align-items: center;
             width: 100%;
+            padding: 1rem 0; 
         }
         .stall-sign-container {
-            width: 300px; 
-            height: 450px; 
-            border: 3px solid #654321; 
-            background-color: #f0e6d2; 
-            padding: 20px;
+            width: 280px; 
+            height: 420px; 
+            background-color: #ffffff; 
+            border: 1px solid #e0e0e0; 
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); 
+            border-radius: var(--border-radius-main); 
+            padding: 25px;
             box-sizing: border-box;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             align-items: center;
-            font-family: 'Georgia', serif; 
+            font-family: var(--font-body); /* Lato */
             text-align: center;
-            margin: 0 auto; /* Centered within its column */
-            box-shadow: 5px 5px 10px rgba(0,0,0,0.2); 
+            margin: 0 auto;
         }
-        .horse-name {
-            font-size: 1.8em; 
-            color: #5d4037; 
+        .stall-sign-container .horse-name {
+            font-size: 1.7em; 
+            color: var(--twin-elm-black); 
+            font-weight: 700; /* Bold Lato */
             margin-bottom: 15px;
-            font-weight: bold;
             width: 100%;
-            padding: 10px 0;
-            border-bottom: 1px dashed #8d6e63; 
+            line-height: 1.3;
         }
-        .photo-area {
-            width: 220px; 
-            height: 220px; 
-            border: 2px dashed #8d6e63; 
-            background-color: #ffffff; 
+        .stall-sign-container .photo-area {
+            width: 100%; 
+            height: 200px; 
+            border: 2px dashed var(--twin-elm-cobalt); 
+            background-color: #f8f9fa; 
             display: flex;
             justify-content: center;
             align-items: center;
-            color: #a1887f; 
+            color: var(--neutral-gray);
             font-style: italic;
-            margin-bottom: 15px;
-            overflow: hidden; 
+            font-size: 0.9em;
+            font-weight: 300; /* Light Lato for placeholder */
+            margin-bottom: 20px;
+            border-radius: calc(var(--border-radius-main) - 6px); 
+            overflow: hidden;
         }
-        .photo-area img { 
+        .stall-sign-container .photo-area img { 
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-        .barn-name {
-            font-size: 1.4em;
-            color: #5d4037; 
-            font-weight: bold;
+        .stall-sign-container .barn-name {
+            font-size: 1.3em; 
+            color: var(--twin-elm-cobalt); 
+            font-weight: 700; /* Bold Lato */
             width: 100%;
-            padding-top: 10px;
-            border-top: 1px dashed #8d6e63; 
+            text-transform: uppercase; 
+            letter-spacing: 0.05em; 
+            padding-top: 10px; 
+            border-top: 1px solid #e0e0e0; 
         }
 
         @media (min-width: 768px) {
             #about .container { 
-                grid-template-columns: 2fr 1fr; /* Adjusted ratio for text and sign */
+                grid-template-columns: 2fr 1fr; 
                 gap: 4rem; 
             }
         }
 
-        /* --- Services Section (Now "Banner Features") --- */
-        #banner-features { /* Renamed ID for clarity, update HTML and Nav link */
-            background-color: #f9f9f9; /* Light grey background for visual separation */
+        /* --- Banner Features Section --- */
+        #banner-features { 
+            background-color: #f9f9f9; 
         }
-        .feature-grid { display: grid; gap: 2.5rem; } /* Renamed class */
+        .feature-grid { display: grid; gap: 2.5rem; } 
         @media (min-width: 1024px) { .feature-grid { grid-template-columns: repeat(4, 1fr); } }
         @media (min-width: 600px) and (max-width: 1023px) { .feature-grid { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 599px) { .feature-grid { grid-template-columns: 1fr; } }
         
-        .feature-item { /* Renamed class */
+        .feature-item { 
             background: rgba(255, 255, 255, 0.8); 
             backdrop-filter: blur(10px) saturate(160%);
             -webkit-backdrop-filter: blur(10px) saturate(160%); 
@@ -400,7 +421,7 @@
             transition: transform var(--transition-speed-medium) ease;
         }
         .feature-item:hover .feature-item-icon { transform: scale(1.1) rotate(-5deg); }
-        .feature-item h3 { color: var(--text-dark); font-weight: 500; }
+        .feature-item h3 { color: var(--text-dark); font-weight: 700; /* Bold Lato */ }
 
 
         /* --- Contact Section --- */
@@ -409,7 +430,8 @@
         .contact-form input, .contact-form textarea {
             width: 100%; padding: 1.2rem 1.5rem; border: 1px solid #dde2e7; border-radius: 8px;
             background-color: rgba(255,255,255,0.8); color: var(--text-dark);
-            font-family: var(--font-body); font-size: 1rem; font-weight: 400;
+            font-family: var(--font-body); /* Lato */
+            font-size: 1rem; font-weight: 400; /* Regular Lato */
             transition: border-color var(--transition-speed-fast), box-shadow var(--transition-speed-fast);
         }
         .contact-form input::placeholder, .contact-form textarea::placeholder { color: var(--neutral-gray); opacity: 0.8; }
@@ -431,14 +453,17 @@
             font-size: 0.9rem; 
             margin-bottom: 0.4rem; 
             max-width: none; 
+            font-weight: 300; /* Light Lato for footer */
         }
-        .main-footer .footer-copyright .brand-name-footer { /* Updated class */
-             font-family: var(--font-logo); 
+        .main-footer .footer-copyright .brand-name-footer { 
+             font-family: var(--font-logo); /* Lato */
+             font-weight: 700; /* Bold Lato */
         }
         .main-footer a { 
             color: var(--accent-primary); 
             text-decoration: none; 
             transition: color var(--transition-speed-fast); 
+            font-weight: 400; /* Regular Lato for links */
         }
         .main-footer a:hover { 
             color: var(--text-light); 
@@ -456,31 +481,51 @@
                 border-top: 1px solid rgba(0,0,0,0.05);
                 transition: max-height 0.5s cubic-bezier(0.19, 1, 0.22, 1);
             }
-            .main-nav.active { max-height: 350px; } /* Adjust if more/less nav items */
+            .main-nav.active { max-height: 350px; } 
             .main-nav ul { flex-direction: column; align-items: center; padding: 1rem 0; }
             .main-nav ul li { margin: 1rem 0; }
 
             .hero-content {
-                text-align: center; /* Ensured center for mobile */
+                text-align: center; 
                 padding: 0 1.5rem; 
             }
+            /* Mobile adjustments for Hero H1 */
             .hero-content h1 {
-                font-size: clamp(2.0rem, 8vw, 3.0rem);
+                font-size: clamp(1.8rem, 7vw, 2.5rem); 
                 line-height: 1.3;
             }
+            .hero-content h1 .hero-line {
+                display: block; 
+                text-align: center; 
+            }
+            .hero-content h1 .hero-line-brand {
+                color: var(--twin-elm-cobalt); 
+                font-family: var(--font-logo); /* Lato */
+                font-weight: 900; /* Extra Bold Lato */
+                margin-bottom: 0.25rem; 
+            }
+            .hero-content h1 .hero-line-descriptor {
+                color: var(--text-dark); 
+                font-weight: 700; /* Bold Lato */
+                 font-size: 0.9em; 
+            }
+
              @media (max-width: 400px) {
                 .hero-content h1 {
-                    font-size: 1.8rem;
+                    font-size: 1.6rem; 
                     line-height: 1.35;
+                }
+                .hero-content h1 .hero-line-descriptor {
+                    font-size: 0.85em;
                 }
                 .hero-content .subtitle { font-size: 1rem; }
             }
             .hero-content .subtitle { font-size: clamp(1.1rem, 4vw, 1.3rem); }
             .hero::before, .hero::after { display: none; }
 
-            #about .container { grid-template-columns: 1fr; } /* Stack About content on mobile */
+            #about .container { grid-template-columns: 1fr; } 
             #about h2 { text-align: center; }
-            .stall-sign-container { margin-top: 2rem; margin-bottom: 2rem;} /* Add some space around sign on mobile */
+            .stall-sign-container { margin-top: 2rem; margin-bottom: 2rem;} 
             
         }
         .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0;}
@@ -512,7 +557,10 @@
     <main>
         <section id="hero" class="hero">
             <div class="hero-content">
-                <h1>Show-Stopping Stall Banners for <span class="brand-name-hero">Twin Elm Training</span></h1>
+                <h1>
+                    <span class="hero-line hero-line-brand">Twin Elm Training</span>
+                    <span class="hero-line hero-line-descriptor">Show-Stopping Stall Banners</span>
+                </h1>
                 <p class="subtitle">Elevate your presence at every show with custom-designed, professional stall banners for your Twin Elm Training horse. <span class="highlight">Only $50 per horse!</span> Skip the DIY hassle and showcase your champion in style.</p>
                 <a href="#contact" class="cta-button">Order Your Banner Today</a>
             </div>
@@ -527,7 +575,7 @@
             <div class="stall-sign-wrapper">
                 <div class="stall-sign-container">
                     <div class="horse-name">
-                        HORSE'S NAME
+                        CHAMPION'S PRIDE 
                     </div>
                     <div class="photo-area">
                         Horse Photo Here
@@ -539,27 +587,34 @@
             </div>
         </section>
 
-        <section id="banner-features" class="container"> <h2>Premium Banners, Unbeatable Value</h2>
-            <div class="feature-grid"> <div class="feature-item"> <div class="feature-item-content">
-                        <div class="feature-item-icon"><i class="fas fa-horse-head"></i></div> <h3>Exclusive Twin Elm Focus & Value</h3>
+        <section id="banner-features" class="container"> 
+            <h2>Premium Banners, Unbeatable Value</h2>
+            <div class="feature-grid"> 
+                <div class="feature-item"> 
+                    <div class="feature-item-content">
+                        <div class="feature-item-icon"><i class="fas fa-horse-head"></i></div> 
+                        <h3>Exclusive Twin Elm Focus & Value</h3>
                         <p>Specializing in banners for Twin Elm Training allows us to offer custom design and premium printing for just $50 per horse – an unbeatable value compared to DIY materials and effort.</p>
                     </div>
                 </div>
                 <div class="feature-item">
                      <div class="feature-item-content">
-                        <div class="feature-item-icon"><i class="fas fa-palette"></i></div> <h3>Professional & Prestige Design</h3>
+                        <div class="feature-item-icon"><i class="fas fa-palette"></i></div> 
+                        <h3>Professional & Prestige Design</h3>
                         <p>Our designs are clean, professional, and tailored to reflect the prestige of Twin Elm Training, ensuring your horse's stall is both informative and impressive.</p>
                     </div>
                 </div>
                 <div class="feature-item">
                     <div class="feature-item-content">
-                       <div class="feature-item-icon"><i class="fas fa-shield-alt"></i></div> <h3>Premium Quality & Durability</h3>
+                       <div class="feature-item-icon"><i class="fas fa-shield-alt"></i></div> 
+                       <h3>Premium Quality & Durability</h3>
                        <p>Crafted from durable, weather-resistant materials with vibrant, fade-resistant inks, our banners are built to last through the demanding show season.</p>
                     </div>
                 </div>
                 <div class="feature-item">
                     <div class="feature-item-content">
-                        <div class="feature-item-icon"><i class="fas fa-magic"></i></div> <h3>Effortless Process, Stunning Results</h3>
+                        <div class="feature-item-icon"><i class="fas fa-magic"></i></div> 
+                        <h3>Effortless Process, Stunning Results</h3>
                         <p>Simply provide your horse's details, and we handle the rest – from design to print. Get a polished, professional banner without the DIY hassle.</p>
                     </div>
                 </div>
@@ -680,19 +735,17 @@
             });
             if (!current && sections.length > 0 && window.pageYOffset < (sections[0] ? sections[0].offsetTop - headerHeight : 0)) {
                  navLinks.forEach(l => l.classList.remove('active'));
-            } else if (!current && sections.length === 0) { // If no sections, no active links
+            } else if (!current && sections.length === 0) { 
                 navLinks.forEach(l => l.classList.remove('active'));
             }
         }
         setTimeout(initialActiveLink, 150); 
         window.addEventListener('scroll', initialActiveLink); 
 
-        // Contact Form Submission
         const contactForm = document.getElementById('contactForm');
         if (contactForm) {
             contactForm.addEventListener('submit', function(e) {
                 e.preventDefault();
-                // You would typically send data to a server here
                 const tempMsg = document.createElement('p');
                 tempMsg.textContent = 'Thank you for your banner request! We\'ll be in touch soon to confirm details.';
                 tempMsg.style.textAlign = 'center';
@@ -703,8 +756,6 @@
                 setTimeout(() => tempMsg.remove(), 5000);
             });
         }
-
-        // Static year in footer is 2025, so no JS needed to update it.
     });
     </script>
 
