@@ -7,60 +7,59 @@
     <style>
         /* Global Styles - WILD Early 2000s */
         body {
-            font-family: Arial, Helvetica, sans-serif; /* Standard web-safe font */
-            font-size: 14px; /* A bit larger for that classic feel */
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 14px;
             line-height: 1.7;
-            background-color: #000000; /* Dominant Black Background */
-            color: #00FF00; /* Bright Green text on black as a common default */
+            background-color: #000000;
+            color: #00FF00;
             margin: 0;
             padding: 0;
-            /* Using a more reliable generic animated stars, specific old ones are hard to guarantee */
+            /* Using a more generic, likely working animated stars background */
             background-image: url('https://www.animatedimages.org/data/media/467/animated-star-image-0011.gif');
             background-repeat: repeat;
-            background-attachment: fixed; /* Stars stay in place! */
+            background-attachment: fixed;
         }
 
         #modern-site-link-banner-wild {
-            background-color: #00CCCC; /* Bright Teal Banner */
-            color: #000000; /* Black Text on Teal */
+            background-color: #00CCCC;
+            color: #000000;
             text-align: center;
             padding: 10px 0;
             font-size: 16px;
             font-weight: bold;
-            border-bottom: 5px groove #FFFF00; /* Yellow 3D border */
-            position: -webkit-sticky; /* For Safari */
+            border-bottom: 5px groove #FFFF00;
+            position: -webkit-sticky;
             position: sticky;
             top: 0;
-            z-index: 1001; /* Make sure it's on top */
+            z-index: 1001;
         }
         #modern-site-link-banner-wild a {
-            color: #0000FF; /* Bright Blue link */
+            color: #0000FF;
             text-decoration: underline;
-            font-family: "Comic Sans MS", "Comic Sans", cursive; /* For that extra touch */
+            font-family: "Comic Sans MS", "Comic Sans", cursive;
         }
         #modern-site-link-banner-wild a:hover {
-            color: #FF00FF; /* Magenta hover */
-            background-color: #FFFF00; /* Yellow background on hover */
+            color: #FF00FF;
+            background-color: #FFFF00;
         }
 
-        #page-wrapper-wild { /* Main content wrapper */
+        #page-wrapper-wild {
             width: 90%;
-            max-width: 850px; /* Wider than typical GeoCities, but still constrained */
+            max-width: 850px;
             margin: 20px auto;
-            background-color: rgba(0, 0, 50, 0.75); /* Dark, slightly transparent blue over stars */
-            border: 5px ridge #00CCCC; /* Teal 3D border */
-            box-shadow: 0 0 25px #00FFFF, 0 0 10px #FFFFFF inset; /* Glowing effect */
+            background-color: rgba(0, 0, 50, 0.75);
+            border: 5px ridge #00CCCC;
+            box-shadow: 0 0 25px #00FFFF, 0 0 10px #FFFFFF inset;
             padding: 10px;
         }
 
-        /* Header - WILD Style */
         .main-header-wild {
-            background-color: #111111; /* Very Dark Grey, almost black */
+            background-color: #111111;
             padding: 15px;
-            border-bottom: 5px double #00FF00; /* Bright Green double border */
+            border-bottom: 5px double #00FF00;
             text-align: center;
-            /* Using a more generic techno background if the specific GifCities one is unreliable */
-            background-image: url('https://www.animatedimages.org/data/media/58/animated-background-image-0020.gif');
+            /* Generic animated background as specific old ones are unreliable */
+            background-image: url('https://www.animatedimages.org/data/media/58/animated-background-image-0005.gif');
         }
         .logo-container-wild .logo-maugans-wild {
             font-family: "Impact", Haettenschweiler, "Arial Narrow Bold", sans-serif;
@@ -69,372 +68,104 @@
             display: inline-block;
             letter-spacing: 2px;
         }
-        /* Animated Logo Text Colors */
         .logo-maugans-wild .char { display: inline-block; }
-        .logo-maugans-wild .m { color: #00CCCC; } /* Teal */
-        .logo-maugans-wild .a1 { color: #FFFF00; } /* Yellow */
-        .logo-maugans-wild .u { color: #FF00FF; } /* Magenta */
-        .logo-maugans-wild .g { color: #00FF00; } /* Lime */
-        .logo-maugans-wild .a2 { color: #00FFFF; } /* Cyan */
-        .logo-maugans-wild .n { color: #FF6600; } /* Orange */
-        .logo-maugans-wild .s { color: #CC00CC; } /* Purple */
+        .logo-maugans-wild .m { color: #00CCCC; } .logo-maugans-wild .a1 { color: #FFFF00; }
+        .logo-maugans-wild .u { color: #FF00FF; } .logo-maugans-wild .g { color: #00FF00; }
+        .logo-maugans-wild .a2 { color: #00FFFF; } .logo-maugans-wild .n { color: #FF6600; }
+        .logo-maugans-wild .s { color: #CC00CC; }
         .logo-maugans-wild .co { 
             font-family: "Impact", Haettenschweiler, "Arial Narrow Bold", sans-serif;
-            font-size: 48px;
-            color: #00CCCC; /* Solid Teal for Co. */
+            font-size: 48px; color: #00CCCC;
             text-shadow: 2px 2px 0px #000000, -2px -2px 0px #FFFFFF;
         }
          .logo-container-wild a { text-decoration: none; }
          .logo-container-wild .rotating-gif { vertical-align: middle; height: 40px; margin: 0 10px;}
 
-
-        .main-nav-wild ul {
-            list-style: none;
-            padding: 5px 0 0 0;
-            margin: 0;
-            text-align: center;
-        }
-        .main-nav-wild ul li {
-            display: inline-block; 
-            margin: 5px;
-        }
+        .main-nav-wild ul { list-style: none; padding: 5px 0 0 0; margin: 0; text-align: center; }
+        .main-nav-wild ul li { display: inline-block; margin: 5px; }
         .main-nav-wild ul li a {
-            font-family: "Tahoma", Verdana, Arial, sans-serif;
-            font-weight: bold;
-            color: #000000; /* Black text */
-            text-decoration: none;
-            font-size: 15px;
-            padding: 8px 15px;
-            background-color: #00CCCC; /* Teal buttons */
-            border: 3px outset #009999; 
-            border-radius: 8px; 
-            text-shadow: 1px 1px 1px #CCCCCC;
+            font-family: "Tahoma", Verdana, Arial, sans-serif; font-weight: bold; color: #000000;
+            text-decoration: none; font-size: 15px; padding: 8px 15px; background-color: #00CCCC;
+            border: 3px outset #009999; border-radius: 8px; text-shadow: 1px 1px 1px #CCCCCC;
         }
-        .main-nav-wild ul li a:hover {
-            background-color: #FFFF00; /* Yellow hover */
-            color: #FF0000; /* Red text on hover */
-            border-style: inset;
-            border-color: #CC0000;
-        }
+        .main-nav-wild ul li a:hover { background-color: #FFFF00; color: #FF0000; border-style: inset; border-color: #CC0000; }
         
-        /* Content Area - WILD Style */
-        .content-padding-wild {
-            padding: 10px 15px;
-        }
+        .content-padding-wild { padding: 10px 15px; }
 
-        h1, h2, h3, h4 { /* Base for headings */
-            font-family: "Impact", "Arial Black", Gadget, sans-serif;
-            color: #00CCCC; /* Teal default for headings */
-            margin-top: 10px;
-            margin-bottom: 15px;
-            text-align: center;
-            letter-spacing: 1px;
-        }
-        h1.page-title-wild { /* Big Page Titles */
-            font-size: 36px;
-            color: #FFFF00; /* Bright Yellow */
-            text-shadow: 3px 3px 0px #0000FF, -3px -3px 0px #FF0000; /* Blue and Red shadow */
-            padding: 10px;
-            border: 4px groove #00FF00; /* Lime Green 3D border */
-            background-color: rgba(0,0,0,0.5); /* Semi-transparent black bg for title */
-        }
-        h2.section-title-wild { /* Section Titles */
-            font-size: 28px;
-            color: #00FF00; /* Bright Green */
-            border-top: 3px dashed #FFFF00; /* Yellow dashed line */
-            border-bottom: 3px dashed #FFFF00;
-            padding: 8px 0;
-            display: flex; /* To align GIF with text */
-            align-items: center;
-            justify-content: center;
-        }
-        h2.section-title-wild img.heading-gif-wild { 
-            height: 30px; 
-            margin: 0 10px;
-        }
-        h3.subsection-title-wild { 
-            font-size: 22px;
-            color: #FF00FF; /* Magenta */
-            text-decoration: underline;
-            text-decoration-style: wavy;
-            text-decoration-color: #00CCCC; /* Teal wavy underline */
-        }
+        h1, h2, h3, h4 { font-family: "Impact", "Arial Black", Gadget, sans-serif; color: #00CCCC; margin-top: 10px; margin-bottom: 15px; text-align: center; letter-spacing: 1px; }
+        h1.page-title-wild { font-size: 36px; color: #FFFF00; text-shadow: 3px 3px 0px #0000FF, -3px -3px 0px #FF0000; padding: 10px; border: 4px groove #00FF00; background-color: rgba(0,0,0,0.5); }
+        h2.section-title-wild { font-size: 28px; color: #00FF00; border-top: 3px dashed #FFFF00; border-bottom: 3px dashed #FFFF00; padding: 8px 0; display: flex; align-items: center; justify-content: center; }
+        h2.section-title-wild img.heading-gif-wild { height: 30px; margin: 0 10px; }
+        h3.subsection-title-wild { font-size: 22px; color: #FF00FF; text-decoration: underline; text-decoration-style: wavy; text-decoration-color: #00CCCC; }
         
-        p {
-            margin-bottom: 15px;
-            color: #FFFFFF; /* White text on dark background */
-            font-size: 15px;
-        }
-        a {
-            color: #00FFFF; /* Cyan links */
-            text-decoration: underline;
-            font-weight: bold;
-        }
-        a:hover {
-            color: #FFFF00; /* Yellow hover */
-            text-decoration: none;
-            background-color: #333333; /* Dark grey bg on hover */
-        }
+        p { margin-bottom: 15px; color: #FFFFFF; font-size: 15px; }
+        a { color: #00FFFF; text-decoration: underline; font-weight: bold; }
+        a:hover { color: #FFFF00; text-decoration: none; background-color: #333333; }
 
-        hr.section-divider-wild {
-            border: 0;
-            height: 25px; 
-            background-image: url('https://www.fg-a.com/lines/black-orange-flame-animated-line.gif'); /* Example from fg-a.com */
-            background-repeat: repeat-x;
-            background-position: center;
-            margin: 30px 0;
-        }
+        hr.section-divider-wild { border: 0; height: 25px; background-image: url('https://www.fg-a.com/lines/1-rainbow-bar.gif'); background-repeat: repeat-x; background-position: center; margin: 30px 0; } /* fg-a.com rainbow bar */
         
-        /* Hero Section */
-        .hero-wild {
-            padding: 10px 0 20px 0;
-            text-align: center;
-        }
-        .hero-wild .subtitle-wild {
-            font-size: 20px;
-            color: #00FF00; /* Lime Green */
-            margin-top: 10px;
-            margin-bottom: 20px;
-            font-family: "Comic Sans MS", "Comic Sans", cursive;
-            background-color: rgba(0,0,0,0.7);
-            padding:10px;
-            border: 2px dashed #FFFF00;
-            display: inline-block;
-        }
-        .cta-button-wild {
-            display: inline-block;
-            background-color: #FF00FF; /* Magenta CTA */
-            color: #FFFF00 !important; /* Yellow text */
-            padding: 12px 25px;
-            font-size: 20px;
-            font-weight: bold;
-            text-decoration: none !important;
-            border: 4px outset #CC00CC; /* Darker Magenta 3D border */
-            border-radius: 10px;
-            font-family: "Impact", sans-serif;
-            text-shadow: 2px 2px 2px #000000;
-        }
-        .cta-button-wild:hover {
-            background-color: #00FF00; /* Lime Green on hover */
-            color: #000000 !important; /* Black text */
-            border-style: inset;
-            border-color: #00CC00;
-        }
-        .hero-wild img.animated-banner-wild {
-            max-width: 100%;
-            height: auto;
-            border: 3px solid #00CCCC; /* Teal border */
-            margin-bottom: 15px;
-        }
+        .hero-wild { padding: 10px 0 20px 0; text-align: center; }
+        .hero-wild .subtitle-wild { font-size: 20px; color: #00FF00; margin-top: 10px; margin-bottom: 20px; font-family: "Comic Sans MS", "Comic Sans", cursive; background-color: rgba(0,0,0,0.7); padding:10px; border: 2px dashed #FFFF00; display: inline-block; }
+        .cta-button-wild { display: inline-block; background-color: #FF00FF; color: #FFFF00 !important; padding: 12px 25px; font-size: 20px; font-weight: bold; text-decoration: none !important; border: 4px outset #CC00CC; border-radius: 10px; font-family: "Impact", sans-serif; text-shadow: 2px 2px 2px #000000; }
+        .cta-button-wild:hover { background-color: #00FF00; color: #000000 !important; border-style: inset; border-color: #00CC00; }
+        .hero-wild img.animated-banner-wild { max-width: 100%; height: auto; border: 3px solid #00CCCC; margin-bottom: 15px; }
 
-        /* Services Section */
-        .service-item-wild {
-            background-color: rgba(0, 50, 50, 0.7); /* Dark Teal, semi-transparent */
-            border: 2px dashed #00FF00; /* Lime Green dashed border */
-            padding: 15px;
-            margin-bottom: 20px;
-            border-radius: 10px; 
-            text-align: center;
-        }
-        .service-item-wild h3 { /* Uses .subsection-title-wild */
-            margin-top: 0;
-        }
-         .service-item-wild h3 img.service-icon-wild {
-            height: 35px;
-            margin-right: 10px;
-            vertical-align: middle;
-        }
-        .service-item-wild p {
-            color: #DDDDDD; /* Lighter grey text within service items */
-            font-size: 14px;
-        }
+        .service-item-wild { background-color: rgba(0, 50, 50, 0.7); border: 2px dashed #00FF00; padding: 15px; margin-bottom: 20px; border-radius: 10px; text-align: center; }
+        .service-item-wild h3 { margin-top: 0; }
+        .service-item-wild h3 img.service-icon-wild { height: 35px; margin-right: 10px; vertical-align: middle; }
+        .service-item-wild p { color: #DDDDDD; font-size: 14px; }
 
-        /* Portfolio Section */
-        .portfolio-grid-wild {
-            text-align: center; 
-            margin-top: 15px;
-        }
-        .portfolio-item-wild {
-            display: inline-block; 
-            width: 200px; 
-            border: 3px groove #FF00FF; /* Magenta groove border */
-            margin: 10px;
-            padding: 10px;
-            background-color: rgba(50, 0, 50, 0.6); /* Dark Magenta, semi-transparent */
-            vertical-align: top; 
-        }
-        .portfolio-item-wild img {
-            width: 100%;
-            height: 150px; 
-            object-fit: cover;
-            border: 2px solid #FFFF00; /* Yellow border for images */
-            margin-bottom: 8px;
-        }
-        .portfolio-item-wild h4 {
-            font-size: 16px;
-            margin-bottom: 5px;
-            color: #00CCCC; /* Teal */
-            font-family: Tahoma, sans-serif;
-        }
-        .portfolio-item-wild p {
-            font-size: 12px;
-            color: #CCCCCC; /* Light grey */
-            margin-bottom: 0;
-        }
+        .portfolio-grid-wild { text-align: center; margin-top: 15px; }
+        .portfolio-item-wild { display: inline-block; width: 200px; border: 3px groove #FF00FF; margin: 10px; padding: 10px; background-color: rgba(50, 0, 50, 0.6); vertical-align: top; }
+        .portfolio-item-wild img { width: 100%; height: 150px; object-fit: cover; border: 2px solid #FFFF00; margin-bottom: 8px; }
+        .portfolio-item-wild h4 { font-size: 16px; margin-bottom: 5px; color: #00CCCC; font-family: Tahoma, sans-serif; }
+        .portfolio-item-wild p { font-size: 12px; color: #CCCCCC; margin-bottom: 0; }
         
-        /* Why Us Section */
-        #why-us-wild {
-            background-color: transparent; /* Let page wrapper bg show through */
-            padding: 15px 0; /* Less padding, more raw */
-        }
-        .why-us-point-wild {
-            background-color: rgba(0,0,0,0.4); /* Blacker, semi-transparent boxes */
-            padding: 15px;
-            margin-bottom: 15px;
-            border: 3px dotted #00FFFF; /* Cyan dotted border */
-            color: #FFFFFF;
-        }
-        .why-us-point-wild h4 {
-            color: #FFFF00; /* Yellow for point titles */
-            font-size: 18px;
-        }
-        .why-us-point-wild h4 img.small-gif-icon { /* Ensure alignment for icons in headings */
-            vertical-align: baseline;
-        }
+        #why-us-wild { background-color: transparent; padding: 15px 0; }
+        .why-us-point-wild { background-color: rgba(0,0,0,0.4); padding: 15px; margin-bottom: 15px; border: 3px dotted #00FFFF; color: #FFFFFF; }
+        .why-us-point-wild h4 { color: #FFFF00; font-size: 18px; }
+        .why-us-point-wild h4 img.small-gif-icon { vertical-align: baseline; }
 
+        .contact-form-wild { background-color: rgba(20,20,20,0.8); padding: 20px; border: 3px ridge #00FF00; border-radius: 0px; max-width: 600px; margin: 20px auto; }
+        .contact-form-wild label { display: block; font-weight: bold; margin-bottom: 5px; color: #00CCCC; font-family: "Courier New", Courier, monospace; }
+        .contact-form-wild input[type="text"], .contact-form-wild input[type="email"], .contact-form-wild textarea { width: 98%; padding: 8px; margin-bottom: 12px; border: 2px inset #009999; font-family: "Courier New", Courier, monospace; font-size: 14px; background-color: #222222; color: #00FF00; }
+        .contact-form-wild input[type="text"]:focus, .contact-form-wild input[type="email"]:focus, .contact-form-wild textarea:focus { border-color: #FFFF00; background-color: #333300; outline: none; }
+        .contact-form-wild textarea { resize: none; min-height: 100px; }
+        .contact-form-wild button { display: block; margin: 15px auto 0 auto; }
 
-        /* Contact Form */
-        .contact-form-wild {
-            background-color: rgba(20,20,20,0.8); /* Dark grey, semi-transparent */
-            padding: 20px;
-            border: 3px ridge #00FF00; /* Lime Green ridge border */
-            border-radius: 0px; /* Sharp corners */
-            max-width: 600px;
-            margin: 20px auto;
-        }
-        .contact-form-wild label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 5px;
-            color: #00CCCC; /* Teal labels */
-            font-family: "Courier New", Courier, monospace;
-        }
-        .contact-form-wild input[type="text"],
-        .contact-form-wild input[type="email"],
-        .contact-form-wild textarea {
-            width: 98%;
-            padding: 8px;
-            margin-bottom: 12px;
-            border: 2px inset #009999; /* Inset Teal border */
-            font-family: "Courier New", Courier, monospace;
-            font-size: 14px;
-            background-color: #222222; /* Dark input background */
-            color: #00FF00; /* Lime Green text in inputs */
-        }
-        .contact-form-wild input[type="text"]:focus,
-        .contact-form-wild input[type="email"]:focus,
-        .contact-form-wild textarea:focus {
-            border-color: #FFFF00; /* Yellow border on focus */
-            background-color: #333300; /* Dark Yellowish on focus */
-            outline: none; /* Remove browser default outline */
-        }
-        .contact-form-wild textarea {
-            resize: none; /* No resize for that classic feel */
-            min-height: 100px;
-        }
-        .contact-form-wild button { /* Uses .cta-button-wild style */
-            display: block;
-            margin: 15px auto 0 auto; 
-        }
-
-        /* Footer - WILD Style */
-        .main-footer-wild {
-            background-color: #1A1A1A; /* Very Dark Grey footer */
-            color: #00CCCC; /* Teal text */
-            padding: 20px;
-            text-align: center;
-            font-size: 13px;
-            border-top: 10px groove #FF00FF; /* Magenta groove border */
-            line-height: 1.6;
-        }
-        .main-footer-wild p {
-            margin-bottom: 8px;
-            color: #99FFFF; 
-        }
-        .main-footer-wild a {
-            color: #FFFF00; /* Yellow links in footer */
-        }
-        .main-footer-wild a:hover {
-            color: #FF6600; /* Orange hover */
-        }
-        .hit-counter-wild {
-            margin-top: 10px;
-            font-weight: bold;
-            background-color: #000000;
-            color: #00FF00;
-            padding: 5px 10px;
-            display: inline-block;
-            border: 2px solid #00FF00; /* Lime Green border */
-            font-family: "Courier New", Courier, monospace;
-            font-size: 16px;
-        }
-        .footer-badges-wild img {
-            margin: 8px 5px 0 5px;
-            border: 0; 
-            height: 31px; 
-            width: 88px;
-            vertical-align: middle;
-        }
+        .main-footer-wild { background-color: #1A1A1A; color: #00CCCC; padding: 20px; text-align: center; font-size: 13px; border-top: 10px groove #FF00FF; line-height: 1.6; }
+        .main-footer-wild p { margin-bottom: 8px; color: #99FFFF; }
+        .main-footer-wild a { color: #FFFF00; } .main-footer-wild a:hover { color: #FF6600; }
+        .hit-counter-wild { margin-top: 10px; font-weight: bold; background-color: #000000; color: #00FF00; padding: 5px 10px; display: inline-block; border: 2px solid #00FF00; font-family: "Courier New", Courier, monospace; font-size: 16px; }
+        .footer-badges-wild img { margin: 8px 5px 0 5px; border: 0; height: 31px; width: 88px; vertical-align: middle; }
         
-        /* Blinking Text - CSS Animation */
-        @keyframes blink-wild {
-            0%, 49% { opacity: 1; text-shadow: 0 0 5px #FFFF00; }
-            50%, 99% { opacity: 0.3; text-shadow: none; }
-            100% { opacity: 1; text-shadow: 0 0 5px #FFFF00; }
-        }
-        .blinking-text-wild {
-            animation: blink-wild 0.9s linear infinite;
-            font-weight: bold;
-        }
+        @keyframes blink-wild { 0%, 49% { opacity: 1; text-shadow: 0 0 5px #FFFF00; } 50%, 99% { opacity: 0.3; text-shadow: none; } 100% { opacity: 1; text-shadow: 0 0 5px #FFFF00; } }
+        .blinking-text-wild { animation: blink-wild 0.9s linear infinite; font-weight: bold; }
 
-        /* Marquee styling */
-        .marquee-wild {
-            background-color: #FF00FF; /* Magenta background */
-            color: #FFFF00; /* Yellow text */
-            padding: 8px;
-            margin: 20px -10px; /* Extend to edges of page-wrapper padding */
-            font-weight: bold;
-            font-family: "Comic Sans MS", "Comic Sans", cursive; /* Classic Marquee font */
-            font-size: 18px;
-            border-top: 3px solid #000000;
-            border-bottom: 3px solid #000000;
-        }
-        .small-gif-icon {
-            height: 20px;
-            vertical-align: middle;
-            margin: 0 3px;
-        }
+        .marquee-wild { background-color: #FF00FF; color: #FFFF00; padding: 8px; margin: 20px -10px; font-weight: bold; font-family: "Comic Sans MS", "Comic Sans", cursive; font-size: 18px; border-top: 3px solid #000000; border-bottom: 3px solid #000000; }
+        .small-gif-icon { height: 20px; vertical-align: middle; margin: 0 3px; }
         .centered-text { text-align: center; }
-
     </style>
 </head>
 <body>
 
     <div id="modern-site-link-banner-wild">
-        <img src="https://www.animatedimages.org/data/media/113/animated-new-image-0200.gif" alt="NEW!" class="small-gif-icon"> Looking for our SUPER SLEEK 2025+ DESIGNS?! 
+        <img src="https://www.animatedimages.org/data/media/113/animated-new-image-0008.gif" alt="NEW!" class="small-gif-icon">
+        Looking for our SUPER SLEEK 2025+ DESIGNS?! 
         <a href="modern_site.html" title="View our main contemporary website">CLICK HERE for the FUTURE!</a>
-        <img src="https://www.animatedimages.org/data/media/113/animated-new-image-0200.gif" alt="NEW!" class="small-gif-icon">
+        <img src="https://www.animatedimages.org/data/media/113/animated-new-image-0008.gif" alt="NEW!" class="small-gif-icon">
     </div>
 
     <div id="page-wrapper-wild">
         <header class="main-header-wild">
             <div class="logo-container-wild">
                 <a href="#">
-                    <img src="https://www.animatedimages.org/data/media/159/animated-fire-image-0070.gif" alt="flames" class="rotating-gif"> <span class="logo-maugans-wild">
+                    <img src="https://www.animatedimages.org/data/media/159/animated-fire-image-0017.gif" alt="flames" class="rotating-gif">
+                    <span class="logo-maugans-wild">
                         <span class="char m">M</span><span class="char a1">A</span><span class="char u">U</span><span class="char g">G</span><span class="char a2">A</span><span class="char n">N</span><span class="char s">S</span>
                     </span>
                     <span class="logo-maugans-wild co">Co.</span>
-                     <img src="https://www.animatedimages.org/data/media/159/animated-fire-image-0070.gif" alt="flames" class="rotating-gif">
+                    <img src="https://www.animatedimages.org/data/media/159/animated-fire-image-0017.gif" alt="flames" class="rotating-gif">
                 </a>
             </div>
             <nav class="main-nav-wild">
@@ -442,58 +173,68 @@
                     <li><a href="#about-section-wild">About US!</a></li>
                     <li><a href="#services-section-wild">Our X-TREME Services!</a></li>
                     <li><a href="#portfolio-section-wild">KOOL Work!</a></li>
-                    <li><a href="#contact-section-wild">E-MAIL US! <img src="https://www.animatedimages.org/data/media/110/animated-e-mail-image-0025.gif" alt="Email" class="small-gif-icon"></a></li> </ul>
+                    <li><a href="#contact-section-wild">E-MAIL US! <img src="https://www.animatedimages.org/data/media/110/animated-e-mail-image-0008.gif" alt="Email" class="small-gif-icon"></a></li>
+                </ul>
             </nav>
         </header>
 
         <div class="content-padding-wild">
 
             <section id="hero-wild-section" class="hero-wild">
-                <img src="https://www.textanim.com/gifs/images/welcome-banner-anim.gif" alt="WELCOME TO OUR WEBSITE Banner" class="animated-banner-wild"> <h1 class="page-title-wild">MAUGANS CO. - WE BUILD WEBSITES THAT <span class="blinking-text-wild" style="color:#FF0000;">ROCK</span>!</h1>
+                <img src="https://www.textanim.com/gifs/images/welcome-banner-anim.gif" alt="WELCOME TO OUR WEBSITE Banner" class="animated-banner-wild">
+                <h1 class="page-title-wild">MAUGANS CO. - WE BUILD WEBSITES THAT <span class="blinking-text-wild" style="color:#FF0000;">ROCK</span>!</h1>
                 <p class="subtitle-wild">Get Ready to Enter the <span style="color:#00FFFF; font-weight:bold;">CYBER-ZONE</span> with a Website That's <span style="color:#FF00FF; font-style:italic;">TOTALLY WIRED</span>!</p>
-                <img src="https://www.animatedimages.org/data/media/679/animated-globe-image-0083.gif" alt="Spinning Computer Globe" style="height:80px; margin: 10px 0;"> <p style="font-size:18px; color:#FFFF00;">We're not just designers, we're <span style="font-family:'Courier New'; background-color:#333; padding:2px 4px;">WEB WIZARDS!</span></p>
-                <a href="#contact-section-wild" class="cta-button-wild">CLICK HERE FOR A FREE QUOTE! <img src="https://www.animatedimages.org/data/media/146/animated-click-here-image-0010.gif" alt="click here" style="height:20px; vertical-align:middle;"></a> </section>
+                <img src="https://www.animatedimages.org/data/media/679/animated-globe-image-0003.gif" alt="Spinning Computer Globe" style="height:80px; margin: 10px 0;">
+                <p style="font-size:18px; color:#FFFF00;">We're not just designers, we're <span style="font-family:'Courier New'; background-color:#333; padding:2px 4px;">WEB WIZARDS!</span></p>
+                <a href="#contact-section-wild" class="cta-button-wild">CLICK HERE FOR A FREE QUOTE! <img src="https://www.animatedimages.org/data/media/146/animated-click-here-image-0015.gif" alt="click here" style="height:20px; vertical-align:middle;"></a>
+            </section>
 
-            <hr class="section-divider-wild">
-            
-            <div class="marquee-wild">
+            <hr class="section-divider-wild"> <div class="marquee-wild">
                 <marquee scrollamount="6" behavior="scroll" direction="left">
-                    <img src="https://www.animatedimages.org/data/media/467/animated-star-image-0073.gif" class="small-gif-icon" alt="sparkle"> ** SPECIAL OFFER!! GET YOUR WEBSITE ONLINE FAST! **
-                    <img src="https://www.animatedimages.org/data/media/467/animated-star-image-0073.gif" class="small-gif-icon" alt="sparkle">
+                    <img src="https://www.animatedimages.org/data/media/467/animated-star-image-0025.gif" class="small-gif-icon" alt="sparkle">
+                    ** SPECIAL OFFER!! GET YOUR WEBSITE ONLINE FAST! **
+                    <img src="https://www.animatedimages.org/data/media/467/animated-star-image-0025.gif" class="small-gif-icon" alt="sparkle">
                     VISIT OUR PORTFOLIO! ** WE USE CUTTING EDGE HTML AND JAVA-SCRIPT! **
-                    <img src="https://www.animatedimages.org/data/media/467/animated-star-image-0073.gif" class="small-gif-icon" alt="sparkle">
+                    <img src="https://www.animatedimages.org/data/media/467/animated-star-image-0025.gif" class="small-gif-icon" alt="sparkle">
                     CALLING ALL E-BUSINESSES! LET'S MAKE SOME NOISE ONLINE! **
-                    <img src="https://www.animatedimages.org/data/media/467/animated-star-image-0073.gif" class="small-gif-icon" alt="sparkle">
+                    <img src="https://www.animatedimages.org/data/media/467/animated-star-image-0025.gif" class="small-gif-icon" alt="sparkle">
                 </marquee>
             </div>
 
             <section id="about-section-wild">
                 <h2 class="section-title-wild">
-                    <img src="https://www.animatedimages.org/data/media/132/animated-light-bulb-image-0015.gif" alt="lightbulb gif" class="heading-gif-wild"> WHO ARE THESE <span style="color:#FFFF00;">WEB GURUS</span>?!
-                    <img src="https://www.animatedimages.org/data/media/132/animated-light-bulb-image-0015.gif" alt="lightbulb gif" class="heading-gif-wild">
+                    <img src="https://www.animatedimages.org/data/media/132/animated-light-bulb-image-0002.gif" alt="lightbulb gif" class="heading-gif-wild">
+                    WHO ARE THESE <span style="color:#FFFF00;">WEB GURUS</span>?!
+                    <img src="https://www.animatedimages.org/data/media/132/animated-light-bulb-image-0002.gif" alt="lightbulb gif" class="heading-gif-wild">
                 </h2>
-                <p style="text-align:center;"><img src="https://www.gifcen.com/wp-content/uploads/2022/04/surfer-gif-1.gif" alt="surfer gif" style="height:50px; float:left; margin-right:10px;">Greetings, Fellow Netizen! We are <strong style="color:#00CCCC;">Maugans Co.</strong>, your friendly neighborhood navigators of the Information Superhighway! We eat, sleep, and breathe the World Wide Web! Our mission? To craft the most <span class="blinking-text-wild" style="color:#FF00FF;">DAZZLING</span>, attention-grabbing websites this side of the modem! We believe your website should be an <strong style="font-family:'Comic Sans MS'; color:#FFFF00;">EXPERIENCE</strong>, not just a page!</p>
+                <p style="text-align:center;"><img src="https://www.gifcen.com/wp-content/uploads/2022/04/surfer-gif-5.gif" alt="surfer gif" style="height:50px; float:left; margin-right:10px;">Greetings, Fellow Netizen! We are <strong style="color:#00CCCC;">Maugans Co.</strong>, your friendly neighborhood navigators of the Information Superhighway! We eat, sleep, and breathe the World Wide Web! Our mission? To craft the most <span class="blinking-text-wild" style="color:#FF00FF;">DAZZLING</span>, attention-grabbing websites this side of the modem! We believe your website should be an <strong style="font-family:'Comic Sans MS'; color:#FFFF00;">EXPERIENCE</strong>, not just a page!</p>
                 <p style="text-align:center;">We're passionate about pixels, fanatical about fonts (especially <strong style="color:#00FF00;">Comic Sans</strong> and <strong style="color:#FF6600;">Impact</strong>!), and obsessed with making your online presence <strong style="font-size:1.2em; color:#FF0000;">UNFORGETTABLE!</strong> So, buckle up, buttercup, and let's take your ideas to the <span style="text-decoration:underline; color:#00FFFF;">MAX!</span></p>
-                <p class="centered-text"><img src="https://www.animatedimages.org/data/media/679/animated-globe-image-0020.gif" alt="spinning globe" style="height:60px;"></p> </section>
+                <p class="centered-text"><img src="https://www.animatedimages.org/data/media/679/animated-globe-image-0115.gif" alt="spinning globe" style="height:60px;"></p>
+            </section>
 
             <hr class="section-divider-wild">
 
             <section id="services-section-wild">
                 <h2 class="section-title-wild">
-                    <img src="https://www.animatedimages.org/data/media/1145/animated-dividing-line-image-0080.gif" alt="animated bar" class="heading-gif-wild" style="height:20px;"> OUR <span style="color:red;">S</span><span style="color:orange;">P</span><span style="color:yellow;">E</span><span style="color:green;">C</span><span style="color:blue;">I</span><span style="color:purple;">A</span><span style="color:red;">L</span><span style="color:orange;">T</span><span style="color:yellow;">I</span><span style="color:green;">E</span><span style="color:blue;">S</span>!
-                    <img src="https://www.animatedimages.org/data/media/1145/animated-dividing-line-image-0080.gif" alt="animated bar" class="heading-gif-wild" style="height:20px;">
+                    <img src="https://www.animatedimages.org/data/media/1145/animated-dividing-line-image-0004.gif" alt="animated bar" class="heading-gif-wild" style="height:20px;">
+                    OUR <span style="color:red;">S</span><span style="color:orange;">P</span><span style="color:yellow;">E</span><span style="color:green;">C</span><span style="color:blue;">I</span><span style="color:purple;">A</span><span style="color:red;">L</span><span style="color:orange;">T</span><span style="color:yellow;">I</span><span style="color:green;">E</span><span style="color:blue;">S</span>!
+                    <img src="https://www.animatedimages.org/data/media/1145/animated-dividing-line-image-0004.gif" alt="animated bar" class="heading-gif-wild" style="height:20px;">
                 </h2>
                 <div class="service-item-wild">
-                    <h3 class="subsection-title-wild"><img src="https://www.animatedimages.org/data/media/66/animated-computer-image-0068.gif" alt="computer gif" class="service-icon-wild">Full-Blast Web Page Construction!</h3> <p>We use the latest <strong style="color:#FFFF00;">HTML</strong> tricks and even some <strong style="color:#00FF00;">Java-Applets</strong> (if you're feeling brave!) to build pages that will make your competitors jealous! Optimized for Netscape AND Internet Explorer! <span class="blinking-text-wild" style="color:#00FFFF;">WOW!</span></p>
+                    <h3 class="subsection-title-wild"><img src="https://www.animatedimages.org/data/media/66/animated-computer-image-0013.gif" alt="computer gif" class="service-icon-wild">Full-Blast Web Page Construction!</h3>
+                    <p>We use the latest <strong style="color:#FFFF00;">HTML</strong> tricks and even some <strong style="color:#00FF00;">Java-Applets</strong> (if you're feeling brave!) to build pages that will make your competitors jealous! Optimized for Netscape AND Internet Explorer! <span class="blinking-text-wild" style="color:#00FFFF;">WOW!</span></p>
                 </div>
                 <div class="service-item-wild">
-                     <h3 class="subsection-title-wild"><img src="https://www.animatedimages.org/data/media/71/animated-mouse-image-0032.gif" alt="mouse world" class="service-icon-wild">Graphics That Go <span style="font-size:1.3em; color:#FF0000;">BOOM!</span></h3> <p>Need a logo that <strong style="color:#FF6600;">FLAMES</strong>? How about some <strong style="color:#FF00FF;">3D text</strong> that spins right off the page? Our graphic artists are masters of Paint Shop Pro and know how to make your images POP! We love <strong style="color:#00CCCC;">Animated GIFs!</strong></p>
+                    <h3 class="subsection-title-wild"><img src="https://www.animatedimages.org/data/media/71/animated-mouse-image-0010.gif" alt="mouse world" class="service-icon-wild">Graphics That Go <span style="font-size:1.3em; color:#FF0000;">BOOM!</span></h3>
+                    <p>Need a logo that <strong style="color:#FF6600;">FLAMES</strong>? How about some <strong style="color:#FF00FF;">3D text</strong> that spins right off the page? Our graphic artists are masters of Paint Shop Pro and know how to make your images POP! We love <strong style="color:#00CCCC;">Animated GIFs!</strong></p>
                 </div>
                 <div class="service-item-wild">
-                   <h3 class="subsection-title-wild"><img src="https://www.animatedimages.org/data/media/110/animated-e-mail-image-0050.gif" alt="email me" class="service-icon-wild">E-Mail Links & <span style="font-family:'Comic Sans MS'; color:#00FF00;">Guestbooks!</span></h3> <p>Let your visitors get in touch with a cool animated e-mail link! And what's a website without a <strong style="color:#FFFF00;">GUESTBOOK</strong> for all your fans to sign?! We'll set you up, no problem!</p>
+                    <h3 class="subsection-title-wild"><img src="https://www.animatedimages.org/data/media/110/animated-e-mail-image-0016.gif" alt="email me" class="service-icon-wild">E-Mail Links & <span style="font-family:'Comic Sans MS'; color:#00FF00;">Guestbooks!</span></h3>
+                   <p>Let your visitors get in touch with a cool animated e-mail link! And what's a website without a <strong style="color:#FFFF00;">GUESTBOOK</strong> for all your fans to sign?! We'll set you up, no problem!</p>
                 </div>
                 <div class="service-item-wild">
-                    <h3 class="subsection-title-wild"><img src="https://www.picgifs.com/graphics/c/counters/graphics-counters-971007.gif" alt="counter gif" class="service-icon-wild">Hit Counters & Site Promotion!</h3> <p>Want to see how <strong style="color:#00FF00;">POPULAR</strong> your site is? We'll install a <strong style="color:#FF00FF;">HIT COUNTER</strong> that ticks up with every visitor! We can also submit your site to all the <strong style="color:#FFFF00;">HOTTEST</strong> search engines like AltaVista, Lycos, and WebCrawler!</p>
+                    <h3 class="subsection-title-wild"><img src="https://www.picgifs.com/graphics/c/counters/graphics-counters-007709.gif" alt="counter gif" class="service-icon-wild">Hit Counters & Site Promotion!</h3>
+                    <p>Want to see how <strong style="color:#00FF00;">POPULAR</strong> your site is? We'll install a <strong style="color:#FF00FF;">HIT COUNTER</strong> that ticks up with every visitor! We can also submit your site to all the <strong style="color:#FFFF00;">HOTTEST</strong> search engines like AltaVista, Lycos, and WebCrawler!</p>
                 </div>
             </section>
 
@@ -501,8 +242,9 @@
 
             <section id="portfolio-section-wild">
                 <h2 class="section-title-wild">
-                    <img src="https://www.animatedimages.org/data/media/60/animated-camera-image-0030.gif" alt="camera gif" class="heading-gif-wild"> OUR <span class="blinking-text-wild" style="color:#FFFF00;">AWESOME</span> PORTFOLIO!
-                    <img src="https://www.animatedimages.org/data/media/60/animated-camera-image-0030.gif" alt="camera gif" class="heading-gif-wild">
+                    <img src="https://www.animatedimages.org/data/media/60/animated-camera-image-0011.gif" alt="camera gif" class="heading-gif-wild">
+                    OUR <span class="blinking-text-wild" style="color:#FFFF00;">AWESOME</span> PORTFOLIO!
+                    <img src="https://www.animatedimages.org/data/media/60/animated-camera-image-0011.gif" alt="camera gif" class="heading-gif-wild">
                 </h2>
                 <p class="centered-text" style="color:#00FF00;">Feast your eyes on these digital masterpieces! (Actual client sites are even <strong style="color:#FF00FF;">MORE</strong> mind-blowing!)</p>
                 <div class="portfolio-grid-wild">
@@ -530,17 +272,21 @@
 
             <section id="why-us-wild">
                 <h2 class="section-title-wild" style="color:#FF00FF;">
-                    <img src="https://www.animatedimages.org/data/media/467/animated-star-image-0110.gif" alt="spinning star" class="heading-gif-wild"> WHY ARE WE SO <span style="font-size:1.2em;">RAD</span>?!
-                    <img src="https://www.animatedimages.org/data/media/467/animated-star-image-0110.gif" alt="spinning star" class="heading-gif-wild">
+                    <img src="https://www.animatedimages.org/data/media/467/animated-star-image-0001.gif" alt="spinning star" class="heading-gif-wild">
+                    WHY ARE WE SO <span style="font-size:1.2em;">RAD</span>?!
+                    <img src="https://www.animatedimages.org/data/media/467/animated-star-image-0001.gif" alt="spinning star" class="heading-gif-wild">
                 </h2>
                 <div class="why-us-point-wild">
-                    <h4><img src="https://www.animatedimages.org/data/media/117/animated-eye-image-0035.gif" alt="eye" class="small-gif-icon"> WE SPEAK YOUR LANGUAGE (HTML, GIF, and <span class="blinking-text-wild" style="color:#00FF00;">AWESOME!</span>)</h4> <p>No confusing corporate mumbo-jumbo here! We're straight shooters who love to make cool stuff for the web. We were here when it all started!</p>
+                    <h4><img src="https://www.animatedimages.org/data/media/117/animated-eye-image-0002.gif" alt="eye" class="small-gif-icon"> WE SPEAK YOUR LANGUAGE (HTML, GIF, and <span class="blinking-text-wild" style="color:#00FF00;">AWESOME!</span>)</h4>
+                    <p>No confusing corporate mumbo-jumbo here! We're straight shooters who love to make cool stuff for the web. We were here when it all started!</p>
                 </div>
                 <div class="why-us-point-wild">
-                    <h4><img src="https://www.animatedimages.org/data/media/113/animated-hot-image-0005.gif" alt="hot" class="small-gif-icon"> OUR DESIGNS ARE <span style="color:#FF6600; font-weight:bold;">HOTTER</span> THAN A DIAL-UP MODEM AFTER DOWNLOADING A JPEG!</h4> <p>Forget boring, cookie-cutter websites. We inject <strong style="color:#00CCCC;">PERSONALITY</strong> and <strong style="color:#FF00FF;">ENERGY</strong> into every pixel we place. Your visitors won't know what hit 'em!</p>
+                     <h4><img src="https://www.animatedimages.org/data/media/113/animated-hot-image-0012.gif" alt="hot" class="small-gif-icon"> OUR DESIGNS ARE <span style="color:#FF6600; font-weight:bold;">HOTTER</span> THAN A DIAL-UP MODEM AFTER DOWNLOADING A JPEG!</h4>
+                    <p>Forget boring, cookie-cutter websites. We inject <strong style="color:#00CCCC;">PERSONALITY</strong> and <strong style="color:#FF00FF;">ENERGY</strong> into every pixel we place. Your visitors won't know what hit 'em!</p>
                 </div>
                 <div class="why-us-point-wild">
-                    <h4><img src="https://www.animatedimages.org/data/media/169/animated-smiley-image-0115.gif" alt="excited" class="small-gif-icon"> WE'RE <span style="text-decoration:underline wavy #FFFF00;">OBSESSED</span> WITH MAKING YOU HAPPY!</h4> <p>Your vision + our caffeine-fueled creativity = A website that will make you wanna do the Macarena! We won't rest until your site is the talk of the chatrooms!</p>
+                    <h4><img src="https://www.animatedimages.org/data/media/169/animated-smiley-image-0020.gif" alt="excited" class="small-gif-icon"> WE'RE <span style="text-decoration:underline wavy #FFFF00;">OBSESSED</span> WITH MAKING YOU HAPPY!</h4>
+                    <p>Your vision + our caffeine-fueled creativity = A website that will make you wanna do the Macarena! We won't rest until your site is the talk of the chatrooms!</p>
                 </div>
             </section>
             
@@ -548,12 +294,15 @@
 
             <section id="contact-section-wild">
                 <h2 class="section-title-wild" style="color:#FFFF00;">
-                    <img src="https://www.animatedimages.org/data/media/110/animated-e-mail-image-0078.gif" alt="email envelope flying" class="heading-gif-wild" style="height:40px;"> REACH OUT & TOUCH SOMEONE (VIA E-MAIL)!
-                    <img src="https://www.animatedimages.org/data/media/110/animated-e-mail-image-0078.gif" alt="email envelope flying" class="heading-gif-wild" style="height:40px;">
+                    <img src="https://www.animatedimages.org/data/media/110/animated-e-mail-image-0068.gif" alt="email envelope flying" class="heading-gif-wild" style="height:40px;">
+                     REACH OUT & TOUCH SOMEONE (VIA E-MAIL)!
+                    <img src="https://www.animatedimages.org/data/media/110/animated-e-mail-image-0068.gif" alt="email envelope flying" class="heading-gif-wild" style="height:40px;">
                 </h2>
                 
                 <p class="centered-text" style="font-size:18px; color:#00FF00;">Got a <span class="blinking-text-wild" style="color:#FF0000;">BURNING DESIRE</span> for an <span style="font-family:'Comic Sans MS'; color:#00FFFF;">OUTRAGEOUS</span> website? Don't be a stranger! Drop us a line, send a carrier pigeon, or use this <strong style="color:#FFFF00;">FUTURISTIC</strong> form below!</p>
-                <p class="centered-text"><img src="https://www.animatedimages.org/data/media/69/animated-construction-image-0017.gif" alt="Under Construction" style="height: 60px; margin:10px 0;"></p> <form class="contact-form-wild" id="contactFormWild">
+                <p class="centered-text"><img src="https://www.animatedimages.org/data/media/69/animated-construction-image-0001.gif" alt="Under Construction" style="height: 60px; margin:10px 0;"></p>
+                
+                <form class="contact-form-wild" id="contactFormWild">
                     <div>
                         <label for="contactNameWild">YoUr NaMe (OR ALIAS!):</label>
                         <input type="text" id="contactNameWild" name="name" required placeholder="e.g. CyberSurferX2000">
@@ -573,15 +322,15 @@
 
         </div> <footer class="main-footer-wild">
             <p class="blinking-text-wild" style="color:#FFFF00; font-size:16px;">&copy; 1998 - <span id="currentYearWild">2001</span> MAUGANS CO. - Rockin' The Web Since The Dial-Up Days!</p>
-            <p><img src="https://www.animatedimages.org/data/media/1155/animated-netscape-image-0002.gif" alt="Netscape Now!" class="small-gif-icon"> This site is best viewed with Netscape Navigator 4.0+ or Internet Explorer 5.0+! <img src="https://www.gifimages.org/data/media/348/powered-by-internet-explorer-animated-image-0008.gif" alt="Powered by IE" class="small-gif-icon"></p>
+            <p><img src="https://www.animatedimages.org/data/media/1155/animated-netscape-image-0001.gif" alt="Netscape Now!" class="small-gif-icon"> This site is best viewed with Netscape Navigator 4.0+ or Internet Explorer 5.0+! 
+            <img src="https://www.gifimages.org/data/media/348/powered-by-internet-explorer-animated-image-0002.gif" alt="Powered by IE" class="small-gif-icon"></p>
             <p>Set your monitors to 800x600 for <strong style="color:#00FF00;">MAXIMUM</strong> impact!</p>
             <div class="hit-counter-wild">
                 U R Visitor # <span id="hitCounterWild">12345</span> !!!
             </div>
             <div class="footer-badges-wild">
-                <a href="#"><img src="https://www.picgifs.com/graphics/h/html-goodies/graphics-html-goodies-230916.gif" alt="HTML Goodies"></a>
-                <a href="#"><img src="https://www.picgifs.com/graphics/n/notepad/graphics-notepad-400200.gif" alt="Notepad"></a> <a href="#"><img src="https://www.animatedimages.org/data/media/133/animated-windows-image-0010.gif" alt="Windows Flag"></a>
-                <a href="#"><img src="https://www.animatedimages.org/data/media/69/animated-construction-image-0078.gif" alt="Site Under Construction Dude"></a>
+                <a href="#"><img src="https://web.archive.org/web/20090830063111if_/http://www.geocities.com/clipart/pbi/buttons/developer/htmlguru.gif" alt="HTML Guru"></a> <a href="#"><img src="https://web.archive.org/web/20090822071900if_/http://www.geocities.com/clipart/pbi/buttons/sources/ntpad_.gif" alt="Made with Notepad"></a> <a href="#"><img src="https://www.animatedimages.org/data/media/133/animated-windows-image-0002.gif" alt="Windows Flag"></a>
+                <a href="#"><img src="https://www.animatedimages.org/data/media/69/animated-construction-image-0025.gif" alt="Site Under Construction Dude"></a>
             </div>
              <p style="margin-top:10px; font-size:11px; color:#888888;">Last Updated: <span id="lastUpdatedWild">Whenever we felt like it! (Probably yesterday)</span></p>
         </footer>
@@ -628,7 +377,7 @@
             });
         }
         
-        // --- Animated Logo Character Color Cycling (Optional extra flair) ---
+        // --- Animated Logo Character Color Cycling ---
         const logoChars = document.querySelectorAll('.logo-maugans-wild .char');
         if (logoChars.length > 0) {
             const colors = ['#00CCCC', '#FFFF00', '#FF00FF', '#00FF00', '#00FFFF', '#FF6600', '#CC00CC'];
@@ -638,7 +387,7 @@
                     char.style.color = colors[(colorIndex + index) % colors.length];
                 });
                 colorIndex = (colorIndex + 1) % colors.length;
-            }, 300); // Speed of color change
+            }, 300); 
         }
 
         console.log("%c HEY HACKERMAN! THIS SITE IS POWERED BY PIXELS AND PURE AWESOMENESS! ", "background: #000; color: #00FF00; font-size: 20px; font-family: Impact; border: 2px solid #FFFF00; padding:10px;");
