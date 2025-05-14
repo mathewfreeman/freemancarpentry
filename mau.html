@@ -52,38 +52,10 @@
             color: var(--text-dark);
             overflow-x: hidden;
             font-weight: 300;
-            cursor: none; 
         }
         body.modal-open { 
             overflow: hidden;
         }
-        .cursor-follower {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 20px;
-            height: 20px;
-            background-color: var(--accent-primary);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-            mix-blend-mode: difference; 
-            transition: transform 0.1s ease-out, width 0.2s ease-out, height 0.2s ease-out, background-color 0.2s ease-out;
-            transform: translate(-50%, -50%) scale(0); 
-        }
-        body:hover .cursor-follower { 
-            transform: translate(-50%, -50%) scale(1);
-        }
-        .cursor-follower.hover-link {
-            transform: translate(-50%, -50%) scale(2.5);
-            background-color: rgba(255,255,255,0.7);
-        }
-        .cursor-follower.hover-target {
-            transform: translate(-50%, -50%) scale(3.5);
-            mix-blend-mode: normal;
-            background-color: rgba(4, 217, 196, 0.3); 
-        }
-
         h1, h2, h3, h4 {
             font-weight: 500;
             color: var(--text-dark);
@@ -115,51 +87,38 @@
             margin: 0 auto;
             padding: 5rem 0;
         }
-        main section { 
-            /* MODIFIED FOR DEBUGGING: Force sections to be visible to test if content exists */
-            opacity: 1 !important; 
-            transform: none !important; 
+        section { /* Initial modern section style */
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.165, 0.84, 0.44, 1), transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
-         /* DEBUG: Force common inner elements to be visible */
-        #about h2, #about p, .about-image-placeholder,
-        #services h2, .service-item,
-        #portfolio h2, /* .portfolio-item is handled by its own initial styles for GSAP */
-        #why-us h2, #why-us .why-us-description, .why-us-background-wrapper, .why-us-point,
-        #contact h2, #contact > p, .contact-form, .contact-form .form-field, .contact-form button,
-        .main-footer,
-        .hero-content h1, .hero-content .subtitle, .hero-content .cta-button, /* Ensure hero elements are visible too */
-        .main-nav ul li /* Ensure nav items are visible if their GSAP fails */
-        {
-            opacity: 1 !important;  /* DEBUG: Force visible */
-            transform: none !important; /* DEBUG: Force visible */
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
-
-
         .highlight {
             color: var(--accent-primary);
             font-weight: 500;
         }
 
+        /* --- Frosted Glass Header --- */
         .main-header {
             background: rgba(253, 253, 253, 0.65);
             backdrop-filter: blur(12px) saturate(180%);
             -webkit-backdrop-filter: blur(12px) saturate(180%);
             border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 0.4rem 0; 
+            padding: 0.1rem 0; /* Reduced vertical padding */
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             z-index: 1000;
-            transition: background var(--transition-speed-medium) ease, box-shadow var(--transition-speed-medium) ease, padding var(--transition-speed-medium) ease, transform 0.3s ease-out;
+            transition: background var(--transition-speed-medium) ease, box-shadow var(--transition-speed-medium) ease, padding var(--transition-speed-medium) ease;
         }
         .main-header.scrolled {
              background: rgba(253, 253, 253, 0.85);
              box-shadow: 0 2px 15px rgba(0,0,0,0.07);
-             padding: 0.1rem 0; 
-        }
-        .main-header.hidden {
-            transform: translateY(-100%);
+             padding: 0.1rem 0; /* Slightly smaller padding when scrolled */
         }
         .nav-container {
             display: flex;
@@ -171,13 +130,12 @@
         }
         .logo a {
             font-family: var(--font-logo); 
-            font-size: clamp(1.8rem, 4vw, 2.2rem); 
+            font-size: clamp(1.8rem, 4vw, 2.2rem); /* Slightly reduced max size */
             font-weight: 500;
             color: var(--accent-secondary);
             text-decoration: none;
             letter-spacing: -0.03em;
             transition: color var(--transition-speed-fast);
-            display: inline-block; 
         }
         .logo a:hover {
             color: var(--accent-primary);
@@ -197,8 +155,6 @@
         }
         .main-nav ul li {
             margin-left: 30px;
-            /* opacity: 0; GSAP animates this - Overridden by debug CSS for now */
-            /* transform: translateY(-10px); GSAP animates this - Overridden by debug CSS for now */
         }
         .main-nav ul li a {
             color: var(--neutral-gray);
@@ -208,7 +164,6 @@
             padding: 0.3rem 0.1rem;
             position: relative;
             transition: color var(--transition-speed-fast) ease;
-            display: inline-block; 
         }
         .main-nav ul li a::after {
             content: '';
@@ -230,11 +185,12 @@
             width: 100%;
         }
         .menu-toggle {
-            display: none; /* Made visible in @media query */
+            display: none;
             font-size: 1.8rem;
             background: none;
             border: none;
             color: var(--text-dark);
+            cursor: pointer;
             position: relative;
             width: 30px;
             height: 22px;
@@ -256,6 +212,7 @@
         .menu-toggle.open .line2 { opacity: 0; }
         .menu-toggle.open .line3 { transform: rotate(45deg) translate(-5px, -6px); }
 
+        /* --- Hero Section --- */
         .hero {
             background: linear-gradient(135deg, #eef4f8 0%, var(--background-light) 100%);
             color: var(--text-dark);
@@ -272,7 +229,6 @@
             max-width: 950px;
             position: relative;
             z-index: 2;
-            text-align: center; 
         }
         .hero-content h1 {
             font-family: var(--font-body);
@@ -282,17 +238,11 @@
             color: var(--text-dark);
             line-height: 1.25;
             letter-spacing: -0.04em;
-             /* opacity: 0; GSAP animates this - Overridden by debug CSS */
-        }
-        .hero-content h1 .line-wrapper { 
-             display: block; 
-             overflow: hidden; 
         }
         .hero-content h1 .maugans-co-logo-hero {
             font-family: var(--font-logo); 
             color: var(--accent-secondary);
             font-weight: 700; 
-            white-space: nowrap; 
         }
         .hero-content .subtitle {
             font-size: clamp(1.2rem, 3vw, 1.6rem);
@@ -301,9 +251,6 @@
             color: var(--neutral-gray);
             max-width: 650px;
             line-height: 1.6;
-            /* opacity: 0; GSAP animates this - Overridden by debug CSS */
-            /* transform: translateY(20px); GSAP animates this - Overridden by debug CSS */
-            margin-left: auto; margin-right: auto; 
         }
         .cta-button {
             background: linear-gradient(135deg, var(--accent-primary), #03b0a0);
@@ -317,30 +264,11 @@
             font-size: 1.1rem;
             box-shadow: 0 4px 15px rgba(4, 217, 196, 0.3);
             border: none;
-            position: relative; 
-            overflow: hidden; 
-            /* opacity: 0; GSAP animates this - Overridden by debug CSS */
-            /* transform: translateY(20px); GSAP animates this - Overridden by debug CSS */
         }
         .cta-button:hover {
             transform: translateY(-4px) scale(1.02);
             box-shadow: 0 8px 25px rgba(4, 217, 196, 0.4);
         }
-        .cta-button .shimmer {
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background-image: linear-gradient(100deg, rgba(255,255,255,0) 20%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 80%);
-            transform: translateX(-100%) translateY(-25%) rotate(10deg);
-            transition: transform 0.7s cubic-bezier(0.19, 1, 0.22, 1);
-            pointer-events: none;
-        }
-        .cta-button:hover .shimmer {
-             transform: translateX(100%) translateY(-25%) rotate(10deg);
-        }
-
         .hero::before, .hero::after {
             content: ''; position: absolute; border-radius: 50%; opacity: 0.08;
             z-index: 1; pointer-events: none;
@@ -355,36 +283,27 @@
             background: radial-gradient(circle, var(--accent-secondary) 0%, transparent 70%);
             bottom: 5%; right: -5%; animation: pulse-bubble 18s infinite alternate-reverse ease-in-out;
         }
-        @keyframes pulse-bubble { 
+        @keyframes pulse-bubble {
             0%, 100% { transform: scale(0.9) rotate(0deg); opacity: 0.06; }
             50% { transform: scale(1.1) rotate(10deg); opacity: 0.1; }
         }
 
+        /* --- About Section --- */
         #about .container {
             display: grid; grid-template-columns: 1fr; gap: 3rem; align-items: center;
         }
-        #about h2 { text-align: left; /* opacity: 0; transform: translateY(20px); - Overridden by debug CSS */ }
-        #about p { max-width: none; /* opacity: 0; transform: translateY(20px); - Overridden by debug CSS */ } 
+        #about h2 { text-align: left; }
+        #about p { max-width: none; }
         .about-image-placeholder {
             display: block; 
             width: 100%; 
             aspect-ratio: 16 / 9; 
             border-radius: var(--border-radius-main);
             box-shadow: var(--shadow-light);
-            /* opacity: 0; transform: scale(0.95) translateY(20px); - Overridden by debug CSS */
+            opacity: 0.85;
             background-size: cover; 
             background-position: center;
-            overflow: hidden; 
-            position: relative;
         }
-        .about-image-placeholder img {
-            width: 100%; height: 100%; object-fit: cover;
-            transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
-        .about-image-placeholder:hover img {
-             transform: scale(1.05);
-        }
-
         @media (min-width: 768px) {
             #about .container { 
                 grid-template-columns: 2.2fr 1.8fr; 
@@ -392,7 +311,7 @@
             }
         }
 
-        #services h2 { /* opacity: 0; transform: translateY(20px); - Overridden by debug CSS */ } 
+        /* --- Services Section --- */
         .service-grid { display: grid; gap: 2.5rem; }
         @media (min-width: 1024px) { .service-grid { grid-template-columns: repeat(4, 1fr); } }
         @media (min-width: 600px) and (max-width: 1023px) { .service-grid { grid-template-columns: repeat(2, 1fr); } }
@@ -404,13 +323,12 @@
             text-align: left; position: relative; overflow: hidden;
             transition: transform var(--transition-speed-medium) cubic-bezier(0.19, 1, 0.22, 1),
                         box-shadow var(--transition-speed-medium) cubic-bezier(0.19, 1, 0.22, 1);
-            /* opacity: 0; transform: translateY(30px); - Overridden by debug CSS */
         }
         .service-item:hover {
-            transform: translateY(-10px) perspective(1200px) rotateX(3deg) rotateY(-3deg) scale(1.04);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+            transform: translateY(-8px) perspective(1000px) rotateX(2deg) rotateY(-2deg) scale(1.03);
+            box-shadow: 0 18px 45px rgba(0,0,0,0.1);
         }
-        .service-item::before { 
+        .service-item::before {
             content: ""; position: absolute; top: 0; left: -150%; width: 100%; height: 100%;
             background: linear-gradient( 100deg, transparent, rgba(255, 255, 255, 0.4), transparent );
             transition: left var(--transition-speed-slow) cubic-bezier(0.19, 1, 0.22, 1);
@@ -422,59 +340,331 @@
             font-size: 2.8rem; color: var(--accent-primary); margin-bottom: 1.5rem; display: inline-block;
             transition: transform var(--transition-speed-medium) ease;
         }
-        .service-item:hover .service-item-icon { 
-             transform: scale(1.15) rotate(-8deg) translateY(-5px); 
-        }
+        .service-item:hover .service-item-icon { transform: scale(1.1) rotate(-5deg); }
         .service-item h3 { color: var(--text-dark); font-weight: 500; }
 
-        #portfolio h2 { /* opacity: 0; transform: translateY(20px); - Overridden by debug CSS */ } 
-        .portfolio-grid { 
+
+        /* --- ERA: 2010s Styles (Applied to #portfolio) --- */
+        #portfolio.era-2010s {
+            background-color: #f0f2f5; /* Common 2010s light grey bg */
+            padding-top: 4rem;
+            padding-bottom: 4rem;
+            border-top: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+        }
+        #portfolio.era-2010s h2 {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Common 2010s font */
+            color: #333;
+            font-weight: 300; /* Thinner fonts were popular */
+            font-size: clamp(2rem, 4vw, 3rem);
+            text-shadow: 0 1px 1px rgba(255,255,255,0.7);
+            margin-bottom: 2rem;
+        }
+        .era-2010s .portfolio-grid { 
+            display: grid; gap: 1.5rem;
+            grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); /* Slightly smaller items */
+        }
+        .era-2010s .portfolio-item {
+            border-radius: 6px; /* Less rounded than current modern */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.15); /* Softer, more diffuse shadow */
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            aspect-ratio: 4 / 3;
+            overflow: hidden; 
+        }
+        .era-2010s .portfolio-item:hover { 
+            transform: translateY(-3px); 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        .era-2010s .portfolio-item img {
+            transition: transform 0.5s ease;
+        }
+        .era-2010s .portfolio-item:hover img { 
+            transform: scale(1.05); /* More subtle zoom */
+        }
+        .era-2010s .portfolio-item-overlay {
+            background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 80%); /* Standard overlay */
+            padding: 1rem; 
+            transform: translateY(0); /* Overlay visible by default or simpler reveal */
+            opacity: 1; /* Or make it appear on hover if preferred */
+            transition: opacity 0.3s ease;
+        }
+        .era-2010s .portfolio-item:hover .portfolio-item-overlay { 
+             /* Optional: slightly change opacity or content on hover */
+        }
+        .era-2010s .portfolio-item-overlay h4 { 
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 1.2rem; color: #fff; margin-bottom: 0.2rem; font-weight: 500; 
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+        }
+        .era-2010s .portfolio-item-overlay p.category { 
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 0.8rem; color: #04d9c4; /* Keep accent or make it a lighter grey */
+            font-weight: 400; text-transform: uppercase; letter-spacing: 0.03em;
+        }
+        /* Hide modern mobile slideshow if 2010s style is active for portfolio */
+        .era-2010s .portfolio-slideshow-mobile-container {
+            display: none !important;
+        }
+         .era-2010s .portfolio-grid {
+            display: grid !important; /* Ensure grid is shown */
+        }
+
+
+        /* --- ERA: Late 2000s (Web 2.0) Styles (Applied to #why-us) --- */
+        #why-us.era-late-2000s {
+            background: #7AB4E8 url('https://www.transparenttextures.com/patterns/light-alu.png') repeat; /* Example Web 2.0 subtle texture + gradient-like bg */
+            padding-top: 3rem;
+            padding-bottom: 3rem;
+            font-family: Arial, Helvetica, sans-serif; /* Common Web 2.0 font */
+        }
+        #why-us.era-late-2000s .why-us-background-wrapper {
+            background: linear-gradient(to bottom, rgba(255,255,255,0.95) 0%, rgba(230,230,250,0.85) 100%); /* Glossy white/light blue */
+            backdrop-filter: none; /* Remove modern blur */
+            -webkit-backdrop-filter: none;
+            border-radius: 8px; /* Typical Web 2.0 rounded corners */
+            padding: 2.5rem 2rem;
+            border: 1px solid #B0C4DE; /* Light steel blue border */
+            box-shadow: 0 3px 8px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.5); /* Web 2.0 shadow + inner highlight */
+        }
+        #why-us.era-late-2000s h2 {
+            color: #2c3e50; /* Darker blue/grey */
+            font-family: Verdana, Geneva, sans-serif;
+            font-weight: bold;
+            font-size: 2.5rem;
+            text-shadow: 1px 1px 0px rgba(255,255,255,0.7); /* Subtle text shadow */
+            margin-bottom: 1.5rem;
+        }
+        #why-us.era-late-2000s .why-us-description {
+            color: #333;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 2.5rem;
+        }
+        #why-us.era-late-2000s .why-us-points {
+            gap: 1.5rem;
+        }
+        #why-us.era-late-2000s .why-us-point {
+            background: #f7f9fc; /* Light off-white */
+            padding: 1.5rem;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            transition: all 0.2s ease-in-out;
+        }
+        #why-us.era-late-2000s .why-us-point:hover {
+            border-color: #aaa;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+            transform: translateY(-2px);
+        }
+        #why-us.era-late-2000s .why-us-point h4 {
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            color: #007bff; /* Bright blue, common for links/headings */
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        #why-us.era-late-2000s .why-us-point p {
+            color: #555;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+
+        /* --- ERA: Early 2000s (GeoCities) Styles (Applied to #contact and .main-footer) --- */
+        body.era-early-2000s-active { /* Applied to body when contact section is active */
+            background-color: #FFFFCC; /* Classic pale yellow */
+            background-image: url('https://www.transparenttextures.com/patterns/stardust.png'); /* Subtle sparkle */
+        }
+        #contact.era-early-2000s {
+            background-color: #CCFFFF; /* Light cyan */
+            border: 5px ridge #0000FF; /* Bright blue ridge border */
+            padding: 20px;
+            font-family: "Comic Sans MS", "Comic Sans", cursive !important;
+            color: #000080; /* Navy */
+            opacity: 1 !important; /* Ensure it's visible */
+            transform: none !important; /* Override fade-in */
+        }
+        #contact.era-early-2000s h2 {
+            font-family: "Impact", Haettenschweiler, "Arial Narrow Bold", sans-serif !important;
+            color: #FF0000 !important; /* Bright Red */
+            font-size: 36px !important;
+            text-align: center;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 0px #FFFF00, -2px -2px 0px #00FF00; /* Yellow and Green shadow */
+            margin-bottom: 20px !important;
+        }
+        #contact.era-early-2000s p {
+            color: #800080 !important; /* Purple */
+            font-size: 16px !important;
+            line-height: 1.4 !important;
+            text-align: center !important;
+            max-width: 100% !important;
+            margin-bottom: 15px !important;
+        }
+        #contact.era-early-2000s .contact-form {
+            border: 3px dashed #FF00FF; /* Magenta dashed border */
+            padding: 15px;
+            background-color: #FFFFFF; /* White form background */
+        }
+        #contact.era-early-2000s .contact-form input[type="text"],
+        #contact.era-early-2000s .contact-form input[type="email"],
+        #contact.era-early-2000s .contact-form textarea {
+            font-family: "Times New Roman", Times, serif !important;
+            border: 1px solid #000000 !important;
+            background-color: #F0F0F0 !important; /* Light grey input */
+            color: #000000 !important;
+            padding: 8px !important;
+            border-radius: 0 !important; /* No rounded corners */
+            box-shadow: inset 2px 2px 3px #AAAAAA !important; /* Inset shadow */
+            font-size: 14px !important;
+        }
+        #contact.era-early-2000s .contact-form input::placeholder, 
+        #contact.era-early-2000s .contact-form textarea::placeholder {
+            color: #666666 !important;
+            font-style: italic;
+        }
+         #contact.era-early-2000s .contact-form input:focus, 
+         #contact.era-early-2000s .contact-form textarea:focus {
+            outline: 1px dotted #00FF00 !important; /* Green dotted outline */
+            border-color: #00FF00 !important;
+            box-shadow: inset 2px 2px 3px #AAAAAA, 0 0 5px #00FF00 !important;
+        }
+        #contact.era-early-2000s .contact-form button.cta-button {
+            font-family: "Arial Black", Gadget, sans-serif !important;
+            background: #00FF00 !important; /* Bright Green */
+            color: #000000 !important;
+            border: 2px outset #008000 !important; /* Dark Green outset border */
+            padding: 10px 20px !important;
+            font-size: 18px !important;
+            font-weight: bold !important;
+            text-transform: uppercase;
+            border-radius: 0 !important;
+            box-shadow: 3px 3px 5px #888888 !important;
+            cursor: pointer !important; /* Add pointer cursor if missing */
+        }
+         #contact.era-early-2000s .contact-form button.cta-button:hover {
+            background: #FFFF00 !important; /* Yellow on hover */
+            color: #FF0000 !important; /* Red text on hover */
+            transform: none !important; /* Remove modern hover transform */
+            box-shadow: 3px 3px 5px #888888, inset 1px 1px 0px #FFFFFF !important;
+        }
+
+        .geocities-gif {
+            display: block;
+            margin: 10px auto;
+            width: auto; /* Adjust as needed */
+            height: auto; /* Adjust as needed */
+        }
+
+        @keyframes blink-text {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        .blinking-text {
+            animation: blink-text 1s linear infinite;
+            font-weight: bold;
+            color: #FF00FF; /* Magenta */
+        }
+        .scrolling-text-container {
+            width: 100%;
+            background-color: #0000FF; /* Blue background for marquee */
+            color: #FFFF00; /* Yellow text */
+            padding: 5px 0;
+            margin: 15px 0;
+            overflow: hidden; /* Important for marquee effect */
+        }
+        .scrolling-text-container marquee {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .main-footer.era-early-2000s {
+            background-color: #000000 !important; /* Black background */
+            color: #00FF00 !important; /* Bright Green text */
+            font-family: "Courier New", Courier, monospace !important;
+            padding: 15px !important;
+            text-align: center !important;
+            border-top: 5px double #FF0000 !important; /* Red double border */
+            opacity: 1 !important; /* Ensure it's visible */
+            transform: none !important; /* Override fade-in */
+        }
+        .main-footer.era-early-2000s p {
+            color: #00FF00 !important;
+            font-size: 12px !important;
+            margin-bottom: 8px !important;
+            line-height: 1.3 !important;
+        }
+        .main-footer.era-early-2000s a {
+            color: #FFFF00 !important; /* Yellow links */
+            text-decoration: underline !important;
+        }
+        .main-footer.era-early-2000s a:hover {
+            color: #FF00FF !important; /* Magenta on hover */
+            background-color: #FFFF00 !important; /* Yellow background on hover */
+        }
+        .hit-counter-container {
+            margin-top: 10px;
+            font-size: 10px;
+            color: #FFFFFF; /* White counter text */
+        }
+        .hit-counter-img { /* For a classic hit counter image */
+            border: 0;
+            vertical-align: middle;
+            margin: 0 2px;
+        }
+        .guestbook-link {
+            display: block;
+            margin-top: 10px;
+            padding: 5px;
+            border: 1px solid #00FF00;
+            background: #333333;
+        }
+        .construction-gif-footer {
+            width: 100px; /* Adjust as needed */
+            height: auto;
+        }
+
+
+        /* --- Portfolio Section (Original Modern - Fallback if JS fails or for non-era sections) --- */
+        #portfolio .portfolio-grid { 
             display: grid; gap: 1.5rem;
             grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
         }
-        .portfolio-item { /* This has its own opacity:0 rule, ensure debug CSS overrides it if needed, or rely on JS to set it for animation */
+        #portfolio .portfolio-item {
             position: relative;
             border-radius: var(--border-radius-main);
             box-shadow: var(--shadow-medium);
-            transition: transform var(--transition-speed-medium) ease, box-shadow var(--transition-speed-medium) ease;
+            transition: transform var(--transition-speed-medium) ease;
             aspect-ratio: 4 / 3;
+            cursor: pointer;
             background-color: #f0f0f0; 
+            opacity: 1; 
+            visibility: visible; 
+            transform: translateZ(0); 
+            -webkit-transform: translateZ(0); 
             overflow: hidden; 
-            opacity: 0; /* GSAP animates this. Debug CSS rule `.main section > *, .portfolio-item` could target this if general section one isn't enough */
-            transform: translateY(30px) scale(0.95); 
         }
-         /* Adding a more specific debug rule for portfolio-item as it's nested and has its own opacity */
-        .portfolio-item {
-            opacity: 1 !important; /* DEBUG */
-            transform: none !important; /* DEBUG */
-        }
-        .portfolio-item:hover { 
-            transform: scale(1.03) translateY(-5px); 
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-        }
-        .portfolio-item img {
+        #portfolio .portfolio-item:hover { transform: scale(1.03); }
+        #portfolio .portfolio-item img {
             display: block; width: 100%; height: 100%; object-fit: cover;
             transition: transform var(--transition-speed-slow) cubic-bezier(0.165, 0.84, 0.44, 1);
             position: relative; z-index: 1;
+            opacity: 1; 
+            visibility: visible;
         }
-        .portfolio-item:hover img { transform: scale(1.1); }
-        .portfolio-item-overlay {
+        #portfolio .portfolio-item:hover img { transform: scale(1.1); }
+        #portfolio .portfolio-item-overlay {
             position: absolute; bottom: 0; left: 0; right: 0;
             background: linear-gradient(to top, rgba(19, 21, 22, 0.85) 0%, rgba(19, 21, 22, 0) 100%);
-            padding: 3rem 1.5rem 1.5rem; 
-            transform: translateY(101%); 
+            padding: 3rem 1.5rem 1.5rem; transform: translateY(100%);
             transition: transform var(--transition-speed-medium) cubic-bezier(0.165, 0.84, 0.44, 1);
             color: var(--text-light); z-index: 2;
         }
-        .portfolio-item:hover .portfolio-item-overlay { transform: translateY(0); }
-        .portfolio-item-overlay h4 { font-size: 1.4rem; color: var(--text-light); margin-bottom: 0.3rem; font-weight: 500; transform: translateY(10px); opacity:0; transition: transform 0.3s ease 0.1s, opacity 0.3s ease 0.1s; }
-        .portfolio-item-overlay p.category { font-size: 0.9rem; color: var(--accent-primary); font-weight: 400; text-transform: uppercase; letter-spacing: 0.05em; transform: translateY(10px); opacity:0; transition: transform 0.3s ease 0.15s, opacity 0.3s ease 0.15s;}
-        .portfolio-item:hover .portfolio-item-overlay h4,
-        .portfolio-item:hover .portfolio-item-overlay p.category {
-            transform: translateY(0);
-            opacity: 1;
-        }
+        #portfolio .portfolio-item:hover .portfolio-item-overlay { transform: translateY(0); }
+        #portfolio .portfolio-item-overlay h4 { font-size: 1.4rem; color: var(--text-light); margin-bottom: 0.3rem; font-weight: 500; }
+        #portfolio .portfolio-item-overlay p.category { font-size: 0.9rem; color: var(--accent-primary); font-weight: 400; text-transform: uppercase; letter-spacing: 0.05em; }
 
+        /* --- Mobile Portfolio Slideshow Styles (Modern) --- */
         .portfolio-slideshow-mobile-container {
             display: none; 
             position: relative;
@@ -485,10 +675,10 @@
             background-color: var(--background-light);
             margin-top: 2rem; 
             box-sizing: border-box;
-            /* opacity: 0; transform: translateY(20px); - GSAP animates this / overridden by debug CSS for mobile */
         }
         .slideshow-track-mobile {
             display: flex;
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
             align-items: stretch; 
             user-select: none; 
             -webkit-user-select: none;
@@ -501,6 +691,7 @@
             flex-shrink: 0; 
             box-sizing: border-box; 
             padding: 0 10px; 
+            
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -535,84 +726,111 @@
             box-sizing: border-box;
         }
         .slide-mobile .slide-caption-mobile h4 {
-            color: var(--text-dark); margin-bottom: 0.2rem; font-weight: 500;
-            word-break: break-word; overflow-wrap: break-word; font-size: 1.1rem; 
+            color: var(--text-dark);
+            margin-bottom: 0.2rem;
+            font-weight: 500;
+            word-break: break-word; 
+            overflow-wrap: break-word; 
+            font-size: 1.1rem; 
         }
         .slide-mobile .slide-caption-mobile p {
-            color: var(--neutral-gray); text-transform: uppercase;
-            letter-spacing: 0.03em; font-size: 0.8rem; margin-bottom: 0; 
+            color: var(--neutral-gray);
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            font-size: 0.8rem; 
+            margin-bottom: 0; 
         }
+
         .slide-nav-mobile {
-            position: absolute; top: calc(0.5rem + ((90vw - 20px) * 9 / 16) / 2); 
-            transform: translateY(-50%); background-color: rgba(0, 0, 0, 0.35);
-            color: white; border: none; border-radius: 50%;
-            width: 38px; height: 38px; font-size: 0.9rem; 
+            position: absolute;
+            top: calc(0.5rem + ((90vw - 20px) * 9 / 16) / 2); 
+            transform: translateY(-50%); 
+            background-color: rgba(0, 0, 0, 0.35);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 38px; 
+            height: 38px;
+            font-size: 0.9rem; 
+            cursor: pointer;
             z-index: 10;
             transition: background-color var(--transition-speed-fast), transform var(--transition-speed-fast), opacity var(--transition-speed-fast);
-            display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2); opacity: 0.8; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            opacity: 0.8; 
         }
         .slide-nav-mobile:hover {
             background-color: rgba(0, 0, 0, 0.6);
-            transform: translateY(-50%) scale(1.1); opacity: 1;
+            transform: translateY(-50%) scale(1.05); 
+            opacity: 1;
         }
         .slide-prev-mobile { left: 15px; } 
         .slide-next-mobile { right: 15px; }
+
+
         .slide-indicators-mobile {
-            position: absolute; bottom: 10px; left: 50%;
-            transform: translateX(-50%); display: flex; gap: 10px; z-index: 5; 
+            position: absolute;
+            bottom: 10px; 
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px; 
+            z-index: 5; 
         }
         .indicator-dot-mobile {
-            width: 9px; height: 9px; background-color: rgba(0, 0, 0, 0.25);
+            width: 9px; 
+            height: 9px;
+            background-color: rgba(0, 0, 0, 0.25);
             border-radius: 50%;
+            cursor: pointer;
             transition: background-color var(--transition-speed-fast), transform var(--transition-speed-fast);
         }
         .indicator-dot-mobile.active {
-            background-color: var(--accent-primary); transform: scale(1.15);
+            background-color: var(--accent-primary);
+            transform: scale(1.15);
         }
         .slideshow-no-items {
-            text-align: center; padding: 2rem; color: var(--neutral-gray);
-            min-height: 200px; display: flex; align-items: center; justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            color: var(--neutral-gray);
+            min-height: 200px; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
+
+        /* --- Why Choose Us Section (Modern Fallback) --- */
         #why-us { position: relative; padding-top: 3rem; padding-bottom: 3rem; }
-        .why-us-background-wrapper {
+        #why-us .why-us-background-wrapper {
             background-color: var(--accent-secondary-glass);
             backdrop-filter: blur(5px) saturate(180%);
             -webkit-backdrop-filter: blur(5px) saturate(180%);
             border-radius: var(--border-radius-large); padding: 4rem 3rem; margin: 0 auto;
             border: 1px solid rgba(255, 255, 255, 0.15); box-shadow: var(--shadow-medium);
-            /* opacity: 0; transform: scale(0.9) translateY(30px); - Overridden by debug CSS */
         }
-        #why-us h2 { color: var(--text-light); /* opacity: 0; transform: translateY(20px); - Overridden by debug CSS */ } 
+        #why-us h2 { color: var(--text-light); }
         #why-us .why-us-description {
             color: rgba(244, 244, 244, 0.9); text-align: center; max-width: 750px;
             margin-left: auto; margin-right: auto; font-size: 1.2rem; margin-bottom: 3rem;
-           /* opacity: 0; transform: translateY(20px); - Overridden by debug CSS */
         }
-        .why-us-points {
+        #why-us .why-us-points {
             display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
             gap: 2rem; max-width: 900px; margin-left: auto; margin-right: auto;
         }
-        .why-us-point {
+        #why-us .why-us-point {
             background: var(--background-translucent-light); padding: 2rem;
             border-radius: var(--border-radius-main);
             border: 1px solid rgba(255, 255, 255, 0.15); text-align: left;
-            /* opacity: 0; transform: translateY(30px); - Overridden by debug CSS */
-            transition: background-color 0.3s ease, border-color 0.3s ease; 
         }
-        .why-us-point:hover {
-            background: rgba(255,255,255,0.1); border-color: var(--accent-primary);
-        }
-        .why-us-point h4 { color: var(--accent-primary); margin-bottom: 0.75rem; font-size: 1.3rem; font-weight: 500; }
-        .why-us-point p { color: rgba(244, 244, 244, 0.85); font-size: 1rem; max-width: none; }
+        #why-us .why-us-point h4 { color: var(--accent-primary); margin-bottom: 0.75rem; font-size: 1.3rem; font-weight: 500; }
+        #why-us .why-us-point p { color: rgba(244, 244, 244, 0.85); font-size: 1rem; max-width: none; }
 
-        #contact h2 { /* opacity: 0; transform: translateY(20px); - Overridden by debug CSS */ } 
-        #contact > p { text-align: center; margin-bottom: 3rem; max-width: 700px; margin-left: auto; margin-right: auto; /* opacity: 0; transform: translateY(20px); - Overridden by debug CSS */ } 
-        .contact-form { max-width: 700px; margin: 0 auto; display: grid; gap: 1.5rem; /* opacity: 0; transform: translateY(30px); - Overridden by debug CSS */ }
-        .contact-form .form-field { 
-            position: relative; /* opacity: 0; transform: translateY(20px); - Overridden by debug CSS */
-        }
+        /* --- Contact Section (Modern Fallback) --- */
+        #contact p { text-align: center; margin-bottom: 3rem; max-width: 700px; margin-left: auto; margin-right: auto; }
+        .contact-form { max-width: 700px; margin: 0 auto; display: grid; gap: 1.5rem; }
         .contact-form input, .contact-form textarea {
             width: 100%; padding: 1.2rem 1.5rem; border: 1px solid #dde2e7; border-radius: 8px;
             background-color: rgba(255,255,255,0.8); color: var(--text-dark);
@@ -625,45 +843,34 @@
             box-shadow: 0 0 0 3px rgba(4, 217, 196, 0.2);
         }
         .contact-form textarea { resize: vertical; min-height: 150px; }
-        .contact-form button { justify-self: center; margin-top: 1rem; /* opacity: 0; transform: translateY(20px); - Overridden by debug CSS */ }
-        .form-field .focus-border {
-            position: absolute; bottom: 0; left: 0; width: 100%; height: 2px;
-            background-color: var(--accent-primary); transform: scaleX(0);
-            transform-origin: center; transition: transform 0.3s cubic-bezier(0.19, 1, 0.22, 1);
-            z-index: 1; 
-        }
-        .form-field input:focus ~ .focus-border,
-        .form-field textarea:focus ~ .focus-border {
-            transform: scaleX(1);
-        }
+        .contact-form button { justify-self: center; margin-top: 1rem; }
 
+        /* --- Footer (Modern Fallback) --- */
         .main-footer {
             background-color: var(--bg-dark); color: var(--neutral-gray); text-align: center;
-            padding: 2rem 1rem; font-size: 0.95rem;
-            /* opacity:0; transform: translateY(20px); - Overridden by debug CSS */
+            padding: 2rem 1rem; /* Reduced vertical padding */
+            font-size: 0.95rem;
         }
         .main-footer p { 
-            color: var(--neutral-gray); font-size: 0.9rem; 
-            margin-bottom: 0.4rem; max-width: none; 
+            color: var(--neutral-gray); 
+            font-size: 0.9rem; 
+            margin-bottom: 0.4rem; /* Slightly reduced margin */
+            max-width: none; 
         }
         .main-footer .footer-copyright .maugans-co-footer {
              font-family: var(--font-logo); 
         }
         .main-footer a { 
-            color: var(--accent-primary); text-decoration: none; 
-            transition: color var(--transition-speed-fast); position: relative;
+            color: var(--accent-primary); 
+            text-decoration: none; 
+            transition: color var(--transition-speed-fast); 
         }
-        .main-footer a::after {
-            content: ''; position: absolute; width: 100%; transform: scaleX(0);
-            height: 1px; bottom: -2px; left: 0;
-            background-color: var(--text-light); transform-origin: bottom right;
-            transition: transform 0.25s ease-out;
-        }
-        .main-footer a:hover { color: var(--text-light); }
-        .main-footer a:hover::after {
-            transform: scaleX(1); transform-origin: bottom left;
+        .main-footer a:hover { 
+            color: var(--text-light); 
+            text-decoration: underline; 
         }
 
+        /* --- Portfolio Modal --- */
         .modal {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-color: rgba(253, 253, 253, 0.6);
@@ -688,21 +895,18 @@
         }
         .modal-close {
             position: absolute; top: 15px; right: 15px; width: 38px; height: 38px;
-            background-color: var(--accent-primary); color: var(--text-light); 
+            background-color: var(--accent-primary); 
+            color: var(--text-light); 
             border: none; border-radius: 50%; font-size: 1.4rem;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+            cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.25);
             transition: transform var(--transition-speed-fast) cubic-bezier(0.34, 1.56, 0.64, 1),
                         background-color var(--transition-speed-fast);
             display: flex; align-items: center; justify-content: center; z-index: 10;
         }
         .modal-close:hover { transform: scale(1.1) rotate(90deg); background-color: #03c8b3; }
 
+        /* --- Responsive Adjustments --- */
         @media (max-width: 768px) {
-            .cursor-follower { display: none !important; } 
-            a, button, [role="button"], input[type="submit"], .menu-toggle,
-            .indicator-dot-mobile, .portfolio-item, .slide-nav-mobile, .modal-close { 
-                cursor: pointer !important; 
-            }
             .nav-container { flex-wrap: wrap; }
             .menu-toggle { display: flex; align-items: center; justify-content: center; }
             .main-nav {
@@ -712,64 +916,107 @@
                 border-top: 1px solid rgba(0,0,0,0.05);
                 transition: max-height 0.5s cubic-bezier(0.19, 1, 0.22, 1);
             }
-            .main-nav.active { max-height: 350px; } 
+            .main-nav.active { max-height: 350px; }
             .main-nav ul { flex-direction: column; align-items: center; padding: 1rem 0; }
-            .main-nav ul li { margin: 1rem 0; /* opacity: 1; transform: none; - Already handled by global debug CSS */ } 
+            .main-nav ul li { margin: 1rem 0; }
 
-            .hero-content { text-align: left; padding: 0 1.5rem; }
-            .hero-content h1 { font-size: clamp(2.0rem, 8vw, 3.0rem); line-height: 1.3; /* opacity:1 !important; transform:none !important; - Handled by global debug */ }
-            @media (max-width: 400px) {
-                .hero-content h1 { font-size: 1.8rem; line-height: 1.35; }
+            .hero-content {
+                text-align: left; 
+                padding: 0 1.5rem; 
+            }
+            .hero-content h1 {
+                font-size: clamp(2.0rem, 8vw, 3.0rem);
+                line-height: 1.3;
+            }
+             @media (max-width: 400px) {
+                .hero-content h1 {
+                    font-size: 1.8rem;
+                    line-height: 1.35;
+                }
                 .hero-content .subtitle { font-size: 1rem; }
             }
-            .hero-content .subtitle { font-size: clamp(1.1rem, 4vw, 1.3rem); /* opacity:1 !important; transform:none !important; - Handled by global debug */ }
+            .hero-content .subtitle { font-size: clamp(1.1rem, 4vw, 1.3rem); }
+            .hero::before, .hero::after { display: none; }
+
             #about h2 { text-align: center; }
-            /* .portfolio-item handled by its own specific debug rule now */
-            .portfolio-grid { display: none !important; } 
-            .portfolio-slideshow-mobile-container { 
-                display: block; 
-                opacity: 1 !important; /* DEBUG: Force mobile slideshow container visible */
-                transform: none !important; /* DEBUG: Force mobile slideshow container visible */
+            
+            /* Responsive for 2010s portfolio - ensure grid still applies */
+            #portfolio.era-2010s .portfolio-grid {
+                grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr)); /* Adjust for smaller screens if needed */
             }
+            /* Hide modern mobile slideshow when 2010s is active */
+             #portfolio.era-2010s .portfolio-slideshow-mobile-container {
+                display: none !important;
+            }
+             #portfolio.era-2010s .portfolio-grid {
+                display: grid !important;
+            }
+
+            /* Original modern responsive portfolio handling: */
+            #portfolio:not(.era-2010s) .portfolio-item { 
+                min-height: 150px; 
+            }
+            #portfolio:not(.era-2010s) .portfolio-grid {
+                display: none !important; 
+            }
+            #portfolio:not(.era-2010s) .portfolio-slideshow-mobile-container {
+                display: block; 
+            }
+
+
             .portfolio-item-overlay { padding: 2rem 1rem 1rem; }
             .modal-close { top: 10px; right: 10px; width: 35px; height: 35px; font-size: 1.2rem; }
             .modal-content img { max-height: calc(90vh - 50px); }
-            #why-us { padding-top: 2rem; padding-bottom: 2rem; }
-            .why-us-background-wrapper { padding: 2.5rem 1.5rem; }
-            #why-us .why-us-description { max-width: 90%; font-size: 1.1rem; }
-            .why-us-points { max-width: 100%; gap: 1.5rem; }
+
+            #why-us:not(.era-late-2000s) { padding-top: 2rem; padding-bottom: 2rem; }
+            #why-us:not(.era-late-2000s) .why-us-background-wrapper { padding: 2.5rem 1.5rem; }
+            #why-us:not(.era-late-2000s) .why-us-description { max-width: 90%; font-size: 1.1rem; }
+            #why-us:not(.era-late-2000s) .why-us-points { max-width: 100%; gap: 1.5rem; }
+            
+            /* Responsive for Late 2000s Why Us */
+            #why-us.era-late-2000s .why-us-background-wrapper { padding: 1.5rem 1rem; }
+            #why-us.era-late-2000s h2 { font-size: 2rem; }
+            #why-us.era-late-2000s .why-us-description { font-size: 1rem; }
+            #why-us.era-late-2000s .why-us-point { padding: 1rem; }
+            #why-us.era-late-2000s .why-us-point h4 {font-size: 1.1rem;}
+            #why-us.era-late-2000s .why-us-point p {font-size: 0.9rem;}
+
+            /* Responsive for Early 2000s contact */
+            #contact.era-early-2000s { padding: 10px; border-width: 3px; }
+            #contact.era-early-2000s h2 { font-size: 28px !important; }
+            #contact.era-early-2000s p { font-size: 14px !important; }
         }
+
         @media (min-width: 769px) {
-            .portfolio-slideshow-mobile-container { display: none !important; }
-            .portfolio-grid { display: grid !important; }
-            a, button, [role="button"], input[type="submit"], .menu-toggle,
-            .indicator-dot-mobile, .portfolio-item, .slide-nav-mobile, .modal-close { 
-                 cursor: none; 
+             /* Ensure modern mobile slideshow is hidden on desktop */
+            #portfolio:not(.era-2010s) .portfolio-slideshow-mobile-container {
+                display: none !important;
             }
-            /* On desktop, we'd want animations, so the !important debug rules might be too much.
-               However, for this specific mobile debugging, we'll keep them.
-               If you were to commit this for desktop, you'd remove the !important debug styles. */
+            /* Ensure modern grid is shown on desktop */
+             #portfolio:not(.era-2010s) .portfolio-grid { 
+                display: grid !important; 
+            }
         }
         .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0;}
+
     </style>
 </head>
 <body>
-    <div class="cursor-follower"></div>
 
     <header class="main-header" id="mainHeader">
         <div class="nav-container">
             <div class="logo">
-                <a href="#hero" data-cursor-hover="link"><span class="logo-maugans">Maugans</span> <span class="co-highlight">Co.</span></a>
+                <a href="#hero"><span class="logo-maugans">Maugans</span> <span class="co-highlight">Co.</span></a>
             </div>
             <nav class="main-nav" id="mainNav">
                 <ul>
-                    <li><a href="#about" class="nav-link" data-cursor-hover="link">About</a></li>
-                    <li><a href="#services" class="nav-link" data-cursor-hover="link">Services</a></li>
-                    <li><a href="#portfolio" class="nav-link" data-cursor-hover="link">Work</a></li>
-                    <li><a href="#contact" class="nav-link" data-cursor-hover="link">Connect</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#services" class="nav-link">Services</a></li>
+                    <li><a href="#portfolio" class="nav-link">Work</a></li>
+                    <li><a href="#contact" class="nav-link">Connect</a></li>
                 </ul>
             </nav>
-            <button class="menu-toggle" id="menuToggle" aria-label="Open Menu" aria-expanded="false" data-cursor-hover="link">
+            <button class="menu-toggle" id="menuToggle" aria-label="Open Menu" aria-expanded="false">
                 <span class="line line1"></span>
                 <span class="line line2"></span>
                 <span class="line line3"></span>
@@ -782,49 +1029,45 @@
             <div class="hero-content">
                 <h1>Designing with <span class="highlight">Clarity</span><br/>Crafting with <span class="highlight">Care</span><br/> Welcome to <span class="maugans-co-logo-hero">Maugans Co.</span></h1>
                 <p class="subtitle">We create exceptionally clean, modern, and dynamic experiences. Your vision, brought to life with a personal, friendly touch.</p>
-                <a href="#contact" class="cta-button" data-cursor-hover="link">
-                    Start Your Project
-                    <span class="shimmer"></span>
-                </a>
+                <a href="#contact" class="cta-button">Start Your Project</a>
             </div>
         </section>
 
         <section id="about" class="container">
             <div class="about-content">
-                <h2>Our Approach</h2> 
+                <h2>Our Approach</h2>
                 <p>At Maugans Co., we believe the best results come from a foundation of understanding and a genuinely collaborative spirit. We're not just designers; we're your creative partners, dedicated to making the journey from idea to reality both exciting and effortless. </p>
                 <p>Whether you're launching a new digital presence or elevating an existing one, our dedicated website design expertise is at your service. We pride ourselves on creating a welcoming atmosphere where you feel completely at ease to explore possibilities, ask questions, and see your aspirations take shape—no pretense, just passion and personable guidance.</p>
             </div>
-            <div class="about-image-placeholder" aria-hidden="true" data-cursor-hover="target">
-                 <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="Collaborative team working in a modern office">
+            <div class="about-image-placeholder" aria-hidden="true" style="background-image: url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80');">
             </div>
         </section>
 
         <section id="services" class="container">
             <h2>Our Creative Toolkit</h2>
             <div class="service-grid">
-                <div class="service-item" data-cursor-hover="target">
-                    <div class="service-item-content">
-                        <div class="service-item-icon"><i class="fas fa-drafting-compass"></i></div>
-                        <h3>Strategic UI/UX Design</h3>
-                        <p>We craft user-centric interfaces and experiences, focusing on intuitive navigation, clear pathways, and engaging interactions that delight your audience and achieve your business goals.</p>
-                    </div>
-                </div>
-                <div class="service-item" data-cursor-hover="target">
+                <div class="service-item">
                      <div class="service-item-content">
                         <div class="service-item-icon"><i class="fas fa-laptop-code"></i></div>
                         <h3>Responsive Web Development</h3>
                         <p>Beautifully functional websites built with clean, modern code. We ensure your site performs flawlessly across all devices—desktops, tablets, and mobiles—for a seamless user experience.</p>
                     </div>
                 </div>
-                <div class="service-item" data-cursor-hover="target">
+                <div class="service-item">
+                    <div class="service-item-content">
+                        <div class="service-item-icon"><i class="fas fa-drafting-compass"></i></div>
+                        <h3>Strategic Experience Design</h3>
+                        <p>We craft user-centric interfaces and experiences, focusing on intuitive navigation, clear pathways, and engaging interactions that delight your audience and achieve your business goals.</p>
+                    </div>
+                </div>
+                <div class="service-item">
                     <div class="service-item-content">
                        <div class="service-item-icon"><i class="fas fa-chart-line"></i></div>
                        <h3>SEO & Performance Optimization</h3>
                        <p>Enhancing your website's visibility on search engines and optimizing its speed for a superior user experience and better rankings.</p>
                     </div>
                 </div>
-                <div class="service-item" data-cursor-hover="target">
+                <div class="service-item">
                     <div class="service-item-content">
                         <div class="service-item-icon"><i class="fas fa-tools"></i></div>
                         <h3>Website Maintenance & Support</h3>
@@ -837,84 +1080,52 @@
         <section id="portfolio" class="container">
             <h2>Selected Works</h2>
             <div class="portfolio-grid">
-                <div class="portfolio-item" data-img-src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" data-category="Web Design" tabindex="0" role="button" aria-label="View E-commerce Redefined project" data-cursor-hover="target">
+                <div class="portfolio-item" data-img-src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" data-category="Web Design" tabindex="0" role="button" aria-label="View E-commerce Redefined project">
                     <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60" alt="Modern data analytics dashboard interface">
                     <div class="portfolio-item-overlay"><h4>E-commerce Redefined</h4><p class="category">Website Design</p></div>
                 </div>
-                <div class="portfolio-item" data-img-src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" data-category="Web Design" tabindex="0" role="button" aria-label="View Creative Portfolio Hub project" data-cursor-hover="target">
+                <div class="portfolio-item" data-img-src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" data-category="Web Design" tabindex="0" role="button" aria-label="View Creative Portfolio Hub project">
                     <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60" alt="Laptop displaying code on a wooden desk">
                     <div class="portfolio-item-overlay"><h4>Creative Portfolio Hub</h4><p class="category">Website Design</p></div>
                 </div>
-                <div class="portfolio-item" data-img-src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" data-category="Photography" tabindex="0" role="button" aria-label="View Cityscape Poetry project" data-cursor-hover="target">
+                <div class="portfolio-item" data-img-src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" data-category="Photography" tabindex="0" role="button" aria-label="View Cityscape Poetry project">
                     <img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60" alt="Aerial view of a sprawling cityscape at dusk">
                     <div class="portfolio-item-overlay"><h4>Cityscape Poetry</h4><p class="category">Photography</p></div>
                 </div>
-                <div class="portfolio-item" data-img-src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" data-category="Photography" tabindex="0" role="button" aria-label="View Macro Worlds project" data-cursor-hover="target">
+                 <div class="portfolio-item" data-img-src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" data-category="Photography" tabindex="0" role="button" aria-label="View Macro Worlds project">
                     <img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60" alt="Close-up of a dewdrop on a blade of grass">
                     <div class="portfolio-item-overlay"><h4>Macro Worlds</h4><p class="category">Photography</p></div>
-                </div>
-                <div class="portfolio-item" data-img-src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" data-category="Photography" tabindex="0" role="button" aria-label="View Luminous Portraits project" data-cursor-hover="target">
-                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60" alt="Thoughtful portrait of a man in natural light">
-                    <div class="portfolio-item-overlay"><h4>Luminous Portraits</h4><p class="category">Photography</p></div>
-                </div>
-                <div class="portfolio-item" data-img-src="https://images.unsplash.com/photo-1503220317375-aaad61436b1b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" data-category="Photography" tabindex="0" role="button" aria-label="View Wanderlust Frames project" data-cursor-hover="target">
-                    <img src="https://images.unsplash.com/photo-1503220317375-aaad61436b1b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60" alt="Person standing on a cliff overlooking a vast landscape">
-                    <div class="portfolio-item-overlay"><h4>Wanderlust Frames</h4><p class="category">Photography</p></div>
-                </div>
-                <div class="portfolio-item" data-img-src="https://images.unsplash.com/photo-1505480450330-0cf25765a531?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" data-category="Photography" tabindex="0" role="button" aria-label="View Timeless Monochrome project" data-cursor-hover="target">
-                    <img src="https://images.unsplash.com/photo-1505480450330-0cf25765a531?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60" alt="Black and white architectural detail of a spiral staircase">
-                    <div class="portfolio-item-overlay"><h4>Timeless Monochrome</h4><p class="category">Photography</p></div>
-                </div>
-                <div class="portfolio-item" data-img-src="https://images.unsplash.com/photo-1527719327859-c6ce80353573?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" data-category="Shirts" tabindex="0" role="button" aria-label="View Statement Tees project" data-cursor-hover="target">
-                    <img src="https://images.unsplash.com/photo-1527719327859-c6ce80353573?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60" alt="Person wearing a t-shirt with a bold graphic design">
-                    <div class="portfolio-item-overlay"><h4>Statement Tees</h4><p class="category">Screenprinted Shirts</p></div>
-                </div>
-                <div class="portfolio-item" data-img-src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" data-category="Shirts" tabindex="0" role="button" aria-label="View Wearable Graphics project" data-cursor-hover="target">
-                    <img src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60" alt="Collection of t-shirts with artistic prints hanging on a rack">
-                    <div class="portfolio-item-overlay"><h4>Wearable Graphics</h4><p class="category">Screenprinted Shirts</p></div>
-                </div>
-                <div class="portfolio-item" data-img-src="https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" data-category="Remodels" tabindex="0" role="button" aria-label="View Culinary Heaven project" data-cursor-hover="target">
-                    <img src="https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60" alt="Modern bright kitchen with an island and sleek cabinets">
-                    <div class="portfolio-item-overlay"><h4>Culinary Heaven</h4><p class="category">Home Remodels</p></div>
-                </div>
-                <div class="portfolio-item" data-img-src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" data-category="Remodels" tabindex="0" role="button" aria-label="View Fluid Living Spaces project" data-cursor-hover="target">
-                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60" alt="Spacious open-concept living room with large windows">
-                    <div class="portfolio-item-overlay"><h4>Fluid Living Spaces</h4><p class="category">Home Remodels</p></div>
-                </div>
-                <div class="portfolio-item" data-img-src="https://images.unsplash.com/photo-1582971805808-749e28597037?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" data-category="Remodels" tabindex="0" role="button" aria-label="View Sanctuary Bathrooms project" data-cursor-hover="target">
-                    <img src="https://images.unsplash.com/photo-1582971805808-749e28597037?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60" alt="Luxurious bathroom with a freestanding tub and marble tiles">
-                    <div class="portfolio-item-overlay"><h4>Sanctuary Bathrooms</h4><p class="category">Home Remodels</p></div>
                 </div>
             </div>
 
             <div class="portfolio-slideshow-mobile-container" id="portfolioSlideshowMobile">
                 <div class="slideshow-track-mobile" id="slideshowTrackMobile">
-                </div>
-                <button class="slide-nav-mobile slide-prev-mobile" id="slidePrevMobile" aria-label="Previous project" data-cursor-hover="link">
+                    </div>
+                <button class="slide-nav-mobile slide-prev-mobile" id="slidePrevMobile" aria-label="Previous project">
                     <i class="fas fa-chevron-left"></i>
                 </button>
-                <button class="slide-nav-mobile slide-next-mobile" id="slideNextMobile" aria-label="Next project" data-cursor-hover="link">
+                <button class="slide-nav-mobile slide-next-mobile" id="slideNextMobile" aria-label="Next project">
                     <i class="fas fa-chevron-right"></i>
                 </button>
                 <div class="slide-indicators-mobile" id="slideIndicatorsMobile">
-                </div>
+                    </div>
             </div>
         </section>
 
         <section id="why-us" class="container">
-            <div class="why-us-background-wrapper" data-cursor-hover="target">
+            <div class="why-us-background-wrapper">
                 <h2>The Maugans Co. Difference</h2>
                 <p class="why-us-description">Choosing a design partner is about trust and shared vision. Here’s why clients love working with us:</p>
                 <div class="why-us-points">
-                    <div class="why-us-point" data-cursor-hover="target">
+                    <div class="why-us-point">
                         <h4>Authentically Personal</h4>
                         <p>We're genuinely invested in you and your project. Expect direct communication, transparency, and a process that feels like a true collaboration, not a transaction.</p>
                     </div>
-                    <div class="why-us-point" data-cursor-hover="target">
+                    <div class="why-us-point">
                         <h4>Multifaceted Mastery</h4>
                         <p>Our deep expertise in digital design and web technologies means we bring a holistic and innovative perspective to every website project. We focus our many talents on creating exceptional online experiences.</p>
                     </div>
-                    <div class="why-us-point" data-cursor-hover="target">
+                    <div class="why-us-point">
                         <h4>Unwavering Dedication</h4>
                         <p>Your satisfaction is paramount. We meticulously craft every detail and are committed to delivering outcomes that don't just meet expectations, but delightfully exceed them.</p>
                     </div>
@@ -924,31 +1135,41 @@
 
         <section id="contact" class="container">
             <h2>Let's Create Something Remarkable.</h2>
-            <p>Have an idea brewing, a project to discuss, or just curious to learn more? Reach out and let's explore the possibilities.</p>
+            
+            <img src="https://web.archive.org/web/20091027002439im_/http://geocities.com/Area51/Vault/1335/construction.gif" alt="Under Construction" class="geocities-gif" id="constructionGif">
+
+            <div class="scrolling-text-container">
+                <marquee scrollamount="5" behavior="scroll" direction="left" id="geocitiesMarquee">
+                    **~*~* Welcome 2 Maugans Co. - UR #1 Web Design Destination! *~*~** Drop us a line! We're ALWAYS E-X-C-I-T-E-D to hear from U!!!
+                </marquee>
+            </div>
+
+            <p>Have an idea brewing, a project to discuss, or just <span class="blinking-text">CURIOUS</span> to learn more? Reach out and let's explore the possibilities. Don't be shy, send us an e-mail! <img src="https://web.archive.org/web/20090829142517im_/http://www.geocities.com/talkcity_palisades/messages/NEWEMAIL.GIF" alt="Spinning Email GIF" style="vertical-align: middle; height: 20px;"> </p>
+            
             <form class="contact-form" id="contactForm">
-                <div class="form-field">
-                    <input type="text" name="name" placeholder="Your Name" required data-cursor-hover="link">
-                    <span class="focus-border"></span>
-                </div>
-                <div class="form-field">
-                    <input type="email" name="email" placeholder="Your Email" required data-cursor-hover="link">
-                    <span class="focus-border"></span>
-                </div>
-                <div class="form-field">
-                    <textarea name="message" placeholder="Tell us about your vision..." required data-cursor-hover="link"></textarea>
-                    <span class="focus-border"></span>
-                </div>
-                <button type="submit" class="cta-button" data-cursor-hover="link">
-                    Send Your Thoughts
-                    <span class="shimmer"></span>
-                </button>
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" placeholder="Tell us about your vision..." required></textarea>
+                <button type="submit" class="cta-button">Send Your Thoughts!</button>
             </form>
+            <img src="https://web.archive.org/web/20091027081917im_/http://www.geocities.com/petcitycentral/gifs/glitterline.gif" alt="Glitter Line Divider" class="geocities-gif" style="width:80%; height:15px; margin-top: 20px;">
         </section>
     </main>
 
-    <footer class="main-footer">
-        <p class="footer-copyright">&copy; <span id="currentYear">2025</span> Maugans Co. All Rights Reserved.</p>
-        <p>Designing a more beautiful world, one project at a time.</p>
+    <footer class="main-footer" id="mainFooterEra">
+        <p class="footer-copyright">&copy; <span id="currentYear">1999</span> <span class="logo-maugans">Maugans</span> <span class="co-highlight">Co.</span> All Rights Reserved??? Maybe!</p>
+        <p>This site is best viewed with Netscape Navigator 4.0 or Internet Explorer 5.0 at 800x600 resolution!</p>
+        <div class="hit-counter-container">
+            YOU ARE VISITOR NUMBER: 
+            <img src="https://web.archive.org/web/20030803010356im_/http://geocities.com/cgi-bin/counter" alt="0" class="hit-counter-img" id="hitCounterDigit0">
+            <img src="https://web.archive.org/web/20030803010356im_/http://geocities.com/cgi-bin/counter" alt="0" class="hit-counter-img" id="hitCounterDigit1">
+            <img src="https://web.archive.org/web/20030803010356im_/http://geocities.com/cgi-bin/counter" alt="0" class="hit-counter-img" id="hitCounterDigit2">
+            <img src="https://web.archive.org/web/20030803010356im_/http://geocities.com/cgi-bin/counter" alt="3" class="hit-counter-img" id="hitCounterDigit3">
+            <img src="https://web.archive.org/web/20030803010356im_/http://geocities.com/cgi-bin/counter" alt="7" class="hit-counter-img" id="hitCounterDigit4">
+            <span id="hitCounter">12345</span>
+        </div>
+        <a href="#" class="guestbook-link">Sign Our Guestbook! (Coming Soon!)</a>
+        <img src="https://web.archive.org/web/20090728110159im_/http://www.geocities.com/christineilis/MIDIcowboy.gif" alt="Dancing Cowboy GIF" class="geocities-gif construction-gif-footer">
     </footer>
 
     <div class="modal" id="portfolioModal" role="dialog" aria-modal="true" aria-labelledby="modalImageAriaLabel">
@@ -956,7 +1177,7 @@
             <img src="" alt="Portfolio Item Large View" id="modalImage" />
             <span id="modalImageAriaLabel" class="sr-only">Large view of portfolio image</span>
         </div>
-        <button class="modal-close" id="modalClose" aria-label="Close modal" data-cursor-hover="link">
+        <button class="modal-close" id="modalClose" aria-label="Close modal">
             <i class="fas fa-times"></i>
         </button>
     </div>
@@ -964,346 +1185,172 @@
         This is a screen-reader only class.
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/SplitText.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
-
     <script>
-    // Wrapped in DOMContentLoaded to ensure elements are available for selection
     document.addEventListener('DOMContentLoaded', function() {
-        console.log('DOM fully loaded and parsed.');
-
-        // Check if GSAP is loaded
-        if (typeof gsap === 'undefined') {
-            console.error('CRITICAL: GSAP library not loaded! Animations and some functionality will fail.');
-            // Fallback: Make sure essential content is visible if GSAP fails - CSS !important rules should mostly handle this
-            document.querySelectorAll('.main-nav ul li').forEach(el => {
-                if(el) el.style.opacity = '1'; // Specific for nav items if their animation was missed
-            });
-        } else {
-            console.log('GSAP library loaded.');
-            try {
-                gsap.registerPlugin(ScrollTrigger, SplitText, ScrollToPlugin); 
-                console.log('GSAP plugins registered.');
-            } catch(e) {
-                console.error('Error registering GSAP plugins:', e);
-            }
-        }
-
         const mainHeader = document.getElementById('mainHeader');
         const menuToggle = document.getElementById('menuToggle');
         const mainNav = document.getElementById('mainNav');
         const navLinks = document.querySelectorAll('.main-nav a.nav-link');
         const body = document.body;
-        const cursorFollower = document.querySelector('.cursor-follower');
-        let sections = []; 
 
-        const currentYearEl = document.getElementById('currentYear');
-        if (currentYearEl) {
-            currentYearEl.textContent = new Date().getFullYear();
-        }
+        const portfolioSection = document.getElementById('portfolio');
+        const whyUsSection = document.getElementById('why-us');
+        const contactSection = document.getElementById('contact');
+        const mainFooter = document.querySelector('.main-footer'); // Target the actual footer element
+        const geocitiesYearSpan = document.getElementById('currentYear');
+
 
         if ('scrollRestoration' in history) {
              history.scrollRestoration = 'manual';
         }
-
         window.addEventListener('load', () => {
-             console.log('Window load event fired.');
              window.scrollTo(0, 0);
-             
-             if (typeof gsap !== 'undefined') { // Only try to use GSAP if it's loaded
-                sections = gsap.utils.toArray('main section'); 
-                console.log('Sections found for GSAP:', sections.length, sections.map(s=>s.id));
-             } else {
-                sections = Array.from(document.querySelectorAll('main section')); // Fallback if GSAP not loaded
-                console.warn('GSAP not loaded, using basic section array.');
-             }
-
-             try {
-                playInitialAnimations(); 
-                if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') { // Only setup ScrollTriggers if GSAP/ST loaded
-                    setupScrollTriggers();   
-                    ScrollTrigger.refresh(); 
-                }
-                console.log('Initial animations and ScrollTriggers setup attempted.');
-             } catch (e) {
-                console.error("Error during initial GSAP setup on window.load:", e);
-                // Enhanced Fallback: CSS !important rules are the primary fallback for visibility.
-                // This JS fallback is secondary.
-                const elementsToForceShow = [
-                    // 'main section', // Already handled by aggressive CSS
-                    '.hero-content h1', '.hero-content .subtitle', '.hero-content .cta-button',
-                    '#about h2', '#about p', '.about-image-placeholder',
-                    '#services h2', '.service-item',
-                    '#portfolio h2', '.portfolio-item', '.portfolio-slideshow-mobile-container',
-                    '#why-us h2', '#why-us .why-us-description', '.why-us-background-wrapper', '.why-us-point',
-                    '#contact h2', '#contact > p', '.contact-form', '.contact-form .form-field', '.contact-form button',
-                    '.main-footer',
-                    '.main-nav ul li' 
-                ];
-                elementsToForceShow.forEach(selector => {
-                    document.querySelectorAll(selector).forEach(el => {
-                        if(el) {
-                            // Only apply if not already overridden by !important CSS, or if we want to ensure JS sets it.
-                            // For now, trust the CSS !important for visibility.
-                            // el.style.opacity = '1'; 
-                            // el.style.transform = 'none';
-                        }
-                    });
-                });
-                console.log('Fallback due to GSAP setup error (CSS should make elements visible).');
-             }
-             checkAndInitSlideshow(); 
         });
 
-        if (cursorFollower && window.matchMedia("(min-width: 769px)").matches && typeof gsap !== 'undefined') {
-            body.classList.add('desktop-cursor');
-            window.addEventListener('mousemove', e => {
-                gsap.to(cursorFollower, {
-                    duration: 0.3, x: e.clientX, y: e.clientY, ease: "power2.out"
-                });
-            });
-            document.querySelectorAll('[data-cursor-hover]').forEach(el => {
-                el.addEventListener('mouseenter', () => {
-                    const hoverType = el.dataset.cursorHover;
-                    if (hoverType === 'link') cursorFollower.classList.add('hover-link');
-                    else if (hoverType === 'target') cursorFollower.classList.add('hover-target');
-                });
-                el.addEventListener('mouseleave', () => {
-                    cursorFollower.classList.remove('hover-link', 'hover-target');
-                });
-            });
-        }
-
-        let lastScrollTop = 0;
         window.addEventListener('scroll', () => {
-            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            if (mainHeader) {
-                mainHeader.classList.toggle('scrolled', scrollTop > 50);
-                mainHeader.classList.toggle('hidden', scrollTop > lastScrollTop && scrollTop > 200);
+            if (window.scrollY > 50) {
+                mainHeader.classList.add('scrolled');
+            } else {
+                mainHeader.classList.remove('scrolled');
             }
-            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-        }, false);
+        });
 
-        if (menuToggle && mainNav) {
-            console.log('DEBUG: Menu toggle and mainNav found. Attaching listener.');
-            menuToggle.addEventListener('click', function() {
-                console.log('DEBUG: Menu toggle clicked.');
-                const isExpanded = mainNav.classList.toggle('active');
-                menuToggle.classList.toggle('open');
-                menuToggle.setAttribute('aria-expanded', String(isExpanded));
-                body.classList.toggle('modal-open', isExpanded && window.innerWidth <= 768);
-
-                if (isExpanded && window.innerWidth <= 768) {
-                    console.log('DEBUG: Mobile menu expanded, attempting to animate items.');
-                    const mobileNavItems = mainNav.querySelectorAll('ul li');
-                    if (mobileNavItems.length > 0) {
-                         console.log(`DEBUG: Found ${mobileNavItems.length} mobile nav items to animate.`);
-                         if (typeof gsap !== 'undefined') {
-                            gsap.fromTo(mobileNavItems,
-                                { opacity: 0, y: -15 }, // These items already have opacity:1 !important via CSS debug
-                                { opacity: 1, y: 0, duration: 0.3, stagger: 0.07, ease: "power2.out", delay: 0.1 }
-                            );
-                         } else {
-                             console.warn('GSAP not available for mobile menu item animation.');
-                             // CSS !important should keep them visible.
-                         }
-                    } else {
-                        console.log('DEBUG: No mobile nav items found to animate.');
-                    }
-                } else {
-                     console.log('DEBUG: Mobile menu collapsed or not in mobile view for item animation.');
-                }
-            });
-        } else {
-            console.error('DEBUG: Menu toggle or mainNav element NOT FOUND!');
-        }
+        menuToggle.addEventListener('click', function() {
+            const isExpanded = mainNav.classList.toggle('active');
+            menuToggle.classList.toggle('open');
+            menuToggle.setAttribute('aria-expanded', isExpanded);
+            body.classList.toggle('modal-open', isExpanded && window.innerWidth < 769);
+        });
 
         navLinks.forEach(link => {
             link.addEventListener('click', function(e) {
-                const targetId = this.getAttribute('href');
-                console.log(`Nav link clicked: ${targetId}`);
-
-                if (mainNav && mainNav.classList.contains('active')) {
-                    console.log('Closing active mobile menu due to nav link click.');
+                if (mainNav.classList.contains('active')) {
                     mainNav.classList.remove('active');
-                    if (menuToggle) {
-                        menuToggle.classList.remove('open');
-                        menuToggle.setAttribute('aria-expanded', 'false');
-                    }
+                    menuToggle.classList.remove('open');
+                    menuToggle.setAttribute('aria-expanded', 'false');
                     body.classList.remove('modal-open');
                 }
-                
+                const targetId = this.getAttribute('href');
                 if (targetId && targetId.startsWith('#')) {
                     e.preventDefault(); 
                     const targetElement = document.querySelector(targetId);
                     if (targetElement) {
-                         let offsetYValue = 60; 
-                         if (mainHeader) {
-                            offsetYValue = mainHeader.offsetHeight + (window.innerWidth <= 768 ? 10 : 20);
-                         }
-                         console.log(`Scrolling to ${targetId} with offset ${offsetYValue}`);
-                         if (typeof gsap !== 'undefined' && typeof gsap.getProperty(window, "scrollTo") !== "undefined") { // Check if ScrollToPlugin is loaded
-                            gsap.to(window, {
-                                duration: 1.0,
-                                scrollTo: { y: targetId, offsetY: offsetYValue },
-                                ease: "power2.inOut"
-                            });
-                         } else {
-                             const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - offsetYValue;
-                             window.scrollTo({ top: targetPosition, behavior: 'smooth' });
-                             console.warn('GSAP ScrollTo not available or plugin not registered, using native scroll.');
-                         }
-                    } else {
-                        console.warn(`Target element for ${targetId} not found.`);
+                         const headerOffset = mainHeader ? mainHeader.offsetHeight + 20 : 80; 
+                         const elementPosition = targetElement.getBoundingClientRect().top;
+                         const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                         window.scrollTo({
+                             top: offsetPosition,
+                             behavior: 'smooth'
+                         });
                     }
                 }
             });
         });
-        
-        function setupScrollTriggers() {
-            if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
-                console.warn('GSAP or ScrollTrigger not available for setupScrollTriggers.');
-                return;
-            }
-            if (sections.length === 0) {
-                console.warn("Sections array is empty for ScrollTrigger setup.");
-                return;
-            }
-            console.log("Setting up ScrollTriggers for sections.");
-            sections.forEach((section) => {
-                const sectionId = section.id || 'unknown-section';
-                if (!section) { 
-                    console.warn("Skipping ScrollTrigger for invalid section object:", section);
-                    return; 
+
+        // --- Era Styling Logic ---
+        const sectionsForEraStyling = [
+            { el: portfolioSection, eraClass: 'era-2010s', threshold: 0.1 },
+            { el: whyUsSection, eraClass: 'era-late-2000s', threshold: 0.1 },
+            { el: contactSection, eraClass: 'era-early-2000s', threshold: 0.05 } // Lower threshold for earlier trigger
+        ];
+
+        const eraObserverOptions = { root: null, rootMargin: "0px 0px -40% 0px" }; // Adjust rootMargin to trigger earlier/later
+
+        const eraObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const sectionConfig = sectionsForEraStyling.find(s => s.el === entry.target);
+                if (!sectionConfig) return;
+
+                if (entry.isIntersecting) {
+                    entry.target.classList.add(sectionConfig.eraClass);
+                    // Special handling for early 2000s footer and body background
+                    if (sectionConfig.el === contactSection) {
+                        mainFooter.classList.add('era-early-2000s');
+                        body.classList.add('era-early-2000s-active');
+                        if(geocitiesYearSpan) geocitiesYearSpan.textContent = "1998"; // Change year for GeoCities
+                        updateHitCounter(); // Start hit counter when section is visible
+                    }
+                } else {
+                    // Optionally remove class when scrolling out IF you want styles to revert upwards
+                    // For this project, we want them to persist as we scroll down.
+                    // However, if scrolling back up, we might want to revert.
+                    // For now, let's make it sticky once applied.
+                    // If you want to remove when scrolling UP past it:
+                    // entry.target.classList.remove(sectionConfig.eraClass);
+                    // if (sectionConfig.el === contactSection) {
+                    //    mainFooter.classList.remove('era-early-2000s');
+                    //    body.classList.remove('era-early-2000s-active');
+                    // }
                 }
-                console.log(`Creating ScrollTrigger for section: ${sectionId}`);
-                ScrollTrigger.create({
-                    trigger: section,
-                    start: "top 75%", // A bit earlier to ensure it triggers
-                    end: "bottom 25%", 
-                    onEnter: () => setActiveNavLink(section.id), // section.id might be undefined if section has no id
-                    onEnterBack: () => setActiveNavLink(section.id),
-                    onLeave: () => clearActiveNavLink(section.id),
-                    onLeaveBack: () => clearActiveNavLink(section.id, true),
-                    onToggle: self => console.log(`ScrollTrigger for ${sectionId} toggled, isActive: ${self.isActive}`),
-                    onError: (self, error) => console.error(`ScrollTrigger.create error for ${sectionId}:`, error)
-                });
             });
-            
-            // Refresh ScrollTrigger and set initial active nav link
-             setTimeout(() => {
-                if (typeof ScrollTrigger !== 'undefined') {
-                    ScrollTrigger.refresh(true); 
-                    console.log("ScrollTrigger.refresh(true) called.");
-                    let currentSectionId = null;
-                    const headerHeight = mainHeader ? mainHeader.offsetHeight + 100 : 150;
-                    if (sections.length > 0) {
-                        for(let i = sections.length -1; i >=0; i--){
-                            if(sections[i] && sections[i].getBoundingClientRect().top <= headerHeight){ // Check sections[i] exists
-                                currentSectionId = sections[i].id;
-                                break;
-                            }
-                        }
-                        if (currentSectionId) {
-                            setActiveNavLink(currentSectionId);
-                        } else if (sections[0] && sections[0].getBoundingClientRect && window.pageYOffset < (sections[0].getBoundingClientRect().top + window.pageYOffset - headerHeight) ) { // Check sections[0] and its method
+        }, eraObserverOptions);
+
+        sectionsForEraStyling.forEach(sectionConfig => {
+            if (sectionConfig.el) {
+                eraObserver.observe(sectionConfig.el);
+            }
+        });
+        
+        // --- Modern Section Visibility Observer & Active Nav Link ---
+        const modernSections = document.querySelectorAll('main section:not(#portfolio):not(#why-us):not(#contact)');
+        const sectionObserverOptions = {
+            root: null, threshold: 0.25, rootMargin: "-80px 0px -15% 0px"
+        };
+        let activeLinkTimeout;
+
+        const sectionVisibilityObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const link = document.querySelector(`.main-nav a[href="#${entry.target.id}"]`);
+                // Fade in for all sections, including era-styled ones if they don't have their own animation
+                 if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                 }
+
+
+                // Active link logic (might need adjustment with era sections)
+                if (link) { // Only apply to links that exist in the nav
+                    if (entry.isIntersecting) {
+                        clearTimeout(activeLinkTimeout);
+                        activeLinkTimeout = setTimeout(() => {
                             navLinks.forEach(l => l.classList.remove('active'));
-                        }
+                            link.classList.add('active');
+                        }, 50);
                     }
                 }
-            }, 350); // Increased timeout slightly
-        }
+            });
+        }, sectionObserverOptions);
 
-        function setActiveNavLink(sectionId) {
-            if (!sectionId) {
-                // console.warn("setActiveNavLink called with no sectionId");
-                return;
+        document.querySelectorAll('main section').forEach(section => {
+            sectionVisibilityObserver.observe(section);
+             // Apply initial visibility for sections already in view on load (e.g. hero)
+            if (section.getBoundingClientRect().top < window.innerHeight && section.getBoundingClientRect().bottom > 0) {
+                section.classList.add('visible');
             }
-            // console.log(`Attempting to set active nav link for: ${sectionId}`);
-            navLinks.forEach(link => {
+        });
+        
+        function initialActiveLink() { 
+            let current = '';
+            const headerHeight = mainHeader ? mainHeader.offsetHeight + 100 : 150;
+            // Check all sections, including era-styled ones, for active link determination
+            document.querySelectorAll('main section').forEach(section => {
+                if (section.getBoundingClientRect().top <= headerHeight) {
+                    current = section.id;
+                }
+            });
+             navLinks.forEach(link => {
                 link.classList.remove('active');
-                if (link.getAttribute('href') === `#${sectionId}`) {
+                const linkHref = link.getAttribute('href');
+                if (linkHref === `#${current}`) {
                     link.classList.add('active');
                 }
             });
-        }
-        function clearActiveNavLink(sectionId, goingUp = false) {
-            if (!sectionId) return;
-             const link = document.querySelector(`.main-nav a[href="#${sectionId}"]`);
-             if (link) link.classList.remove('active');
-             if (goingUp && sections.length > 0 && sections[0] && sectionId === sections[0].id) {
+            if (!current && window.pageYOffset < (document.querySelector('main section') ? document.querySelector('main section').offsetTop - headerHeight : 0)) {
                  navLinks.forEach(l => l.classList.remove('active'));
-             }
-        }
-        
-        function playInitialAnimations() {
-            console.log("playInitialAnimations called.");
-            if (typeof gsap === 'undefined') {
-                console.warn('GSAP not available for playInitialAnimations. Content should be visible via CSS !important.');
-                return;
             }
-
-            const tl = gsap.timeline({ 
-                defaults: { ease: "power2.out" },
-                onComplete: () => console.log("GSAP Initial animation timeline complete.") 
-            });
-
-            // Header animation (already working, but ensure it uses initial states if debug CSS is on)
-            if (mainHeader) {
-                const logoLink = mainHeader.querySelector('.logo a');
-                const mainNavLis = mainHeader.querySelectorAll('.main-nav ul li');
-                // For debug, these are opacity:1 !important. GSAP .from will respect current style unless overwritten by .set
-                if (logoLink) tl.from(logoLink, { y: -20, opacity: 0, duration: 0.6, clearProps: "opacity,transform" });
-                if (mainNavLis.length > 0) tl.from(mainNavLis, { y: -20, opacity: 0, stagger: 0.1, duration: 0.4, clearProps: "opacity,transform" }, "-=0.3");
-            }
-            
-            // Hero elements animation (already working)
-            const heroH1 = document.querySelector('.hero-content h1');
-            const heroSubtitle = document.querySelector('.hero-content .subtitle');
-            const heroCTA = document.querySelector('.hero-content .cta-button');
-            if (heroH1) tl.from(heroH1, {opacity: 0, y:20, duration: 0.6, clearProps: "opacity,transform"}, "heroStart"); 
-            if (heroSubtitle) tl.from(heroSubtitle, { opacity: 0, y: 30, duration: 0.7, delay:0.1, clearProps: "opacity,transform" }, "heroStart");
-            if (heroCTA) tl.from(heroCTA, { opacity: 0, y: 30, scale:0.9, duration: 0.7, ease: "back.out(1.7)", delay:0.2, clearProps: "opacity,transform" }, "heroStart");
-
-            // General Section Reveals (using ScrollTrigger)
-            console.log("Setting up general section reveal animations.");
-            gsap.utils.toArray('main section').forEach((section, index) => {
-                if (!section) {
-                    console.error(`Section at index ${index} is null/undefined in playInitialAnimations loop.`);
-                    return;
-                }
-                const sectionId = section.id || `section-index-${index}`;
-                console.log(`DEBUG: Setting up ScrollTrigger animation for section: ${sectionId}`);
-
-                // Set initial state for GSAP to animate from, overriding CSS if necessary for the animation itself
-                // The `clearProps: "all"` or specific props ensures after animation, styles are removed if desired.
-                // Or, rely on the CSS !important and GSAP will animate 'from' those visible states if not .set here.
-                // For a proper fade-in, GSAP needs to start them at opacity 0.
-                gsap.set(section, { opacity: 0, y: 30 }); // Ensure clean start for GSAP animation
-                console.log(`DEBUG: gsap.set(opacity:0, y:30) for ${sectionId}`);
-
-                gsap.to(section, {
-                    opacity: 1,
-                    y: 0, 
-                    duration: 0.8,
-                    scrollTrigger: {
-                        trigger: section,
-                        start: "top 85%", 
-                        toggleActions: "play none none none", // "play" on enter
-                        once: true, // Play only once
-                        onEnter: () => console.log(`DEBUG: ScrollTrigger onEnter for section: ${sectionId}`),
-                        onToggle: self => console.log(`DEBUG: ScrollTrigger for ${sectionId} toggled, isActive: ${self.isActive}`),
-                        onError: (stSelf, error) => console.error(`DEBUG: ScrollTrigger error for ${sectionId} [${stSelf.trigger.id}]:`, error)
-                    },
-                    onComplete: () => console.log(`DEBUG: GSAP animation completed for ${sectionId}`),
-                    onError: (vars, error) => console.error(`DEBUG: GSAP.to() error for ${sectionId}:`, error) // Error for the .to() itself
-                });
-            });
-            
-            console.log("playInitialAnimations setup completed.");
         }
+        setTimeout(initialActiveLink, 150); 
+        window.addEventListener('scroll', initialActiveLink); 
 
 
         const portfolioModal = document.getElementById('portfolioModal');
@@ -1313,62 +1360,37 @@
         let previouslyFocusedElement; 
 
         function openModal(imgSrc, altText) {
-            if (!portfolioModal || !modalImage || !modalCloseButton) return;
             previouslyFocusedElement = document.activeElement; 
             modalImage.src = imgSrc;
             modalImage.alt = altText || "Large view of portfolio project"; 
             portfolioModal.classList.add('active');
             body.classList.add('modal-open'); 
-            const modalContent = portfolioModal.querySelector('.modal-content');
-            if (modalContent && typeof gsap !== 'undefined') {
-                gsap.fromTo(modalContent, 
-                    { scale: 0.8, opacity: 0, y: 20 }, 
-                    { scale: 1, opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }
-                );
-            } else if (modalContent) { 
-                modalContent.style.transform = 'scale(1) translateY(0)';
-                modalContent.style.opacity = '1';
-            }
             modalCloseButton.focus(); 
         }
 
         function closeModal() {
-            if (!portfolioModal) return; 
-            const modalContent = portfolioModal.querySelector('.modal-content');
-            if (modalContent && typeof gsap !== 'undefined') {
-                gsap.to(modalContent, {
-                    scale: 0.8, opacity: 0, y: 20, duration: 0.3, ease: "power2.in",
-                    onComplete: () => {
-                        portfolioModal.classList.remove('active');
-                        body.classList.remove('modal-open'); 
-                        if (previouslyFocusedElement) previouslyFocusedElement.focus();
-                    }
-                });
-            } else { 
-                if (modalContent) {
-                    modalContent.style.transform = 'scale(0.8) translateY(20px)';
-                    modalContent.style.opacity = '0';
-                }
-                portfolioModal.classList.remove('active');
-                body.classList.remove('modal-open'); 
-                if (previouslyFocusedElement) previouslyFocusedElement.focus();
-            }
+            portfolioModal.classList.remove('active');
+            body.classList.remove('modal-open'); 
+            if (previouslyFocusedElement) previouslyFocusedElement.focus();
         }
 
         portfolioItemsGrid.forEach(item => { 
             item.addEventListener('click', () => {
-                const largeImgSrc = item.dataset.imgSrc;
-                const itemImg = item.querySelector('img');
-                const altText = itemImg ? itemImg.alt : 'Portfolio image'; 
-                if (largeImgSrc) openModal(largeImgSrc, altText);
+                // Only open modal if not in an "era" that changes portfolio display fundamentally
+                if (!portfolioSection.classList.contains('era-2010s')) { // Example condition
+                    const largeImgSrc = item.dataset.imgSrc;
+                    const altText = item.querySelector('img') ? item.querySelector('img').alt : 'Portfolio image'; 
+                    if (largeImgSrc) openModal(largeImgSrc, altText);
+                }
             });
             item.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault(); 
-                    const largeImgSrc = item.dataset.imgSrc;
-                     const itemImg = item.querySelector('img');
-                    const altText = itemImg ? itemImg.alt : 'Portfolio image';
-                    if (largeImgSrc) openModal(largeImgSrc, altText);
+                     if (!portfolioSection.classList.contains('era-2010s')) {
+                        e.preventDefault(); 
+                        const largeImgSrc = item.dataset.imgSrc;
+                        const altText = item.querySelector('img') ? item.querySelector('img').alt : 'Portfolio image';
+                        if (largeImgSrc) openModal(largeImgSrc, altText);
+                    }
                 }
             });
         });
@@ -1377,48 +1399,44 @@
         if (portfolioModal) {
             portfolioModal.addEventListener('click', (e) => { if (e.target === portfolioModal) closeModal(); });
         }
-        document.addEventListener('keydown', (e) => { 
-            if (portfolioModal && e.key === 'Escape' && portfolioModal.classList.contains('active')) closeModal(); 
-        });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && portfolioModal.classList.contains('active')) closeModal(); });
 
         const slideshowContainer = document.getElementById('portfolioSlideshowMobile');
         const slideshowTrack = document.getElementById('slideshowTrackMobile');
         const prevButton = document.getElementById('slidePrevMobile');
         const nextButton = document.getElementById('slideNextMobile');
         const indicatorsContainer = document.getElementById('slideIndicatorsMobile');
-        const portfolioItemsDataSource = document.querySelectorAll('.portfolio-grid .portfolio-item'); 
+        const portfolioItemsDataSource = document.querySelectorAll('#portfolio .portfolio-grid .portfolio-item'); 
 
         let currentSlideIndex = 0;
         let slideshowInitialized = false;
-        let mobileSlides = []; 
 
         function initializeMobileSlideshow() {
-            console.log("DEBUG: Initializing mobile slideshow...");
-            if (slideshowInitialized || !slideshowContainer || !slideshowTrack || !portfolioItemsDataSource || portfolioItemsDataSource.length === 0) {
-                 if (slideshowContainer && (!portfolioItemsDataSource || portfolioItemsDataSource.length === 0)) {
-                    console.log("DEBUG: No portfolio items to display in slideshow.");
+            // Do not initialize if the 2010s era style is active for the portfolio section,
+            // as it uses a different layout and hides the mobile slideshow.
+            if (portfolioSection.classList.contains('era-2010s')) {
+                if(slideshowContainer) slideshowContainer.style.display = 'none';
+                return;
+            }
+
+            if (slideshowInitialized || !slideshowContainer || !slideshowTrack || portfolioItemsDataSource.length === 0) {
+                 if (slideshowContainer && portfolioItemsDataSource.length === 0) {
                     slideshowContainer.innerHTML = '<p class="slideshow-no-items">No projects to display.</p>';
                     if(prevButton) prevButton.style.display = 'none'; 
                     if(nextButton) nextButton.style.display = 'none';
                     if(indicatorsContainer) indicatorsContainer.style.display = 'none';
-                } else {
-                    console.log("DEBUG: Slideshow already initialized or missing essential elements/data.");
                 }
                 return;
             }
             
             slideshowTrack.innerHTML = ''; 
-            if (indicatorsContainer) indicatorsContainer.innerHTML = ''; 
-            mobileSlides = []; 
+            if(indicatorsContainer) indicatorsContainer.innerHTML = ''; 
 
             portfolioItemsDataSource.forEach((itemData, index) => {
-                const itemImgEl = itemData.querySelector('img');
-                const imgSrc = itemData.dataset.imgSrc || (itemImgEl ? itemImgEl.src : 'https://placehold.co/600x400/cccccc/333333?text=Image+Missing&font=Inter');
-                const altText = itemImgEl ? itemImgEl.alt : 'Portfolio project image';
-                const titleEl = itemData.querySelector('.portfolio-item-overlay h4');
-                const title = titleEl ? titleEl.textContent : 'Project Title';
-                const categoryEl = itemData.querySelector('.portfolio-item-overlay p.category');
-                const category = categoryEl ? categoryEl.textContent : 'Category';
+                const imgSrc = itemData.dataset.imgSrc || (itemData.querySelector('img') ? itemData.querySelector('img').src : 'https://placehold.co/600x400/cccccc/333333?text=Image+Missing&font=Inter');
+                const altText = itemData.querySelector('img') ? itemData.querySelector('img').alt : 'Portfolio project image';
+                const title = itemData.querySelector('.portfolio-item-overlay h4') ? itemData.querySelector('.portfolio-item-overlay h4').textContent : 'Project Title';
+                const category = itemData.querySelector('.portfolio-item-overlay p.category') ? itemData.querySelector('.portfolio-item-overlay p.category').textContent : 'Category';
 
                 const slide = document.createElement('div');
                 slide.className = 'slide-mobile';
@@ -1432,45 +1450,30 @@
                     </div>
                 `;
                 slideshowTrack.appendChild(slide);
-                mobileSlides.push(slide);
 
                 if (indicatorsContainer) {
                     const indicator = document.createElement('button');
                     indicator.className = 'indicator-dot-mobile';
                     indicator.setAttribute('aria-label', `Go to project ${index + 1}: ${title}`);
-                    indicator.addEventListener('click', () => goToSlide(index));
+                    indicator.addEventListener('click', () => showSlide(index));
                     indicatorsContainer.appendChild(indicator);
                 }
             });
             
             slideshowInitialized = true; 
-            console.log("DEBUG: Mobile slideshow initialized with slides:", mobileSlides.length);
             updateSlideshowUI(); 
-            goToSlide(0, true); 
+            showSlide(0); 
         }
 
-        function goToSlide(index, instant = false) {
-            if (!slideshowTrack || mobileSlides.length === 0) return;
-            const totalSlides = mobileSlides.length;
-        
-            currentSlideIndex = (index % totalSlides + totalSlides) % totalSlides; 
+        function showSlide(index) {
+            const totalSlides = portfolioItemsDataSource.length;
+            if (totalSlides === 0 || !slideshowTrack) return; 
 
-            // console.log(`DEBUG: Going to slide ${currentSlideIndex}`);
-            if (typeof gsap !== 'undefined') {
-                gsap.to(slideshowTrack, { 
-                    xPercent: -currentSlideIndex * 100, 
-                    duration: instant ? 0 : 0.5, 
-                    ease: "power2.inOut"
-                });
-                mobileSlides.forEach((slide, i) => {
-                     gsap.to(slide, { opacity: i === currentSlideIndex ? 1 : 0.5, duration: instant ? 0 : 0.3 });
-                });
-            } else { 
-                slideshowTrack.style.transform = `translateX(${-currentSlideIndex * 100}%)`;
-                mobileSlides.forEach((slide, i) => {
-                    slide.style.opacity = i === currentSlideIndex ? '1' : '0.5';
-                });
-            }
+            if (index >= totalSlides) currentSlideIndex = 0;
+            else if (index < 0) currentSlideIndex = totalSlides - 1;
+            else currentSlideIndex = index;
+            
+            slideshowTrack.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
             updateIndicators(); 
         }
 
@@ -1483,7 +1486,8 @@
         }
         
         function updateSlideshowUI() {
-            if (!portfolioItemsDataSource) return;
+            if (portfolioSection.classList.contains('era-2010s')) return; // Don't run if 2010s style is active
+
             const totalSlides = portfolioItemsDataSource.length;
             const displayStyle = totalSlides <= 1 ? 'none' : 'flex'; 
 
@@ -1498,97 +1502,106 @@
             }
         }
 
-        if (prevButton) prevButton.addEventListener('click', () => goToSlide(currentSlideIndex - 1));
-        if (nextButton) nextButton.addEventListener('click', () => goToSlide(currentSlideIndex + 1));
+        if (prevButton) prevButton.addEventListener('click', () => showSlide(currentSlideIndex - 1));
+        if (nextButton) nextButton.addEventListener('click', () => showSlide(currentSlideIndex + 1));
         
         function checkAndInitSlideshow() {
-            if (typeof window === 'undefined') return; 
             const isMobileView = window.innerWidth <= 768;
-            const desktopGrid = document.querySelector('.portfolio-grid');
+            const desktopGridPortfolio = document.querySelector('#portfolio .portfolio-grid'); // Modern grid
 
-            console.log(`DEBUG: checkAndInitSlideshow: isMobileView = ${isMobileView}, slideshowInitialized = ${slideshowInitialized}`);
+            if (portfolioSection.classList.contains('era-2010s')) {
+                 if(slideshowContainer) slideshowContainer.style.display = 'none';
+                 // The .era-2010s CSS rules already handle showing its specific grid
+                 return; 
+            }
 
             if (isMobileView) {
                 if (!slideshowInitialized) { 
                     initializeMobileSlideshow(); 
                 }
-                if (slideshowContainer) slideshowContainer.style.display = 'block'; // This should already have opacity:1 !important from debug CSS
-                if (desktopGrid) desktopGrid.style.display = 'none';
+                if (slideshowContainer) slideshowContainer.style.display = 'block';
+                if (desktopGridPortfolio) desktopGridPortfolio.style.display = 'none';
             } else { 
                 if (slideshowContainer) slideshowContainer.style.display = 'none';
-                if (desktopGrid) desktopGrid.style.display = 'grid'; 
-                // Ensure desktop items are visible if animations had set them to 0.
-                // Debug CSS should make them visible anyway.
-                if (desktopGrid) {
-                    const gridItems = desktopGrid.querySelectorAll('.portfolio-item');
-                    gridItems.forEach(item => {
-                         // item.style.opacity = '1'; item.style.transform = 'none'; // Covered by global debug CSS
-                    });
-                }
+                if (desktopGridPortfolio) desktopGridPortfolio.style.display = 'grid'; 
             }
         }
 
-        window.addEventListener('resize', () => {
-            console.log('Window resize event fired.');
-            checkAndInitSlideshow();
-            if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh(true); 
-        }); 
-        
+        window.addEventListener('resize', checkAndInitSlideshow); 
+        checkAndInitSlideshow(); 
+
         const contactForm = document.getElementById('contactForm');
         if (contactForm) {
             contactForm.addEventListener('submit', function(e) {
                 e.preventDefault();
-                console.log("Contact form submitted.");
-                const button = contactForm.querySelector('button[type="submit"]');
-                if (!button) return;
-                
-                button.innerHTML = 'Sending... <i class="fas fa-spinner fa-spin" style="display:inline-block; margin-left:5px;"></i><span class="shimmer"></span>'; 
-                button.disabled = true;
-                if (typeof gsap !== 'undefined') {
-                    gsap.to(button, {duration: 0.2, autoAlpha:0.5, pointerEvents: 'none'});
-                } else {
-                    button.style.opacity = '0.5';
-                    button.style.pointerEvents = 'none';
+                const isGeoCities = contactSection.classList.contains('era-early-2000s');
+                let messageText = 'Thank you for your message! We\'ll be in touch soon.';
+                if (isGeoCities) {
+                    messageText = '!!! THANX 4 UR E-MAIL !!! We will read it on our Pentium II !!!';
                 }
 
-                setTimeout(() => { 
-                    if (typeof gsap !== 'undefined') {
-                        gsap.to(contactForm, {
-                            opacity: 0, duration: 0.5, 
-                            onComplete: () => {
-                                contactForm.style.display = 'none';
-                                const successMsgContainer = contactForm.parentNode;
-                                if (successMsgContainer) {
-                                    const successMsg = document.createElement('p');
-                                    successMsg.innerHTML = 'Thank you! <br/>Your vision is on its way to us.';
-                                    successMsg.style.textAlign = 'center';
-                                    successMsg.style.color = 'var(--accent-primary)';
-                                    successMsg.style.fontSize = '1.2rem';
-                                    successMsg.style.opacity = '0';
-                                    successMsgContainer.insertBefore(successMsg, contactForm); 
-                                    gsap.fromTo(successMsg, {opacity:0, y:20}, {opacity:1, y:0, duration:0.6, ease:'power2.out'});
-                                }
-                            }
-                        });
-                    } else { 
-                        contactForm.style.opacity = '0';
-                        contactForm.style.display = 'none';
-                        const successMsgContainer = contactForm.parentNode;
-                        if (successMsgContainer) {
-                            const successMsg = document.createElement('p');
-                            successMsg.innerHTML = 'Thank you! <br/>Your vision is on its way to us.';
-                            successMsg.style.textAlign = 'center';
-                            successMsg.style.color = 'var(--accent-primary)';
-                            successMsg.style.fontSize = '1.2rem';
-                            successMsg.style.opacity = '1'; 
-                            successMsgContainer.insertBefore(successMsg, contactForm);
-                        }
-                    }
-                }, 1500);
+                const tempMsg = document.createElement('p');
+                tempMsg.textContent = messageText;
+                
+                if (isGeoCities) {
+                    tempMsg.style.color = '#FF00FF'; // Magenta
+                    tempMsg.style.fontWeight = 'bold';
+                    tempMsg.style.fontFamily = '"Comic Sans MS", cursive';
+                    tempMsg.style.textAlign = 'center';
+                    tempMsg.style.border = '2px dashed #00FF00';
+                    tempMsg.style.padding = '10px';
+                    tempMsg.style.backgroundColor = '#FFFF00';
+                    tempMsg.style.marginTop = '15px';
+                } else {
+                    tempMsg.style.textAlign = 'center';
+                    tempMsg.style.color = 'var(--accent-primary)';
+                    tempMsg.style.marginTop = '1rem';
+                }
+                
+                contactForm.parentNode.insertBefore(tempMsg, contactForm.nextSibling);
+                contactForm.reset();
+                setTimeout(() => tempMsg.remove(), isGeoCities ? 7000 : 5000);
             });
         }
+
+        // --- Early 2000s Hit Counter ---
+        const hitCounterEl = document.getElementById('hitCounter');
+        let hitCount = 12340; // Starting number
+        
+        function setHitCounterDigit(digitElId, number) {
+            const digitEl = document.getElementById(digitElId);
+            if (digitEl) {
+                // In a real GeoCities counter, each digit is a separate image.
+                // We'll simulate by changing alt text, or one could use different image URLs per digit.
+                // For now, we're using generic placeholder images, so this won't visually change them much.
+                // The text 'hitCounter' span will show the number.
+                digitEl.alt = number.toString();
+                // Example: digitEl.src = `path/to/digit_${number}.gif`;
+            }
+        }
+
+        function updateHitCounter() {
+            if (contactSection.classList.contains('era-early-2000s')) { // Only run if in GeoCities mode
+                hitCount++;
+                const countString = hitCount.toString().padStart(5, '0');
+                if (hitCounterEl) {
+                    hitCounterEl.textContent = countString; // Update the text version
+                }
+                // Update individual digit images (if they were unique per number)
+                setHitCounterDigit('hitCounterDigit0', countString[0]);
+                setHitCounterDigit('hitCounterDigit1', countString[1]);
+                setHitCounterDigit('hitCounterDigit2', countString[2]);
+                setHitCounterDigit('hitCounterDigit3', countString[3]);
+                setHitCounterDigit('hitCounterDigit4', countString[4]);
+            }
+        }
+        // Initial call if page loads directly into the section (less likely with scroll restoration off)
+        // updateHitCounter();
+        // The eraObserver will call updateHitCounter when contact section becomes visible.
+
     });
     </script>
 
 </body>
 </html>
+
