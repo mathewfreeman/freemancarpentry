@@ -3,1590 +3,644 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maugans Co. - Visionary Design & Creative Solutions</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>!!!*** MAUGANS CO. - YOUR #1 SOURCE FOR X-TREME WEB DESIGN!!!***!!!</title>
     <style>
-        /* --- Google Fonts --- */
-        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,700;1,400&family=IBM+Plex+Sans:wght@200;300;400;500;600&display=swap');
-
-        /* --- Variables --- */
-        :root {
-            --bg-dark: #131516;
-            --accent-primary: #04d9c4;
-            --accent-secondary: #3a5ba0; /* Deep Blue */
-            --accent-secondary-glass: rgba(0, 33, 77, 0.85); 
-            --neutral-gray: #5f6b7a;
-            --text-light: #F4F4F4;
-            --text-dark: #222526;
-            --background-light: #FDFDFD;
-            --background-translucent-light: rgba(255, 255, 255, 0.05); 
-
-            --font-logo: 'IBM Plex Serif', serif; 
-            --font-body: 'IBM Plex Sans', sans-serif;
-
-            --transition-speed-fast: 0.2s;
-            --transition-speed-medium: 0.4s;
-            --transition-speed-slow: 0.6s;
-
-            --shadow-light: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
-            --shadow-medium: 0 10px 30px rgba(0,0,0,0.08);
-            --border-radius-main: 12px;
-            --border-radius-large: 16px;
-        }
-
-        /* --- Reset & Base Styles --- */
-        * {
+        /* Global Styles - WILD Early 2000s */
+        body {
+            font-family: Arial, Helvetica, sans-serif; /* Standard web-safe font */
+            font-size: 14px; /* A bit larger for that classic feel */
+            line-height: 1.7;
+            background-color: #000000; /* Dominant Black Background */
+            color: #00FF00; /* Bright Green text on black as a common default */
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-        }
-        html {
-            scroll-behavior: smooth;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-        body {
-            font-family: var(--font-body);
-            line-height: 1.8;
-            background-color: var(--background-light);
-            color: var(--text-dark);
-            overflow-x: hidden;
-            font-weight: 300;
-            cursor: none; 
-        }
-        body.modal-open { 
-            overflow: hidden;
-        }
-        .cursor-follower {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 20px;
-            height: 20px;
-            background-color: var(--accent-primary);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-            mix-blend-mode: difference; 
-            transition: transform 0.1s ease-out, width 0.2s ease-out, height 0.2s ease-out, background-color 0.2s ease-out;
-            transform: translate(-50%, -50%) scale(0); 
-        }
-        body:hover .cursor-follower { 
-            transform: translate(-50%, -50%) scale(1);
-        }
-        .cursor-follower.hover-link {
-            transform: translate(-50%, -50%) scale(2.5);
-            background-color: rgba(255,255,255,0.7);
-        }
-        .cursor-follower.hover-target {
-            transform: translate(-50%, -50%) scale(3.5);
-            mix-blend-mode: normal;
-            background-color: rgba(4, 217, 196, 0.3); 
+            background-image: url('https://gifcities.org/images/bg/15/STARS15.GIF'); /* Starry night background - GifCities */
+            background-repeat: repeat;
+            background-attachment: fixed; /* Stars stay in place! */
         }
 
-        h1, h2, h3, h4 {
-            font-weight: 500;
-            color: var(--text-dark);
-            letter-spacing: -0.02em;
-        }
-        h2 {
-            font-size: clamp(2.2rem, 5vw, 3.5rem);
-            margin-bottom: 2.5rem;
+        #modern-site-link-banner-wild {
+            background-color: #00CCCC; /* Bright Teal Banner */
+            color: #000000; /* Black Text on Teal */
             text-align: center;
-            color: var(--accent-secondary);
-            font-weight: 600;
-        }
-        h3 {
-            font-size: clamp(1.5rem, 4vw, 1.8rem);
-            margin-bottom: 1rem;
-            color: var(--accent-primary);
-            font-weight: 500;
-        }
-        p {
-            margin-bottom: 1.5rem;
-            font-size: clamp(1rem, 2.5vw, 1.15rem);
-            color: var(--neutral-gray);
-            font-weight: 300;
-            max-width: 700px; 
-        }
-        .container {
-            width: 90%;
-            max-width: 1100px; 
-            margin: 0 auto;
-            padding: 5rem 0;
-        }
-        main section { 
-            /* MODIFIED FOR DEBUGGING: Force sections to be visible to test if content exists */
-            opacity: 1 !important; 
-            transform: none !important; 
-        }
-         /* DEBUG: Force common inner elements to be visible */
-        #about h2, #about p, .about-image-placeholder,
-        #services h2, .service-item,
-        #portfolio h2, /* .portfolio-item is handled by its own initial styles for GSAP */
-        #why-us h2, #why-us .why-us-description, .why-us-background-wrapper, .why-us-point,
-        #contact h2, #contact > p, .contact-form, .contact-form .form-field, .contact-form button,
-        .main-footer,
-        .hero-content h1, .hero-content .subtitle, .hero-content .cta-button, /* Ensure hero elements are visible too */
-        .main-nav ul li /* Ensure nav items are visible if their GSAP fails */
-        {
-            opacity: 1 !important;  /* DEBUG: Force visible */
-            transform: none !important; /* DEBUG: Force visible */
-        }
-
-
-        .highlight {
-            color: var(--accent-primary);
-            font-weight: 500;
-        }
-
-        .main-header {
-            background: rgba(253, 253, 253, 0.65);
-            backdrop-filter: blur(12px) saturate(180%);
-            -webkit-backdrop-filter: blur(12px) saturate(180%);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 0.4rem 0; 
-            position: fixed;
+            padding: 10px 0;
+            font-size: 16px;
+            font-weight: bold;
+            border-bottom: 5px groove #FFFF00; /* Yellow 3D border */
+            position: -webkit-sticky; /* For Safari */
+            position: sticky;
             top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            transition: background var(--transition-speed-medium) ease, box-shadow var(--transition-speed-medium) ease, padding var(--transition-speed-medium) ease, transform 0.3s ease-out;
+            z-index: 1001; /* Make sure it's on top */
         }
-        .main-header.scrolled {
-             background: rgba(253, 253, 253, 0.85);
-             box-shadow: 0 2px 15px rgba(0,0,0,0.07);
-             padding: 0.1rem 0; 
+        #modern-site-link-banner-wild a {
+            color: #0000FF; /* Bright Blue link */
+            text-decoration: underline;
+            font-family: "Comic Sans MS", "Comic Sans", cursive; /* For that extra touch */
         }
-        .main-header.hidden {
-            transform: translateY(-100%);
+        #modern-site-link-banner-wild a:hover {
+            color: #FF00FF; /* Magenta hover */
+            background-color: #FFFF00; /* Yellow background on hover */
         }
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+
+        #page-wrapper-wild { /* Main content wrapper */
             width: 90%;
-            max-width: 1100px; 
-            margin: 0 auto;
+            max-width: 850px; /* Wider than typical GeoCities, but still constrained */
+            margin: 20px auto;
+            background-color: rgba(0, 0, 50, 0.6); /* Dark, slightly transparent blue over stars */
+            border: 5px ridge #00CCCC; /* Teal 3D border */
+            box-shadow: 0 0 25px #00FFFF, 0 0 10px #FFFFFF inset; /* Glowing effect */
+            padding: 10px;
         }
-        .logo a {
-            font-family: var(--font-logo); 
-            font-size: clamp(1.8rem, 4vw, 2.2rem); 
-            font-weight: 500;
-            color: var(--accent-secondary);
+
+        /* Header - WILD Style */
+        .main-header-wild {
+            background-color: #111111; /* Very Dark Grey, almost black */
+            padding: 15px;
+            border-bottom: 5px double #00FF00; /* Bright Green double border */
+            text-align: center;
+            background-image: url('https://gifcities.org/images/bg/22/techno.gif'); /* Techy header background - GifCities */
+        }
+        .logo-container-wild .logo-maugans-wild {
+            font-family: "Impact", Haettenschweiler, "Arial Narrow Bold", sans-serif;
+            font-size: 48px;
             text-decoration: none;
-            letter-spacing: -0.03em;
-            transition: color var(--transition-speed-fast);
-            display: inline-block; 
+            display: inline-block;
+            letter-spacing: 2px;
         }
-        .logo a:hover {
-            color: var(--accent-primary);
+        /* Animated Logo Text Colors */
+        .logo-maugans-wild .char { display: inline-block; }
+        .logo-maugans-wild .m { color: #00CCCC; } /* Teal */
+        .logo-maugans-wild .a1 { color: #FFFF00; } /* Yellow */
+        .logo-maugans-wild .u { color: #FF00FF; } /* Magenta */
+        .logo-maugans-wild .g { color: #00FF00; } /* Lime */
+        .logo-maugans-wild .a2 { color: #00FFFF; } /* Cyan */
+        .logo-maugans-wild .n { color: #FF6600; } /* Orange */
+        .logo-maugans-wild .s { color: #CC00CC; } /* Purple */
+        .logo-maugans-wild .co { 
+            font-family: "Impact", Haettenschweiler, "Arial Narrow Bold", sans-serif;
+            font-size: 48px;
+            color: #00CCCC; /* Solid Teal for Co. */
+            text-shadow: 2px 2px 0px #000000, -2px -2px 0px #FFFFFF;
         }
-        .logo-maugans {
-             color: var(--text-dark);
-             font-family: var(--font-logo); 
-        }
-        .logo a .co-highlight {
-            color: var(--accent-primary);
-            font-weight: 400; 
-             font-family: var(--font-logo); 
-        }
-        .main-nav ul {
+         .logo-container-wild a { text-decoration: none; }
+         .logo-container-wild .rotating-gif { vertical-align: middle; height: 40px; margin: 0 10px;}
+
+
+        .main-nav-wild ul {
             list-style: none;
-            display: flex;
+            padding: 5px 0 0 0;
+            margin: 0;
+            text-align: center;
         }
-        .main-nav ul li {
-            margin-left: 30px;
-            /* opacity: 0; GSAP animates this - Overridden by debug CSS for now */
-            /* transform: translateY(-10px); GSAP animates this - Overridden by debug CSS for now */
-        }
-        .main-nav ul li a {
-            color: var(--neutral-gray);
-            text-decoration: none;
-            font-weight: 400;
-            font-size: 1rem;
-            padding: 0.3rem 0.1rem;
-            position: relative;
-            transition: color var(--transition-speed-fast) ease;
+        .main-nav-wild ul li {
             display: inline-block; 
+            margin: 5px;
         }
-        .main-nav ul li a::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 2px;
-            background-color: var(--accent-primary);
-            transition: width var(--transition-speed-medium) cubic-bezier(0.19, 1, 0.22, 1);
+        .main-nav-wild ul li a {
+            font-family: "Tahoma", Verdana, Arial, sans-serif;
+            font-weight: bold;
+            color: #000000; /* Black text */
+            text-decoration: none;
+            font-size: 15px;
+            padding: 8px 15px;
+            background-color: #00CCCC; /* Teal buttons */
+            border: 3px outset #009999; 
+            border-radius: 8px; 
+            text-shadow: 1px 1px 1px #CCCCCC;
         }
-        .main-nav ul li a:hover,
-        .main-nav ul li a.active {
-            color: var(--text-dark);
+        .main-nav-wild ul li a:hover {
+            background-color: #FFFF00; /* Yellow hover */
+            color: #FF0000; /* Red text on hover */
+            border-style: inset;
+            border-color: #CC0000;
         }
-        .main-nav ul li a:hover::after,
-        .main-nav ul li a.active::after {
-            width: 100%;
+        
+        /* Content Area - WILD Style */
+        .content-padding-wild {
+            padding: 10px 15px;
         }
-        .menu-toggle {
-            display: none; /* Made visible in @media query */
-            font-size: 1.8rem;
-            background: none;
-            border: none;
-            color: var(--text-dark);
-            position: relative;
-            width: 30px;
-            height: 22px;
-        }
-        .menu-toggle .line {
-            width: 25px;
-            height: 2px;
-            background-color: var(--text-dark);
-            display: block;
-            transition: all var(--transition-speed-medium) ease-in-out;
-            position: absolute;
-            left: 0;
-        }
-        .menu-toggle .line1 { top: 0px; }
-        .menu-toggle .line2 { top: 8px; }
-        .menu-toggle .line3 { top: 16px; }
 
-        .menu-toggle.open .line1 { transform: rotate(-45deg) translate(-5px, 6px); }
-        .menu-toggle.open .line2 { opacity: 0; }
-        .menu-toggle.open .line3 { transform: rotate(45deg) translate(-5px, -6px); }
-
-        .hero {
-            background: linear-gradient(135deg, #eef4f8 0%, var(--background-light) 100%);
-            color: var(--text-dark);
-            min-height: 100vh;
-            display: flex;
+        h1, h2, h3, h4 { /* Base for headings */
+            font-family: "Impact", "Arial Black", Gadget, sans-serif;
+            color: #00CCCC; /* Teal default for headings */
+            margin-top: 10px;
+            margin-bottom: 15px;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+        h1.page-title-wild { /* Big Page Titles */
+            font-size: 36px;
+            color: #FFFF00; /* Bright Yellow */
+            text-shadow: 3px 3px 0px #0000FF, -3px -3px 0px #FF0000; /* Blue and Red shadow */
+            padding: 10px;
+            border: 4px groove #00FF00; /* Lime Green 3D border */
+            background-color: rgba(0,0,0,0.5); /* Semi-transparent black bg for title */
+        }
+        h2.section-title-wild { /* Section Titles */
+            font-size: 28px;
+            color: #00FF00; /* Bright Green */
+            border-top: 3px dashed #FFFF00; /* Yellow dashed line */
+            border-bottom: 3px dashed #FFFF00;
+            padding: 8px 0;
+            display: flex; /* To align GIF with text */
             align-items: center;
             justify-content: center;
-            padding-top: 120px; 
-            padding-bottom: 8rem; 
-            overflow: hidden;
-            position: relative;
         }
-        .hero-content {
-            max-width: 950px;
-            position: relative;
-            z-index: 2;
-            text-align: center; 
+        h2.section-title-wild img.heading-gif-wild { 
+            height: 30px; 
+            margin: 0 10px;
         }
-        .hero-content h1 {
-            font-family: var(--font-body);
-            font-size: clamp(2.2rem, 6.5vw, 4.8rem); 
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            color: var(--text-dark);
-            line-height: 1.25;
-            letter-spacing: -0.04em;
-             /* opacity: 0; GSAP animates this - Overridden by debug CSS */
+        h3.subsection-title-wild { 
+            font-size: 22px;
+            color: #FF00FF; /* Magenta */
+            text-decoration: underline;
+            text-decoration-style: wavy;
+            text-decoration-color: #00CCCC; /* Teal wavy underline */
         }
-        .hero-content h1 .line-wrapper { 
-             display: block; 
-             overflow: hidden; 
+        
+        p {
+            margin-bottom: 15px;
+            color: #FFFFFF; /* White text on dark background */
+            font-size: 15px;
         }
-        .hero-content h1 .maugans-co-logo-hero {
-            font-family: var(--font-logo); 
-            color: var(--accent-secondary);
-            font-weight: 700; 
-            white-space: nowrap; 
+        a {
+            color: #00FFFF; /* Cyan links */
+            text-decoration: underline;
+            font-weight: bold;
         }
-        .hero-content .subtitle {
-            font-size: clamp(1.2rem, 3vw, 1.6rem);
-            margin-bottom: 2.5rem;
-            font-weight: 300;
-            color: var(--neutral-gray);
-            max-width: 650px;
-            line-height: 1.6;
-            /* opacity: 0; GSAP animates this - Overridden by debug CSS */
-            /* transform: translateY(20px); GSAP animates this - Overridden by debug CSS */
-            margin-left: auto; margin-right: auto; 
-        }
-        .cta-button {
-            background: linear-gradient(135deg, var(--accent-primary), #03b0a0);
-            color: var(--text-light); 
-            padding: 1rem 2.8rem;
+        a:hover {
+            color: #FFFF00; /* Yellow hover */
             text-decoration: none;
-            font-weight: 500;
-            border-radius: 50px;
-            transition: all var(--transition-speed-medium) cubic-bezier(0.19, 1, 0.22, 1);
-            display: inline-block;
-            font-size: 1.1rem;
-            box-shadow: 0 4px 15px rgba(4, 217, 196, 0.3);
-            border: none;
-            position: relative; 
-            overflow: hidden; 
-            /* opacity: 0; GSAP animates this - Overridden by debug CSS */
-            /* transform: translateY(20px); GSAP animates this - Overridden by debug CSS */
-        }
-        .cta-button:hover {
-            transform: translateY(-4px) scale(1.02);
-            box-shadow: 0 8px 25px rgba(4, 217, 196, 0.4);
-        }
-        .cta-button .shimmer {
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background-image: linear-gradient(100deg, rgba(255,255,255,0) 20%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 80%);
-            transform: translateX(-100%) translateY(-25%) rotate(10deg);
-            transition: transform 0.7s cubic-bezier(0.19, 1, 0.22, 1);
-            pointer-events: none;
-        }
-        .cta-button:hover .shimmer {
-             transform: translateX(100%) translateY(-25%) rotate(10deg);
+            background-color: #333333; /* Dark grey bg on hover */
         }
 
-        .hero::before, .hero::after {
-            content: ''; position: absolute; border-radius: 50%; opacity: 0.08;
-            z-index: 1; pointer-events: none;
-        }
-        .hero::before {
-            width: clamp(300px, 50vw, 600px); height: clamp(300px, 50vw, 600px);
-            background: radial-gradient(circle, var(--accent-primary) 0%, transparent 70%);
-            top: 10%; left: -10%; animation: pulse-bubble 15s infinite alternate ease-in-out;
-        }
-        .hero::after {
-            width: clamp(200px, 40vw, 400px); height: clamp(200px, 40vw, 400px);
-            background: radial-gradient(circle, var(--accent-secondary) 0%, transparent 70%);
-            bottom: 5%; right: -5%; animation: pulse-bubble 18s infinite alternate-reverse ease-in-out;
-        }
-        @keyframes pulse-bubble { 
-            0%, 100% { transform: scale(0.9) rotate(0deg); opacity: 0.06; }
-            50% { transform: scale(1.1) rotate(10deg); opacity: 0.1; }
-        }
-
-        #about .container {
-            display: grid; grid-template-columns: 1fr; gap: 3rem; align-items: center;
-        }
-        #about h2 { text-align: left; /* opacity: 0; transform: translateY(20px); - Overridden by debug CSS */ }
-        #about p { max-width: none; /* opacity: 0; transform: translateY(20px); - Overridden by debug CSS */ } 
-        .about-image-placeholder {
-            display: block; 
-            width: 100%; 
-            aspect-ratio: 16 / 9; 
-            border-radius: var(--border-radius-main);
-            box-shadow: var(--shadow-light);
-            /* opacity: 0; transform: scale(0.95) translateY(20px); - Overridden by debug CSS */
-            background-size: cover; 
+        hr.section-divider-wild {
+            border: 0;
+            height: 30px; /* Adjust to GIF height */
+            background-image: url('https://gifcities.org/images/hr/37/glitterline.gif'); /* Glitter line - GifCities */
+            background-repeat: repeat-x;
             background-position: center;
-            overflow: hidden; 
-            position: relative;
+            margin: 30px 0;
         }
-        .about-image-placeholder img {
-            width: 100%; height: 100%; object-fit: cover;
-            transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
-        .about-image-placeholder:hover img {
-             transform: scale(1.05);
-        }
-
-        @media (min-width: 768px) {
-            #about .container { 
-                grid-template-columns: 2.2fr 1.8fr; 
-                gap: 4rem; 
-            }
-        }
-
-        #services h2 { /* opacity: 0; transform: translateY(20px); - Overridden by debug CSS */ } 
-        .service-grid { display: grid; gap: 2.5rem; }
-        @media (min-width: 1024px) { .service-grid { grid-template-columns: repeat(4, 1fr); } }
-        @media (min-width: 600px) and (max-width: 1023px) { .service-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 599px) { .service-grid { grid-template-columns: 1fr; } }
-        .service-item {
-            background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(18px) saturate(160%);
-            -webkit-backdrop-filter: blur(18px) saturate(160%); border: 1px solid rgba(220, 220, 220, 0.3);
-            padding: 2.5rem 2rem; border-radius: var(--border-radius-main); box-shadow: var(--shadow-light);
-            text-align: left; position: relative; overflow: hidden;
-            transition: transform var(--transition-speed-medium) cubic-bezier(0.19, 1, 0.22, 1),
-                        box-shadow var(--transition-speed-medium) cubic-bezier(0.19, 1, 0.22, 1);
-            /* opacity: 0; transform: translateY(30px); - Overridden by debug CSS */
-        }
-        .service-item:hover {
-            transform: translateY(-10px) perspective(1200px) rotateX(3deg) rotateY(-3deg) scale(1.04);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.12);
-        }
-        .service-item::before { 
-            content: ""; position: absolute; top: 0; left: -150%; width: 100%; height: 100%;
-            background: linear-gradient( 100deg, transparent, rgba(255, 255, 255, 0.4), transparent );
-            transition: left var(--transition-speed-slow) cubic-bezier(0.19, 1, 0.22, 1);
-            transform: skewX(-25deg); z-index: 1;
-        }
-        .service-item:hover::before { left: 150%; }
-        .service-item-content { position: relative; z-index: 2; }
-        .service-item-icon {
-            font-size: 2.8rem; color: var(--accent-primary); margin-bottom: 1.5rem; display: inline-block;
-            transition: transform var(--transition-speed-medium) ease;
-        }
-        .service-item:hover .service-item-icon { 
-             transform: scale(1.15) rotate(-8deg) translateY(-5px); 
-        }
-        .service-item h3 { color: var(--text-dark); font-weight: 500; }
-
-        #portfolio h2 { /* opacity: 0; transform: translateY(20px); - Overridden by debug CSS */ } 
-        .portfolio-grid { 
-            display: grid; gap: 1.5rem;
-            grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
-        }
-        .portfolio-item { /* This has its own opacity:0 rule, ensure debug CSS overrides it if needed, or rely on JS to set it for animation */
-            position: relative;
-            border-radius: var(--border-radius-main);
-            box-shadow: var(--shadow-medium);
-            transition: transform var(--transition-speed-medium) ease, box-shadow var(--transition-speed-medium) ease;
-            aspect-ratio: 4 / 3;
-            background-color: #f0f0f0; 
-            overflow: hidden; 
-            opacity: 0; /* GSAP animates this. Debug CSS rule `.main section > *, .portfolio-item` could target this if general section one isn't enough */
-            transform: translateY(30px) scale(0.95); 
-        }
-         /* Adding a more specific debug rule for portfolio-item as it's nested and has its own opacity */
-        .portfolio-item {
-            opacity: 1 !important; /* DEBUG */
-            transform: none !important; /* DEBUG */
-        }
-        .portfolio-item:hover { 
-            transform: scale(1.03) translateY(-5px); 
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-        }
-        .portfolio-item img {
-            display: block; width: 100%; height: 100%; object-fit: cover;
-            transition: transform var(--transition-speed-slow) cubic-bezier(0.165, 0.84, 0.44, 1);
-            position: relative; z-index: 1;
-        }
-        .portfolio-item:hover img { transform: scale(1.1); }
-        .portfolio-item-overlay {
-            position: absolute; bottom: 0; left: 0; right: 0;
-            background: linear-gradient(to top, rgba(19, 21, 22, 0.85) 0%, rgba(19, 21, 22, 0) 100%);
-            padding: 3rem 1.5rem 1.5rem; 
-            transform: translateY(101%); 
-            transition: transform var(--transition-speed-medium) cubic-bezier(0.165, 0.84, 0.44, 1);
-            color: var(--text-light); z-index: 2;
-        }
-        .portfolio-item:hover .portfolio-item-overlay { transform: translateY(0); }
-        .portfolio-item-overlay h4 { font-size: 1.4rem; color: var(--text-light); margin-bottom: 0.3rem; font-weight: 500; transform: translateY(10px); opacity:0; transition: transform 0.3s ease 0.1s, opacity 0.3s ease 0.1s; }
-        .portfolio-item-overlay p.category { font-size: 0.9rem; color: var(--accent-primary); font-weight: 400; text-transform: uppercase; letter-spacing: 0.05em; transform: translateY(10px); opacity:0; transition: transform 0.3s ease 0.15s, opacity 0.3s ease 0.15s;}
-        .portfolio-item:hover .portfolio-item-overlay h4,
-        .portfolio-item:hover .portfolio-item-overlay p.category {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        .portfolio-slideshow-mobile-container {
-            display: none; 
-            position: relative;
-            width: 100%; 
-            overflow: hidden; 
-            padding: 0.5rem 0; 
-            border-radius: var(--border-radius-main);
-            background-color: var(--background-light);
-            margin-top: 2rem; 
-            box-sizing: border-box;
-            /* opacity: 0; transform: translateY(20px); - GSAP animates this / overridden by debug CSS for mobile */
-        }
-        .slideshow-track-mobile {
-            display: flex;
-            align-items: stretch; 
-            user-select: none; 
-            -webkit-user-select: none;
-            -webkit-touch-callout: none; 
-            will-change: transform; 
-        }
-        .slide-mobile {
-            width: 100%; 
-            min-width: 100%; 
-            flex-shrink: 0; 
-            box-sizing: border-box; 
-            padding: 0 10px; 
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            overflow: hidden; 
-        }
-        .slide-image-wrapper-mobile {
-            width: 100%; 
-            aspect-ratio: 16 / 9; 
-            display: flex;
-            align-items: center; 
-            justify-content: center; 
-            overflow: hidden; 
-            background-color: #f0f0f0; 
-            border-radius: calc(var(--border-radius-main) - 8px); 
-            margin-bottom: 0.75rem; 
-            position: relative; 
-        }
-        .slide-mobile img {
-            display: block;
-            width: 100%;  
-            height: 100%; 
-            object-fit: cover; 
-            border-radius: calc(var(--border-radius-main) - 8px); 
-            pointer-events: none; 
-        }
-        .slide-mobile .slide-caption-mobile {
-            width: 100%; 
+        
+        /* Hero Section */
+        .hero-wild {
+            padding: 10px 0 20px 0;
             text-align: center;
-            padding: 0.5rem 0; 
-            margin-bottom: 1.25rem; 
-            flex-shrink: 0; 
-            box-sizing: border-box;
         }
-        .slide-mobile .slide-caption-mobile h4 {
-            color: var(--text-dark); margin-bottom: 0.2rem; font-weight: 500;
-            word-break: break-word; overflow-wrap: break-word; font-size: 1.1rem; 
+        .hero-wild .subtitle-wild {
+            font-size: 20px;
+            color: #00FF00; /* Lime Green */
+            margin-top: 10px;
+            margin-bottom: 20px;
+            font-family: "Comic Sans MS", "Comic Sans", cursive;
+            background-color: rgba(0,0,0,0.7);
+            padding:10px;
+            border: 2px dashed #FFFF00;
+            display: inline-block;
         }
-        .slide-mobile .slide-caption-mobile p {
-            color: var(--neutral-gray); text-transform: uppercase;
-            letter-spacing: 0.03em; font-size: 0.8rem; margin-bottom: 0; 
+        .cta-button-wild {
+            display: inline-block;
+            background-color: #FF00FF; /* Magenta CTA */
+            color: #FFFF00 !important; /* Yellow text */
+            padding: 12px 25px;
+            font-size: 20px;
+            font-weight: bold;
+            text-decoration: none !important;
+            border: 4px outset #CC00CC; /* Darker Magenta 3D border */
+            border-radius: 10px;
+            font-family: "Impact", sans-serif;
+            text-shadow: 2px 2px 2px #000000;
         }
-        .slide-nav-mobile {
-            position: absolute; top: calc(0.5rem + ((90vw - 20px) * 9 / 16) / 2); 
-            transform: translateY(-50%); background-color: rgba(0, 0, 0, 0.35);
-            color: white; border: none; border-radius: 50%;
-            width: 38px; height: 38px; font-size: 0.9rem; 
-            z-index: 10;
-            transition: background-color var(--transition-speed-fast), transform var(--transition-speed-fast), opacity var(--transition-speed-fast);
-            display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2); opacity: 0.8; 
+        .cta-button-wild:hover {
+            background-color: #00FF00; /* Lime Green on hover */
+            color: #000000 !important; /* Black text */
+            border-style: inset;
+            border-color: #00CC00;
         }
-        .slide-nav-mobile:hover {
-            background-color: rgba(0, 0, 0, 0.6);
-            transform: translateY(-50%) scale(1.1); opacity: 1;
-        }
-        .slide-prev-mobile { left: 15px; } 
-        .slide-next-mobile { right: 15px; }
-        .slide-indicators-mobile {
-            position: absolute; bottom: 10px; left: 50%;
-            transform: translateX(-50%); display: flex; gap: 10px; z-index: 5; 
-        }
-        .indicator-dot-mobile {
-            width: 9px; height: 9px; background-color: rgba(0, 0, 0, 0.25);
-            border-radius: 50%;
-            transition: background-color var(--transition-speed-fast), transform var(--transition-speed-fast);
-        }
-        .indicator-dot-mobile.active {
-            background-color: var(--accent-primary); transform: scale(1.15);
-        }
-        .slideshow-no-items {
-            text-align: center; padding: 2rem; color: var(--neutral-gray);
-            min-height: 200px; display: flex; align-items: center; justify-content: center;
+        .hero-wild img.animated-banner-wild {
+            max-width: 100%;
+            height: auto;
+            border: 3px solid #00CCCC; /* Teal border */
+            margin-bottom: 15px;
         }
 
-        #why-us { position: relative; padding-top: 3rem; padding-bottom: 3rem; }
-        .why-us-background-wrapper {
-            background-color: var(--accent-secondary-glass);
-            backdrop-filter: blur(5px) saturate(180%);
-            -webkit-backdrop-filter: blur(5px) saturate(180%);
-            border-radius: var(--border-radius-large); padding: 4rem 3rem; margin: 0 auto;
-            border: 1px solid rgba(255, 255, 255, 0.15); box-shadow: var(--shadow-medium);
-            /* opacity: 0; transform: scale(0.9) translateY(30px); - Overridden by debug CSS */
+        /* Services Section */
+        .service-item-wild {
+            background-color: rgba(0, 50, 50, 0.7); /* Dark Teal, semi-transparent */
+            border: 2px dashed #00FF00; /* Lime Green dashed border */
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 10px; 
+            text-align: center;
         }
-        #why-us h2 { color: var(--text-light); /* opacity: 0; transform: translateY(20px); - Overridden by debug CSS */ } 
-        #why-us .why-us-description {
-            color: rgba(244, 244, 244, 0.9); text-align: center; max-width: 750px;
-            margin-left: auto; margin-right: auto; font-size: 1.2rem; margin-bottom: 3rem;
-           /* opacity: 0; transform: translateY(20px); - Overridden by debug CSS */
+        .service-item-wild h3 { /* Uses .subsection-title-wild */
+            margin-top: 0;
         }
-        .why-us-points {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
-            gap: 2rem; max-width: 900px; margin-left: auto; margin-right: auto;
+         .service-item-wild h3 img.service-icon-wild {
+            height: 35px;
+            margin-right: 10px;
+            vertical-align: middle;
         }
-        .why-us-point {
-            background: var(--background-translucent-light); padding: 2rem;
-            border-radius: var(--border-radius-main);
-            border: 1px solid rgba(255, 255, 255, 0.15); text-align: left;
-            /* opacity: 0; transform: translateY(30px); - Overridden by debug CSS */
-            transition: background-color 0.3s ease, border-color 0.3s ease; 
-        }
-        .why-us-point:hover {
-            background: rgba(255,255,255,0.1); border-color: var(--accent-primary);
-        }
-        .why-us-point h4 { color: var(--accent-primary); margin-bottom: 0.75rem; font-size: 1.3rem; font-weight: 500; }
-        .why-us-point p { color: rgba(244, 244, 244, 0.85); font-size: 1rem; max-width: none; }
-
-        #contact h2 { /* opacity: 0; transform: translateY(20px); - Overridden by debug CSS */ } 
-        #contact > p { text-align: center; margin-bottom: 3rem; max-width: 700px; margin-left: auto; margin-right: auto; /* opacity: 0; transform: translateY(20px); - Overridden by debug CSS */ } 
-        .contact-form { max-width: 700px; margin: 0 auto; display: grid; gap: 1.5rem; /* opacity: 0; transform: translateY(30px); - Overridden by debug CSS */ }
-        .contact-form .form-field { 
-            position: relative; /* opacity: 0; transform: translateY(20px); - Overridden by debug CSS */
-        }
-        .contact-form input, .contact-form textarea {
-            width: 100%; padding: 1.2rem 1.5rem; border: 1px solid #dde2e7; border-radius: 8px;
-            background-color: rgba(255,255,255,0.8); color: var(--text-dark);
-            font-family: var(--font-body); font-size: 1rem; font-weight: 400;
-            transition: border-color var(--transition-speed-fast), box-shadow var(--transition-speed-fast);
-        }
-        .contact-form input::placeholder, .contact-form textarea::placeholder { color: var(--neutral-gray); opacity: 0.8; }
-        .contact-form input:focus, .contact-form textarea:focus {
-            outline: none; border-color: var(--accent-primary);
-            box-shadow: 0 0 0 3px rgba(4, 217, 196, 0.2);
-        }
-        .contact-form textarea { resize: vertical; min-height: 150px; }
-        .contact-form button { justify-self: center; margin-top: 1rem; /* opacity: 0; transform: translateY(20px); - Overridden by debug CSS */ }
-        .form-field .focus-border {
-            position: absolute; bottom: 0; left: 0; width: 100%; height: 2px;
-            background-color: var(--accent-primary); transform: scaleX(0);
-            transform-origin: center; transition: transform 0.3s cubic-bezier(0.19, 1, 0.22, 1);
-            z-index: 1; 
-        }
-        .form-field input:focus ~ .focus-border,
-        .form-field textarea:focus ~ .focus-border {
-            transform: scaleX(1);
+        .service-item-wild p {
+            color: #DDDDDD; /* Lighter grey text within service items */
+            font-size: 14px;
         }
 
-        .main-footer {
-            background-color: var(--bg-dark); color: var(--neutral-gray); text-align: center;
-            padding: 2rem 1rem; font-size: 0.95rem;
-            /* opacity:0; transform: translateY(20px); - Overridden by debug CSS */
+        /* Portfolio Section */
+        .portfolio-grid-wild {
+            text-align: center; 
+            margin-top: 15px;
         }
-        .main-footer p { 
-            color: var(--neutral-gray); font-size: 0.9rem; 
-            margin-bottom: 0.4rem; max-width: none; 
+        .portfolio-item-wild {
+            display: inline-block; 
+            width: 200px; 
+            border: 3px groove #FF00FF; /* Magenta groove border */
+            margin: 10px;
+            padding: 10px;
+            background-color: rgba(50, 0, 50, 0.6); /* Dark Magenta, semi-transparent */
+            vertical-align: top; 
         }
-        .main-footer .footer-copyright .maugans-co-footer {
-             font-family: var(--font-logo); 
+        .portfolio-item-wild img {
+            width: 100%;
+            height: 150px; 
+            object-fit: cover;
+            border: 2px solid #FFFF00; /* Yellow border for images */
+            margin-bottom: 8px;
         }
-        .main-footer a { 
-            color: var(--accent-primary); text-decoration: none; 
-            transition: color var(--transition-speed-fast); position: relative;
+        .portfolio-item-wild h4 {
+            font-size: 16px;
+            margin-bottom: 5px;
+            color: #00CCCC; /* Teal */
+            font-family: Tahoma, sans-serif;
         }
-        .main-footer a::after {
-            content: ''; position: absolute; width: 100%; transform: scaleX(0);
-            height: 1px; bottom: -2px; left: 0;
-            background-color: var(--text-light); transform-origin: bottom right;
-            transition: transform 0.25s ease-out;
+        .portfolio-item-wild p {
+            font-size: 12px;
+            color: #CCCCCC; /* Light grey */
+            margin-bottom: 0;
         }
-        .main-footer a:hover { color: var(--text-light); }
-        .main-footer a:hover::after {
-            transform: scaleX(1); transform-origin: bottom left;
+        
+        /* Why Us Section */
+        #why-us-wild {
+            background-color: transparent; /* Let page wrapper bg show through */
+            padding: 15px 0; /* Less padding, more raw */
+        }
+        .why-us-point-wild {
+            background-color: rgba(0,0,0,0.4); /* Blacker, semi-transparent boxes */
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 3px dotted #00FFFF; /* Cyan dotted border */
+            color: #FFFFFF;
+        }
+        .why-us-point-wild h4 {
+            color: #FFFF00; /* Yellow for point titles */
+            font-size: 18px;
+        }
+        .why-us-point-wild h4 img.small-gif-icon { /* Ensure alignment for icons in headings */
+            vertical-align: baseline;
         }
 
-        .modal {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(253, 253, 253, 0.6);
-            backdrop-filter: blur(10px) saturate(160%);
-            -webkit-backdrop-filter: blur(10px) saturate(160%);
-            display: flex; align-items: center; justify-content: center; z-index: 2000;
-            opacity: 0; visibility: hidden;
-            transition: opacity var(--transition-speed-medium) cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                        visibility var(--transition-speed-medium) cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        .modal.active { opacity: 1; visibility: visible; }
-        .modal-content {
-            background-color: var(--background-light); padding: 1rem; border-radius: var(--border-radius-main);
-            box-shadow: 0 15px 50px rgba(0,0,0,0.2); max-width: 90vw; max-height: 90vh; position: relative;
-            transform: scale(0.9) translateY(20px);
-            transition: transform var(--transition-speed-medium) cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        .modal.active .modal-content { transform: scale(1) translateY(0); }
-        .modal-content img {
-            display: block; max-width: 100%; max-height: calc(90vh - 60px);
-            object-fit: contain; border-radius: calc(var(--border-radius-main) - 4px);
-        }
-        .modal-close {
-            position: absolute; top: 15px; right: 15px; width: 38px; height: 38px;
-            background-color: var(--accent-primary); color: var(--text-light); 
-            border: none; border-radius: 50%; font-size: 1.4rem;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.25);
-            transition: transform var(--transition-speed-fast) cubic-bezier(0.34, 1.56, 0.64, 1),
-                        background-color var(--transition-speed-fast);
-            display: flex; align-items: center; justify-content: center; z-index: 10;
-        }
-        .modal-close:hover { transform: scale(1.1) rotate(90deg); background-color: #03c8b3; }
 
-        @media (max-width: 768px) {
-            .cursor-follower { display: none !important; } 
-            a, button, [role="button"], input[type="submit"], .menu-toggle,
-            .indicator-dot-mobile, .portfolio-item, .slide-nav-mobile, .modal-close { 
-                cursor: pointer !important; 
-            }
-            .nav-container { flex-wrap: wrap; }
-            .menu-toggle { display: flex; align-items: center; justify-content: center; }
-            .main-nav {
-                width: 100%; max-height: 0; overflow: hidden; background: rgba(253, 253, 253, 0.95);
-                backdrop-filter: blur(10px) saturate(180%); -webkit-backdrop-filter: blur(10px) saturate(180%);
-                position: absolute; top: 100%; left: 0; box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-                border-top: 1px solid rgba(0,0,0,0.05);
-                transition: max-height 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-            }
-            .main-nav.active { max-height: 350px; } 
-            .main-nav ul { flex-direction: column; align-items: center; padding: 1rem 0; }
-            .main-nav ul li { margin: 1rem 0; /* opacity: 1; transform: none; - Already handled by global debug CSS */ } 
+        /* Contact Form */
+        .contact-form-wild {
+            background-color: rgba(20,20,20,0.8); /* Dark grey, semi-transparent */
+            padding: 20px;
+            border: 3px ridge #00FF00; /* Lime Green ridge border */
+            border-radius: 0px; /* Sharp corners */
+            max-width: 600px;
+            margin: 20px auto;
+        }
+        .contact-form-wild label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #00CCCC; /* Teal labels */
+            font-family: "Courier New", Courier, monospace;
+        }
+        .contact-form-wild input[type="text"],
+        .contact-form-wild input[type="email"],
+        .contact-form-wild textarea {
+            width: 98%;
+            padding: 8px;
+            margin-bottom: 12px;
+            border: 2px inset #009999; /* Inset Teal border */
+            font-family: "Courier New", Courier, monospace;
+            font-size: 14px;
+            background-color: #222222; /* Dark input background */
+            color: #00FF00; /* Lime Green text in inputs */
+        }
+        .contact-form-wild input[type="text"]:focus,
+        .contact-form-wild input[type="email"]:focus,
+        .contact-form-wild textarea:focus {
+            border-color: #FFFF00; /* Yellow border on focus */
+            background-color: #333300; /* Dark Yellowish on focus */
+            outline: none; /* Remove browser default outline */
+        }
+        .contact-form-wild textarea {
+            resize: none; /* No resize for that classic feel */
+            min-height: 100px;
+        }
+        .contact-form-wild button { /* Uses .cta-button-wild style */
+            display: block;
+            margin: 15px auto 0 auto; 
+        }
 
-            .hero-content { text-align: left; padding: 0 1.5rem; }
-            .hero-content h1 { font-size: clamp(2.0rem, 8vw, 3.0rem); line-height: 1.3; /* opacity:1 !important; transform:none !important; - Handled by global debug */ }
-            @media (max-width: 400px) {
-                .hero-content h1 { font-size: 1.8rem; line-height: 1.35; }
-                .hero-content .subtitle { font-size: 1rem; }
-            }
-            .hero-content .subtitle { font-size: clamp(1.1rem, 4vw, 1.3rem); /* opacity:1 !important; transform:none !important; - Handled by global debug */ }
-            #about h2 { text-align: center; }
-            /* .portfolio-item handled by its own specific debug rule now */
-            .portfolio-grid { display: none !important; } 
-            .portfolio-slideshow-mobile-container { 
-                display: block; 
-                opacity: 1 !important; /* DEBUG: Force mobile slideshow container visible */
-                transform: none !important; /* DEBUG: Force mobile slideshow container visible */
-            }
-            .portfolio-item-overlay { padding: 2rem 1rem 1rem; }
-            .modal-close { top: 10px; right: 10px; width: 35px; height: 35px; font-size: 1.2rem; }
-            .modal-content img { max-height: calc(90vh - 50px); }
-            #why-us { padding-top: 2rem; padding-bottom: 2rem; }
-            .why-us-background-wrapper { padding: 2.5rem 1.5rem; }
-            #why-us .why-us-description { max-width: 90%; font-size: 1.1rem; }
-            .why-us-points { max-width: 100%; gap: 1.5rem; }
+        /* Footer - WILD Style */
+        .main-footer-wild {
+            background-color: #1A1A1A; /* Very Dark Grey footer */
+            color: #00CCCC; /* Teal text */
+            padding: 20px;
+            text-align: center;
+            font-size: 13px;
+            border-top: 10px groove #FF00FF; /* Magenta groove border */
+            line-height: 1.6;
         }
-        @media (min-width: 769px) {
-            .portfolio-slideshow-mobile-container { display: none !important; }
-            .portfolio-grid { display: grid !important; }
-            a, button, [role="button"], input[type="submit"], .menu-toggle,
-            .indicator-dot-mobile, .portfolio-item, .slide-nav-mobile, .modal-close { 
-                 cursor: none; 
-            }
-            /* On desktop, we'd want animations, so the !important debug rules might be too much.
-               However, for this specific mobile debugging, we'll keep them.
-               If you were to commit this for desktop, you'd remove the !important debug styles. */
+        .main-footer-wild p {
+            margin-bottom: 8px;
+            color: #99FFFF; 
         }
-        .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0;}
+        .main-footer-wild a {
+            color: #FFFF00; /* Yellow links in footer */
+        }
+        .main-footer-wild a:hover {
+            color: #FF6600; /* Orange hover */
+        }
+        .hit-counter-wild {
+            margin-top: 10px;
+            font-weight: bold;
+            background-color: #000000;
+            color: #00FF00;
+            padding: 5px 10px;
+            display: inline-block;
+            border: 2px solid #00FF00; /* Lime Green border */
+            font-family: "Courier New", Courier, monospace;
+            font-size: 16px;
+        }
+        .footer-badges-wild img {
+            margin: 8px 5px 0 5px;
+            border: 0; 
+            height: 31px; 
+            width: 88px;
+            vertical-align: middle;
+        }
+        
+        /* Blinking Text - CSS Animation */
+        @keyframes blink-wild {
+            0%, 49% { opacity: 1; text-shadow: 0 0 5px #FFFF00; }
+            50%, 99% { opacity: 0.3; text-shadow: none; }
+            100% { opacity: 1; text-shadow: 0 0 5px #FFFF00; }
+        }
+        .blinking-text-wild {
+            animation: blink-wild 0.9s linear infinite;
+            font-weight: bold;
+        }
+
+        /* Marquee styling */
+        .marquee-wild {
+            background-color: #FF00FF; /* Magenta background */
+            color: #FFFF00; /* Yellow text */
+            padding: 8px;
+            margin: 20px -10px; /* Extend to edges of page-wrapper padding */
+            font-weight: bold;
+            font-family: "Comic Sans MS", "Comic Sans", cursive; /* Classic Marquee font */
+            font-size: 18px;
+            border-top: 3px solid #000000;
+            border-bottom: 3px solid #000000;
+        }
+        .small-gif-icon {
+            height: 20px;
+            vertical-align: middle;
+            margin: 0 3px;
+        }
+        .centered-text { text-align: center; }
+
     </style>
 </head>
 <body>
-    <div class="cursor-follower"></div>
 
-    <header class="main-header" id="mainHeader">
-        <div class="nav-container">
-            <div class="logo">
-                <a href="#hero" data-cursor-hover="link"><span class="logo-maugans">Maugans</span> <span class="co-highlight">Co.</span></a>
+    <div id="modern-site-link-banner-wild">
+        <img src="https://gifcities.org/images/ACTION/1/newred.gif" alt="NEW!" class="small-gif-icon"> Looking for our SUPER SLEEK 2025+ DESIGNS?! 
+        <a href="modern_site.html" title="View our main contemporary website">CLICK HERE for the FUTURE!</a>
+        <img src="https://gifcities.org/images/ACTION/1/newred.gif" alt="NEW!" class="small-gif-icon"> </div>
+
+    <div id="page-wrapper-wild">
+        <header class="main-header-wild">
+            <div class="logo-container-wild">
+                <a href="#">
+                    <img src="https://gifcities.org/images/fire/1/flameani.gif" alt="flames" class="rotating-gif"> <span class="logo-maugans-wild">
+                        <span class="char m">M</span><span class="char a1">A</span><span class="char u">U</span><span class="char g">G</span><span class="char a2">A</span><span class="char n">N</span><span class="char s">S</span>
+                    </span>
+                    <span class="logo-maugans-wild co">Co.</span>
+                     <img src="https://gifcities.org/images/fire/1/flameani.gif" alt="flames" class="rotating-gif"> </a>
             </div>
-            <nav class="main-nav" id="mainNav">
+            <nav class="main-nav-wild">
                 <ul>
-                    <li><a href="#about" class="nav-link" data-cursor-hover="link">About</a></li>
-                    <li><a href="#services" class="nav-link" data-cursor-hover="link">Services</a></li>
-                    <li><a href="#portfolio" class="nav-link" data-cursor-hover="link">Work</a></li>
-                    <li><a href="#contact" class="nav-link" data-cursor-hover="link">Connect</a></li>
-                </ul>
+                    <li><a href="#about-section-wild">About US!</a></li>
+                    <li><a href="#services-section-wild">Our X-TREME Services!</a></li>
+                    <li><a href="#portfolio-section-wild">KOOL Work!</a></li>
+                    <li><a href="#contact-section-wild">E-MAIL US! <img src="https://gifcities.org/images/email/1/NEWEMAIL.GIF" alt="Email" class="small-gif-icon"></a></li> </ul>
             </nav>
-            <button class="menu-toggle" id="menuToggle" aria-label="Open Menu" aria-expanded="false" data-cursor-hover="link">
-                <span class="line line1"></span>
-                <span class="line line2"></span>
-                <span class="line line3"></span>
-            </button>
-        </div>
-    </header>
+        </header>
 
-    <main>
-        <section id="hero" class="hero">
-            <div class="hero-content">
-                <h1>Designing with <span class="highlight">Clarity</span><br/>Crafting with <span class="highlight">Care</span><br/> Welcome to <span class="maugans-co-logo-hero">Maugans Co.</span></h1>
-                <p class="subtitle">We create exceptionally clean, modern, and dynamic experiences. Your vision, brought to life with a personal, friendly touch.</p>
-                <a href="#contact" class="cta-button" data-cursor-hover="link">
-                    Start Your Project
-                    <span class="shimmer"></span>
-                </a>
-            </div>
-        </section>
+        <div class="content-padding-wild">
 
-        <section id="about" class="container">
-            <div class="about-content">
-                <h2>Our Approach</h2> 
-                <p>At Maugans Co., we believe the best results come from a foundation of understanding and a genuinely collaborative spirit. We're not just designers; we're your creative partners, dedicated to making the journey from idea to reality both exciting and effortless. </p>
-                <p>Whether you're launching a new digital presence or elevating an existing one, our dedicated website design expertise is at your service. We pride ourselves on creating a welcoming atmosphere where you feel completely at ease to explore possibilities, ask questions, and see your aspirations take shape—no pretense, just passion and personable guidance.</p>
-            </div>
-            <div class="about-image-placeholder" aria-hidden="true" data-cursor-hover="target">
-                 <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="Collaborative team working in a modern office">
-            </div>
-        </section>
+            <section id="hero-wild-section" class="hero-wild">
+                <img src="https://gifcities.org/images/ACTION/1/welcome2.gif" alt="WELCOME TO OUR WEBSITE Banner" class="animated-banner-wild"> <h1 class="page-title-wild">MAUGANS CO. - WE BUILD WEBSITES THAT <span class="blinking-text-wild" style="color:#FF0000;">ROCK</span>!</h1>
+                <p class="subtitle-wild">Get Ready to Enter the <span style="color:#00FFFF; font-weight:bold;">CYBER-ZONE</span> with a Website That's <span style="color:#FF00FF; font-style:italic;">TOTALLY WIRED</span>!</p>
+                <img src="https://gifcities.org/images/ACTION/1/animate.gif" alt="Spinning Computer Globe" style="height:80px; margin: 10px 0;"> <p style="font-size:18px; color:#FFFF00;">We're not just designers, we're <span style="font-family:'Courier New'; background-color:#333; padding:2px 4px;">WEB WIZARDS!</span></p>
+                <a href="#contact-section-wild" class="cta-button-wild">CLICK HERE FOR A FREE QUOTE! <img src="https://gifcities.org/images/ACTION/1/clickhereanim.gif" alt="click here" style="height:20px; vertical-align:middle;"></a> </section>
 
-        <section id="services" class="container">
-            <h2>Our Creative Toolkit</h2>
-            <div class="service-grid">
-                <div class="service-item" data-cursor-hover="target">
-                    <div class="service-item-content">
-                        <div class="service-item-icon"><i class="fas fa-drafting-compass"></i></div>
-                        <h3>Strategic UI/UX Design</h3>
-                        <p>We craft user-centric interfaces and experiences, focusing on intuitive navigation, clear pathways, and engaging interactions that delight your audience and achieve your business goals.</p>
-                    </div>
-                </div>
-                <div class="service-item" data-cursor-hover="target">
-                     <div class="service-item-content">
-                        <div class="service-item-icon"><i class="fas fa-laptop-code"></i></div>
-                        <h3>Responsive Web Development</h3>
-                        <p>Beautifully functional websites built with clean, modern code. We ensure your site performs flawlessly across all devices—desktops, tablets, and mobiles—for a seamless user experience.</p>
-                    </div>
-                </div>
-                <div class="service-item" data-cursor-hover="target">
-                    <div class="service-item-content">
-                       <div class="service-item-icon"><i class="fas fa-chart-line"></i></div>
-                       <h3>SEO & Performance Optimization</h3>
-                       <p>Enhancing your website's visibility on search engines and optimizing its speed for a superior user experience and better rankings.</p>
-                    </div>
-                </div>
-                <div class="service-item" data-cursor-hover="target">
-                    <div class="service-item-content">
-                        <div class="service-item-icon"><i class="fas fa-tools"></i></div>
-                        <h3>Website Maintenance & Support</h3>
-                        <p>Providing ongoing support, updates, and maintenance to ensure your website remains secure, up-to-date, and performing optimally.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="portfolio" class="container">
-            <h2>Selected Works</h2>
-            <div class="portfolio-grid">
-                <div class="portfolio-item" data-img-src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" data-category="Web Design" tabindex="0" role="button" aria-label="View E-commerce Redefined project" data-cursor-hover="target">
-                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60" alt="Modern data analytics dashboard interface">
-                    <div class="portfolio-item-overlay"><h4>E-commerce Redefined</h4><p class="category">Website Design</p></div>
-                </div>
-                <div class="portfolio-item" data-img-src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" data-category="Web Design" tabindex="0" role="button" aria-label="View Creative Portfolio Hub project" data-cursor-hover="target">
-                    <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60" alt="Laptop displaying code on a wooden desk">
-                    <div class="portfolio-item-overlay"><h4>Creative Portfolio Hub</h4><p class="category">Website Design</p></div>
-                </div>
-                <div class="portfolio-item" data-img-src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" data-category="Photography" tabindex="0" role="button" aria-label="View Cityscape Poetry project" data-cursor-hover="target">
-                    <img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60" alt="Aerial view of a sprawling cityscape at dusk">
-                    <div class="portfolio-item-overlay"><h4>Cityscape Poetry</h4><p class="category">Photography</p></div>
-                </div>
-                <div class="portfolio-item" data-img-src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" data-category="Photography" tabindex="0" role="button" aria-label="View Macro Worlds project" data-cursor-hover="target">
-                    <img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60" alt="Close-up of a dewdrop on a blade of grass">
-                    <div class="portfolio-item-overlay"><h4>Macro Worlds</h4><p class="category">Photography</p></div>
-                </div>
-                <div class="portfolio-item" data-img-src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" data-category="Photography" tabindex="0" role="button" aria-label="View Luminous Portraits project" data-cursor-hover="target">
-                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60" alt="Thoughtful portrait of a man in natural light">
-                    <div class="portfolio-item-overlay"><h4>Luminous Portraits</h4><p class="category">Photography</p></div>
-                </div>
-                <div class="portfolio-item" data-img-src="https://images.unsplash.com/photo-1503220317375-aaad61436b1b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" data-category="Photography" tabindex="0" role="button" aria-label="View Wanderlust Frames project" data-cursor-hover="target">
-                    <img src="https://images.unsplash.com/photo-1503220317375-aaad61436b1b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60" alt="Person standing on a cliff overlooking a vast landscape">
-                    <div class="portfolio-item-overlay"><h4>Wanderlust Frames</h4><p class="category">Photography</p></div>
-                </div>
-                <div class="portfolio-item" data-img-src="https://images.unsplash.com/photo-1505480450330-0cf25765a531?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" data-category="Photography" tabindex="0" role="button" aria-label="View Timeless Monochrome project" data-cursor-hover="target">
-                    <img src="https://images.unsplash.com/photo-1505480450330-0cf25765a531?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60" alt="Black and white architectural detail of a spiral staircase">
-                    <div class="portfolio-item-overlay"><h4>Timeless Monochrome</h4><p class="category">Photography</p></div>
-                </div>
-                <div class="portfolio-item" data-img-src="https://images.unsplash.com/photo-1527719327859-c6ce80353573?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" data-category="Shirts" tabindex="0" role="button" aria-label="View Statement Tees project" data-cursor-hover="target">
-                    <img src="https://images.unsplash.com/photo-1527719327859-c6ce80353573?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60" alt="Person wearing a t-shirt with a bold graphic design">
-                    <div class="portfolio-item-overlay"><h4>Statement Tees</h4><p class="category">Screenprinted Shirts</p></div>
-                </div>
-                <div class="portfolio-item" data-img-src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" data-category="Shirts" tabindex="0" role="button" aria-label="View Wearable Graphics project" data-cursor-hover="target">
-                    <img src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60" alt="Collection of t-shirts with artistic prints hanging on a rack">
-                    <div class="portfolio-item-overlay"><h4>Wearable Graphics</h4><p class="category">Screenprinted Shirts</p></div>
-                </div>
-                <div class="portfolio-item" data-img-src="https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" data-category="Remodels" tabindex="0" role="button" aria-label="View Culinary Heaven project" data-cursor-hover="target">
-                    <img src="https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60" alt="Modern bright kitchen with an island and sleek cabinets">
-                    <div class="portfolio-item-overlay"><h4>Culinary Heaven</h4><p class="category">Home Remodels</p></div>
-                </div>
-                <div class="portfolio-item" data-img-src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" data-category="Remodels" tabindex="0" role="button" aria-label="View Fluid Living Spaces project" data-cursor-hover="target">
-                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60" alt="Spacious open-concept living room with large windows">
-                    <div class="portfolio-item-overlay"><h4>Fluid Living Spaces</h4><p class="category">Home Remodels</p></div>
-                </div>
-                <div class="portfolio-item" data-img-src="https://images.unsplash.com/photo-1582971805808-749e28597037?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" data-category="Remodels" tabindex="0" role="button" aria-label="View Sanctuary Bathrooms project" data-cursor-hover="target">
-                    <img src="https://images.unsplash.com/photo-1582971805808-749e28597037?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60" alt="Luxurious bathroom with a freestanding tub and marble tiles">
-                    <div class="portfolio-item-overlay"><h4>Sanctuary Bathrooms</h4><p class="category">Home Remodels</p></div>
-                </div>
+            <hr class="section-divider-wild">
+            
+            <div class="marquee-wild">
+                <marquee scrollamount="6" behavior="scroll" direction="left">
+                    <img src="https://gifcities.org/images/shine/1/sparklelamerblue.gif" class="small-gif-icon" alt="sparkle"> ** SPECIAL OFFER!! GET YOUR WEBSITE ONLINE FAST! **
+                    <img src="https://gifcities.org/images/shine/1/sparklelamerblue.gif" class="small-gif-icon" alt="sparkle">
+                    VISIT OUR PORTFOLIO! ** WE USE CUTTING EDGE HTML AND JAVA-SCRIPT! **
+                    <img src="https://gifcities.org/images/shine/1/sparklelamerblue.gif" class="small-gif-icon" alt="sparkle">
+                    CALLING ALL E-BUSINESSES! LET'S MAKE SOME NOISE ONLINE! **
+                    <img src="https://gifcities.org/images/shine/1/sparklelamerblue.gif" class="small-gif-icon" alt="sparkle">
+                </marquee>
             </div>
 
-            <div class="portfolio-slideshow-mobile-container" id="portfolioSlideshowMobile">
-                <div class="slideshow-track-mobile" id="slideshowTrackMobile">
-                </div>
-                <button class="slide-nav-mobile slide-prev-mobile" id="slidePrevMobile" aria-label="Previous project" data-cursor-hover="link">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                <button class="slide-nav-mobile slide-next-mobile" id="slideNextMobile" aria-label="Next project" data-cursor-hover="link">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
-                <div class="slide-indicators-mobile" id="slideIndicatorsMobile">
-                </div>
-            </div>
-        </section>
+            <section id="about-section-wild">
+                <h2 class="section-title-wild">
+                    <img src="https://gifcities.org/images/bulb/1/lightbulbflash.gif" alt="lightbulb gif" class="heading-gif-wild"> WHO ARE THESE <span style="color:#FFFF00;">WEB GURUS</span>?!
+                    <img src="https://gifcities.org/images/bulb/1/lightbulbflash.gif" alt="lightbulb gif" class="heading-gif-wild">
+                </h2>
+                <p style="text-align:center;"><img src="https://gifcities.org/images/people/1/surfer.gif" alt="surfer gif" style="height:50px; float:left; margin-right:10px;">Greetings, Fellow Netizen! We are <strong style="color:#00CCCC;">Maugans Co.</strong>, your friendly neighborhood navigators of the Information Superhighway! We eat, sleep, and breathe the World Wide Web! Our mission? To craft the most <span class="blinking-text-wild" style="color:#FF00FF;">DAZZLING</span>, attention-grabbing websites this side of the modem! We believe your website should be an <strong style="font-family:'Comic Sans MS'; color:#FFFF00;">EXPERIENCE</strong>, not just a page!</p>
+                <p style="text-align:center;">We're passionate about pixels, fanatical about fonts (especially <strong style="color:#00FF00;">Comic Sans</strong> and <strong style="color:#FF6600;">Impact</strong>!), and obsessed with making your online presence <strong style="font-size:1.2em; color:#FF0000;">UNFORGETTABLE!</strong> So, buckle up, buttercup, and let's take your ideas to the <span style="text-decoration:underline; color:#00FFFF;">MAX!</span></p>
+                <p class="centered-text"><img src="https://gifcities.org/images/globe/1/globe2.gif" alt="spinning globe" style="height:60px;"></p> </section>
 
-        <section id="why-us" class="container">
-            <div class="why-us-background-wrapper" data-cursor-hover="target">
-                <h2>The Maugans Co. Difference</h2>
-                <p class="why-us-description">Choosing a design partner is about trust and shared vision. Here’s why clients love working with us:</p>
-                <div class="why-us-points">
-                    <div class="why-us-point" data-cursor-hover="target">
-                        <h4>Authentically Personal</h4>
-                        <p>We're genuinely invested in you and your project. Expect direct communication, transparency, and a process that feels like a true collaboration, not a transaction.</p>
+            <hr class="section-divider-wild">
+
+            <section id="services-section-wild">
+                <h2 class="section-title-wild">
+                    <img src="https://gifcities.org/images/bar/1/anibar.gif" alt="animated bar" class="heading-gif-wild" style="height:20px;"> OUR <span style="color:red;">S</span><span style="color:orange;">P</span><span style="color:yellow;">E</span><span style="color:green;">C</span><span style="color:blue;">I</span><span style="color:purple;">A</span><span style="color:red;">L</span><span style="color:orange;">T</span><span style="color:yellow;">I</span><span style="color:green;">E</span><span style="color:blue;">S</span>!
+                    <img src="https://gifcities.org/images/bar/1/anibar.gif" alt="animated bar" class="heading-gif-wild" style="height:20px;">
+                </h2>
+                <div class="service-item-wild">
+                    <h3 class="subsection-title-wild"><img src="https://gifcities.org/images/computer/1/comp08.gif" alt="computer gif" class="service-icon-wild">Full-Blast Web Page Construction!</h3> <p>We use the latest <strong style="color:#FFFF00;">HTML</strong> tricks and even some <strong style="color:#00FF00;">Java-Applets</strong> (if you're feeling brave!) to build pages that will make your competitors jealous! Optimized for Netscape AND Internet Explorer! <span class="blinking-text-wild" style="color:#00FFFF;">WOW!</span></p>
+                </div>
+                <div class="service-item-wild">
+                     <h3 class="subsection-title-wild"><img src="https://gifcities.org/images/mouse/1/mouseworld.gif" alt="mouse world" class="service-icon-wild">Graphics That Go <span style="font-size:1.3em; color:#FF0000;">BOOM!</span></h3> <p>Need a logo that <strong style="color:#FF6600;">FLAMES</strong>? How about some <strong style="color:#FF00FF;">3D text</strong> that spins right off the page? Our graphic artists are masters of Paint Shop Pro and know how to make your images POP! We love <strong style="color:#00CCCC;">Animated GIFs!</strong></p>
+                </div>
+                <div class="service-item-wild">
+                   <h3 class="subsection-title-wild"><img src="https://gifcities.org/images/email/1/E-mailme.gif" alt="email me" class="service-icon-wild">E-Mail Links & <span style="font-family:'Comic Sans MS'; color:#00FF00;">Guestbooks!</span></h3> <p>Let your visitors get in touch with a cool animated e-mail link! And what's a website without a <strong style="color:#FFFF00;">GUESTBOOK</strong> for all your fans to sign?! We'll set you up, no problem!</p>
+                </div>
+                <div class="service-item-wild">
+                    <h3 class="subsection-title-wild"><img src="https://gifcities.org/images/counter/1/counter2.gif" alt="counter gif" class="service-icon-wild">Hit Counters & Site Promotion!</h3> <p>Want to see how <strong style="color:#00FF00;">POPULAR</strong> your site is? We'll install a <strong style="color:#FF00FF;">HIT COUNTER</strong> that ticks up with every visitor! We can also submit your site to all the <strong style="color:#FFFF00;">HOTTEST</strong> search engines like AltaVista, Lycos, and WebCrawler!</p>
+                </div>
+            </section>
+
+            <hr class="section-divider-wild">
+
+            <section id="portfolio-section-wild">
+                <h2 class="section-title-wild">
+                    <img src="https://gifcities.org/images/ACTION/1/camera.gif" alt="camera gif" class="heading-gif-wild"> OUR <span class="blinking-text-wild" style="color:#FFFF00;">AWESOME</span> PORTFOLIO!
+                    <img src="https://gifcities.org/images/ACTION/1/camera.gif" alt="camera gif" class="heading-gif-wild">
+                </h2>
+                <p class="centered-text" style="color:#00FF00;">Feast your eyes on these digital masterpieces! (Actual client sites are even <strong style="color:#FF00FF;">MORE</strong> mind-blowing!)</p>
+                <div class="portfolio-grid-wild">
+                    <div class="portfolio-item-wild">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=200&h=150&q=60" alt="Site 1 Preview">
+                        <h4>CyberDreams Inc.</h4><p class="category">Total Web Domination!</p>
                     </div>
-                    <div class="why-us-point" data-cursor-hover="target">
-                        <h4>Multifaceted Mastery</h4>
-                        <p>Our deep expertise in digital design and web technologies means we bring a holistic and innovative perspective to every website project. We focus our many talents on creating exceptional online experiences.</p>
+                    <div class="portfolio-item-wild">
+                        <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=200&h=150&q=60" alt="Site 2 Preview">
+                        <h4>Angelfire Reborn</h4><p class="category">HTML Wizardry!</p>
                     </div>
-                    <div class="why-us-point" data-cursor-hover="target">
-                        <h4>Unwavering Dedication</h4>
-                        <p>Your satisfaction is paramount. We meticulously craft every detail and are committed to delivering outcomes that don't just meet expectations, but delightfully exceed them.</p>
+                    <div class="portfolio-item-wild">
+                        <img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=200&h=150&q=60" alt="Site 3 Preview">
+                        <h4>Pixel Powerhouse</h4><p class="category">Visual Overload!</p>
+                    </div>
+                     <div class="portfolio-item-wild">
+                        <img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit&crop&w=200&h=150&q=60" alt="Site 4 Preview">
+                        <h4>Geo-Shock Designs</h4><p class="category">Retro Futurism!</p>
                     </div>
                 </div>
-            </div>
-        </section>
+                <p class="centered-text" style="margin-top:15px; font-size:12px; color:#AAAAAA;">(These are modern placeholder images. Imagine them with more pixelation and questionable color choices!)</p>
+            </section>
 
-        <section id="contact" class="container">
-            <h2>Let's Create Something Remarkable.</h2>
-            <p>Have an idea brewing, a project to discuss, or just curious to learn more? Reach out and let's explore the possibilities.</p>
-            <form class="contact-form" id="contactForm">
-                <div class="form-field">
-                    <input type="text" name="name" placeholder="Your Name" required data-cursor-hover="link">
-                    <span class="focus-border"></span>
+            <hr class="section-divider-wild">
+
+            <section id="why-us-wild">
+                <h2 class="section-title-wild" style="color:#FF00FF;">
+                    <img src="https://gifcities.org/images/star/1/wwwgamelanstar.gif" alt="spinning star" class="heading-gif-wild"> WHY ARE WE SO <span style="font-size:1.2em;">RAD</span>?!
+                    <img src="https://gifcities.org/images/star/1/wwwgamelanstar.gif" alt="spinning star" class="heading-gif-wild">
+                </h2>
+                <div class="why-us-point-wild">
+                    <h4><img src="https://gifcities.org/images/eye/1/eyeball.gif" alt="eye" class="small-gif-icon"> WE SPEAK YOUR LANGUAGE (HTML, GIF, and <span class="blinking-text-wild" style="color:#00FF00;">AWESOME!</span>)</h4> <p>No confusing corporate mumbo-jumbo here! We're straight shooters who love to make cool stuff for the web. We were here when it all started!</p>
                 </div>
-                <div class="form-field">
-                    <input type="email" name="email" placeholder="Your Email" required data-cursor-hover="link">
-                    <span class="focus-border"></span>
+                <div class="why-us-point-wild">
+                    <h4><img src="https://gifcities.org/images/ACTION/1/hotanim.gif" alt="hot" class="small-gif-icon"> OUR DESIGNS ARE <span style="color:#FF6600; font-weight:bold;">HOTTER</span> THAN A DIAL-UP MODEM AFTER DOWNLOADING A JPEG!</h4> <p>Forget boring, cookie-cutter websites. We inject <strong style="color:#00CCCC;">PERSONALITY</strong> and <strong style="color:#FF00FF;">ENERGY</strong> into every pixel we place. Your visitors won't know what hit 'em!</p>
                 </div>
-                <div class="form-field">
-                    <textarea name="message" placeholder="Tell us about your vision..." required data-cursor-hover="link"></textarea>
-                    <span class="focus-border"></span>
+                <div class="why-us-point-wild">
+                    <h4><img src="https://gifcities.org/images/smiley/1/excite.gif" alt="excited" class="small-gif-icon"> WE'RE <span style="text-decoration:underline wavy #FFFF00;">OBSESSED</span> WITH MAKING YOU HAPPY!</h4> <p>Your vision + our caffeine-fueled creativity = A website that will make you wanna do the Macarena! We won't rest until your site is the talk of the chatrooms!</p>
                 </div>
-                <button type="submit" class="cta-button" data-cursor-hover="link">
-                    Send Your Thoughts
-                    <span class="shimmer"></span>
-                </button>
-            </form>
-        </section>
-    </main>
+            </section>
+            
+            <hr class="section-divider-wild">
 
-    <footer class="main-footer">
-        <p class="footer-copyright">&copy; <span id="currentYear">2025</span> Maugans Co. All Rights Reserved.</p>
-        <p>Designing a more beautiful world, one project at a time.</p>
-    </footer>
-
-    <div class="modal" id="portfolioModal" role="dialog" aria-modal="true" aria-labelledby="modalImageAriaLabel">
-        <div class="modal-content">
-            <img src="" alt="Portfolio Item Large View" id="modalImage" />
-            <span id="modalImageAriaLabel" class="sr-only">Large view of portfolio image</span>
-        </div>
-        <button class="modal-close" id="modalClose" aria-label="Close modal" data-cursor-hover="link">
-            <i class="fas fa-times"></i>
-        </button>
-    </div>
-    <div class="sr-only" style="position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0;">
-        This is a screen-reader only class.
-    </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/SplitText.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
-
-    <script>
-    // Wrapped in DOMContentLoaded to ensure elements are available for selection
-    document.addEventListener('DOMContentLoaded', function() {
-        console.log('DOM fully loaded and parsed.');
-
-        // Check if GSAP is loaded
-        if (typeof gsap === 'undefined') {
-            console.error('CRITICAL: GSAP library not loaded! Animations and some functionality will fail.');
-            // Fallback: Make sure essential content is visible if GSAP fails - CSS !important rules should mostly handle this
-            document.querySelectorAll('.main-nav ul li').forEach(el => {
-                if(el) el.style.opacity = '1'; // Specific for nav items if their animation was missed
-            });
-        } else {
-            console.log('GSAP library loaded.');
-            try {
-                gsap.registerPlugin(ScrollTrigger, SplitText, ScrollToPlugin); 
-                console.log('GSAP plugins registered.');
-            } catch(e) {
-                console.error('Error registering GSAP plugins:', e);
-            }
-        }
-
-        const mainHeader = document.getElementById('mainHeader');
-        const menuToggle = document.getElementById('menuToggle');
-        const mainNav = document.getElementById('mainNav');
-        const navLinks = document.querySelectorAll('.main-nav a.nav-link');
-        const body = document.body;
-        const cursorFollower = document.querySelector('.cursor-follower');
-        let sections = []; 
-
-        const currentYearEl = document.getElementById('currentYear');
-        if (currentYearEl) {
-            currentYearEl.textContent = new Date().getFullYear();
-        }
-
-        if ('scrollRestoration' in history) {
-             history.scrollRestoration = 'manual';
-        }
-
-        window.addEventListener('load', () => {
-             console.log('Window load event fired.');
-             window.scrollTo(0, 0);
-             
-             if (typeof gsap !== 'undefined') { // Only try to use GSAP if it's loaded
-                sections = gsap.utils.toArray('main section'); 
-                console.log('Sections found for GSAP:', sections.length, sections.map(s=>s.id));
-             } else {
-                sections = Array.from(document.querySelectorAll('main section')); // Fallback if GSAP not loaded
-                console.warn('GSAP not loaded, using basic section array.');
-             }
-
-             try {
-                playInitialAnimations(); 
-                if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') { // Only setup ScrollTriggers if GSAP/ST loaded
-                    setupScrollTriggers();   
-                    ScrollTrigger.refresh(); 
-                }
-                console.log('Initial animations and ScrollTriggers setup attempted.');
-             } catch (e) {
-                console.error("Error during initial GSAP setup on window.load:", e);
-                // Enhanced Fallback: CSS !important rules are the primary fallback for visibility.
-                // This JS fallback is secondary.
-                const elementsToForceShow = [
-                    // 'main section', // Already handled by aggressive CSS
-                    '.hero-content h1', '.hero-content .subtitle', '.hero-content .cta-button',
-                    '#about h2', '#about p', '.about-image-placeholder',
-                    '#services h2', '.service-item',
-                    '#portfolio h2', '.portfolio-item', '.portfolio-slideshow-mobile-container',
-                    '#why-us h2', '#why-us .why-us-description', '.why-us-background-wrapper', '.why-us-point',
-                    '#contact h2', '#contact > p', '.contact-form', '.contact-form .form-field', '.contact-form button',
-                    '.main-footer',
-                    '.main-nav ul li' 
-                ];
-                elementsToForceShow.forEach(selector => {
-                    document.querySelectorAll(selector).forEach(el => {
-                        if(el) {
-                            // Only apply if not already overridden by !important CSS, or if we want to ensure JS sets it.
-                            // For now, trust the CSS !important for visibility.
-                            // el.style.opacity = '1'; 
-                            // el.style.transform = 'none';
-                        }
-                    });
-                });
-                console.log('Fallback due to GSAP setup error (CSS should make elements visible).');
-             }
-             checkAndInitSlideshow(); 
-        });
-
-        if (cursorFollower && window.matchMedia("(min-width: 769px)").matches && typeof gsap !== 'undefined') {
-            body.classList.add('desktop-cursor');
-            window.addEventListener('mousemove', e => {
-                gsap.to(cursorFollower, {
-                    duration: 0.3, x: e.clientX, y: e.clientY, ease: "power2.out"
-                });
-            });
-            document.querySelectorAll('[data-cursor-hover]').forEach(el => {
-                el.addEventListener('mouseenter', () => {
-                    const hoverType = el.dataset.cursorHover;
-                    if (hoverType === 'link') cursorFollower.classList.add('hover-link');
-                    else if (hoverType === 'target') cursorFollower.classList.add('hover-target');
-                });
-                el.addEventListener('mouseleave', () => {
-                    cursorFollower.classList.remove('hover-link', 'hover-target');
-                });
-            });
-        }
-
-        let lastScrollTop = 0;
-        window.addEventListener('scroll', () => {
-            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            if (mainHeader) {
-                mainHeader.classList.toggle('scrolled', scrollTop > 50);
-                mainHeader.classList.toggle('hidden', scrollTop > lastScrollTop && scrollTop > 200);
-            }
-            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-        }, false);
-
-        if (menuToggle && mainNav) {
-            console.log('DEBUG: Menu toggle and mainNav found. Attaching listener.');
-            menuToggle.addEventListener('click', function() {
-                console.log('DEBUG: Menu toggle clicked.');
-                const isExpanded = mainNav.classList.toggle('active');
-                menuToggle.classList.toggle('open');
-                menuToggle.setAttribute('aria-expanded', String(isExpanded));
-                body.classList.toggle('modal-open', isExpanded && window.innerWidth <= 768);
-
-                if (isExpanded && window.innerWidth <= 768) {
-                    console.log('DEBUG: Mobile menu expanded, attempting to animate items.');
-                    const mobileNavItems = mainNav.querySelectorAll('ul li');
-                    if (mobileNavItems.length > 0) {
-                         console.log(`DEBUG: Found ${mobileNavItems.length} mobile nav items to animate.`);
-                         if (typeof gsap !== 'undefined') {
-                            gsap.fromTo(mobileNavItems,
-                                { opacity: 0, y: -15 }, // These items already have opacity:1 !important via CSS debug
-                                { opacity: 1, y: 0, duration: 0.3, stagger: 0.07, ease: "power2.out", delay: 0.1 }
-                            );
-                         } else {
-                             console.warn('GSAP not available for mobile menu item animation.');
-                             // CSS !important should keep them visible.
-                         }
-                    } else {
-                        console.log('DEBUG: No mobile nav items found to animate.');
-                    }
-                } else {
-                     console.log('DEBUG: Mobile menu collapsed or not in mobile view for item animation.');
-                }
-            });
-        } else {
-            console.error('DEBUG: Menu toggle or mainNav element NOT FOUND!');
-        }
-
-        navLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
-                const targetId = this.getAttribute('href');
-                console.log(`Nav link clicked: ${targetId}`);
-
-                if (mainNav && mainNav.classList.contains('active')) {
-                    console.log('Closing active mobile menu due to nav link click.');
-                    mainNav.classList.remove('active');
-                    if (menuToggle) {
-                        menuToggle.classList.remove('open');
-                        menuToggle.setAttribute('aria-expanded', 'false');
-                    }
-                    body.classList.remove('modal-open');
-                }
+            <section id="contact-section-wild">
+                <h2 class="section-title-wild" style="color:#FFFF00;">
+                    <img src="https://gifcities.org/images/email/1/emailme.gif" alt="email envelope flying" class="heading-gif-wild" style="height:40px;"> REACH OUT & TOUCH SOMEONE (VIA E-MAIL)!
+                    <img src="https://gifcities.org/images/email/1/emailme.gif" alt="email envelope flying" class="heading-gif-wild" style="height:40px;">
+                </h2>
                 
-                if (targetId && targetId.startsWith('#')) {
-                    e.preventDefault(); 
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                         let offsetYValue = 60; 
-                         if (mainHeader) {
-                            offsetYValue = mainHeader.offsetHeight + (window.innerWidth <= 768 ? 10 : 20);
-                         }
-                         console.log(`Scrolling to ${targetId} with offset ${offsetYValue}`);
-                         if (typeof gsap !== 'undefined' && typeof gsap.getProperty(window, "scrollTo") !== "undefined") { // Check if ScrollToPlugin is loaded
-                            gsap.to(window, {
-                                duration: 1.0,
-                                scrollTo: { y: targetId, offsetY: offsetYValue },
-                                ease: "power2.inOut"
-                            });
-                         } else {
-                             const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - offsetYValue;
-                             window.scrollTo({ top: targetPosition, behavior: 'smooth' });
-                             console.warn('GSAP ScrollTo not available or plugin not registered, using native scroll.');
-                         }
-                    } else {
-                        console.warn(`Target element for ${targetId} not found.`);
-                    }
-                }
-            });
-        });
-        
-        function setupScrollTriggers() {
-            if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
-                console.warn('GSAP or ScrollTrigger not available for setupScrollTriggers.');
-                return;
-            }
-            if (sections.length === 0) {
-                console.warn("Sections array is empty for ScrollTrigger setup.");
-                return;
-            }
-            console.log("Setting up ScrollTriggers for sections.");
-            sections.forEach((section) => {
-                const sectionId = section.id || 'unknown-section';
-                if (!section) { 
-                    console.warn("Skipping ScrollTrigger for invalid section object:", section);
-                    return; 
-                }
-                console.log(`Creating ScrollTrigger for section: ${sectionId}`);
-                ScrollTrigger.create({
-                    trigger: section,
-                    start: "top 75%", // A bit earlier to ensure it triggers
-                    end: "bottom 25%", 
-                    onEnter: () => setActiveNavLink(section.id), // section.id might be undefined if section has no id
-                    onEnterBack: () => setActiveNavLink(section.id),
-                    onLeave: () => clearActiveNavLink(section.id),
-                    onLeaveBack: () => clearActiveNavLink(section.id, true),
-                    onToggle: self => console.log(`ScrollTrigger for ${sectionId} toggled, isActive: ${self.isActive}`),
-                    onError: (self, error) => console.error(`ScrollTrigger.create error for ${sectionId}:`, error)
-                });
-            });
-            
-            // Refresh ScrollTrigger and set initial active nav link
-             setTimeout(() => {
-                if (typeof ScrollTrigger !== 'undefined') {
-                    ScrollTrigger.refresh(true); 
-                    console.log("ScrollTrigger.refresh(true) called.");
-                    let currentSectionId = null;
-                    const headerHeight = mainHeader ? mainHeader.offsetHeight + 100 : 150;
-                    if (sections.length > 0) {
-                        for(let i = sections.length -1; i >=0; i--){
-                            if(sections[i] && sections[i].getBoundingClientRect().top <= headerHeight){ // Check sections[i] exists
-                                currentSectionId = sections[i].id;
-                                break;
-                            }
-                        }
-                        if (currentSectionId) {
-                            setActiveNavLink(currentSectionId);
-                        } else if (sections[0] && sections[0].getBoundingClientRect && window.pageYOffset < (sections[0].getBoundingClientRect().top + window.pageYOffset - headerHeight) ) { // Check sections[0] and its method
-                            navLinks.forEach(l => l.classList.remove('active'));
-                        }
-                    }
-                }
-            }, 350); // Increased timeout slightly
-        }
-
-        function setActiveNavLink(sectionId) {
-            if (!sectionId) {
-                // console.warn("setActiveNavLink called with no sectionId");
-                return;
-            }
-            // console.log(`Attempting to set active nav link for: ${sectionId}`);
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${sectionId}`) {
-                    link.classList.add('active');
-                }
-            });
-        }
-        function clearActiveNavLink(sectionId, goingUp = false) {
-            if (!sectionId) return;
-             const link = document.querySelector(`.main-nav a[href="#${sectionId}"]`);
-             if (link) link.classList.remove('active');
-             if (goingUp && sections.length > 0 && sections[0] && sectionId === sections[0].id) {
-                 navLinks.forEach(l => l.classList.remove('active'));
-             }
-        }
-        
-        function playInitialAnimations() {
-            console.log("playInitialAnimations called.");
-            if (typeof gsap === 'undefined') {
-                console.warn('GSAP not available for playInitialAnimations. Content should be visible via CSS !important.');
-                return;
-            }
-
-            const tl = gsap.timeline({ 
-                defaults: { ease: "power2.out" },
-                onComplete: () => console.log("GSAP Initial animation timeline complete.") 
-            });
-
-            // Header animation (already working, but ensure it uses initial states if debug CSS is on)
-            if (mainHeader) {
-                const logoLink = mainHeader.querySelector('.logo a');
-                const mainNavLis = mainHeader.querySelectorAll('.main-nav ul li');
-                // For debug, these are opacity:1 !important. GSAP .from will respect current style unless overwritten by .set
-                if (logoLink) tl.from(logoLink, { y: -20, opacity: 0, duration: 0.6, clearProps: "opacity,transform" });
-                if (mainNavLis.length > 0) tl.from(mainNavLis, { y: -20, opacity: 0, stagger: 0.1, duration: 0.4, clearProps: "opacity,transform" }, "-=0.3");
-            }
-            
-            // Hero elements animation (already working)
-            const heroH1 = document.querySelector('.hero-content h1');
-            const heroSubtitle = document.querySelector('.hero-content .subtitle');
-            const heroCTA = document.querySelector('.hero-content .cta-button');
-            if (heroH1) tl.from(heroH1, {opacity: 0, y:20, duration: 0.6, clearProps: "opacity,transform"}, "heroStart"); 
-            if (heroSubtitle) tl.from(heroSubtitle, { opacity: 0, y: 30, duration: 0.7, delay:0.1, clearProps: "opacity,transform" }, "heroStart");
-            if (heroCTA) tl.from(heroCTA, { opacity: 0, y: 30, scale:0.9, duration: 0.7, ease: "back.out(1.7)", delay:0.2, clearProps: "opacity,transform" }, "heroStart");
-
-            // General Section Reveals (using ScrollTrigger)
-            console.log("Setting up general section reveal animations.");
-            gsap.utils.toArray('main section').forEach((section, index) => {
-                if (!section) {
-                    console.error(`Section at index ${index} is null/undefined in playInitialAnimations loop.`);
-                    return;
-                }
-                const sectionId = section.id || `section-index-${index}`;
-                console.log(`DEBUG: Setting up ScrollTrigger animation for section: ${sectionId}`);
-
-                // Set initial state for GSAP to animate from, overriding CSS if necessary for the animation itself
-                // The `clearProps: "all"` or specific props ensures after animation, styles are removed if desired.
-                // Or, rely on the CSS !important and GSAP will animate 'from' those visible states if not .set here.
-                // For a proper fade-in, GSAP needs to start them at opacity 0.
-                gsap.set(section, { opacity: 0, y: 30 }); // Ensure clean start for GSAP animation
-                console.log(`DEBUG: gsap.set(opacity:0, y:30) for ${sectionId}`);
-
-                gsap.to(section, {
-                    opacity: 1,
-                    y: 0, 
-                    duration: 0.8,
-                    scrollTrigger: {
-                        trigger: section,
-                        start: "top 85%", 
-                        toggleActions: "play none none none", // "play" on enter
-                        once: true, // Play only once
-                        onEnter: () => console.log(`DEBUG: ScrollTrigger onEnter for section: ${sectionId}`),
-                        onToggle: self => console.log(`DEBUG: ScrollTrigger for ${sectionId} toggled, isActive: ${self.isActive}`),
-                        onError: (stSelf, error) => console.error(`DEBUG: ScrollTrigger error for ${sectionId} [${stSelf.trigger.id}]:`, error)
-                    },
-                    onComplete: () => console.log(`DEBUG: GSAP animation completed for ${sectionId}`),
-                    onError: (vars, error) => console.error(`DEBUG: GSAP.to() error for ${sectionId}:`, error) // Error for the .to() itself
-                });
-            });
-            
-            console.log("playInitialAnimations setup completed.");
-        }
-
-
-        const portfolioModal = document.getElementById('portfolioModal');
-        const modalImage = document.getElementById('modalImage');
-        const modalCloseButton = document.getElementById('modalClose');
-        const portfolioItemsGrid = document.querySelectorAll('.portfolio-grid .portfolio-item'); 
-        let previouslyFocusedElement; 
-
-        function openModal(imgSrc, altText) {
-            if (!portfolioModal || !modalImage || !modalCloseButton) return;
-            previouslyFocusedElement = document.activeElement; 
-            modalImage.src = imgSrc;
-            modalImage.alt = altText || "Large view of portfolio project"; 
-            portfolioModal.classList.add('active');
-            body.classList.add('modal-open'); 
-            const modalContent = portfolioModal.querySelector('.modal-content');
-            if (modalContent && typeof gsap !== 'undefined') {
-                gsap.fromTo(modalContent, 
-                    { scale: 0.8, opacity: 0, y: 20 }, 
-                    { scale: 1, opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }
-                );
-            } else if (modalContent) { 
-                modalContent.style.transform = 'scale(1) translateY(0)';
-                modalContent.style.opacity = '1';
-            }
-            modalCloseButton.focus(); 
-        }
-
-        function closeModal() {
-            if (!portfolioModal) return; 
-            const modalContent = portfolioModal.querySelector('.modal-content');
-            if (modalContent && typeof gsap !== 'undefined') {
-                gsap.to(modalContent, {
-                    scale: 0.8, opacity: 0, y: 20, duration: 0.3, ease: "power2.in",
-                    onComplete: () => {
-                        portfolioModal.classList.remove('active');
-                        body.classList.remove('modal-open'); 
-                        if (previouslyFocusedElement) previouslyFocusedElement.focus();
-                    }
-                });
-            } else { 
-                if (modalContent) {
-                    modalContent.style.transform = 'scale(0.8) translateY(20px)';
-                    modalContent.style.opacity = '0';
-                }
-                portfolioModal.classList.remove('active');
-                body.classList.remove('modal-open'); 
-                if (previouslyFocusedElement) previouslyFocusedElement.focus();
-            }
-        }
-
-        portfolioItemsGrid.forEach(item => { 
-            item.addEventListener('click', () => {
-                const largeImgSrc = item.dataset.imgSrc;
-                const itemImg = item.querySelector('img');
-                const altText = itemImg ? itemImg.alt : 'Portfolio image'; 
-                if (largeImgSrc) openModal(largeImgSrc, altText);
-            });
-            item.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault(); 
-                    const largeImgSrc = item.dataset.imgSrc;
-                     const itemImg = item.querySelector('img');
-                    const altText = itemImg ? itemImg.alt : 'Portfolio image';
-                    if (largeImgSrc) openModal(largeImgSrc, altText);
-                }
-            });
-        });
-
-        if (modalCloseButton) modalCloseButton.addEventListener('click', closeModal);
-        if (portfolioModal) {
-            portfolioModal.addEventListener('click', (e) => { if (e.target === portfolioModal) closeModal(); });
-        }
-        document.addEventListener('keydown', (e) => { 
-            if (portfolioModal && e.key === 'Escape' && portfolioModal.classList.contains('active')) closeModal(); 
-        });
-
-        const slideshowContainer = document.getElementById('portfolioSlideshowMobile');
-        const slideshowTrack = document.getElementById('slideshowTrackMobile');
-        const prevButton = document.getElementById('slidePrevMobile');
-        const nextButton = document.getElementById('slideNextMobile');
-        const indicatorsContainer = document.getElementById('slideIndicatorsMobile');
-        const portfolioItemsDataSource = document.querySelectorAll('.portfolio-grid .portfolio-item'); 
-
-        let currentSlideIndex = 0;
-        let slideshowInitialized = false;
-        let mobileSlides = []; 
-
-        function initializeMobileSlideshow() {
-            console.log("DEBUG: Initializing mobile slideshow...");
-            if (slideshowInitialized || !slideshowContainer || !slideshowTrack || !portfolioItemsDataSource || portfolioItemsDataSource.length === 0) {
-                 if (slideshowContainer && (!portfolioItemsDataSource || portfolioItemsDataSource.length === 0)) {
-                    console.log("DEBUG: No portfolio items to display in slideshow.");
-                    slideshowContainer.innerHTML = '<p class="slideshow-no-items">No projects to display.</p>';
-                    if(prevButton) prevButton.style.display = 'none'; 
-                    if(nextButton) nextButton.style.display = 'none';
-                    if(indicatorsContainer) indicatorsContainer.style.display = 'none';
-                } else {
-                    console.log("DEBUG: Slideshow already initialized or missing essential elements/data.");
-                }
-                return;
-            }
-            
-            slideshowTrack.innerHTML = ''; 
-            if (indicatorsContainer) indicatorsContainer.innerHTML = ''; 
-            mobileSlides = []; 
-
-            portfolioItemsDataSource.forEach((itemData, index) => {
-                const itemImgEl = itemData.querySelector('img');
-                const imgSrc = itemData.dataset.imgSrc || (itemImgEl ? itemImgEl.src : 'https://placehold.co/600x400/cccccc/333333?text=Image+Missing&font=Inter');
-                const altText = itemImgEl ? itemImgEl.alt : 'Portfolio project image';
-                const titleEl = itemData.querySelector('.portfolio-item-overlay h4');
-                const title = titleEl ? titleEl.textContent : 'Project Title';
-                const categoryEl = itemData.querySelector('.portfolio-item-overlay p.category');
-                const category = categoryEl ? categoryEl.textContent : 'Category';
-
-                const slide = document.createElement('div');
-                slide.className = 'slide-mobile';
-                slide.innerHTML = `
-                    <div class="slide-image-wrapper-mobile">
-                        <img src="${imgSrc}" alt="${altText}" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Image+Not+Found&font=Inter';">
+                <p class="centered-text" style="font-size:18px; color:#00FF00;">Got a <span class="blinking-text-wild" style="color:#FF0000;">BURNING DESIRE</span> for an <span style="font-family:'Comic Sans MS'; color:#00FFFF;">OUTRAGEOUS</span> website? Don't be a stranger! Drop us a line, send a carrier pigeon, or use this <strong style="color:#FFFF00;">FUTURISTIC</strong> form below!</p>
+                <p class="centered-text"><img src="https://gifcities.org/images/construct/1/CONSTRUCTION.GIF" alt="Under Construction" style="height: 60px; margin:10px 0;"></p> <form class="contact-form-wild" id="contactFormWild">
+                    <div>
+                        <label for="contactNameWild">YoUr NaMe (OR ALIAS!):</label>
+                        <input type="text" id="contactNameWild" name="name" required placeholder="e.g. CyberSurferX2000">
                     </div>
-                    <div class="slide-caption-mobile">
-                        <h4>${title}</h4>
-                        <p>${category}</p>
+                    <div>
+                        <label for="contactEmailWild">YoUr E-MaIl AdDrEsS (NO SPAM!):</label>
+                        <input type="email" id="contactEmailWild" name="email" required placeholder="your_cool_email@hotmail.com">
                     </div>
-                `;
-                slideshowTrack.appendChild(slide);
-                mobileSlides.push(slide);
+                    <div>
+                        <label for="contactMessageWild">WhAt'S On YoUr MiNd, DuDe?!:</label>
+                        <textarea id="contactMessageWild" name="message" rows="6" required placeholder="Tell us about your awesome project idea or just say HI!"></textarea>
+                    </div>
+                    <button type="submit" class="cta-button-wild">SEND THAT MESSAGE INTO CYBERSPACE!</button>
+                </form>
+                <p class="centered-text" style="margin-top:20px; font-size:16px;">Or, if you're <span style="font-style:italic;">really</span> old school, try our <a href="mailto:info@maugansco.wild2k.net">SUPER SECRET E-MAIL ADDRESS!</a> (Not really, but it sounds cool!)</p>
+            </section>
 
-                if (indicatorsContainer) {
-                    const indicator = document.createElement('button');
-                    indicator.className = 'indicator-dot-mobile';
-                    indicator.setAttribute('aria-label', `Go to project ${index + 1}: ${title}`);
-                    indicator.addEventListener('click', () => goToSlide(index));
-                    indicatorsContainer.appendChild(indicator);
-                }
-            });
-            
-            slideshowInitialized = true; 
-            console.log("DEBUG: Mobile slideshow initialized with slides:", mobileSlides.length);
-            updateSlideshowUI(); 
-            goToSlide(0, true); 
-        }
+        </div> <footer class="main-footer-wild">
+            <p class="blinking-text-wild" style="color:#FFFF00; font-size:16px;">&copy; 1998 - <span id="currentYearWild">2001</span> MAUGANS CO. - Rockin' The Web Since The Dial-Up Days!</p>
+            <p><img src="https://gifcities.org/images/button/2/ns_anim.gif" alt="Netscape Now!" class="small-gif-icon"> This site is best viewed with Netscape Navigator 4.0+ or Internet Explorer 5.0+! <img src="https://gifcities.org/images/button/2/iepower.gif" alt="Powered by IE" class="small-gif-icon"></p>
+            <p>Set your monitors to 800x600 for <strong style="color:#00FF00;">MAXIMUM</strong> impact!</p>
+            <div class="hit-counter-wild">
+                U R Visitor # <span id="hitCounterWild">12345</span> !!!
+            </div>
+            <div class="footer-badges-wild">
+                <a href="#"><img src="https://gifcities.org/images/button/1/htmlgtea.gif" alt="HTML Guru"></a>
+                <a href="#"><img src="https://gifcities.org/images/button/1/notepad.gif" alt="Made with Notepad"></a>
+                <a href="#"><img src="https://gifcities.org/images/button/1/madeyes.gif" alt="Made with Windows"></a>
+                <a href="#"><img src="https://gifcities.org/images/construct/1/dudecomp21.gif" alt="Site Under Construction Dude"></a>
+            </div>
+             <p style="margin-top:10px; font-size:11px; color:#888888;">Last Updated: <span id="lastUpdatedWild">Whenever we felt like it! (Probably yesterday)</span></p>
+        </footer>
 
-        function goToSlide(index, instant = false) {
-            if (!slideshowTrack || mobileSlides.length === 0) return;
-            const totalSlides = mobileSlides.length;
-        
-            currentSlideIndex = (index % totalSlides + totalSlides) % totalSlides; 
-
-            // console.log(`DEBUG: Going to slide ${currentSlideIndex}`);
-            if (typeof gsap !== 'undefined') {
-                gsap.to(slideshowTrack, { 
-                    xPercent: -currentSlideIndex * 100, 
-                    duration: instant ? 0 : 0.5, 
-                    ease: "power2.inOut"
-                });
-                mobileSlides.forEach((slide, i) => {
-                     gsap.to(slide, { opacity: i === currentSlideIndex ? 1 : 0.5, duration: instant ? 0 : 0.3 });
-                });
-            } else { 
-                slideshowTrack.style.transform = `translateX(${-currentSlideIndex * 100}%)`;
-                mobileSlides.forEach((slide, i) => {
-                    slide.style.opacity = i === currentSlideIndex ? '1' : '0.5';
-                });
-            }
-            updateIndicators(); 
-        }
-
-        function updateIndicators() {
-            if (!indicatorsContainer) return;
-            const indicators = indicatorsContainer.children;
-            for (let i = 0; i < indicators.length; i++) {
-                indicators[i].classList.toggle('active', i === currentSlideIndex);
-            }
+    </div> <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // --- Update Footer Year and Last Updated ---
+        const currentYearSpan = document.getElementById('currentYearWild');
+        if (currentYearSpan) {
+             currentYearSpan.textContent = new Date().getFullYear() > 2002 ? "2002" : new Date().getFullYear(); // Cap at a retro year
         }
         
-        function updateSlideshowUI() {
-            if (!portfolioItemsDataSource) return;
-            const totalSlides = portfolioItemsDataSource.length;
-            const displayStyle = totalSlides <= 1 ? 'none' : 'flex'; 
-
-            if(prevButton) prevButton.style.display = displayStyle;
-            if(nextButton) nextButton.style.display = displayStyle;
-            if(indicatorsContainer) indicatorsContainer.style.display = totalSlides <= 1 ? 'none' : 'flex'; 
-
-            if (totalSlides === 0 && slideshowContainer) {
-                slideshowContainer.innerHTML = '<p class="slideshow-no-items">No projects to display.</p>';
-                 if(prevButton) prevButton.style.display = 'none'; 
-                if(nextButton) nextButton.style.display = 'none';
-            }
+        const lastUpdatedSpan = document.getElementById('lastUpdatedWild');
+        if(lastUpdatedSpan) {
+            const retroMonths = ["Jan.", "Feb.", "Mar.", "Apr.", "May", "Jun.", "Jul.", "Aug.", "Sep.", "Oct.", "Nov.", "Dec."];
+            const retroDay = Math.floor(Math.random() * 28) + 1;
+            const retroYear = Math.floor(Math.random() * 4) + 1999; // 1999-2002
+            lastUpdatedSpan.textContent = retroMonths[Math.floor(Math.random() * 12)] + " " + retroDay + ", " + retroYear;
         }
 
-        if (prevButton) prevButton.addEventListener('click', () => goToSlide(currentSlideIndex - 1));
-        if (nextButton) nextButton.addEventListener('click', () => goToSlide(currentSlideIndex + 1));
-        
-        function checkAndInitSlideshow() {
-            if (typeof window === 'undefined') return; 
-            const isMobileView = window.innerWidth <= 768;
-            const desktopGrid = document.querySelector('.portfolio-grid');
+        // --- Hit Counter ---
+        const hitCounterEl = document.getElementById('hitCounterWild');
+        let hitCount = Math.floor(Math.random() * 10000) + 5000; 
 
-            console.log(`DEBUG: checkAndInitSlideshow: isMobileView = ${isMobileView}, slideshowInitialized = ${slideshowInitialized}`);
-
-            if (isMobileView) {
-                if (!slideshowInitialized) { 
-                    initializeMobileSlideshow(); 
-                }
-                if (slideshowContainer) slideshowContainer.style.display = 'block'; // This should already have opacity:1 !important from debug CSS
-                if (desktopGrid) desktopGrid.style.display = 'none';
-            } else { 
-                if (slideshowContainer) slideshowContainer.style.display = 'none';
-                if (desktopGrid) desktopGrid.style.display = 'grid'; 
-                // Ensure desktop items are visible if animations had set them to 0.
-                // Debug CSS should make them visible anyway.
-                if (desktopGrid) {
-                    const gridItems = desktopGrid.querySelectorAll('.portfolio-item');
-                    gridItems.forEach(item => {
-                         // item.style.opacity = '1'; item.style.transform = 'none'; // Covered by global debug CSS
-                    });
-                }
+        function updateHitCounter() {
+            hitCount += Math.floor(Math.random() * 3) + 1; // Increment by 1, 2 or 3
+            if (hitCounterEl) {
+                hitCounterEl.textContent = hitCount.toString();
             }
         }
+        if(hitCounterEl){
+            setInterval(updateHitCounter, Math.floor(Math.random() * 2500) + 1500); 
+            updateHitCounter(); 
+        }
 
-        window.addEventListener('resize', () => {
-            console.log('Window resize event fired.');
-            checkAndInitSlideshow();
-            if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh(true); 
-        }); 
-        
-        const contactForm = document.getElementById('contactForm');
+        // --- Contact Form Alert ---
+        const contactForm = document.getElementById('contactFormWild');
         if (contactForm) {
             contactForm.addEventListener('submit', function(e) {
                 e.preventDefault();
-                console.log("Contact form submitted.");
-                const button = contactForm.querySelector('button[type="submit"]');
-                if (!button) return;
-                
-                button.innerHTML = 'Sending... <i class="fas fa-spinner fa-spin" style="display:inline-block; margin-left:5px;"></i><span class="shimmer"></span>'; 
-                button.disabled = true;
-                if (typeof gsap !== 'undefined') {
-                    gsap.to(button, {duration: 0.2, autoAlpha:0.5, pointerEvents: 'none'});
-                } else {
-                    button.style.opacity = '0.5';
-                    button.style.pointerEvents = 'none';
-                }
-
-                setTimeout(() => { 
-                    if (typeof gsap !== 'undefined') {
-                        gsap.to(contactForm, {
-                            opacity: 0, duration: 0.5, 
-                            onComplete: () => {
-                                contactForm.style.display = 'none';
-                                const successMsgContainer = contactForm.parentNode;
-                                if (successMsgContainer) {
-                                    const successMsg = document.createElement('p');
-                                    successMsg.innerHTML = 'Thank you! <br/>Your vision is on its way to us.';
-                                    successMsg.style.textAlign = 'center';
-                                    successMsg.style.color = 'var(--accent-primary)';
-                                    successMsg.style.fontSize = '1.2rem';
-                                    successMsg.style.opacity = '0';
-                                    successMsgContainer.insertBefore(successMsg, contactForm); 
-                                    gsap.fromTo(successMsg, {opacity:0, y:20}, {opacity:1, y:0, duration:0.6, ease:'power2.out'});
-                                }
-                            }
-                        });
-                    } else { 
-                        contactForm.style.opacity = '0';
-                        contactForm.style.display = 'none';
-                        const successMsgContainer = contactForm.parentNode;
-                        if (successMsgContainer) {
-                            const successMsg = document.createElement('p');
-                            successMsg.innerHTML = 'Thank you! <br/>Your vision is on its way to us.';
-                            successMsg.style.textAlign = 'center';
-                            successMsg.style.color = 'var(--accent-primary)';
-                            successMsg.style.fontSize = '1.2rem';
-                            successMsg.style.opacity = '1'; 
-                            successMsgContainer.insertBefore(successMsg, contactForm);
-                        }
-                    }
-                }, 1500);
+                const name = this.name.value || "Cyber Pal";
+                alert('WOAH ' + name.toUpperCase() + '!!!\n\nYour E-MAIL has been ZAPPED through the INTERNET PIPES to our SECRET HEADQUARTERS (it\'s a basement)!\n\nWe\'ll get back to you when the Webmaster wakes up! KEEP IT REAL!');
+                contactForm.reset();
             });
         }
+        
+        // --- Animated Logo Character Color Cycling (Optional extra flair) ---
+        const logoChars = document.querySelectorAll('.logo-maugans-wild .char');
+        if (logoChars.length > 0) {
+            const colors = ['#00CCCC', '#FFFF00', '#FF00FF', '#00FF00', '#00FFFF', '#FF6600', '#CC00CC'];
+            let colorIndex = 0;
+            setInterval(() => {
+                logoChars.forEach((char, index) => {
+                    char.style.color = colors[(colorIndex + index) % colors.length];
+                });
+                colorIndex = (colorIndex + 1) % colors.length;
+            }, 300); // Speed of color change
+        }
+
+        console.log("%c HEY HACKERMAN! THIS SITE IS POWERED BY PIXELS AND PURE AWESOMENESS! ", "background: #000; color: #00FF00; font-size: 20px; font-family: Impact; border: 2px solid #FFFF00; padding:10px;");
+        console.log("Remember animated cursors? MIDI background music? IFRAMES?! Those were the days!");
+
     });
     </script>
 
