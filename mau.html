@@ -3,734 +3,568 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>~~~*** Maugans Co. - W3B D3SIGN MASTERS!!! ***~~~</title>
+    <title>Maugans Co. :: Premier Web Design Solutions for the Digital Age!</title>
     <style>
-        /* --- NO Google Fonts --- We use REAL fonts! --- */
-
-        /* --- Variables - GeoCities Edition! --- */
-        :root {
-            --geocities-teal: #00CCCC; /* Teal */
-            --geocities-blue: #0000FF; /* Bright Blue */
-            --geocities-black: #000000;
-            --geocities-white: #FFFFFF;
-            --geocities-yellow: #FFFF00;
-            --geocities-red: #FF0000;
-            --geocities-green: #00FF00;
-            --geocities-purple: #800080;
-            --geocities-silver: #C0C0C0;
-        }
-
-        /* --- Base Styles - EARLY 2000s --- */
-        * {
+        /* Global Styles - Circa 2003 */
+        body {
+            font-family: Verdana, Arial, Helvetica, sans-serif;
+            font-size: 12px; /* Common base size for 2003 */
+            line-height: 1.6;
+            background-color: #003366; /* Deep Blue background */
+            color: #000000; /* Black text on light content areas */
             margin: 0;
             padding: 0;
-            box-sizing: border-box; /* This is actually modern, but helps with layout */
-        }
-        html {
-            scroll-behavior: auto; /* Smooth scroll feels too modern */
-        }
-        body {
-            font-family: "Comic Sans MS", "Comic Sans", cursive;
-            line-height: 1.5;
-            background-color: var(--geocities-teal); /* Teal background */
-            color: var(--geocities-black);
-            background-image: url('https://web.archive.org/web/20091027002447/http://geocities.com/SunsetStrip/Alley/5420/backgrounds/stars15.gif'); /* Tiled stars background */
+            background-image: url('https://web.archive.org/web/20030815000000*/http://www.geocities.com/clipart/pbi/backgrounds/Networking/cybrblue.gif'); /* Subtle tech background */
             background-repeat: repeat;
-            padding: 0 10px; /* Add some padding so content isn't stuck to edges */
         }
 
-        h1, h2, h3, h4, h5, h6 {
-            font-family: "Impact", Haettenschweiler, "Arial Narrow Bold", sans-serif;
-            color: var(--geocities-blue);
-            margin-bottom: 10px;
+        #modern-site-link-banner {
+            background-color: #000000;
+            color: #FFFFFF;
             text-align: center;
-            letter-spacing: 1px;
-        }
-        h1 {
-            font-size: 48px !important;
-            color: var(--geocities-yellow) !important;
-            text-shadow: 3px 3px 0px var(--geocities-blue), -3px -3px 0px var(--geocities-red);
-            padding: 10px;
-            border: 5px groove var(--geocities-silver);
-            background-color: var(--geocities-purple);
-        }
-        h2 {
-            font-size: 36px !important;
-            color: var(--geocities-green) !important;
-            text-shadow: 2px 2px 0px var(--geocities-black);
-            border-top: 3px dashed var(--geocities-yellow);
-            border-bottom: 3px dashed var(--geocities-yellow);
             padding: 8px 0;
+            font-size: 14px;
+            border-bottom: 3px solid #00CCCC; /* Teal accent */
         }
-        h3 {
-            font-size: 28px !important;
-            color: var(--geocities-red) !important;
-            text-decoration: underline;
-            text-decoration-style: wavy;
-            text-decoration-color: var(--geocities-blue);
-        }
-        h4 {
-            font-size: 22px !important;
-            color: var(--geocities-purple) !important;
-            font-family: "Courier New", Courier, monospace;
-        }
-
-        p {
-            margin-bottom: 15px;
-            font-size: 16px; /* Readable size */
-            color: var(--geocities-black); /* Default black text on light bg */
-            font-family: "Times New Roman", Times, serif;
-        }
-        .container { /* Center content, like old sites */
-            width: 95%;
-            max-width: 800px; /* Typical width for 800x600 screens */
-            margin: 20px auto;
-            padding: 15px;
-            border: 3px ridge var(--geocities-blue);
-            background-color: rgba(255, 255, 255, 0.85); /* Slightly transparent white to see bg */
-            box-shadow: 5px 5px 10px var(--geocities-black);
-        }
-        section {
-             margin-bottom: 20px;
-             padding: 10px;
-             border: 2px solid var(--geocities-black); /* Simple borders for sections */
-        }
-        
-        .highlight-geocities { /* For special text */
-            color: var(--geocities-red);
+        #modern-site-link-banner a {
+            color: #FFFF00; /* Bright Yellow link */
             font-weight: bold;
-            font-family: "Arial Black", Gadget, sans-serif;
+            text-decoration: underline;
+        }
+        #modern-site-link-banner a:hover {
+            color: #00CCCC; /* Teal hover */
+            text-decoration: none;
         }
 
-        /* --- Header - GeoCities Style --- */
+        #wrapper { /* Main content wrapper */
+            width: 800px; /* Common fixed width for 2003 */
+            margin: 15px auto;
+            background-color: #FFFFFF; /* White content background */
+            border: 5px solid #000000; /* Thick black border */
+            box-shadow: 0 0 15px rgba(0,0,0,0.5); /* A bit of a drop shadow was sometimes seen */
+        }
+
+        /* Header - Circa 2003 */
         .main-header {
-            background-color: var(--geocities-blue);
-            border-bottom: 5px groove var(--geocities-silver);
-            padding: 10px 0;
-            width: 100%;
-            text-align: center;
-            position: static; /* No fixed header */
+            background-color: #000000; /* Black header */
+            padding: 10px;
+            border-bottom: 5px solid #00CCCC; /* Teal accent line */
+            text-align: center; /* Center logo and nav */
         }
-        .nav-container {
-            display: block; /* Simpler layout */
-            text-align: center;
-        }
-        .logo a {
-            font-family: "Impact", Haettenschweiler, "Arial Narrow Bold", sans-serif;
-            font-size: 40px;
-            text-decoration: none;
-            display: inline-block;
+        .logo-container {
             margin-bottom: 10px;
         }
-        .logo .logo-maugans {
-             color: var(--geocities-black); /* As requested */
+        .logo-container .logo-maugans {
+            font-family: "Arial Black", Gadget, sans-serif;
+            font-size: 36px;
+            color: #000000; /* Black as requested */
+            background-color: #CCCCCC; /* Silver-ish background for logo text */
+            padding: 2px 8px;
+            border: 2px outset #999999;
+            text-decoration: none;
         }
-        .logo .co-highlight {
-            color: var(--geocities-teal); /* As requested */
-            font-style: italic;
-            font-size: 0.8em; /* "Co." slightly smaller */
+        .logo-container .co-highlight {
+            font-family: "Arial Black", Gadget, sans-serif;
+            font-size: 36px;
+            color: #00CCCC; /* Teal as requested */
+            background-color: #333333; /* Dark grey for contrast */
+            padding: 2px 8px;
+            border: 2px outset #009999;
         }
+         .logo-container a { text-decoration: none; }
+
+
         .main-nav ul {
             list-style: none;
             padding: 0;
             margin: 0;
-            display: inline-block; /* Center the nav items */
+            text-align: center;
         }
         .main-nav ul li {
-            display: inline-block; /* Horizontal nav */
-            margin: 0 5px;
-        }
-        .main-nav ul li a {
-            font-family: "Arial", Helvetica, sans-serif;
-            font-weight: bold;
-            color: var(--geocities-yellow);
-            text-decoration: none;
-            font-size: 14px;
-            padding: 5px 10px;
-            background-color: var(--geocities-red);
-            border: 2px outset var(--geocities-silver);
-            border-radius: 5px; /* A little bit of "button" feel */
-        }
-        .main-nav ul li a:hover {
-            background-color: var(--geocities-green);
-            color: var(--geocities-black);
-            border-style: inset;
-        }
-        .menu-toggle { display: none !important; } /* No mobile toggle needed, always visible */
-
-        /* --- Hero Section - GeoCities Style --- */
-        .hero {
-            padding: 20px;
-            text-align: center;
-            background-color: var(--geocities-silver);
-            background-image: url('https://web.archive.org/web/20090830000036/http://geocities.com/EnchantedForest/Dell/9920/grafix/bkgrds/cybrpnk2.gif');
-            border: 5px double var(--geocities-black);
-        }
-        .hero-content h1 { /* Already globally styled */
-            margin-bottom: 15px;
-        }
-        .hero-content .subtitle {
-            font-family: "Arial", Helvetica, sans-serif;
-            font-size: 18px;
-            color: var(--geocities-black);
-            background-color: var(--geocities-yellow);
-            padding: 10px;
-            display: inline-block; /* So background applies correctly */
-            border: 2px dashed var(--geocities-blue);
-        }
-        .cta-button { /* Global button style */
-            background: var(--geocities-green);
-            color: var(--geocities-black) !important; /* Ensure specificity */
-            padding: 10px 20px !important;
-            text-decoration: none !important;
-            font-weight: bold !important;
-            border-radius: 0 !important; /* Sharp corners */
-            display: inline-block;
-            font-size: 18px !important;
-            font-family: "Impact", sans-serif !important;
-            border: 3px outset var(--geocities-blue) !important;
-            margin-top: 15px;
-            cursor: pointer !important; /* Standard pointer */
-        }
-        .cta-button:hover {
-            background: var(--geocities-yellow) !important;
-            color: var(--geocities-red) !important;
-            border-style: inset !important;
-            transform: none !important; /* No modern transforms */
-        }
-        .hero::before, .hero::after { display: none; } /* Remove modern pulse bubbles */
-
-        /* --- About Section - GeoCities Style --- */
-        #about {
-            background-color: #E0FFFF; /* Light Cyan */
-        }
-        #about h2 {
-            text-align: center !important; /* Override any specific alignment */
-        }
-        #about p {
-            max-width: 100% !important; /* Full width within container */
-            text-align: justify; /* Justified text was common */
-            color: #333333;
-        }
-        .about-image-placeholder {
-            display: block; 
-            width: 200px; /* Smaller, typical GIF size */
-            height: 150px;
-            border: 3px solid var(--geocities-red);
-            margin: 10px auto;
-            background-image: url('https://web.archive.org/web/20091027080131/http://geocities.com/SouthBeach/Palms/2962/animate.gif') !important; /* Animated computer gif */
-            background-size: contain !important;
-            background-repeat: no-repeat !important;
-            background-position: center !important;
-        }
-        /* Adjust grid for simpler layout if needed */
-         @media (min-width: 1px) { /* Apply always, remove modern grid */
-            #about .container { 
-                display: block;
-            }
-        }
-
-
-        /* --- Services Section - GeoCities Style --- */
-        #services {
-            background-color: #FFFACD; /* LemonChiffon */
-        }
-        .service-grid { 
-            display: block; /* No grid, stack items */
-        }
-        .service-item {
-            background: var(--geocities-white); 
-            border: 2px dashed var(--geocities-purple);
-            padding: 15px; 
-            margin-bottom: 15px;
-            text-align: center;
-        }
-        .service-item:hover {
-            transform: none; /* No hover transform */
-            box-shadow: none;
-            border-color: var(--geocities-green);
-        }
-        .service-item::before { display: none; } /* Remove modern shine */
-        .service-item-icon { /* Replace FontAwesome with text or small GIF */
-            font-size: 20px !important; /* Smaller if text */
-            color: var(--geocities-blue) !important; 
-            margin-bottom: 10px !important;
-            display: block;
-            font-family: "Wingdings", "Webdings", fantasy; /* Or use a GIF */
-        }
-        /* Example of using text for icons (Wingdings might not render for everyone) */
-        #services .service-item:nth-child(1) .service-item-icon::before { content: "\0077"; /* 'w' in wingdings (computer) */ }
-        #services .service-item:nth-child(2) .service-item-icon::before { content: "\003C"; /* '<' in wingdings (pencil/draft) */ }
-        #services .service-item:nth-child(3) .service-item-icon::before { content: "\00A7"; /* '§' in wingdings (chart-like) */ }
-        #services .service-item:nth-child(4) .service-item-icon::before { content: "\0026"; /* '&' in wingdings (tools) */ }
-
-        .service-item h3 { 
-            color: var(--geocities-blue) !important; 
-            font-family: "Arial Black", Gadget, sans-serif;
-        }
-        .service-item p {
-            font-size: 14px;
-            color: #222222;
-        }
-
-        /* --- Portfolio Section - GeoCities Style --- */
-        #portfolio {
-            background-color: #E6E6FA; /* Lavender */
-        }
-        #portfolio .portfolio-grid { 
-            display: block; /* Stack items */
-            text-align: center; /* Center the items */
-        }
-        #portfolio .portfolio-item {
-            display: inline-block; /* Allow side-by-side if space, or wrap */
-            width: 150px; /* Small image size */
-            height: auto; /* Maintain aspect ratio */
-            border: 3px solid var(--geocities-blue);
-            margin: 10px;
-            padding: 5px;
-            background-color: var(--geocities-white);
-            box-shadow: none;
-            cursor: default; /* No special cursor */
-            text-align: center;
-        }
-        #portfolio .portfolio-item:hover { transform: none; }
-        #portfolio .portfolio-item img {
-            width: 100%; 
-            height: 120px; /* Fixed height for consistency */
-            object-fit: cover;
-            border: 1px solid var(--geocities-silver);
-        }
-        #portfolio .portfolio-item:hover img { transform: none; }
-        #portfolio .portfolio-item-overlay {
-            display: block; /* Always visible caption below image */
-            position: static;
-            background: none;
-            padding: 5px 0 0 0; 
-            transform: none;
-            color: var(--geocities-black);
-        }
-        #portfolio .portfolio-item-overlay h4 { 
-            font-size: 14px !important; 
-            color: var(--geocities-blue) !important; 
-            margin-bottom: 2px; 
-            font-family: "Arial", sans-serif;
-        }
-        #portfolio .portfolio-item-overlay p.category { 
-            font-size: 11px !important; 
-            color: var(--geocities-purple) !important; 
-            font-weight: normal; 
-            text-transform: none; 
-            font-family: "Times New Roman", Times, serif;
-        }
-        .portfolio-slideshow-mobile-container { display: none !important; } /* No mobile slideshow */
-        /* Hide modal, or simplify it drastically if kept */
-        .modal { display: none !important; }
-
-
-        /* --- Why Choose Us Section - GeoCities Style --- */
-        #why-us {
-             background-color: var(--geocities-yellow);
-             border: 5px dotted var(--geocities-red);
-             padding: 15px;
-        }
-        #why-us .why-us-background-wrapper {
-            background: rgba(255,255,255,0.7);
-            backdrop-filter: none;
-            border-radius: 0; 
-            padding: 10px;
-            border: 3px dashed var(--geocities-blue); 
-            box-shadow: none;
-        }
-        #why-us h2 { color: var(--geocities-red) !important; }
-        #why-us .why-us-description {
-            color: var(--geocities-black) !important; 
-            text-align: center !important; 
-            max-width: 100% !important;
-            font-size: 16px !important;
-            font-family: "Arial", Helvetica, sans-serif;
-            font-style: italic;
-            margin-bottom: 10px;
-        }
-        #why-us .why-us-points {
-            display: block; /* Stack them */
-        }
-        #why-us .why-us-point {
-            background: var(--geocities-silver); 
-            padding: 10px;
-            border-radius: 0;
-            border: 2px groove var(--geocities-purple); 
-            margin-bottom: 10px;
-            text-align: left;
-        }
-        #why-us .why-us-point h4 { 
-            color: var(--geocities-blue) !important;
-            font-size: 18px !important;
-            font-family: "Impact", sans-serif;
-        }
-        #why-us .why-us-point p { 
-            color: var(--geocities-black) !important; 
-            font-size: 14px !important; 
-            font-family: "Times New Roman", Times, serif;
-        }
-
-        /* --- Contact Section - GeoCities Style --- */
-        #contact {
-            background-color: var(--geocities-silver); 
-            border: 5px ridge var(--geocities-green) !important;
-            padding: 20px !important;
-            font-family: "Comic Sans MS", "Comic Sans", cursive !important;
-        }
-        #contact h2 { /* Uses global h2 style */
-            margin-bottom: 10px !important;
-        }
-        #contact p {
-            color: var(--geocities-blue) !important; 
-            font-size: 16px !important;
-            text-align: center !important;
-            margin-bottom: 10px !important;
-        }
-        .contact-form { 
-            border: 3px dashed var(--geocities-red) !important;
-            padding: 15px !important;
-            background-color: var(--geocities-white) !important;
-            max-width: 500px; /* Make form narrower */
-        }
-        .contact-form input[type="text"],
-        .contact-form input[type="email"],
-        .contact-form textarea {
-            font-family: "Courier New", Courier, monospace !important;
-            border: 1px solid var(--geocities-black) !important;
-            background-color: var(--geocities-white) !important; 
-            color: var(--geocities-black) !important;
-            padding: 5px !important;
-            border-radius: 0 !important; 
-            box-shadow: inset 1px 1px 2px #888888 !important;
-            font-size: 14px !important;
-            width: 98%; /* Take full width of form */
-            margin-bottom: 10px;
-        }
-        .contact-form input::placeholder, 
-        .contact-form textarea::placeholder {
-            color: #555555 !important;
-            font-style: italic;
-        }
-         .contact-form input:focus, 
-         .contact-form textarea:focus {
-            outline: 2px solid var(--geocities-yellow) !important; 
-            background-color: #FFFFE0 !important; /* Light yellow on focus */
-        }
-        /* Button uses global .cta-button style */
-
-        .geocities-gif {
-            display: block;
-            margin: 10px auto;
-            max-width: 100%; /* Ensure GIFs are responsive-ish */
-        }
-        .small-gif {
-            height: 20px;
-            width: auto;
-            vertical-align: middle;
+            display: inline; /* Horizontal nav */
             margin: 0 3px;
         }
-
-        @keyframes blink-text-geocities {
-            0%, 49% { color: var(--geocities-red); }
-            50%, 100% { color: var(--geocities-blue); }
-        }
-        .blinking-text {
-            animation: blink-text-geocities 0.8s linear infinite;
+        .main-nav ul li a {
+            font-family: Tahoma, Verdana, Arial, sans-serif;
             font-weight: bold;
-            font-size: 1.1em; /* Slightly larger */
+            color: #000000; /* Black text */
+            text-decoration: none;
+            font-size: 13px;
+            padding: 6px 12px;
+            background-color: #00CCCC; /* Teal buttons */
+            border: 2px outset #009999; /* 3D button effect */
+            border-radius: 3px; /* Slight rounding was appearing */
         }
-        .scrolling-text-container {
-            width: 100%;
-            background-color: var(--geocities-blue); 
-            color: var(--geocities-yellow); 
-            padding: 5px 0;
-            margin: 15px 0;
-            border-top: 2px solid var(--geocities-silver);
-            border-bottom: 2px solid var(--geocities-silver);
+        .main-nav ul li a:hover {
+            background-color: #009999; /* Darker teal on hover */
+            color: #FFFFFF; /* White text on hover */
+            border-style: inset;
         }
-        .scrolling-text-container marquee {
+        
+        /* Content Area - Circa 2003 */
+        .content-padding {
+            padding: 15px 20px;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: "Arial Black", Gadget, sans-serif; /* Impact or Arial Black common */
+            color: #003366; /* Deep Blue for headings */
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+        h1 { /* Page Title */
+            font-size: 28px;
+            text-align: center;
+            color: #000000; /* Black */
+            background-color: #00CCCC; /* Teal background */
+            padding: 10px;
+            border-bottom: 3px solid #000000;
+            letter-spacing: 1px;
+        }
+        h2 { /* Section Titles */
+            font-size: 22px;
+            color: #000000; /* Black */
+            border-bottom: 2px solid #00CCCC; /* Teal underline */
+            padding-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+        h2 img.heading-gif { /* Small GIF next to heading */
+            height: 24px; /* Adjust size as needed */
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+        h3 { /* Sub-headings */
             font-size: 18px;
-            font-weight: bold;
-            font-family: "Arial Black", Gadget, sans-serif;
+            color: #006699; /* Medium Blue */
+        }
+        
+        p {
+            margin-bottom: 12px;
+            color: #333333; /* Dark Grey for better readability on white */
+        }
+        a {
+            color: #0000FF; /* Standard blue links */
+            text-decoration: underline;
+        }
+        a:hover {
+            color: #FF0000; /* Red hover for links */
+            text-decoration: none;
         }
 
-        /* --- Footer - GeoCities Style --- */
-        .main-footer {
-            background-color: var(--geocities-black) !important; 
-            color: var(--geocities-green) !important; 
-            font-family: "Courier New", Courier, monospace !important;
-            padding: 15px !important;
-            text-align: center !important;
-            border-top: 10px groove var(--geocities-silver) !important; 
-        }
-        .main-footer p {
-            color: var(--geocities-green) !important;
-            font-size: 12px !important;
-            margin-bottom: 8px !important;
-            max-width: 100% !important;
-        }
-        .main-footer a {
-            color: var(--geocities-yellow) !important; 
-            text-decoration: underline !important;
-        }
-        .main-footer a:hover {
-            color: var(--geocities-red) !important; 
-            background-color: var(--geocities-yellow) !important; 
-        }
-        .hit-counter-container {
-            margin-top: 10px;
-            font-size: 12px;
-            color: var(--geocities-white); 
-            background-color: #333333;
-            padding: 5px;
-            border: 1px solid var(--geocities-green);
-            display: inline-block;
-        }
-        .hit-counter-img { 
+        hr.section-divider {
             border: 0;
+            height: 10px; /* Adjust to GIF height */
+            background-image: url('https://web.archive.org/web/20030803094251/http://us.geocities.com/SiliconValley/Way/9310/blueline.gif'); /* Animated blue line */
+            background-repeat: repeat-x;
+            margin: 25px 0;
+        }
+        
+        /* Hero Section */
+        .hero-2003 {
+            background-color: #E0F7FA; /* Very light cyan, almost white */
+            padding: 20px;
+            text-align: center;
+            border-bottom: 3px solid #000000;
+        }
+        .hero-2003 h1 { /* Already styled, specific hero styling if needed */
+            background-color: transparent; /* Override global h1 bg if needed */
+            color: #003366;
+            border: none;
+            font-size: 30px;
+        }
+        .hero-2003 .subtitle {
+            font-size: 16px;
+            color: #000000;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            font-family: Georgia, "Times New Roman", Times, serif;
+        }
+        .cta-button-2003 {
+            display: inline-block;
+            background-color: #009900; /* Green CTA */
+            color: #FFFFFF !important;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+            border: 2px outset #006600;
+            border-radius: 4px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .cta-button-2003:hover {
+            background-color: #00CC00; /* Lighter green */
+            border-style: inset;
+            color: #FFFF00 !important;
+        }
+        .hero-2003 img.splash-image {
+            max-width: 250px; /* Controlled size */
+            margin-top: 15px;
+            border: 2px solid #000000;
+        }
+
+        /* Services Section */
+        .service-grid-2003 {
+            /* Could use CSS for a 2-column layout or just stack them */
+             margin-top: 15px;
+        }
+        .service-item-2003 {
+            background-color: #F0F8FF; /* AliceBlue - very light */
+            border: 1px solid #0099CC; /* Teal-Blue border */
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 4px; /* Slight rounding */
+        }
+        .service-item-2003 h3 {
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            color: #000000; /* Black for service title */
+        }
+         .service-item-2003 h3 img {
+            height: 20px;
+            margin-right: 8px;
+        }
+
+        /* Portfolio Section */
+        .portfolio-grid-2003 {
+            text-align: center; /* Center the items */
+            margin-top: 15px;
+        }
+        .portfolio-item-2003 {
+            display: inline-block; /* Items side-by-side, will wrap */
+            width: 180px; /* Slightly larger than before */
+            border: 2px solid #006699; /* Medium blue border */
+            margin: 8px;
+            padding: 8px;
+            background-color: #E0F7FA;
+            vertical-align: top; /* Align items nicely if they have different text length */
+        }
+        .portfolio-item-2003 img {
+            width: 100%;
+            height: 135px; /* Maintain 4:3ish ratio */
+            object-fit: cover;
+            border: 1px solid #000000;
+            margin-bottom: 5px;
+        }
+        .portfolio-item-2003 h4 {
+            font-size: 14px;
+            margin-bottom: 3px;
+            color: #003366;
+        }
+        .portfolio-item-2003 p {
+            font-size: 11px;
+            color: #333333;
+            margin-bottom: 0;
+        }
+        
+        /* Why Us Section */
+        #why-us-2003 {
+            background-color: #00CCCC; /* Teal background for this section */
+            padding: 15px;
+            color: #000000;
+            border-top: 3px solid #000000;
+            border-bottom: 3px solid #000000;
+        }
+        #why-us-2003 h2 {
+            color: #000000; /* Black heading on teal */
+            border-bottom-color: #000000;
+        }
+        .why-us-point-2003 {
+            background-color: rgba(255,255,255,0.8); /* Semi-transparent white boxes */
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px dashed #000000; /* Dashed border */
+        }
+        .why-us-point-2003 h4 {
+            color: #003366; /* Deep blue for point titles */
+        }
+        .why-us-point-2003 p {
+            color: #000000;
+        }
+
+        /* Contact Form */
+        .contact-form-2003 {
+            background-color: #E0F7FA;
+            padding: 20px;
+            border: 1px solid #0099CC;
+            border-radius: 5px;
+            max-width: 550px;
+            margin: 15px auto;
+        }
+        .contact-form-2003 label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 3px;
+            color: #003366;
+        }
+        .contact-form-2003 input[type="text"],
+        .contact-form-2003 input[type="email"],
+        .contact-form-2003 textarea {
+            width: 98%;
+            padding: 6px;
+            margin-bottom: 10px;
+            border: 1px solid #006699; /* Medium blue border */
+            font-family: Verdana, Arial, sans-serif;
+            font-size: 12px;
+            background-color: #FFFFFF;
+        }
+        .contact-form-2003 input[type="text"]:focus,
+        .contact-form-2003 input[type="email"]:focus,
+        .contact-form-2003 textarea:focus {
+            border-color: #000000;
+            background-color: #FFFFE0; /* Light yellow on focus */
+        }
+        .contact-form-2003 textarea {
+            resize: vertical; /* Allow vertical resize */
+            min-height: 80px;
+        }
+        .contact-form-2003 button { /* Uses .cta-button-2003 style */
+            display: block;
+            margin: 10px auto 0 auto; /* Center button */
+        }
+
+        /* Footer - Circa 2003 */
+        .main-footer-2003 {
+            background-color: #000000; /* Black footer */
+            color: #00CCCC; /* Teal text */
+            padding: 15px;
+            text-align: center;
+            font-size: 11px;
+            border-top: 5px solid #00CCCC; /* Teal top border */
+            line-height: 1.5;
+        }
+        .main-footer-2003 p {
+            margin-bottom: 5px;
+            color: #99FFFF; /* Lighter teal for p tags in footer */
+        }
+        .main-footer-2003 a {
+            color: #FFFFFF; /* White links in footer */
+        }
+        .main-footer-2003 a:hover {
+            color: #FFFF00; /* Yellow hover */
+        }
+        .hit-counter-2003 {
+            margin-top: 8px;
+            font-weight: bold;
+            background-color: #333333;
+            padding: 3px 6px;
+            display: inline-block;
+            border: 1px solid #00CCCC;
+        }
+        .hit-counter-2003 img { /* For image-based counters */
             vertical-align: middle;
             margin: 0 1px;
-            height: 18px; /* Adjust to your counter image size */
         }
-        .guestbook-link {
-            display: block;
-            margin: 10px auto;
-            padding: 5px;
-            border: 2px outset var(--geocities-teal);
-            background: var(--geocities-blue);
-            width: 200px;
+        .footer-badges img {
+            margin: 5px 3px 0 3px;
+            border: 0; /* Remove border from image links */
+            height: 31px; /* Standard 88x31 button size */
+            width: 88px;
         }
-        .guestbook-link a {
-            color: var(--geocities-yellow) !important;
+        
+        /* Blinking Text - CSS Animation */
+        @keyframes blink-2003 {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.2; } /* Less harsh than fully transparent */
+        }
+        .blinking-text-2003 {
+            animation: blink-2003 1.2s linear infinite;
             font-weight: bold;
+            color: #CC0000; /* A distinct red for blinking */
         }
-        .construction-gif-footer {
-            width: 80px; 
-            height: auto;
-            margin-top: 10px;
-        }
-        .sr-only { display: none !important; } /* Not a GeoCities thing */
 
-        /* Add a horizontal rule style */
-        hr.fancy-hr {
-            border: 0;
-            height: 25px; /* Height of your GIF */
-            background-image: url('https://web.archive.org/web/20091027093648/http://geocities.com/EnchantedForest/Dell/9920/grafix/dividers/wavylinepgrad.gif');
-            background-repeat: repeat-x;
-            background-position: center;
-            margin: 20px 0;
-        }
-        hr.simple-hr {
-            border: 0;
-            border-top: 3px dashed var(--geocities-purple);
+        /* Marquee styling */
+        .marquee-2003 {
+            background-color: #003366; /* Deep Blue */
+            color: #FFFF00; /* Yellow text */
+            padding: 5px;
             margin: 15px 0;
-        }
-
-        /* Welcome image */
-        .welcome-banner {
-            text-align: center;
-            margin: 10px 0;
-        }
-        .welcome-banner img {
-            max-width: 300px; /* Adjust as needed */
-            border: 3px solid var(--geocities-red);
+            font-weight: bold;
+            font-family: "Arial Black", Gadget, sans-serif;
+            border-top: 2px solid #00CCCC;
+            border-bottom: 2px solid #00CCCC;
         }
 
     </style>
 </head>
 <body>
-    <div class="welcome-banner">
-        <img src="https://web.archive.org/web/20091027002439im_/http://geocities.com/Heartland/Hills/8925/welcomeani.gif" alt="!!! WELCOME TO MY PAGE !!!">
+
+    <div id="modern-site-link-banner">
+        Psst! Looking for our latest 2025 designs? <a href="modern_site.html" title="View our main contemporary website">Click Here to Visit Our Main Modern Site!</a>
     </div>
 
-    <header class="main-header" id="mainHeader">
-        <div class="nav-container">
-            <div class="logo">
-                <a href="#hero">
-                    <img src="https://web.archive.org/web/20091027123020/http://www.geocities.com/heartland/pointe/1201/new.gif" alt="NEW!" class="small-gif">
-                    <span class="logo-maugans">Maugans</span> <span class="co-highlight">Co.</span>
-                    <img src="https://web.archive.org/web/20091027123020/http://www.geocities.com/heartland/pointe/1201/new.gif" alt="NEW!" class="small-gif">
+    <div id="wrapper">
+        <header class="main-header">
+            <div class="logo-container">
+                <a href="#hero-2003-section">
+                    <span class="logo-maugans">Maugans</span><span class="co-highlight">Co.</span>
                 </a>
             </div>
-            <nav class="main-nav" id="mainNav">
+            <nav class="main-nav">
                 <ul>
-                    <li><a href="#about">About Uzzz!</a></li>
-                    <li><a href="#services">What We Do?!</a></li>
-                    <li><a href="#portfolio">Our Kewl Work!</a></li>
-                    <li><a href="#contact">Talk 2 Us! <img src="https://web.archive.org/web/20090829142517im_/http://www.geocities.com/talkcity_palisades/messages/NEWEMAIL.GIF" alt="Email" class="small-gif"></a></li>
+                    <li><a href="#about-section">About Us</a></li>
+                    <li><a href="#services-section">Our Services</a></li>
+                    <li><a href="#portfolio-section">Portfolio</a></li>
+                    <li><a href="#contact-section">Contact Us!</a></li>
                 </ul>
             </nav>
-        </div>
-    </header>
+        </header>
 
-    <main class="container"> <section id="hero" class="hero">
-            <div class="hero-content">
-                <h1>~~~ W3Lc0mE tO Th3 FuTuRe oF WeB D3SiGn (circa 1999!) ~~~</h1>
-                <img src="https://web.archive.org/web/20091027080131/http://geocities.com/SouthBeach/Palms/2962/animate.gif" alt="Spinning Computer" class="geocities-gif" style="height:60px;">
-                <p class="subtitle"><span class="blinking-text">!!!</span> Maugans Co. <span class="blinking-text">!!!</span><br>We make websites that are <span class="highlight-geocities">TOTALLY RADICAL</span> and <span class="highlight-geocities">OUT OF THIS WORLD</span>!</p>
-                <a href="#contact" class="cta-button">Click Here 2 Start UR Project!</a>
-            </div>
-        </section>
+        <div class="content-padding">
 
-        <hr class="fancy-hr">
+            <section id="hero-2003-section" class="hero-2003">
+                <h1>Welcome to Maugans Co. - Your Partners in Web Innovation!</h1>
+                <p class="subtitle">Crafting <span class="blinking-text-2003">dynamic</span> and <span style="color: #0000FF; font-weight:bold;">engaging</span> websites for businesses ready to conquer the digital frontier!</p>
+                <img src="https://web.archive.org/web/20030801195136/http://us.geocities.com/Area51/Station/2480/Images/net2.gif" alt="Abstract Globe Network GIF" class="splash-image">
+                <p style="margin-top: 20px;">Ready to launch your business into cyberspace? We build professional, eye-catching websites that get results!</p>
+                <a href="#contact-section" class="cta-button-2003">Get Your FREE Web Consultation Today!</a>
+            </section>
 
-        <section id="about">
-            <h2><img src="https://web.archive.org/web/20091026200024/http://geocities.com/EnchantedForest/Dell/9920/grafix/highlights/sparklelamerblue.gif" class="small-gif" alt="sparkle"> All About Maugans Co. <img src="https://web.archive.org/web/20091026200024/http://geocities.com/EnchantedForest/Dell/9920/grafix/highlights/sparklelamerblue.gif" class="small-gif" alt="sparkle"></h2>
-            <div class="about-image-placeholder" aria-hidden="true"></div>
-            <p>Hey there, Cyber Surfer! <img src="https://web.archive.org/web/20091027095757/http://geocities.com/Vienna/Choir/9009/surfer.gif" alt="surfer" class="small-gif"> At Maugans Co., we're not your average web designers from the 21st century... NO WAY! We're stuck in the past and we LOVE IT! We believe in websites with <font color="red">PIZZAZZ</font>, <font color="blue">CHARACTER</font>, and enough <font color="green">ANIMATED GIFs</font> to make your modem cry (if you still have one!).</p>
-            <p>Our approach is simple: make it <font color="purple"><b>LOUD</b></font>, make it <font color="teal"><i>BRIGHT</i></font>, and make it <font color="orange"><marquee width="80" behavior="alternate" scrollamount="3">FUNKY</marquee></font>! We're your friendly neighborhood webmasters, here to turn your digital dreams into a pixelated reality. No confusing jargon, just pure, unadulterated web creativity from the good ol' days!</p>
-        </section>
-
-        <hr class="simple-hr">
-
-        <section id="services">
-            <h2><img src="https://web.archive.org/web/20091027002439im_/http://geocities.com/Area51/Vault/1335/light.gif" alt="lightbulb" class="small-gif"> Our <span style="color:red;">S</span><span style="color:orange;">U</span><span style="color:yellow;">P</span><span style="color:green;">E</span><span style="color:blue;">R</span> <span style="color:purple;">S</span><span style="color:red;">E</span><span style="color:orange;">R</span><span style="color:yellow;">V</span><span style="color:green;">I</span><span style="color:blue;">C</span><span style="color:purple;">E</span><span style="color:red;">S</span>! <img src="https://web.archive.org/web/20091027002439im_/http://geocities.com/Area51/Vault/1335/light.gif" alt="lightbulb" class="small-gif"></h2>
-            <div class="service-grid">
-                <div class="service-item">
-                    <img src="https://web.archive.org/web/20091027002439im_/http://geocities.com/Heartland/7931/comp08.gif" alt="computer gif" class="geocities-gif" style="height:40px;">
-                    <h3>Web Page Construction!</h3>
-                    <p>We build web pages using cutting-edge technologies like HTML, and... well, mostly HTML! Your site will look GREAT on Netscape Navigator AND Internet Explorer!</p>
-                </div>
-                <div class="service-item">
-                     <img src="https://web.archive.org/web/20091027095035/http://geocities.com/EnchantedForest/Dell/9920/grafix/other/mouseworld.gif" alt="mouse world" class="geocities-gif" style="height:40px;">
-                    <h3>Groovy Graphic Design!</h3>
-                    <p>Need a flaming logo? How about some 3D text that spins? We can do it! Our graphics are so cool, they're practically frozen in time!</p>
-                </div>
-                <div class="service-item">
-                   <img src="https://web.archive.org/web/20091027074248/http://geocities.com/CapeCanaveral/Lab/5571/E-mailme.gif" alt="email me" class="geocities-gif" style="height:40px;">
-                   <h3>E-Mail & Guestbook Setup!</h3>
-                   <p>We'll get you set up with a state-of-the-art e-mail link and a guestbook for all your online pals to sign! <font color="red" size="+1">Cool!</font></p>
-                </div>
-                <div class="service-item">
-                    <img src="https://web.archive.org/web/20091027002439im_/http://geocities.com/TheTropics/Lagoon/5210/anibar.gif" alt="animated bar" class="geocities-gif" style="height:30px;">
-                    <h3>Hit Counter Installation!</h3>
-                    <p>Want to know how many cool cats have visited your page? We'll hook you up with a genuine, bona-fide hit counter! Watch those numbers climb!</p>
-                </div>
-            </div>
-        </section>
-
-        <hr class="fancy-hr">
-
-        <section id="portfolio">
-            <h2><marquee behavior="alternate" width="70%" scrollamount="6" style="font-family: 'Arial Black'; color: white; background-color: purple; padding: 5px; border: 2px solid yellow;">*** CHECK OUT OUR AWESOME WORK!!! ***</marquee></h2>
-            <div class="portfolio-grid">
-                <div class="portfolio-item">
-                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=150&h=120&q=60" alt="Site 1 Preview">
-                    <div class="portfolio-item-overlay"><h4>Client A's Page</h4><p class="category">Super Site!</p></div>
-                </div>
-                <div class="portfolio-item">
-                    <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=150&h=120&q=60" alt="Site 2 Preview">
-                    <div class="portfolio-item-overlay"><h4>Geo Faux Site</h4><p class="category">HTML Magic!</p></div>
-                </div>
-                <div class="portfolio-item">
-                    <img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=150&h=120&q=60" alt="Site 3 Preview">
-                    <div class="portfolio-item-overlay"><h4>Pixel Place</h4><p class="category">Web Wonder!</p></div>
-                </div>
-                 <div class="portfolio-item">
-                    <img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format=fit&crop&w=150&h=120&q=60" alt="Site 4 Preview">
-                    <div class="portfolio-item-overlay"><h4>Retro Rehash</h4><p class="category">Old School Cool!</p></div>
-                </div>
-            </div>
-             <p style="text-align:center; margin-top:15px;">(Actual early 2000s sites would have even <blink_css>MORE</blink_css> broken image links!)</p>
-        </section>
-
-        <hr class="simple-hr">
-
-        <section id="why-us">
-            <h2>Why Pick <font color="teal">Maugans Co.</font> Over The Other Guys?!</h2>
-            <div class="why-us-background-wrapper">
-                <img src="https://web.archive.org/web/20091027095035/http://geocities.com/EnchantedForest/Dell/9920/grafix/other/wwwgamelanstar.gif" alt="spinning star" class="geocities-gif" style="height:50px;">
-                <p class="why-us-description">Choosing a web design partner is like choosing your favorite boy band - it's a BIG DEAL! Here's why we're the *NSYNC of old-school web design (or maybe the 98 Degrees, opinions vary):</p>
-                <div class="why-us-points">
-                    <div class="why-us-point">
-                        <h4><font color="#FF00FF">WE'RE AUTHENTICALLY RETRO!</font></h4>
-                        <p>We don't just mimic the old styles, we LIVED them! We remember dial-up! We know what a `<blink>` tag is FOR!</p>
-                    </div>
-                    <div class="why-us-point">
-                        <h4><font color="#008000">MASTERS OF THE MARQUEE!</font></h4>
-                        <p>Your text won't just sit there, it will SCROLL! It will BLINK! It will do acrobatics! (Okay, maybe not acrobatics).</p>
-                    </div>
-                    <div class="why-us-point">
-                        <h4><font color="#FFA500">UNWAVERING DEDICATION TO BLING!</font></h4>
-                        <p>We believe every page deserves more glitter, more flames, and more "Under Construction" GIFs. Your satisfaction is our command!</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <hr class="fancy-hr">
-        
-        <section id="contact">
-            <h2><img src="https://web.archive.org/web/20091027074248/http://geocities.com/CapeCanaveral/Lab/5571/E-mailme.gif" alt="email" class="small-gif" style="height:40px;"> G3t In ToUcH WiTh Us! <img src="https://web.archive.org/web/20091027074248/http://geocities.com/CapeCanaveral/Lab/5571/E-mailme.gif" alt="email" class="small-gif" style="height:40px;"></h2>
+            <hr class="section-divider">
             
-            <img src="https://web.archive.org/web/20091027002439im_/http://geocities.com/Area51/Vault/1335/construction.gif" alt="Under Construction" class="geocities-gif" id="constructionGif" style="height: 80px;">
-
-            <div class="scrolling-text-container">
-                <marquee scrollamount="4" behavior="scroll" direction="left" id="geocitiesMarquee">
-                    **~*~* Yo! Wanna CHAT?! Maugans Co. is waiting for UR e-mail! Send us your COOL IDEAS! *~*~** We reply using our 56k modem!
+            <div class="marquee-2003">
+                <marquee scrollamount="5" behavior="scroll" direction="left">
+                    ** Cutting-Edge Web Solutions! ** Professional Designs! ** Interactive Features! ** Maugans Co. - Building the Future of the Web, Today! **
                 </marquee>
             </div>
-            
-            <p>Got a <span class="blinking-text">BURNING QUESTION</span>? Need a website that screams "THE INTERNET, CIRCA 1998!"? Drop us a line using this old-fashioned form thingy!</p>
-            
-            <form class="contact-form" id="contactForm">
-                <label for="yourName">YoUr NaMe:</label>
-                <input type="text" id="yourName" name="name" placeholder="Type ya name here!" required>
-                
-                <label for="yourEmail">YoUr E-MaIl:</label>
-                <input type="email" id="yourEmail" name="email" placeholder="your_cool_email@provider.com" required>
-                
-                <label for="yourMessage">TeLl Us WhAt'S Up:</label>
-                <textarea id="yourMessage" name="message" placeholder="Lay it on us, what's your grand web vision?!" required rows="5"></textarea>
-                <button type="submit" class="cta-button">SEND IT!!!</button>
-            </form>
-            <img src="https://web.archive.org/web/20091027081917im_/http://www.geocities.com/petcitycentral/gifs/glitterline.gif" alt="Glitter Line Divider" class="geocities-gif" style="width:90%; height:20px; margin-top: 20px;">
-        </section>
-    </main>
 
-    <footer class="main-footer" id="mainFooterEra">
-        <p class="footer-copyright">&copy; 1997-<span id="currentYear">1999</span> <span class="logo-maugans">Maugans</span> <span class="co-highlight">Co.</span> Where the Web is Still Wild!</p>
-        <p><img src="https://web.archive.org/web/20030429163310/http://www.geocities.com/clipart/pbi/buttons/downloads/ns_anim.gif" alt="Netscape Now!" class="small-gif"> This site is best viewed with Netscape Navigator 3.0 or Internet Explorer 4.0! <img src="https://web.archive.org/web/20091027093648/http://geocities.com/EnchantedForest/Dell/9920/grafix/buttons/iepower.gif" alt="Powered by IE" class="small-gif"></p>
-        <p>Recommended Resolution: 800x600 (or whatever your HUGE CRT monitor can handle!)</p>
-        <div class="hit-counter-container">
-            YOU ARE VISITOR NUMBER: 
-            <span id="hitCounterText" style="font-weight:bold; font-size:1.2em; background-color:yellow; color:blue; padding: 0 3px;">12345</span>
+            <section id="about-section">
+                <h2><img src="https://web.archive.org/web/20030606084047/http://us.geocities.com/ewtoo_sucks/star.gif" alt="star gif" class="heading-gif">About Maugans Co.</h2>
+                <p>Founded with a passion for the evolving World Wide Web, Maugans Co. is a dedicated team of web professionals committed to delivering top-tier website design and development services. We understand the power of a strong online presence and strive to create sites that are not only visually appealing but also highly functional and user-friendly.</p>
+                <p>Our philosophy is centered on collaboration and client satisfaction. We work closely with you to understand your unique business goals and translate them into a compelling web experience. Whether you're a startup looking to make your mark or an established business aiming to enhance your digital footprint, Maugans Co. has the expertise to help you succeed online.</p>
+            </section>
+
+            <hr class="section-divider">
+
+            <section id="services-section">
+                <h2><img src="https://web.archive.org/web/20030607175519/http://us.geocities.com/emoticons_small/Gear.gif" alt="gear gif" class="heading-gif">Our Comprehensive Web Services</h2>
+                <div class="service-grid-2003">
+                    <div class="service-item-2003">
+                        <h3><img src="https://web.archive.org/web/20030803094251/http://us.geocities.com/SiliconValley/Way/9310/www.gif" alt="www gif" class="heading-gif">Custom Website Design & Development</h3>
+                        <p>We specialize in creating unique, professional websites tailored to your brand. From initial concept to final launch, we ensure your site is built with clean code and optimized for performance across popular browsers like Internet Explorer and Netscape.</p>
+                    </div>
+                    <div class="service-item-2003">
+                        <h3><img src="https://web.archive.org/web/20030803094251/http://us.geocities.com/SiliconValley/Way/9310/dhtml.gif" alt="dhtml gif" class="heading-gif">Interactive & Dynamic Content</h3>
+                        <p>Engage your visitors with dynamic elements! We can incorporate features like JavaScript enhancements, DHTML menus, and even Flash animations (where appropriate) to make your site more interactive and memorable.</p>
+                    </div>
+                    <div class="service-item-2003">
+                        <h3><img src="https://web.archive.org/web/20030803094251/http://us.geocities.com/SiliconValley/Way/9310/graph.gif" alt="graph gif" class="heading-gif">E-commerce & Online Store Solutions</h3>
+                        <p>Ready to sell online? We can develop secure and user-friendly e-commerce platforms, enabling you to reach a wider customer base and manage your online sales effectively.</p>
+                    </div>
+                    <div class="service-item-2003">
+                        <h3><img src="https://web.archive.org/web/20030803094251/http://us.geocities.com/SiliconValley/Way/9310/search.gif" alt="search gif" class="heading-gif">Search Engine Visibility & Promotion</h3>
+                        <p>A great website needs to be seen! We employ effective strategies to help improve your site's visibility on popular search engines, driving more traffic to your online doorstep.</p>
+                    </div>
+                </div>
+            </section>
+
+            <hr class="section-divider">
+
+            <section id="portfolio-section">
+                 <h2><img src="https://web.archive.org/web/20030606084047/http://us.geocities.com/ewtoo_sucks/camera.gif" alt="camera gif" class="heading-gif">Our Portfolio Showcase</h2>
+                <p style="text-align:center;">Take a look at some of the exciting web projects we've helped bring to life! (Client names changed for privacy).</p>
+                <div class="portfolio-grid-2003">
+                    <div class="portfolio-item-2003">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=180&h=135&q=60" alt="BizSolutions Inc. Website">
+                        <h4>BizSolutions Inc.</h4>
+                        <p>Corporate Re-design</p>
+                    </div>
+                    <div class="portfolio-item-2003">
+                        <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=180&h=135&q=60" alt="TechGadgets Online Store">
+                        <h4>TechGadgets Online</h4>
+                        <p>E-commerce Platform</p>
+                    </div>
+                    <div class="portfolio-item-2003">
+                        <img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=180&h=135&q=60" alt="Artisan Cafe Website">
+                        <h4>Artisan Cafe</h4>
+                        <p>Local Business Site</p>
+                    </div>
+                     <div class="portfolio-item-2003">
+                        <img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit&crop&w=180&h=135&q=60" alt="Adventure Tours Co. Site">
+                        <h4>Adventure Tours Co.</h4>
+                        <p>Promotional Microsite</p>
+                    </div>
+                </div>
+            </section>
+
+            <hr class="section-divider">
+
+            <section id="why-us-2003">
+                <h2><img src="https://web.archive.org/web/20030801195136/http://us.geocities.com/Area51/Station/2480/Images/bulbglow.gif" alt="glowing bulb gif" class="heading-gif">Why Choose Maugans Co.?</h2>
+                <div class="why-us-point-2003">
+                    <h4>Dedicated Professionals</h4>
+                    <p>We are passionate about web technology and dedicated to providing exceptional service and support to all our clients.</p>
+                </div>
+                <div class="why-us-point-2003">
+                    <h4>Results-Oriented Approach</h4>
+                    <p>Our goal is to build websites that not only look great but also achieve your specific business objectives and deliver a tangible return on investment.</p>
+                </div>
+                <div class="why-us-point-2003">
+                    <h4>Client-Focused Collaboration</h4>
+                    <p>We believe in a transparent and collaborative process, keeping you informed and involved every step of the way. Your vision is our priority!</p>
+                </div>
+            </section>
+            
+            <hr class="section-divider">
+
+            <section id="contact-section">
+                <h2><img src="https://web.archive.org/web/20030801195136/http://us.geocities.com/Area51/Station/2480/Images/emailme.gif" alt="email gif" class="heading-gif">Contact Us Today!</h2>
+                <p style="text-align:center;">Ready to discuss your next web project? Have questions about our services? We'd love to hear from you! Fill out the form below, or e-mail us directly!</p>
+                
+                <form class="contact-form-2003" id="contactForm2003">
+                    <div>
+                        <label for="contactName">Your Name:</label>
+                        <input type="text" id="contactName" name="name" required>
+                    </div>
+                    <div>
+                        <label for="contactEmail">Your E-mail Address:</label>
+                        <input type="email" id="contactEmail" name="email" required>
+                    </div>
+                    <div>
+                        <label for="contactSubject">Subject:</label>
+                        <input type="text" id="contactSubject" name="subject">
+                    </div>
+                    <div>
+                        <label for="contactMessage">Your Message:</label>
+                        <textarea id="contactMessage" name="message" rows="6" required></textarea>
+                    </div>
+                    <button type="submit" class="cta-button-2003">Send Message!</button>
+                </form>
+                <p style="text-align:center; margin-top:15px;">You can also e-mail us at: <a href="mailto:info@maugansco.fake2003domain.com">info@maugansco.fake2003domain.com</a> (Link not active)</p>
+            </section>
+
+        </div> <footer class="main-footer-2003">
+            <p>&copy; 2003 Maugans Co. All Rights Reserved. <br> Your Trusted Partner for Professional Web Development.</p>
+            <p>
+                This site is best viewed with Internet Explorer 6 or Netscape Navigator 7 at a screen resolution of 800x600 or higher.
+            </p>
+            <div class="hit-counter-2003">
+                Site Visits: <span id="hitCounter2003">12345</span>
             </div>
-        <div class="guestbook-link">
-            <a href="#" onclick="alert('Our Guestbook is UNDER CONSTRUCTION! Check back L8R, alligator!'); return false;">
-            <img src="https://web.archive.org/web/20091027002439im_/http://geocities.com/Heartland/Ranch/6600/guestbook.gif" alt="guestbook" class="small-gif"> Sign Our Guestbook! <img src="https://web.archive.org/web/20091027002439im_/http://geocities.com/Heartland/Ranch/6600/guestbook.gif" alt="guestbook" class="small-gif">
-            </a>
-        </div>
-        <img src="https://web.archive.org/web/20090728110159im_/http://www.geocities.com/christineilis/MIDIcowboy.gif" alt="Dancing Cowboy GIF" class="geocities-gif construction-gif-footer">
-        <p>This page was last updated: <span id="lastUpdated">May 13, 2025</span> (Actually, probably 1998)</p>
-        <p><img src="https://web.archive.org/web/20091027123020/http://www.geocities.com/heartland/pointe/1201/madeyes.gif" alt="Made with Windows Notepad" class="small-gif"> Proudly made with Windows Notepad!</p>
-    </footer>
+            <div class="footer-badges" style="margin-top:10px;">
+                <img src="https://web.archive.org/web/20030808093942/http://www.geocities.com/clipart/pbi/buttons/IEReady/msieani.gif" alt="Internet Explorer Ready">
+                <img src="https://web.archive.org/web/20030808093942/http://www.geocities.com/clipart/pbi/buttons/Netscape/nnnowanim.gif" alt="Netscape Now">
+                <img src="https://web.archive.org/web/20030808093942/http://www.geocities.com/clipart/pbi/buttons/Macmade/macsmall.gif" alt="Macromedia Freehand Stamp">
+            </div>
+             <p style="margin-top:10px;">Last Updated: <span id="lastUpdated2003">May 13, 2025</span></p>
+        </footer>
 
-    <script>
+    </div> <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // --- Update Footer Year ---
-        const currentYearSpan = document.getElementById('currentYear');
-        if (currentYearSpan) { // Set a "retro" end year
-            const startYear = 1997; // Or whenever your GeoCities site "started"
-            const retroCurrentYear = new Date().getFullYear() > 2003 ? 2003 : new Date().getFullYear(); // Cap at 2003 for authenticity
-            // currentYearSpan.textContent = retroCurrentYear; // Or a fixed year like 1999
-        }
-        
-        const lastUpdatedSpan = document.getElementById('lastUpdated');
+        // --- Update Footer Year and Last Updated ---
+        const lastUpdatedSpan = document.getElementById('lastUpdated2003');
         if(lastUpdatedSpan) {
-            // Create a plausible retro date
-            const retroDate = new Date(1998, Math.floor(Math.random() * 12), Math.floor(Math.random() * 28) + 1);
-            const options = { year: 'numeric', month: 'long', day: 'numeric' };
-            lastUpdatedSpan.textContent = retroDate.toLocaleDateString('en-US', options);
+            // Create a plausible retro date for "last updated"
+            const retroMonths = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            const retroDay = Math.floor(Math.random() * 28) + 1;
+            const retroMonth = retroMonths[Math.floor(Math.random() * 12)];
+            lastUpdatedSpan.textContent = retroMonth + " " + retroDay + ", 2003";
         }
 
-
-        // --- Early 2000s Hit Counter ---
-        const hitCounterEl = document.getElementById('hitCounterText');
-        let hitCount = Math.floor(Math.random() * 500) + 12000; // Start with a random-ish high number
+        // --- Hit Counter ---
+        const hitCounterEl = document.getElementById('hitCounter2003');
+        let hitCount = Math.floor(Math.random() * 2000) + 10000; // Start with a random-ish high number
 
         function updateHitCounter() {
             hitCount++;
@@ -739,39 +573,35 @@
             }
         }
         // Update counter every few seconds for "activity"
-        setInterval(updateHitCounter, Math.floor(Math.random() * 3000) + 2000); // Random interval 2-5 seconds
-        updateHitCounter(); // Initial call
+        if(hitCounterEl){
+            setInterval(updateHitCounter, Math.floor(Math.random() * 4000) + 3000); // Random interval 3-7 seconds
+            updateHitCounter(); // Initial call
+        }
 
         // --- Contact Form Alert ---
-        const contactForm = document.getElementById('contactForm');
+        const contactForm = document.getElementById('contactForm2003');
         if (contactForm) {
             contactForm.addEventListener('submit', function(e) {
                 e.preventDefault();
-                const name = this.name.value || "Cyber Friend";
-                alert('HEY ' + name.toUpperCase() + '!!!\n\nTHX for your e-mail! We got it on our server (which is probably an old Pentium II under a desk somewhere).\n\nWe\'ll get back to you... eventually! Keep surfin\' the web! COWABUNGA!');
+                const name = this.name.value || "Valued Visitor";
+                alert('Thank you, ' + name + '!\n\nYour message has been sent to Maugans Co.\nWe will review your inquiry and get back to you as soon as possible via electronic mail!\n\nHave a great day on the Information Superhighway!');
                 contactForm.reset();
             });
         }
-
-        // --- Blinking Text using JS as <blink> is deprecated ---
-        // CSS animation is preferred, but here's a JS way if needed for more "control"
-        // This is an alternative if CSS animation `blink-text-geocities` isn't enough.
-        // const blinkElements = document.querySelectorAll('.blinking-text-js'); 
-        // if (blinkElements.length > 0) {
-        //     setInterval(() => {
-        //         blinkElements.forEach(el => {
-        //             el.style.visibility = (el.style.visibility === 'hidden' ? 'visible' : 'hidden');
-        //         });
-        //     }, 700); // Blink speed
-        // }
         
-        // --- Console message - an Easter egg ---
-        console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-        console.log("   WelCoMe tO ThE CoNSoLe, HaX0R!  (づ｡◕‿‿◕｡)づ   ");
-        console.log("   This site runs on pure 90s nostalgia & <marquee> tags! ");
-        console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-        console.log("Remember Angelfire? Lycos? Ask Jeeves?");
-        console.log("The good ol' days of dial-up... *shreeeeek screech bing bong*");
+        // --- Smooth scroll to anchor for nav (optional, as `auto` is set for html scroll) ---
+        // If you want JS smooth scroll:
+        // document.querySelectorAll('.main-nav a[href^="#"]').forEach(anchor => {
+        //     anchor.addEventListener('click', function (e) {
+        //         e.preventDefault();
+        //         const targetId = this.getAttribute('href');
+        //         const targetElement = document.querySelector(targetId);
+        //         if(targetElement) {
+        //             // Simple scroll, not super smooth like modern sites
+        //             window.scrollTo(0, targetElement.offsetTop - 30); // -30 for slight offset from top
+        //         }
+        //     });
+        // });
 
     });
     </script>
