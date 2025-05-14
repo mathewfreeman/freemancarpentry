@@ -3,1605 +3,778 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maugans Co. - Visionary Design & Creative Solutions</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>~~~*** Maugans Co. - W3B D3SIGN MASTERS!!! ***~~~</title>
     <style>
-        /* --- Google Fonts --- */
-        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,700;1,400&family=IBM+Plex+Sans:wght@200;300;400;500;600&display=swap');
+        /* --- NO Google Fonts --- We use REAL fonts! --- */
 
-        /* --- Variables --- */
+        /* --- Variables - GeoCities Edition! --- */
         :root {
-            --bg-dark: #131516;
-            --accent-primary: #04d9c4;
-            --accent-secondary: #3a5ba0; /* Deep Blue */
-            --accent-secondary-glass: rgba(0, 33, 77, 0.85); 
-            --neutral-gray: #5f6b7a;
-            --text-light: #F4F4F4;
-            --text-dark: #222526;
-            --background-light: #FDFDFD;
-            --background-translucent-light: rgba(255, 255, 255, 0.05); 
-
-            --font-logo: 'IBM Plex Serif', serif; 
-            --font-body: 'IBM Plex Sans', sans-serif;
-
-            --transition-speed-fast: 0.2s;
-            --transition-speed-medium: 0.4s;
-            --transition-speed-slow: 0.6s;
-
-            --shadow-light: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
-            --shadow-medium: 0 10px 30px rgba(0,0,0,0.08);
-            --border-radius-main: 12px;
-            --border-radius-large: 16px;
+            --geocities-teal: #00CCCC; /* Teal */
+            --geocities-blue: #0000FF; /* Bright Blue */
+            --geocities-black: #000000;
+            --geocities-white: #FFFFFF;
+            --geocities-yellow: #FFFF00;
+            --geocities-red: #FF0000;
+            --geocities-green: #00FF00;
+            --geocities-purple: #800080;
+            --geocities-silver: #C0C0C0;
         }
 
-        /* --- Reset & Base Styles --- */
+        /* --- Base Styles - EARLY 2000s --- */
         * {
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
+            box-sizing: border-box; /* This is actually modern, but helps with layout */
         }
         html {
-            scroll-behavior: smooth;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+            scroll-behavior: auto; /* Smooth scroll feels too modern */
         }
         body {
-            font-family: var(--font-body);
-            line-height: 1.8;
-            background-color: var(--background-light);
-            color: var(--text-dark);
-            overflow-x: hidden;
-            font-weight: 300;
-        }
-        body.modal-open { 
-            overflow: hidden;
-        }
-        h1, h2, h3, h4 {
-            font-weight: 500;
-            color: var(--text-dark);
-            letter-spacing: -0.02em;
-        }
-        h2 {
-            font-size: clamp(2.2rem, 5vw, 3.5rem);
-            margin-bottom: 2.5rem;
-            text-align: center;
-            color: var(--accent-secondary);
-            font-weight: 600;
-        }
-        h3 {
-            font-size: clamp(1.5rem, 4vw, 1.8rem);
-            margin-bottom: 1rem;
-            color: var(--accent-primary);
-            font-weight: 500;
-        }
-        p {
-            margin-bottom: 1.5rem;
-            font-size: clamp(1rem, 2.5vw, 1.15rem);
-            color: var(--neutral-gray);
-            font-weight: 300;
-            max-width: 700px; 
-        }
-        .container {
-            width: 90%;
-            max-width: 1100px; 
-            margin: 0 auto;
-            padding: 5rem 0;
-        }
-        section { /* Initial modern section style */
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.8s cubic-bezier(0.165, 0.84, 0.44, 1), transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
-        section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .highlight {
-            color: var(--accent-primary);
-            font-weight: 500;
+            font-family: "Comic Sans MS", "Comic Sans", cursive;
+            line-height: 1.5;
+            background-color: var(--geocities-teal); /* Teal background */
+            color: var(--geocities-black);
+            background-image: url('https://web.archive.org/web/20091027002447/http://geocities.com/SunsetStrip/Alley/5420/backgrounds/stars15.gif'); /* Tiled stars background */
+            background-repeat: repeat;
+            padding: 0 10px; /* Add some padding so content isn't stuck to edges */
         }
 
-        /* --- Frosted Glass Header --- */
-        .main-header {
-            background: rgba(253, 253, 253, 0.65);
-            backdrop-filter: blur(12px) saturate(180%);
-            -webkit-backdrop-filter: blur(12px) saturate(180%);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 0.1rem 0; /* Reduced vertical padding */
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            transition: background var(--transition-speed-medium) ease, box-shadow var(--transition-speed-medium) ease, padding var(--transition-speed-medium) ease;
+        h1, h2, h3, h4, h5, h6 {
+            font-family: "Impact", Haettenschweiler, "Arial Narrow Bold", sans-serif;
+            color: var(--geocities-blue);
+            margin-bottom: 10px;
+            text-align: center;
+            letter-spacing: 1px;
         }
-        .main-header.scrolled {
-             background: rgba(253, 253, 253, 0.85);
-             box-shadow: 0 2px 15px rgba(0,0,0,0.07);
-             padding: 0.1rem 0; /* Slightly smaller padding when scrolled */
+        h1 {
+            font-size: 48px !important;
+            color: var(--geocities-yellow) !important;
+            text-shadow: 3px 3px 0px var(--geocities-blue), -3px -3px 0px var(--geocities-red);
+            padding: 10px;
+            border: 5px groove var(--geocities-silver);
+            background-color: var(--geocities-purple);
+        }
+        h2 {
+            font-size: 36px !important;
+            color: var(--geocities-green) !important;
+            text-shadow: 2px 2px 0px var(--geocities-black);
+            border-top: 3px dashed var(--geocities-yellow);
+            border-bottom: 3px dashed var(--geocities-yellow);
+            padding: 8px 0;
+        }
+        h3 {
+            font-size: 28px !important;
+            color: var(--geocities-red) !important;
+            text-decoration: underline;
+            text-decoration-style: wavy;
+            text-decoration-color: var(--geocities-blue);
+        }
+        h4 {
+            font-size: 22px !important;
+            color: var(--geocities-purple) !important;
+            font-family: "Courier New", Courier, monospace;
+        }
+
+        p {
+            margin-bottom: 15px;
+            font-size: 16px; /* Readable size */
+            color: var(--geocities-black); /* Default black text on light bg */
+            font-family: "Times New Roman", Times, serif;
+        }
+        .container { /* Center content, like old sites */
+            width: 95%;
+            max-width: 800px; /* Typical width for 800x600 screens */
+            margin: 20px auto;
+            padding: 15px;
+            border: 3px ridge var(--geocities-blue);
+            background-color: rgba(255, 255, 255, 0.85); /* Slightly transparent white to see bg */
+            box-shadow: 5px 5px 10px var(--geocities-black);
+        }
+        section {
+             margin-bottom: 20px;
+             padding: 10px;
+             border: 2px solid var(--geocities-black); /* Simple borders for sections */
+        }
+        
+        .highlight-geocities { /* For special text */
+            color: var(--geocities-red);
+            font-weight: bold;
+            font-family: "Arial Black", Gadget, sans-serif;
+        }
+
+        /* --- Header - GeoCities Style --- */
+        .main-header {
+            background-color: var(--geocities-blue);
+            border-bottom: 5px groove var(--geocities-silver);
+            padding: 10px 0;
+            width: 100%;
+            text-align: center;
+            position: static; /* No fixed header */
         }
         .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 90%;
-            max-width: 1100px; 
-            margin: 0 auto;
+            display: block; /* Simpler layout */
+            text-align: center;
         }
         .logo a {
-            font-family: var(--font-logo); 
-            font-size: clamp(1.8rem, 4vw, 2.2rem); /* Slightly reduced max size */
-            font-weight: 500;
-            color: var(--accent-secondary);
+            font-family: "Impact", Haettenschweiler, "Arial Narrow Bold", sans-serif;
+            font-size: 40px;
             text-decoration: none;
-            letter-spacing: -0.03em;
-            transition: color var(--transition-speed-fast);
+            display: inline-block;
+            margin-bottom: 10px;
         }
-        .logo a:hover {
-            color: var(--accent-primary);
+        .logo .logo-maugans {
+             color: var(--geocities-black); /* As requested */
         }
-        .logo-maugans {
-             color: var(--text-dark);
-             font-family: var(--font-logo); 
-        }
-        .logo a .co-highlight {
-            color: var(--accent-primary);
-            font-weight: 400; 
-             font-family: var(--font-logo); 
+        .logo .co-highlight {
+            color: var(--geocities-teal); /* As requested */
+            font-style: italic;
+            font-size: 0.8em; /* "Co." slightly smaller */
         }
         .main-nav ul {
             list-style: none;
-            display: flex;
+            padding: 0;
+            margin: 0;
+            display: inline-block; /* Center the nav items */
         }
         .main-nav ul li {
-            margin-left: 30px;
+            display: inline-block; /* Horizontal nav */
+            margin: 0 5px;
         }
         .main-nav ul li a {
-            color: var(--neutral-gray);
+            font-family: "Arial", Helvetica, sans-serif;
+            font-weight: bold;
+            color: var(--geocities-yellow);
             text-decoration: none;
-            font-weight: 400;
-            font-size: 1rem;
-            padding: 0.3rem 0.1rem;
-            position: relative;
-            transition: color var(--transition-speed-fast) ease;
+            font-size: 14px;
+            padding: 5px 10px;
+            background-color: var(--geocities-red);
+            border: 2px outset var(--geocities-silver);
+            border-radius: 5px; /* A little bit of "button" feel */
         }
-        .main-nav ul li a::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 2px;
-            background-color: var(--accent-primary);
-            transition: width var(--transition-speed-medium) cubic-bezier(0.19, 1, 0.22, 1);
+        .main-nav ul li a:hover {
+            background-color: var(--geocities-green);
+            color: var(--geocities-black);
+            border-style: inset;
         }
-        .main-nav ul li a:hover,
-        .main-nav ul li a.active {
-            color: var(--text-dark);
-        }
-        .main-nav ul li a:hover::after,
-        .main-nav ul li a.active::after {
-            width: 100%;
-        }
-        .menu-toggle {
-            display: none;
-            font-size: 1.8rem;
-            background: none;
-            border: none;
-            color: var(--text-dark);
-            cursor: pointer;
-            position: relative;
-            width: 30px;
-            height: 22px;
-        }
-        .menu-toggle .line {
-            width: 25px;
-            height: 2px;
-            background-color: var(--text-dark);
-            display: block;
-            transition: all var(--transition-speed-medium) ease-in-out;
-            position: absolute;
-            left: 0;
-        }
-        .menu-toggle .line1 { top: 0px; }
-        .menu-toggle .line2 { top: 8px; }
-        .menu-toggle .line3 { top: 16px; }
+        .menu-toggle { display: none !important; } /* No mobile toggle needed, always visible */
 
-        .menu-toggle.open .line1 { transform: rotate(-45deg) translate(-5px, 6px); }
-        .menu-toggle.open .line2 { opacity: 0; }
-        .menu-toggle.open .line3 { transform: rotate(45deg) translate(-5px, -6px); }
-
-        /* --- Hero Section --- */
+        /* --- Hero Section - GeoCities Style --- */
         .hero {
-            background: linear-gradient(135deg, #eef4f8 0%, var(--background-light) 100%);
-            color: var(--text-dark);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding-top: 120px; 
-            padding-bottom: 8rem; 
-            overflow: hidden;
-            position: relative;
+            padding: 20px;
+            text-align: center;
+            background-color: var(--geocities-silver);
+            background-image: url('https://web.archive.org/web/20090830000036/http://geocities.com/EnchantedForest/Dell/9920/grafix/bkgrds/cybrpnk2.gif');
+            border: 5px double var(--geocities-black);
         }
-        .hero-content {
-            max-width: 950px;
-            position: relative;
-            z-index: 2;
-        }
-        .hero-content h1 {
-            font-family: var(--font-body);
-            font-size: clamp(2.2rem, 6.5vw, 4.8rem); 
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            color: var(--text-dark);
-            line-height: 1.25;
-            letter-spacing: -0.04em;
-        }
-        .hero-content h1 .maugans-co-logo-hero {
-            font-family: var(--font-logo); 
-            color: var(--accent-secondary);
-            font-weight: 700; 
+        .hero-content h1 { /* Already globally styled */
+            margin-bottom: 15px;
         }
         .hero-content .subtitle {
-            font-size: clamp(1.2rem, 3vw, 1.6rem);
-            margin-bottom: 2.5rem;
-            font-weight: 300;
-            color: var(--neutral-gray);
-            max-width: 650px;
-            line-height: 1.6;
+            font-family: "Arial", Helvetica, sans-serif;
+            font-size: 18px;
+            color: var(--geocities-black);
+            background-color: var(--geocities-yellow);
+            padding: 10px;
+            display: inline-block; /* So background applies correctly */
+            border: 2px dashed var(--geocities-blue);
         }
-        .cta-button {
-            background: linear-gradient(135deg, var(--accent-primary), #03b0a0);
-            color: var(--text-light); 
-            padding: 1rem 2.8rem;
-            text-decoration: none;
-            font-weight: 500;
-            border-radius: 50px;
-            transition: all var(--transition-speed-medium) cubic-bezier(0.19, 1, 0.22, 1);
+        .cta-button { /* Global button style */
+            background: var(--geocities-green);
+            color: var(--geocities-black) !important; /* Ensure specificity */
+            padding: 10px 20px !important;
+            text-decoration: none !important;
+            font-weight: bold !important;
+            border-radius: 0 !important; /* Sharp corners */
             display: inline-block;
-            font-size: 1.1rem;
-            box-shadow: 0 4px 15px rgba(4, 217, 196, 0.3);
-            border: none;
+            font-size: 18px !important;
+            font-family: "Impact", sans-serif !important;
+            border: 3px outset var(--geocities-blue) !important;
+            margin-top: 15px;
+            cursor: pointer !important; /* Standard pointer */
         }
         .cta-button:hover {
-            transform: translateY(-4px) scale(1.02);
-            box-shadow: 0 8px 25px rgba(4, 217, 196, 0.4);
+            background: var(--geocities-yellow) !important;
+            color: var(--geocities-red) !important;
+            border-style: inset !important;
+            transform: none !important; /* No modern transforms */
         }
-        .hero::before, .hero::after {
-            content: ''; position: absolute; border-radius: 50%; opacity: 0.08;
-            z-index: 1; pointer-events: none;
-        }
-        .hero::before {
-            width: clamp(300px, 50vw, 600px); height: clamp(300px, 50vw, 600px);
-            background: radial-gradient(circle, var(--accent-primary) 0%, transparent 70%);
-            top: 10%; left: -10%; animation: pulse-bubble 15s infinite alternate ease-in-out;
-        }
-        .hero::after {
-            width: clamp(200px, 40vw, 400px); height: clamp(200px, 40vw, 400px);
-            background: radial-gradient(circle, var(--accent-secondary) 0%, transparent 70%);
-            bottom: 5%; right: -5%; animation: pulse-bubble 18s infinite alternate-reverse ease-in-out;
-        }
-        @keyframes pulse-bubble {
-            0%, 100% { transform: scale(0.9) rotate(0deg); opacity: 0.06; }
-            50% { transform: scale(1.1) rotate(10deg); opacity: 0.1; }
-        }
+        .hero::before, .hero::after { display: none; } /* Remove modern pulse bubbles */
 
-        /* --- About Section --- */
-        #about .container {
-            display: grid; grid-template-columns: 1fr; gap: 3rem; align-items: center;
+        /* --- About Section - GeoCities Style --- */
+        #about {
+            background-color: #E0FFFF; /* Light Cyan */
         }
-        #about h2 { text-align: left; }
-        #about p { max-width: none; }
+        #about h2 {
+            text-align: center !important; /* Override any specific alignment */
+        }
+        #about p {
+            max-width: 100% !important; /* Full width within container */
+            text-align: justify; /* Justified text was common */
+            color: #333333;
+        }
         .about-image-placeholder {
             display: block; 
-            width: 100%; 
-            aspect-ratio: 16 / 9; 
-            border-radius: var(--border-radius-main);
-            box-shadow: var(--shadow-light);
-            opacity: 0.85;
-            background-size: cover; 
-            background-position: center;
+            width: 200px; /* Smaller, typical GIF size */
+            height: 150px;
+            border: 3px solid var(--geocities-red);
+            margin: 10px auto;
+            background-image: url('https://web.archive.org/web/20091027080131/http://geocities.com/SouthBeach/Palms/2962/animate.gif') !important; /* Animated computer gif */
+            background-size: contain !important;
+            background-repeat: no-repeat !important;
+            background-position: center !important;
         }
-        @media (min-width: 768px) {
+        /* Adjust grid for simpler layout if needed */
+         @media (min-width: 1px) { /* Apply always, remove modern grid */
             #about .container { 
-                grid-template-columns: 2.2fr 1.8fr; 
-                gap: 4rem; 
+                display: block;
             }
         }
 
-        /* --- Services Section --- */
-        .service-grid { display: grid; gap: 2.5rem; }
-        @media (min-width: 1024px) { .service-grid { grid-template-columns: repeat(4, 1fr); } }
-        @media (min-width: 600px) and (max-width: 1023px) { .service-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 599px) { .service-grid { grid-template-columns: 1fr; } }
+
+        /* --- Services Section - GeoCities Style --- */
+        #services {
+            background-color: #FFFACD; /* LemonChiffon */
+        }
+        .service-grid { 
+            display: block; /* No grid, stack items */
+        }
         .service-item {
-            background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(18px) saturate(160%);
-            -webkit-backdrop-filter: blur(18px) saturate(160%); border: 1px solid rgba(220, 220, 220, 0.3);
-            padding: 2.5rem 2rem; border-radius: var(--border-radius-main); box-shadow: var(--shadow-light);
-            text-align: left; position: relative; overflow: hidden;
-            transition: transform var(--transition-speed-medium) cubic-bezier(0.19, 1, 0.22, 1),
-                        box-shadow var(--transition-speed-medium) cubic-bezier(0.19, 1, 0.22, 1);
+            background: var(--geocities-white); 
+            border: 2px dashed var(--geocities-purple);
+            padding: 15px; 
+            margin-bottom: 15px;
+            text-align: center;
         }
         .service-item:hover {
-            transform: translateY(-8px) perspective(1000px) rotateX(2deg) rotateY(-2deg) scale(1.03);
-            box-shadow: 0 18px 45px rgba(0,0,0,0.1);
+            transform: none; /* No hover transform */
+            box-shadow: none;
+            border-color: var(--geocities-green);
         }
-        .service-item::before {
-            content: ""; position: absolute; top: 0; left: -150%; width: 100%; height: 100%;
-            background: linear-gradient( 100deg, transparent, rgba(255, 255, 255, 0.4), transparent );
-            transition: left var(--transition-speed-slow) cubic-bezier(0.19, 1, 0.22, 1);
-            transform: skewX(-25deg); z-index: 1;
+        .service-item::before { display: none; } /* Remove modern shine */
+        .service-item-icon { /* Replace FontAwesome with text or small GIF */
+            font-size: 20px !important; /* Smaller if text */
+            color: var(--geocities-blue) !important; 
+            margin-bottom: 10px !important;
+            display: block;
+            font-family: "Wingdings", "Webdings", fantasy; /* Or use a GIF */
         }
-        .service-item:hover::before { left: 150%; }
-        .service-item-content { position: relative; z-index: 2; }
-        .service-item-icon {
-            font-size: 2.8rem; color: var(--accent-primary); margin-bottom: 1.5rem; display: inline-block;
-            transition: transform var(--transition-speed-medium) ease;
-        }
-        .service-item:hover .service-item-icon { transform: scale(1.1) rotate(-5deg); }
-        .service-item h3 { color: var(--text-dark); font-weight: 500; }
+        /* Example of using text for icons (Wingdings might not render for everyone) */
+        #services .service-item:nth-child(1) .service-item-icon::before { content: "\0077"; /* 'w' in wingdings (computer) */ }
+        #services .service-item:nth-child(2) .service-item-icon::before { content: "\003C"; /* '<' in wingdings (pencil/draft) */ }
+        #services .service-item:nth-child(3) .service-item-icon::before { content: "\00A7"; /* '§' in wingdings (chart-like) */ }
+        #services .service-item:nth-child(4) .service-item-icon::before { content: "\0026"; /* '&' in wingdings (tools) */ }
 
-
-        /* --- ERA: 2010s Styles (Applied to #portfolio) --- */
-        #portfolio.era-2010s {
-            background-color: #f0f2f5; /* Common 2010s light grey bg */
-            padding-top: 4rem;
-            padding-bottom: 4rem;
-            border-top: 1px solid #ddd;
-            border-bottom: 1px solid #ddd;
+        .service-item h3 { 
+            color: var(--geocities-blue) !important; 
+            font-family: "Arial Black", Gadget, sans-serif;
         }
-        #portfolio.era-2010s h2 {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Common 2010s font */
-            color: #333;
-            font-weight: 300; /* Thinner fonts were popular */
-            font-size: clamp(2rem, 4vw, 3rem);
-            text-shadow: 0 1px 1px rgba(255,255,255,0.7);
-            margin-bottom: 2rem;
-        }
-        .era-2010s .portfolio-grid { 
-            display: grid; gap: 1.5rem;
-            grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); /* Slightly smaller items */
-        }
-        .era-2010s .portfolio-item {
-            border-radius: 6px; /* Less rounded than current modern */
-            box-shadow: 0 2px 5px rgba(0,0,0,0.15); /* Softer, more diffuse shadow */
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
-            aspect-ratio: 4 / 3;
-            overflow: hidden; 
-        }
-        .era-2010s .portfolio-item:hover { 
-            transform: translateY(-3px); 
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-        }
-        .era-2010s .portfolio-item img {
-            transition: transform 0.5s ease;
-        }
-        .era-2010s .portfolio-item:hover img { 
-            transform: scale(1.05); /* More subtle zoom */
-        }
-        .era-2010s .portfolio-item-overlay {
-            background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 80%); /* Standard overlay */
-            padding: 1rem; 
-            transform: translateY(0); /* Overlay visible by default or simpler reveal */
-            opacity: 1; /* Or make it appear on hover if preferred */
-            transition: opacity 0.3s ease;
-        }
-        .era-2010s .portfolio-item:hover .portfolio-item-overlay { 
-             /* Optional: slightly change opacity or content on hover */
-        }
-        .era-2010s .portfolio-item-overlay h4 { 
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            font-size: 1.2rem; color: #fff; margin-bottom: 0.2rem; font-weight: 500; 
-            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
-        }
-        .era-2010s .portfolio-item-overlay p.category { 
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            font-size: 0.8rem; color: #04d9c4; /* Keep accent or make it a lighter grey */
-            font-weight: 400; text-transform: uppercase; letter-spacing: 0.03em;
-        }
-        /* Hide modern mobile slideshow if 2010s style is active for portfolio */
-        .era-2010s .portfolio-slideshow-mobile-container {
-            display: none !important;
-        }
-         .era-2010s .portfolio-grid {
-            display: grid !important; /* Ensure grid is shown */
+        .service-item p {
+            font-size: 14px;
+            color: #222222;
         }
 
-
-        /* --- ERA: Late 2000s (Web 2.0) Styles (Applied to #why-us) --- */
-        #why-us.era-late-2000s {
-            background: #7AB4E8 url('https://www.transparenttextures.com/patterns/light-alu.png') repeat; /* Example Web 2.0 subtle texture + gradient-like bg */
-            padding-top: 3rem;
-            padding-bottom: 3rem;
-            font-family: Arial, Helvetica, sans-serif; /* Common Web 2.0 font */
+        /* --- Portfolio Section - GeoCities Style --- */
+        #portfolio {
+            background-color: #E6E6FA; /* Lavender */
         }
-        #why-us.era-late-2000s .why-us-background-wrapper {
-            background: linear-gradient(to bottom, rgba(255,255,255,0.95) 0%, rgba(230,230,250,0.85) 100%); /* Glossy white/light blue */
-            backdrop-filter: none; /* Remove modern blur */
-            -webkit-backdrop-filter: none;
-            border-radius: 8px; /* Typical Web 2.0 rounded corners */
-            padding: 2.5rem 2rem;
-            border: 1px solid #B0C4DE; /* Light steel blue border */
-            box-shadow: 0 3px 8px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.5); /* Web 2.0 shadow + inner highlight */
+        #portfolio .portfolio-grid { 
+            display: block; /* Stack items */
+            text-align: center; /* Center the items */
         }
-        #why-us.era-late-2000s h2 {
-            color: #2c3e50; /* Darker blue/grey */
-            font-family: Verdana, Geneva, sans-serif;
-            font-weight: bold;
-            font-size: 2.5rem;
-            text-shadow: 1px 1px 0px rgba(255,255,255,0.7); /* Subtle text shadow */
-            margin-bottom: 1.5rem;
-        }
-        #why-us.era-late-2000s .why-us-description {
-            color: #333;
-            font-size: 1.1rem;
-            line-height: 1.6;
-            margin-bottom: 2.5rem;
-        }
-        #why-us.era-late-2000s .why-us-points {
-            gap: 1.5rem;
-        }
-        #why-us.era-late-2000s .why-us-point {
-            background: #f7f9fc; /* Light off-white */
-            padding: 1.5rem;
-            border-radius: 6px;
-            border: 1px solid #ccc;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            transition: all 0.2s ease-in-out;
-        }
-        #why-us.era-late-2000s .why-us-point:hover {
-            border-color: #aaa;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.15);
-            transform: translateY(-2px);
-        }
-        #why-us.era-late-2000s .why-us-point h4 {
-            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-            color: #007bff; /* Bright blue, common for links/headings */
-            font-size: 1.25rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-        }
-        #why-us.era-late-2000s .why-us-point p {
-            color: #555;
-            font-size: 0.95rem;
-            line-height: 1.5;
-        }
-
-
-        /* --- ERA: Early 2000s (GeoCities) Styles (Applied to #contact and .main-footer) --- */
-        body.era-early-2000s-active { /* Applied to body when contact section is active */
-            background-color: #FFFFCC; /* Classic pale yellow */
-            background-image: url('https://www.transparenttextures.com/patterns/stardust.png'); /* Subtle sparkle */
-        }
-        #contact.era-early-2000s {
-            background-color: #CCFFFF; /* Light cyan */
-            border: 5px ridge #0000FF; /* Bright blue ridge border */
-            padding: 20px;
-            font-family: "Comic Sans MS", "Comic Sans", cursive !important;
-            color: #000080; /* Navy */
-            opacity: 1 !important; /* Ensure it's visible */
-            transform: none !important; /* Override fade-in */
-        }
-        #contact.era-early-2000s h2 {
-            font-family: "Impact", Haettenschweiler, "Arial Narrow Bold", sans-serif !important;
-            color: #FF0000 !important; /* Bright Red */
-            font-size: 36px !important;
+        #portfolio .portfolio-item {
+            display: inline-block; /* Allow side-by-side if space, or wrap */
+            width: 150px; /* Small image size */
+            height: auto; /* Maintain aspect ratio */
+            border: 3px solid var(--geocities-blue);
+            margin: 10px;
+            padding: 5px;
+            background-color: var(--geocities-white);
+            box-shadow: none;
+            cursor: default; /* No special cursor */
             text-align: center;
-            letter-spacing: 2px;
-            text-shadow: 2px 2px 0px #FFFF00, -2px -2px 0px #00FF00; /* Yellow and Green shadow */
-            margin-bottom: 20px !important;
         }
-        #contact.era-early-2000s p {
-            color: #800080 !important; /* Purple */
-            font-size: 16px !important;
-            line-height: 1.4 !important;
-            text-align: center !important;
+        #portfolio .portfolio-item:hover { transform: none; }
+        #portfolio .portfolio-item img {
+            width: 100%; 
+            height: 120px; /* Fixed height for consistency */
+            object-fit: cover;
+            border: 1px solid var(--geocities-silver);
+        }
+        #portfolio .portfolio-item:hover img { transform: none; }
+        #portfolio .portfolio-item-overlay {
+            display: block; /* Always visible caption below image */
+            position: static;
+            background: none;
+            padding: 5px 0 0 0; 
+            transform: none;
+            color: var(--geocities-black);
+        }
+        #portfolio .portfolio-item-overlay h4 { 
+            font-size: 14px !important; 
+            color: var(--geocities-blue) !important; 
+            margin-bottom: 2px; 
+            font-family: "Arial", sans-serif;
+        }
+        #portfolio .portfolio-item-overlay p.category { 
+            font-size: 11px !important; 
+            color: var(--geocities-purple) !important; 
+            font-weight: normal; 
+            text-transform: none; 
+            font-family: "Times New Roman", Times, serif;
+        }
+        .portfolio-slideshow-mobile-container { display: none !important; } /* No mobile slideshow */
+        /* Hide modal, or simplify it drastically if kept */
+        .modal { display: none !important; }
+
+
+        /* --- Why Choose Us Section - GeoCities Style --- */
+        #why-us {
+             background-color: var(--geocities-yellow);
+             border: 5px dotted var(--geocities-red);
+             padding: 15px;
+        }
+        #why-us .why-us-background-wrapper {
+            background: rgba(255,255,255,0.7);
+            backdrop-filter: none;
+            border-radius: 0; 
+            padding: 10px;
+            border: 3px dashed var(--geocities-blue); 
+            box-shadow: none;
+        }
+        #why-us h2 { color: var(--geocities-red) !important; }
+        #why-us .why-us-description {
+            color: var(--geocities-black) !important; 
+            text-align: center !important; 
             max-width: 100% !important;
-            margin-bottom: 15px !important;
+            font-size: 16px !important;
+            font-family: "Arial", Helvetica, sans-serif;
+            font-style: italic;
+            margin-bottom: 10px;
         }
-        #contact.era-early-2000s .contact-form {
-            border: 3px dashed #FF00FF; /* Magenta dashed border */
-            padding: 15px;
-            background-color: #FFFFFF; /* White form background */
+        #why-us .why-us-points {
+            display: block; /* Stack them */
         }
-        #contact.era-early-2000s .contact-form input[type="text"],
-        #contact.era-early-2000s .contact-form input[type="email"],
-        #contact.era-early-2000s .contact-form textarea {
-            font-family: "Times New Roman", Times, serif !important;
-            border: 1px solid #000000 !important;
-            background-color: #F0F0F0 !important; /* Light grey input */
-            color: #000000 !important;
-            padding: 8px !important;
-            border-radius: 0 !important; /* No rounded corners */
-            box-shadow: inset 2px 2px 3px #AAAAAA !important; /* Inset shadow */
+        #why-us .why-us-point {
+            background: var(--geocities-silver); 
+            padding: 10px;
+            border-radius: 0;
+            border: 2px groove var(--geocities-purple); 
+            margin-bottom: 10px;
+            text-align: left;
+        }
+        #why-us .why-us-point h4 { 
+            color: var(--geocities-blue) !important;
+            font-size: 18px !important;
+            font-family: "Impact", sans-serif;
+        }
+        #why-us .why-us-point p { 
+            color: var(--geocities-black) !important; 
+            font-size: 14px !important; 
+            font-family: "Times New Roman", Times, serif;
+        }
+
+        /* --- Contact Section - GeoCities Style --- */
+        #contact {
+            background-color: var(--geocities-silver); 
+            border: 5px ridge var(--geocities-green) !important;
+            padding: 20px !important;
+            font-family: "Comic Sans MS", "Comic Sans", cursive !important;
+        }
+        #contact h2 { /* Uses global h2 style */
+            margin-bottom: 10px !important;
+        }
+        #contact p {
+            color: var(--geocities-blue) !important; 
+            font-size: 16px !important;
+            text-align: center !important;
+            margin-bottom: 10px !important;
+        }
+        .contact-form { 
+            border: 3px dashed var(--geocities-red) !important;
+            padding: 15px !important;
+            background-color: var(--geocities-white) !important;
+            max-width: 500px; /* Make form narrower */
+        }
+        .contact-form input[type="text"],
+        .contact-form input[type="email"],
+        .contact-form textarea {
+            font-family: "Courier New", Courier, monospace !important;
+            border: 1px solid var(--geocities-black) !important;
+            background-color: var(--geocities-white) !important; 
+            color: var(--geocities-black) !important;
+            padding: 5px !important;
+            border-radius: 0 !important; 
+            box-shadow: inset 1px 1px 2px #888888 !important;
             font-size: 14px !important;
+            width: 98%; /* Take full width of form */
+            margin-bottom: 10px;
         }
-        #contact.era-early-2000s .contact-form input::placeholder, 
-        #contact.era-early-2000s .contact-form textarea::placeholder {
-            color: #666666 !important;
+        .contact-form input::placeholder, 
+        .contact-form textarea::placeholder {
+            color: #555555 !important;
             font-style: italic;
         }
-         #contact.era-early-2000s .contact-form input:focus, 
-         #contact.era-early-2000s .contact-form textarea:focus {
-            outline: 1px dotted #00FF00 !important; /* Green dotted outline */
-            border-color: #00FF00 !important;
-            box-shadow: inset 2px 2px 3px #AAAAAA, 0 0 5px #00FF00 !important;
+         .contact-form input:focus, 
+         .contact-form textarea:focus {
+            outline: 2px solid var(--geocities-yellow) !important; 
+            background-color: #FFFFE0 !important; /* Light yellow on focus */
         }
-        #contact.era-early-2000s .contact-form button.cta-button {
-            font-family: "Arial Black", Gadget, sans-serif !important;
-            background: #00FF00 !important; /* Bright Green */
-            color: #000000 !important;
-            border: 2px outset #008000 !important; /* Dark Green outset border */
-            padding: 10px 20px !important;
-            font-size: 18px !important;
-            font-weight: bold !important;
-            text-transform: uppercase;
-            border-radius: 0 !important;
-            box-shadow: 3px 3px 5px #888888 !important;
-            cursor: pointer !important; /* Add pointer cursor if missing */
-        }
-         #contact.era-early-2000s .contact-form button.cta-button:hover {
-            background: #FFFF00 !important; /* Yellow on hover */
-            color: #FF0000 !important; /* Red text on hover */
-            transform: none !important; /* Remove modern hover transform */
-            box-shadow: 3px 3px 5px #888888, inset 1px 1px 0px #FFFFFF !important;
-        }
+        /* Button uses global .cta-button style */
 
         .geocities-gif {
             display: block;
             margin: 10px auto;
-            width: auto; /* Adjust as needed */
-            height: auto; /* Adjust as needed */
+            max-width: 100%; /* Ensure GIFs are responsive-ish */
+        }
+        .small-gif {
+            height: 20px;
+            width: auto;
+            vertical-align: middle;
+            margin: 0 3px;
         }
 
-        @keyframes blink-text {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
+        @keyframes blink-text-geocities {
+            0%, 49% { color: var(--geocities-red); }
+            50%, 100% { color: var(--geocities-blue); }
         }
         .blinking-text {
-            animation: blink-text 1s linear infinite;
+            animation: blink-text-geocities 0.8s linear infinite;
             font-weight: bold;
-            color: #FF00FF; /* Magenta */
+            font-size: 1.1em; /* Slightly larger */
         }
         .scrolling-text-container {
             width: 100%;
-            background-color: #0000FF; /* Blue background for marquee */
-            color: #FFFF00; /* Yellow text */
+            background-color: var(--geocities-blue); 
+            color: var(--geocities-yellow); 
             padding: 5px 0;
             margin: 15px 0;
-            overflow: hidden; /* Important for marquee effect */
+            border-top: 2px solid var(--geocities-silver);
+            border-bottom: 2px solid var(--geocities-silver);
         }
         .scrolling-text-container marquee {
             font-size: 18px;
             font-weight: bold;
+            font-family: "Arial Black", Gadget, sans-serif;
         }
 
-        .main-footer.era-early-2000s {
-            background-color: #000000 !important; /* Black background */
-            color: #00FF00 !important; /* Bright Green text */
+        /* --- Footer - GeoCities Style --- */
+        .main-footer {
+            background-color: var(--geocities-black) !important; 
+            color: var(--geocities-green) !important; 
             font-family: "Courier New", Courier, monospace !important;
             padding: 15px !important;
             text-align: center !important;
-            border-top: 5px double #FF0000 !important; /* Red double border */
-            opacity: 1 !important; /* Ensure it's visible */
-            transform: none !important; /* Override fade-in */
+            border-top: 10px groove var(--geocities-silver) !important; 
         }
-        .main-footer.era-early-2000s p {
-            color: #00FF00 !important;
+        .main-footer p {
+            color: var(--geocities-green) !important;
             font-size: 12px !important;
             margin-bottom: 8px !important;
-            line-height: 1.3 !important;
+            max-width: 100% !important;
         }
-        .main-footer.era-early-2000s a {
-            color: #FFFF00 !important; /* Yellow links */
+        .main-footer a {
+            color: var(--geocities-yellow) !important; 
             text-decoration: underline !important;
         }
-        .main-footer.era-early-2000s a:hover {
-            color: #FF00FF !important; /* Magenta on hover */
-            background-color: #FFFF00 !important; /* Yellow background on hover */
+        .main-footer a:hover {
+            color: var(--geocities-red) !important; 
+            background-color: var(--geocities-yellow) !important; 
         }
         .hit-counter-container {
             margin-top: 10px;
-            font-size: 10px;
-            color: #FFFFFF; /* White counter text */
+            font-size: 12px;
+            color: var(--geocities-white); 
+            background-color: #333333;
+            padding: 5px;
+            border: 1px solid var(--geocities-green);
+            display: inline-block;
         }
-        .hit-counter-img { /* For a classic hit counter image */
+        .hit-counter-img { 
             border: 0;
             vertical-align: middle;
-            margin: 0 2px;
+            margin: 0 1px;
+            height: 18px; /* Adjust to your counter image size */
         }
         .guestbook-link {
             display: block;
-            margin-top: 10px;
+            margin: 10px auto;
             padding: 5px;
-            border: 1px solid #00FF00;
-            background: #333333;
+            border: 2px outset var(--geocities-teal);
+            background: var(--geocities-blue);
+            width: 200px;
+        }
+        .guestbook-link a {
+            color: var(--geocities-yellow) !important;
+            font-weight: bold;
         }
         .construction-gif-footer {
-            width: 100px; /* Adjust as needed */
+            width: 80px; 
             height: auto;
+            margin-top: 10px;
+        }
+        .sr-only { display: none !important; } /* Not a GeoCities thing */
+
+        /* Add a horizontal rule style */
+        hr.fancy-hr {
+            border: 0;
+            height: 25px; /* Height of your GIF */
+            background-image: url('https://web.archive.org/web/20091027093648/http://geocities.com/EnchantedForest/Dell/9920/grafix/dividers/wavylinepgrad.gif');
+            background-repeat: repeat-x;
+            background-position: center;
+            margin: 20px 0;
+        }
+        hr.simple-hr {
+            border: 0;
+            border-top: 3px dashed var(--geocities-purple);
+            margin: 15px 0;
         }
 
-
-        /* --- Portfolio Section (Original Modern - Fallback if JS fails or for non-era sections) --- */
-        #portfolio .portfolio-grid { 
-            display: grid; gap: 1.5rem;
-            grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
-        }
-        #portfolio .portfolio-item {
-            position: relative;
-            border-radius: var(--border-radius-main);
-            box-shadow: var(--shadow-medium);
-            transition: transform var(--transition-speed-medium) ease;
-            aspect-ratio: 4 / 3;
-            cursor: pointer;
-            background-color: #f0f0f0; 
-            opacity: 1; 
-            visibility: visible; 
-            transform: translateZ(0); 
-            -webkit-transform: translateZ(0); 
-            overflow: hidden; 
-        }
-        #portfolio .portfolio-item:hover { transform: scale(1.03); }
-        #portfolio .portfolio-item img {
-            display: block; width: 100%; height: 100%; object-fit: cover;
-            transition: transform var(--transition-speed-slow) cubic-bezier(0.165, 0.84, 0.44, 1);
-            position: relative; z-index: 1;
-            opacity: 1; 
-            visibility: visible;
-        }
-        #portfolio .portfolio-item:hover img { transform: scale(1.1); }
-        #portfolio .portfolio-item-overlay {
-            position: absolute; bottom: 0; left: 0; right: 0;
-            background: linear-gradient(to top, rgba(19, 21, 22, 0.85) 0%, rgba(19, 21, 22, 0) 100%);
-            padding: 3rem 1.5rem 1.5rem; transform: translateY(100%);
-            transition: transform var(--transition-speed-medium) cubic-bezier(0.165, 0.84, 0.44, 1);
-            color: var(--text-light); z-index: 2;
-        }
-        #portfolio .portfolio-item:hover .portfolio-item-overlay { transform: translateY(0); }
-        #portfolio .portfolio-item-overlay h4 { font-size: 1.4rem; color: var(--text-light); margin-bottom: 0.3rem; font-weight: 500; }
-        #portfolio .portfolio-item-overlay p.category { font-size: 0.9rem; color: var(--accent-primary); font-weight: 400; text-transform: uppercase; letter-spacing: 0.05em; }
-
-        /* --- Mobile Portfolio Slideshow Styles (Modern) --- */
-        .portfolio-slideshow-mobile-container {
-            display: none; 
-            position: relative;
-            width: 100%; 
-            overflow: hidden; 
-            padding: 0.5rem 0; 
-            border-radius: var(--border-radius-main);
-            background-color: var(--background-light);
-            margin-top: 2rem; 
-            box-sizing: border-box;
-        }
-        .slideshow-track-mobile {
-            display: flex;
-            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            align-items: stretch; 
-            user-select: none; 
-            -webkit-user-select: none;
-            -webkit-touch-callout: none; 
-            will-change: transform; 
-        }
-        .slide-mobile {
-            width: 100%; 
-            min-width: 100%; 
-            flex-shrink: 0; 
-            box-sizing: border-box; 
-            padding: 0 10px; 
-            
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            overflow: hidden; 
-        }
-        .slide-image-wrapper-mobile {
-            width: 100%; 
-            aspect-ratio: 16 / 9; 
-            display: flex;
-            align-items: center; 
-            justify-content: center; 
-            overflow: hidden; 
-            background-color: #f0f0f0; 
-            border-radius: calc(var(--border-radius-main) - 8px); 
-            margin-bottom: 0.75rem; 
-            position: relative; 
-        }
-        .slide-mobile img {
-            display: block;
-            width: 100%;  
-            height: 100%; 
-            object-fit: cover; 
-            border-radius: calc(var(--border-radius-main) - 8px); 
-            pointer-events: none; 
-        }
-        .slide-mobile .slide-caption-mobile {
-            width: 100%; 
+        /* Welcome image */
+        .welcome-banner {
             text-align: center;
-            padding: 0.5rem 0; 
-            margin-bottom: 1.25rem; 
-            flex-shrink: 0; 
-            box-sizing: border-box;
+            margin: 10px 0;
         }
-        .slide-mobile .slide-caption-mobile h4 {
-            color: var(--text-dark);
-            margin-bottom: 0.2rem;
-            font-weight: 500;
-            word-break: break-word; 
-            overflow-wrap: break-word; 
-            font-size: 1.1rem; 
+        .welcome-banner img {
+            max-width: 300px; /* Adjust as needed */
+            border: 3px solid var(--geocities-red);
         }
-        .slide-mobile .slide-caption-mobile p {
-            color: var(--neutral-gray);
-            text-transform: uppercase;
-            letter-spacing: 0.03em;
-            font-size: 0.8rem; 
-            margin-bottom: 0; 
-        }
-
-        .slide-nav-mobile {
-            position: absolute;
-            top: calc(0.5rem + ((90vw - 20px) * 9 / 16) / 2); 
-            transform: translateY(-50%); 
-            background-color: rgba(0, 0, 0, 0.35);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 38px; 
-            height: 38px;
-            font-size: 0.9rem; 
-            cursor: pointer;
-            z-index: 10;
-            transition: background-color var(--transition-speed-fast), transform var(--transition-speed-fast), opacity var(--transition-speed-fast);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-            opacity: 0.8; 
-        }
-        .slide-nav-mobile:hover {
-            background-color: rgba(0, 0, 0, 0.6);
-            transform: translateY(-50%) scale(1.05); 
-            opacity: 1;
-        }
-        .slide-prev-mobile { left: 15px; } 
-        .slide-next-mobile { right: 15px; }
-
-
-        .slide-indicators-mobile {
-            position: absolute;
-            bottom: 10px; 
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 10px; 
-            z-index: 5; 
-        }
-        .indicator-dot-mobile {
-            width: 9px; 
-            height: 9px;
-            background-color: rgba(0, 0, 0, 0.25);
-            border-radius: 50%;
-            cursor: pointer;
-            transition: background-color var(--transition-speed-fast), transform var(--transition-speed-fast);
-        }
-        .indicator-dot-mobile.active {
-            background-color: var(--accent-primary);
-            transform: scale(1.15);
-        }
-        .slideshow-no-items {
-            text-align: center;
-            padding: 2rem;
-            color: var(--neutral-gray);
-            min-height: 200px; 
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-
-        /* --- Why Choose Us Section (Modern Fallback) --- */
-        #why-us { position: relative; padding-top: 3rem; padding-bottom: 3rem; }
-        #why-us .why-us-background-wrapper {
-            background-color: var(--accent-secondary-glass);
-            backdrop-filter: blur(5px) saturate(180%);
-            -webkit-backdrop-filter: blur(5px) saturate(180%);
-            border-radius: var(--border-radius-large); padding: 4rem 3rem; margin: 0 auto;
-            border: 1px solid rgba(255, 255, 255, 0.15); box-shadow: var(--shadow-medium);
-        }
-        #why-us h2 { color: var(--text-light); }
-        #why-us .why-us-description {
-            color: rgba(244, 244, 244, 0.9); text-align: center; max-width: 750px;
-            margin-left: auto; margin-right: auto; font-size: 1.2rem; margin-bottom: 3rem;
-        }
-        #why-us .why-us-points {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
-            gap: 2rem; max-width: 900px; margin-left: auto; margin-right: auto;
-        }
-        #why-us .why-us-point {
-            background: var(--background-translucent-light); padding: 2rem;
-            border-radius: var(--border-radius-main);
-            border: 1px solid rgba(255, 255, 255, 0.15); text-align: left;
-        }
-        #why-us .why-us-point h4 { color: var(--accent-primary); margin-bottom: 0.75rem; font-size: 1.3rem; font-weight: 500; }
-        #why-us .why-us-point p { color: rgba(244, 244, 244, 0.85); font-size: 1rem; max-width: none; }
-
-        /* --- Contact Section (Modern Fallback) --- */
-        #contact p { text-align: center; margin-bottom: 3rem; max-width: 700px; margin-left: auto; margin-right: auto; }
-        .contact-form { max-width: 700px; margin: 0 auto; display: grid; gap: 1.5rem; }
-        .contact-form input, .contact-form textarea {
-            width: 100%; padding: 1.2rem 1.5rem; border: 1px solid #dde2e7; border-radius: 8px;
-            background-color: rgba(255,255,255,0.8); color: var(--text-dark);
-            font-family: var(--font-body); font-size: 1rem; font-weight: 400;
-            transition: border-color var(--transition-speed-fast), box-shadow var(--transition-speed-fast);
-        }
-        .contact-form input::placeholder, .contact-form textarea::placeholder { color: var(--neutral-gray); opacity: 0.8; }
-        .contact-form input:focus, .contact-form textarea:focus {
-            outline: none; border-color: var(--accent-primary);
-            box-shadow: 0 0 0 3px rgba(4, 217, 196, 0.2);
-        }
-        .contact-form textarea { resize: vertical; min-height: 150px; }
-        .contact-form button { justify-self: center; margin-top: 1rem; }
-
-        /* --- Footer (Modern Fallback) --- */
-        .main-footer {
-            background-color: var(--bg-dark); color: var(--neutral-gray); text-align: center;
-            padding: 2rem 1rem; /* Reduced vertical padding */
-            font-size: 0.95rem;
-        }
-        .main-footer p { 
-            color: var(--neutral-gray); 
-            font-size: 0.9rem; 
-            margin-bottom: 0.4rem; /* Slightly reduced margin */
-            max-width: none; 
-        }
-        .main-footer .footer-copyright .maugans-co-footer {
-             font-family: var(--font-logo); 
-        }
-        .main-footer a { 
-            color: var(--accent-primary); 
-            text-decoration: none; 
-            transition: color var(--transition-speed-fast); 
-        }
-        .main-footer a:hover { 
-            color: var(--text-light); 
-            text-decoration: underline; 
-        }
-
-        /* --- Portfolio Modal --- */
-        .modal {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(253, 253, 253, 0.6);
-            backdrop-filter: blur(10px) saturate(160%);
-            -webkit-backdrop-filter: blur(10px) saturate(160%);
-            display: flex; align-items: center; justify-content: center; z-index: 2000;
-            opacity: 0; visibility: hidden;
-            transition: opacity var(--transition-speed-medium) cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                        visibility var(--transition-speed-medium) cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        .modal.active { opacity: 1; visibility: visible; }
-        .modal-content {
-            background-color: var(--background-light); padding: 1rem; border-radius: var(--border-radius-main);
-            box-shadow: 0 15px 50px rgba(0,0,0,0.2); max-width: 90vw; max-height: 90vh; position: relative;
-            transform: scale(0.9) translateY(20px);
-            transition: transform var(--transition-speed-medium) cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        .modal.active .modal-content { transform: scale(1) translateY(0); }
-        .modal-content img {
-            display: block; max-width: 100%; max-height: calc(90vh - 60px);
-            object-fit: contain; border-radius: calc(var(--border-radius-main) - 4px);
-        }
-        .modal-close {
-            position: absolute; top: 15px; right: 15px; width: 38px; height: 38px;
-            background-color: var(--accent-primary); 
-            color: var(--text-light); 
-            border: none; border-radius: 50%; font-size: 1.4rem;
-            cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.25);
-            transition: transform var(--transition-speed-fast) cubic-bezier(0.34, 1.56, 0.64, 1),
-                        background-color var(--transition-speed-fast);
-            display: flex; align-items: center; justify-content: center; z-index: 10;
-        }
-        .modal-close:hover { transform: scale(1.1) rotate(90deg); background-color: #03c8b3; }
-
-        /* --- Responsive Adjustments --- */
-        @media (max-width: 768px) {
-            .nav-container { flex-wrap: wrap; }
-            .menu-toggle { display: flex; align-items: center; justify-content: center; }
-            .main-nav {
-                width: 100%; max-height: 0; overflow: hidden; background: rgba(253, 253, 253, 0.95);
-                backdrop-filter: blur(10px) saturate(180%); -webkit-backdrop-filter: blur(10px) saturate(180%);
-                position: absolute; top: 100%; left: 0; box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-                border-top: 1px solid rgba(0,0,0,0.05);
-                transition: max-height 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-            }
-            .main-nav.active { max-height: 350px; }
-            .main-nav ul { flex-direction: column; align-items: center; padding: 1rem 0; }
-            .main-nav ul li { margin: 1rem 0; }
-
-            .hero-content {
-                text-align: left; 
-                padding: 0 1.5rem; 
-            }
-            .hero-content h1 {
-                font-size: clamp(2.0rem, 8vw, 3.0rem);
-                line-height: 1.3;
-            }
-             @media (max-width: 400px) {
-                .hero-content h1 {
-                    font-size: 1.8rem;
-                    line-height: 1.35;
-                }
-                .hero-content .subtitle { font-size: 1rem; }
-            }
-            .hero-content .subtitle { font-size: clamp(1.1rem, 4vw, 1.3rem); }
-            .hero::before, .hero::after { display: none; }
-
-            #about h2 { text-align: center; }
-            
-            /* Responsive for 2010s portfolio - ensure grid still applies */
-            #portfolio.era-2010s .portfolio-grid {
-                grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr)); /* Adjust for smaller screens if needed */
-            }
-            /* Hide modern mobile slideshow when 2010s is active */
-             #portfolio.era-2010s .portfolio-slideshow-mobile-container {
-                display: none !important;
-            }
-             #portfolio.era-2010s .portfolio-grid {
-                display: grid !important;
-            }
-
-            /* Original modern responsive portfolio handling: */
-            #portfolio:not(.era-2010s) .portfolio-item { 
-                min-height: 150px; 
-            }
-            #portfolio:not(.era-2010s) .portfolio-grid {
-                display: none !important; 
-            }
-            #portfolio:not(.era-2010s) .portfolio-slideshow-mobile-container {
-                display: block; 
-            }
-
-
-            .portfolio-item-overlay { padding: 2rem 1rem 1rem; }
-            .modal-close { top: 10px; right: 10px; width: 35px; height: 35px; font-size: 1.2rem; }
-            .modal-content img { max-height: calc(90vh - 50px); }
-
-            #why-us:not(.era-late-2000s) { padding-top: 2rem; padding-bottom: 2rem; }
-            #why-us:not(.era-late-2000s) .why-us-background-wrapper { padding: 2.5rem 1.5rem; }
-            #why-us:not(.era-late-2000s) .why-us-description { max-width: 90%; font-size: 1.1rem; }
-            #why-us:not(.era-late-2000s) .why-us-points { max-width: 100%; gap: 1.5rem; }
-            
-            /* Responsive for Late 2000s Why Us */
-            #why-us.era-late-2000s .why-us-background-wrapper { padding: 1.5rem 1rem; }
-            #why-us.era-late-2000s h2 { font-size: 2rem; }
-            #why-us.era-late-2000s .why-us-description { font-size: 1rem; }
-            #why-us.era-late-2000s .why-us-point { padding: 1rem; }
-            #why-us.era-late-2000s .why-us-point h4 {font-size: 1.1rem;}
-            #why-us.era-late-2000s .why-us-point p {font-size: 0.9rem;}
-
-            /* Responsive for Early 2000s contact */
-            #contact.era-early-2000s { padding: 10px; border-width: 3px; }
-            #contact.era-early-2000s h2 { font-size: 28px !important; }
-            #contact.era-early-2000s p { font-size: 14px !important; }
-        }
-
-        @media (min-width: 769px) {
-             /* Ensure modern mobile slideshow is hidden on desktop */
-            #portfolio:not(.era-2010s) .portfolio-slideshow-mobile-container {
-                display: none !important;
-            }
-            /* Ensure modern grid is shown on desktop */
-             #portfolio:not(.era-2010s) .portfolio-grid { 
-                display: grid !important; 
-            }
-        }
-        .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0;}
 
     </style>
 </head>
 <body>
+    <div class="welcome-banner">
+        <img src="https://web.archive.org/web/20091027002439im_/http://geocities.com/Heartland/Hills/8925/welcomeani.gif" alt="!!! WELCOME TO MY PAGE !!!">
+    </div>
 
     <header class="main-header" id="mainHeader">
         <div class="nav-container">
             <div class="logo">
-                <a href="#hero"><span class="logo-maugans">Maugans</span> <span class="co-highlight">Co.</span></a>
+                <a href="#hero">
+                    <img src="https://web.archive.org/web/20091027123020/http://www.geocities.com/heartland/pointe/1201/new.gif" alt="NEW!" class="small-gif">
+                    <span class="logo-maugans">Maugans</span> <span class="co-highlight">Co.</span>
+                    <img src="https://web.archive.org/web/20091027123020/http://www.geocities.com/heartland/pointe/1201/new.gif" alt="NEW!" class="small-gif">
+                </a>
             </div>
             <nav class="main-nav" id="mainNav">
                 <ul>
-                    <li><a href="#about" class="nav-link">About</a></li>
-                    <li><a href="#services" class="nav-link">Services</a></li>
-                    <li><a href="#portfolio" class="nav-link">Work</a></li>
-                    <li><a href="#contact" class="nav-link">Connect</a></li>
+                    <li><a href="#about">About Uzzz!</a></li>
+                    <li><a href="#services">What We Do?!</a></li>
+                    <li><a href="#portfolio">Our Kewl Work!</a></li>
+                    <li><a href="#contact">Talk 2 Us! <img src="https://web.archive.org/web/20090829142517im_/http://www.geocities.com/talkcity_palisades/messages/NEWEMAIL.GIF" alt="Email" class="small-gif"></a></li>
                 </ul>
             </nav>
-            <button class="menu-toggle" id="menuToggle" aria-label="Open Menu" aria-expanded="false">
-                <span class="line line1"></span>
-                <span class="line line2"></span>
-                <span class="line line3"></span>
-            </button>
         </div>
     </header>
 
-    <main>
-        <section id="hero" class="hero">
+    <main class="container"> <section id="hero" class="hero">
             <div class="hero-content">
-                <h1>Designing with <span class="highlight">Clarity</span><br/>Crafting with <span class="highlight">Care</span><br/> Welcome to <span class="maugans-co-logo-hero">Maugans Co.</span></h1>
-                <p class="subtitle">We create exceptionally clean, modern, and dynamic experiences. Your vision, brought to life with a personal, friendly touch.</p>
-                <a href="#contact" class="cta-button">Start Your Project</a>
+                <h1>~~~ W3Lc0mE tO Th3 FuTuRe oF WeB D3SiGn (circa 1999!) ~~~</h1>
+                <img src="https://web.archive.org/web/20091027080131/http://geocities.com/SouthBeach/Palms/2962/animate.gif" alt="Spinning Computer" class="geocities-gif" style="height:60px;">
+                <p class="subtitle"><span class="blinking-text">!!!</span> Maugans Co. <span class="blinking-text">!!!</span><br>We make websites that are <span class="highlight-geocities">TOTALLY RADICAL</span> and <span class="highlight-geocities">OUT OF THIS WORLD</span>!</p>
+                <a href="#contact" class="cta-button">Click Here 2 Start UR Project!</a>
             </div>
         </section>
 
-        <section id="about" class="container">
-            <div class="about-content">
-                <h2>Our Approach</h2>
-                <p>At Maugans Co., we believe the best results come from a foundation of understanding and a genuinely collaborative spirit. We're not just designers; we're your creative partners, dedicated to making the journey from idea to reality both exciting and effortless. </p>
-                <p>Whether you're launching a new digital presence or elevating an existing one, our dedicated website design expertise is at your service. We pride ourselves on creating a welcoming atmosphere where you feel completely at ease to explore possibilities, ask questions, and see your aspirations take shape—no pretense, just passion and personable guidance.</p>
-            </div>
-            <div class="about-image-placeholder" aria-hidden="true" style="background-image: url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80');">
-            </div>
+        <hr class="fancy-hr">
+
+        <section id="about">
+            <h2><img src="https://web.archive.org/web/20091026200024/http://geocities.com/EnchantedForest/Dell/9920/grafix/highlights/sparklelamerblue.gif" class="small-gif" alt="sparkle"> All About Maugans Co. <img src="https://web.archive.org/web/20091026200024/http://geocities.com/EnchantedForest/Dell/9920/grafix/highlights/sparklelamerblue.gif" class="small-gif" alt="sparkle"></h2>
+            <div class="about-image-placeholder" aria-hidden="true"></div>
+            <p>Hey there, Cyber Surfer! <img src="https://web.archive.org/web/20091027095757/http://geocities.com/Vienna/Choir/9009/surfer.gif" alt="surfer" class="small-gif"> At Maugans Co., we're not your average web designers from the 21st century... NO WAY! We're stuck in the past and we LOVE IT! We believe in websites with <font color="red">PIZZAZZ</font>, <font color="blue">CHARACTER</font>, and enough <font color="green">ANIMATED GIFs</font> to make your modem cry (if you still have one!).</p>
+            <p>Our approach is simple: make it <font color="purple"><b>LOUD</b></font>, make it <font color="teal"><i>BRIGHT</i></font>, and make it <font color="orange"><marquee width="80" behavior="alternate" scrollamount="3">FUNKY</marquee></font>! We're your friendly neighborhood webmasters, here to turn your digital dreams into a pixelated reality. No confusing jargon, just pure, unadulterated web creativity from the good ol' days!</p>
         </section>
 
-        <section id="services" class="container">
-            <h2>Our Creative Toolkit</h2>
+        <hr class="simple-hr">
+
+        <section id="services">
+            <h2><img src="https://web.archive.org/web/20091027002439im_/http://geocities.com/Area51/Vault/1335/light.gif" alt="lightbulb" class="small-gif"> Our <span style="color:red;">S</span><span style="color:orange;">U</span><span style="color:yellow;">P</span><span style="color:green;">E</span><span style="color:blue;">R</span> <span style="color:purple;">S</span><span style="color:red;">E</span><span style="color:orange;">R</span><span style="color:yellow;">V</span><span style="color:green;">I</span><span style="color:blue;">C</span><span style="color:purple;">E</span><span style="color:red;">S</span>! <img src="https://web.archive.org/web/20091027002439im_/http://geocities.com/Area51/Vault/1335/light.gif" alt="lightbulb" class="small-gif"></h2>
             <div class="service-grid">
                 <div class="service-item">
-                     <div class="service-item-content">
-                        <div class="service-item-icon"><i class="fas fa-laptop-code"></i></div>
-                        <h3>Responsive Web Development</h3>
-                        <p>Beautifully functional websites built with clean, modern code. We ensure your site performs flawlessly across all devices—desktops, tablets, and mobiles—for a seamless user experience.</p>
-                    </div>
+                    <img src="https://web.archive.org/web/20091027002439im_/http://geocities.com/Heartland/7931/comp08.gif" alt="computer gif" class="geocities-gif" style="height:40px;">
+                    <h3>Web Page Construction!</h3>
+                    <p>We build web pages using cutting-edge technologies like HTML, and... well, mostly HTML! Your site will look GREAT on Netscape Navigator AND Internet Explorer!</p>
                 </div>
                 <div class="service-item">
-                    <div class="service-item-content">
-                        <div class="service-item-icon"><i class="fas fa-drafting-compass"></i></div>
-                        <h3>Strategic Experience Design</h3>
-                        <p>We craft user-centric interfaces and experiences, focusing on intuitive navigation, clear pathways, and engaging interactions that delight your audience and achieve your business goals.</p>
-                    </div>
+                     <img src="https://web.archive.org/web/20091027095035/http://geocities.com/EnchantedForest/Dell/9920/grafix/other/mouseworld.gif" alt="mouse world" class="geocities-gif" style="height:40px;">
+                    <h3>Groovy Graphic Design!</h3>
+                    <p>Need a flaming logo? How about some 3D text that spins? We can do it! Our graphics are so cool, they're practically frozen in time!</p>
                 </div>
                 <div class="service-item">
-                    <div class="service-item-content">
-                       <div class="service-item-icon"><i class="fas fa-chart-line"></i></div>
-                       <h3>SEO & Performance Optimization</h3>
-                       <p>Enhancing your website's visibility on search engines and optimizing its speed for a superior user experience and better rankings.</p>
-                    </div>
+                   <img src="https://web.archive.org/web/20091027074248/http://geocities.com/CapeCanaveral/Lab/5571/E-mailme.gif" alt="email me" class="geocities-gif" style="height:40px;">
+                   <h3>E-Mail & Guestbook Setup!</h3>
+                   <p>We'll get you set up with a state-of-the-art e-mail link and a guestbook for all your online pals to sign! <font color="red" size="+1">Cool!</font></p>
                 </div>
                 <div class="service-item">
-                    <div class="service-item-content">
-                        <div class="service-item-icon"><i class="fas fa-tools"></i></div>
-                        <h3>Website Maintenance & Support</h3>
-                        <p>Providing ongoing support, updates, and maintenance to ensure your website remains secure, up-to-date, and performing optimally.</p>
-                    </div>
+                    <img src="https://web.archive.org/web/20091027002439im_/http://geocities.com/TheTropics/Lagoon/5210/anibar.gif" alt="animated bar" class="geocities-gif" style="height:30px;">
+                    <h3>Hit Counter Installation!</h3>
+                    <p>Want to know how many cool cats have visited your page? We'll hook you up with a genuine, bona-fide hit counter! Watch those numbers climb!</p>
                 </div>
             </div>
         </section>
 
-        <section id="portfolio" class="container">
-            <h2>Selected Works</h2>
+        <hr class="fancy-hr">
+
+        <section id="portfolio">
+            <h2><marquee behavior="alternate" width="70%" scrollamount="6" style="font-family: 'Arial Black'; color: white; background-color: purple; padding: 5px; border: 2px solid yellow;">*** CHECK OUT OUR AWESOME WORK!!! ***</marquee></h2>
             <div class="portfolio-grid">
-                <div class="portfolio-item" data-img-src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" data-category="Web Design" tabindex="0" role="button" aria-label="View E-commerce Redefined project">
-                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60" alt="Modern data analytics dashboard interface">
-                    <div class="portfolio-item-overlay"><h4>E-commerce Redefined</h4><p class="category">Website Design</p></div>
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=150&h=120&q=60" alt="Site 1 Preview">
+                    <div class="portfolio-item-overlay"><h4>Client A's Page</h4><p class="category">Super Site!</p></div>
                 </div>
-                <div class="portfolio-item" data-img-src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" data-category="Web Design" tabindex="0" role="button" aria-label="View Creative Portfolio Hub project">
-                    <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60" alt="Laptop displaying code on a wooden desk">
-                    <div class="portfolio-item-overlay"><h4>Creative Portfolio Hub</h4><p class="category">Website Design</p></div>
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=150&h=120&q=60" alt="Site 2 Preview">
+                    <div class="portfolio-item-overlay"><h4>Geo Faux Site</h4><p class="category">HTML Magic!</p></div>
                 </div>
-                <div class="portfolio-item" data-img-src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" data-category="Photography" tabindex="0" role="button" aria-label="View Cityscape Poetry project">
-                    <img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60" alt="Aerial view of a sprawling cityscape at dusk">
-                    <div class="portfolio-item-overlay"><h4>Cityscape Poetry</h4><p class="category">Photography</p></div>
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=150&h=120&q=60" alt="Site 3 Preview">
+                    <div class="portfolio-item-overlay"><h4>Pixel Place</h4><p class="category">Web Wonder!</p></div>
                 </div>
-                 <div class="portfolio-item" data-img-src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" data-category="Photography" tabindex="0" role="button" aria-label="View Macro Worlds project">
-                    <img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=60" alt="Close-up of a dewdrop on a blade of grass">
-                    <div class="portfolio-item-overlay"><h4>Macro Worlds</h4><p class="category">Photography</p></div>
+                 <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format=fit&crop&w=150&h=120&q=60" alt="Site 4 Preview">
+                    <div class="portfolio-item-overlay"><h4>Retro Rehash</h4><p class="category">Old School Cool!</p></div>
                 </div>
             </div>
-
-            <div class="portfolio-slideshow-mobile-container" id="portfolioSlideshowMobile">
-                <div class="slideshow-track-mobile" id="slideshowTrackMobile">
-                    </div>
-                <button class="slide-nav-mobile slide-prev-mobile" id="slidePrevMobile" aria-label="Previous project">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                <button class="slide-nav-mobile slide-next-mobile" id="slideNextMobile" aria-label="Next project">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
-                <div class="slide-indicators-mobile" id="slideIndicatorsMobile">
-                    </div>
-            </div>
+             <p style="text-align:center; margin-top:15px;">(Actual early 2000s sites would have even <blink_css>MORE</blink_css> broken image links!)</p>
         </section>
 
-        <section id="why-us" class="container">
+        <hr class="simple-hr">
+
+        <section id="why-us">
+            <h2>Why Pick <font color="teal">Maugans Co.</font> Over The Other Guys?!</h2>
             <div class="why-us-background-wrapper">
-                <h2>The Maugans Co. Difference</h2>
-                <p class="why-us-description">Choosing a design partner is about trust and shared vision. Here’s why clients love working with us:</p>
+                <img src="https://web.archive.org/web/20091027095035/http://geocities.com/EnchantedForest/Dell/9920/grafix/other/wwwgamelanstar.gif" alt="spinning star" class="geocities-gif" style="height:50px;">
+                <p class="why-us-description">Choosing a web design partner is like choosing your favorite boy band - it's a BIG DEAL! Here's why we're the *NSYNC of old-school web design (or maybe the 98 Degrees, opinions vary):</p>
                 <div class="why-us-points">
                     <div class="why-us-point">
-                        <h4>Authentically Personal</h4>
-                        <p>We're genuinely invested in you and your project. Expect direct communication, transparency, and a process that feels like a true collaboration, not a transaction.</p>
+                        <h4><font color="#FF00FF">WE'RE AUTHENTICALLY RETRO!</font></h4>
+                        <p>We don't just mimic the old styles, we LIVED them! We remember dial-up! We know what a `<blink>` tag is FOR!</p>
                     </div>
                     <div class="why-us-point">
-                        <h4>Multifaceted Mastery</h4>
-                        <p>Our deep expertise in digital design and web technologies means we bring a holistic and innovative perspective to every website project. We focus our many talents on creating exceptional online experiences.</p>
+                        <h4><font color="#008000">MASTERS OF THE MARQUEE!</font></h4>
+                        <p>Your text won't just sit there, it will SCROLL! It will BLINK! It will do acrobatics! (Okay, maybe not acrobatics).</p>
                     </div>
                     <div class="why-us-point">
-                        <h4>Unwavering Dedication</h4>
-                        <p>Your satisfaction is paramount. We meticulously craft every detail and are committed to delivering outcomes that don't just meet expectations, but delightfully exceed them.</p>
+                        <h4><font color="#FFA500">UNWAVERING DEDICATION TO BLING!</font></h4>
+                        <p>We believe every page deserves more glitter, more flames, and more "Under Construction" GIFs. Your satisfaction is our command!</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="contact" class="container">
-            <h2>Let's Create Something Remarkable.</h2>
+        <hr class="fancy-hr">
+        
+        <section id="contact">
+            <h2><img src="https://web.archive.org/web/20091027074248/http://geocities.com/CapeCanaveral/Lab/5571/E-mailme.gif" alt="email" class="small-gif" style="height:40px;"> G3t In ToUcH WiTh Us! <img src="https://web.archive.org/web/20091027074248/http://geocities.com/CapeCanaveral/Lab/5571/E-mailme.gif" alt="email" class="small-gif" style="height:40px;"></h2>
             
-            <img src="https://web.archive.org/web/20091027002439im_/http://geocities.com/Area51/Vault/1335/construction.gif" alt="Under Construction" class="geocities-gif" id="constructionGif">
+            <img src="https://web.archive.org/web/20091027002439im_/http://geocities.com/Area51/Vault/1335/construction.gif" alt="Under Construction" class="geocities-gif" id="constructionGif" style="height: 80px;">
 
             <div class="scrolling-text-container">
-                <marquee scrollamount="5" behavior="scroll" direction="left" id="geocitiesMarquee">
-                    **~*~* Welcome 2 Maugans Co. - UR #1 Web Design Destination! *~*~** Drop us a line! We're ALWAYS E-X-C-I-T-E-D to hear from U!!!
+                <marquee scrollamount="4" behavior="scroll" direction="left" id="geocitiesMarquee">
+                    **~*~* Yo! Wanna CHAT?! Maugans Co. is waiting for UR e-mail! Send us your COOL IDEAS! *~*~** We reply using our 56k modem!
                 </marquee>
             </div>
-
-            <p>Have an idea brewing, a project to discuss, or just <span class="blinking-text">CURIOUS</span> to learn more? Reach out and let's explore the possibilities. Don't be shy, send us an e-mail! <img src="https://web.archive.org/web/20090829142517im_/http://www.geocities.com/talkcity_palisades/messages/NEWEMAIL.GIF" alt="Spinning Email GIF" style="vertical-align: middle; height: 20px;"> </p>
+            
+            <p>Got a <span class="blinking-text">BURNING QUESTION</span>? Need a website that screams "THE INTERNET, CIRCA 1998!"? Drop us a line using this old-fashioned form thingy!</p>
             
             <form class="contact-form" id="contactForm">
-                <input type="text" name="name" placeholder="Your Name" required>
-                <input type="email" name="email" placeholder="Your Email" required>
-                <textarea name="message" placeholder="Tell us about your vision..." required></textarea>
-                <button type="submit" class="cta-button">Send Your Thoughts!</button>
+                <label for="yourName">YoUr NaMe:</label>
+                <input type="text" id="yourName" name="name" placeholder="Type ya name here!" required>
+                
+                <label for="yourEmail">YoUr E-MaIl:</label>
+                <input type="email" id="yourEmail" name="email" placeholder="your_cool_email@provider.com" required>
+                
+                <label for="yourMessage">TeLl Us WhAt'S Up:</label>
+                <textarea id="yourMessage" name="message" placeholder="Lay it on us, what's your grand web vision?!" required rows="5"></textarea>
+                <button type="submit" class="cta-button">SEND IT!!!</button>
             </form>
-            <img src="https://web.archive.org/web/20091027081917im_/http://www.geocities.com/petcitycentral/gifs/glitterline.gif" alt="Glitter Line Divider" class="geocities-gif" style="width:80%; height:15px; margin-top: 20px;">
+            <img src="https://web.archive.org/web/20091027081917im_/http://www.geocities.com/petcitycentral/gifs/glitterline.gif" alt="Glitter Line Divider" class="geocities-gif" style="width:90%; height:20px; margin-top: 20px;">
         </section>
     </main>
 
     <footer class="main-footer" id="mainFooterEra">
-        <p class="footer-copyright">&copy; <span id="currentYear">1999</span> <span class="logo-maugans">Maugans</span> <span class="co-highlight">Co.</span> All Rights Reserved??? Maybe!</p>
-        <p>This site is best viewed with Netscape Navigator 4.0 or Internet Explorer 5.0 at 800x600 resolution!</p>
+        <p class="footer-copyright">&copy; 1997-<span id="currentYear">1999</span> <span class="logo-maugans">Maugans</span> <span class="co-highlight">Co.</span> Where the Web is Still Wild!</p>
+        <p><img src="https://web.archive.org/web/20030429163310/http://www.geocities.com/clipart/pbi/buttons/downloads/ns_anim.gif" alt="Netscape Now!" class="small-gif"> This site is best viewed with Netscape Navigator 3.0 or Internet Explorer 4.0! <img src="https://web.archive.org/web/20091027093648/http://geocities.com/EnchantedForest/Dell/9920/grafix/buttons/iepower.gif" alt="Powered by IE" class="small-gif"></p>
+        <p>Recommended Resolution: 800x600 (or whatever your HUGE CRT monitor can handle!)</p>
         <div class="hit-counter-container">
             YOU ARE VISITOR NUMBER: 
-            <img src="https://web.archive.org/web/20030803010356im_/http://geocities.com/cgi-bin/counter" alt="0" class="hit-counter-img" id="hitCounterDigit0">
-            <img src="https://web.archive.org/web/20030803010356im_/http://geocities.com/cgi-bin/counter" alt="0" class="hit-counter-img" id="hitCounterDigit1">
-            <img src="https://web.archive.org/web/20030803010356im_/http://geocities.com/cgi-bin/counter" alt="0" class="hit-counter-img" id="hitCounterDigit2">
-            <img src="https://web.archive.org/web/20030803010356im_/http://geocities.com/cgi-bin/counter" alt="3" class="hit-counter-img" id="hitCounterDigit3">
-            <img src="https://web.archive.org/web/20030803010356im_/http://geocities.com/cgi-bin/counter" alt="7" class="hit-counter-img" id="hitCounterDigit4">
-            <span id="hitCounter">12345</span>
+            <span id="hitCounterText" style="font-weight:bold; font-size:1.2em; background-color:yellow; color:blue; padding: 0 3px;">12345</span>
+            </div>
+        <div class="guestbook-link">
+            <a href="#" onclick="alert('Our Guestbook is UNDER CONSTRUCTION! Check back L8R, alligator!'); return false;">
+            <img src="https://web.archive.org/web/20091027002439im_/http://geocities.com/Heartland/Ranch/6600/guestbook.gif" alt="guestbook" class="small-gif"> Sign Our Guestbook! <img src="https://web.archive.org/web/20091027002439im_/http://geocities.com/Heartland/Ranch/6600/guestbook.gif" alt="guestbook" class="small-gif">
+            </a>
         </div>
-        <a href="#" class="guestbook-link">Sign Our Guestbook! (Coming Soon!)</a>
         <img src="https://web.archive.org/web/20090728110159im_/http://www.geocities.com/christineilis/MIDIcowboy.gif" alt="Dancing Cowboy GIF" class="geocities-gif construction-gif-footer">
+        <p>This page was last updated: <span id="lastUpdated">May 13, 2025</span> (Actually, probably 1998)</p>
+        <p><img src="https://web.archive.org/web/20091027123020/http://www.geocities.com/heartland/pointe/1201/madeyes.gif" alt="Made with Windows Notepad" class="small-gif"> Proudly made with Windows Notepad!</p>
     </footer>
-
-    <div class="modal" id="portfolioModal" role="dialog" aria-modal="true" aria-labelledby="modalImageAriaLabel">
-        <div class="modal-content">
-            <img src="" alt="Portfolio Item Large View" id="modalImage" />
-            <span id="modalImageAriaLabel" class="sr-only">Large view of portfolio image</span>
-        </div>
-        <button class="modal-close" id="modalClose" aria-label="Close modal">
-            <i class="fas fa-times"></i>
-        </button>
-    </div>
-    <div class="sr-only" style="position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0;">
-        This is a screen-reader only class.
-    </div>
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const mainHeader = document.getElementById('mainHeader');
-        const menuToggle = document.getElementById('menuToggle');
-        const mainNav = document.getElementById('mainNav');
-        const navLinks = document.querySelectorAll('.main-nav a.nav-link');
-        const body = document.body;
-
-        const portfolioSection = document.getElementById('portfolio');
-        const whyUsSection = document.getElementById('why-us');
-        const contactSection = document.getElementById('contact');
-        const mainFooter = document.querySelector('.main-footer'); // Target the actual footer element
-        const geocitiesYearSpan = document.getElementById('currentYear');
-
-
-        if ('scrollRestoration' in history) {
-             history.scrollRestoration = 'manual';
-        }
-        window.addEventListener('load', () => {
-             window.scrollTo(0, 0);
-        });
-
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                mainHeader.classList.add('scrolled');
-            } else {
-                mainHeader.classList.remove('scrolled');
-            }
-        });
-
-        menuToggle.addEventListener('click', function() {
-            const isExpanded = mainNav.classList.toggle('active');
-            menuToggle.classList.toggle('open');
-            menuToggle.setAttribute('aria-expanded', isExpanded);
-            body.classList.toggle('modal-open', isExpanded && window.innerWidth < 769);
-        });
-
-        navLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
-                if (mainNav.classList.contains('active')) {
-                    mainNav.classList.remove('active');
-                    menuToggle.classList.remove('open');
-                    menuToggle.setAttribute('aria-expanded', 'false');
-                    body.classList.remove('modal-open');
-                }
-                const targetId = this.getAttribute('href');
-                if (targetId && targetId.startsWith('#')) {
-                    e.preventDefault(); 
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                         const headerOffset = mainHeader ? mainHeader.offsetHeight + 20 : 80; 
-                         const elementPosition = targetElement.getBoundingClientRect().top;
-                         const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-                         window.scrollTo({
-                             top: offsetPosition,
-                             behavior: 'smooth'
-                         });
-                    }
-                }
-            });
-        });
-
-        // --- Era Styling Logic ---
-        const sectionsForEraStyling = [
-            { el: portfolioSection, eraClass: 'era-2010s', threshold: 0.1 },
-            { el: whyUsSection, eraClass: 'era-late-2000s', threshold: 0.1 },
-            { el: contactSection, eraClass: 'era-early-2000s', threshold: 0.05 } // Lower threshold for earlier trigger
-        ];
-
-        const eraObserverOptions = { root: null, rootMargin: "0px 0px -40% 0px" }; // Adjust rootMargin to trigger earlier/later
-
-        const eraObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                const sectionConfig = sectionsForEraStyling.find(s => s.el === entry.target);
-                if (!sectionConfig) return;
-
-                if (entry.isIntersecting) {
-                    entry.target.classList.add(sectionConfig.eraClass);
-                    // Special handling for early 2000s footer and body background
-                    if (sectionConfig.el === contactSection) {
-                        mainFooter.classList.add('era-early-2000s');
-                        body.classList.add('era-early-2000s-active');
-                        if(geocitiesYearSpan) geocitiesYearSpan.textContent = "1998"; // Change year for GeoCities
-                        updateHitCounter(); // Start hit counter when section is visible
-                    }
-                } else {
-                    // Optionally remove class when scrolling out IF you want styles to revert upwards
-                    // For this project, we want them to persist as we scroll down.
-                    // However, if scrolling back up, we might want to revert.
-                    // For now, let's make it sticky once applied.
-                    // If you want to remove when scrolling UP past it:
-                    // entry.target.classList.remove(sectionConfig.eraClass);
-                    // if (sectionConfig.el === contactSection) {
-                    //    mainFooter.classList.remove('era-early-2000s');
-                    //    body.classList.remove('era-early-2000s-active');
-                    // }
-                }
-            });
-        }, eraObserverOptions);
-
-        sectionsForEraStyling.forEach(sectionConfig => {
-            if (sectionConfig.el) {
-                eraObserver.observe(sectionConfig.el);
-            }
-        });
-        
-        // --- Modern Section Visibility Observer & Active Nav Link ---
-        const modernSections = document.querySelectorAll('main section:not(#portfolio):not(#why-us):not(#contact)');
-        const sectionObserverOptions = {
-            root: null, threshold: 0.25, rootMargin: "-80px 0px -15% 0px"
-        };
-        let activeLinkTimeout;
-
-        const sectionVisibilityObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                const link = document.querySelector(`.main-nav a[href="#${entry.target.id}"]`);
-                // Fade in for all sections, including era-styled ones if they don't have their own animation
-                 if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                 }
-
-
-                // Active link logic (might need adjustment with era sections)
-                if (link) { // Only apply to links that exist in the nav
-                    if (entry.isIntersecting) {
-                        clearTimeout(activeLinkTimeout);
-                        activeLinkTimeout = setTimeout(() => {
-                            navLinks.forEach(l => l.classList.remove('active'));
-                            link.classList.add('active');
-                        }, 50);
-                    }
-                }
-            });
-        }, sectionObserverOptions);
-
-        document.querySelectorAll('main section').forEach(section => {
-            sectionVisibilityObserver.observe(section);
-             // Apply initial visibility for sections already in view on load (e.g. hero)
-            if (section.getBoundingClientRect().top < window.innerHeight && section.getBoundingClientRect().bottom > 0) {
-                section.classList.add('visible');
-            }
-        });
-        
-        function initialActiveLink() { 
-            let current = '';
-            const headerHeight = mainHeader ? mainHeader.offsetHeight + 100 : 150;
-            // Check all sections, including era-styled ones, for active link determination
-            document.querySelectorAll('main section').forEach(section => {
-                if (section.getBoundingClientRect().top <= headerHeight) {
-                    current = section.id;
-                }
-            });
-             navLinks.forEach(link => {
-                link.classList.remove('active');
-                const linkHref = link.getAttribute('href');
-                if (linkHref === `#${current}`) {
-                    link.classList.add('active');
-                }
-            });
-            if (!current && window.pageYOffset < (document.querySelector('main section') ? document.querySelector('main section').offsetTop - headerHeight : 0)) {
-                 navLinks.forEach(l => l.classList.remove('active'));
-            }
-        }
-        setTimeout(initialActiveLink, 150); 
-        window.addEventListener('scroll', initialActiveLink); 
-
-
-        const portfolioModal = document.getElementById('portfolioModal');
-        const modalImage = document.getElementById('modalImage');
-        const modalCloseButton = document.getElementById('modalClose');
-        const portfolioItemsGrid = document.querySelectorAll('.portfolio-grid .portfolio-item'); 
-        let previouslyFocusedElement; 
-
-        function openModal(imgSrc, altText) {
-            previouslyFocusedElement = document.activeElement; 
-            modalImage.src = imgSrc;
-            modalImage.alt = altText || "Large view of portfolio project"; 
-            portfolioModal.classList.add('active');
-            body.classList.add('modal-open'); 
-            modalCloseButton.focus(); 
-        }
-
-        function closeModal() {
-            portfolioModal.classList.remove('active');
-            body.classList.remove('modal-open'); 
-            if (previouslyFocusedElement) previouslyFocusedElement.focus();
-        }
-
-        portfolioItemsGrid.forEach(item => { 
-            item.addEventListener('click', () => {
-                // Only open modal if not in an "era" that changes portfolio display fundamentally
-                if (!portfolioSection.classList.contains('era-2010s')) { // Example condition
-                    const largeImgSrc = item.dataset.imgSrc;
-                    const altText = item.querySelector('img') ? item.querySelector('img').alt : 'Portfolio image'; 
-                    if (largeImgSrc) openModal(largeImgSrc, altText);
-                }
-            });
-            item.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                     if (!portfolioSection.classList.contains('era-2010s')) {
-                        e.preventDefault(); 
-                        const largeImgSrc = item.dataset.imgSrc;
-                        const altText = item.querySelector('img') ? item.querySelector('img').alt : 'Portfolio image';
-                        if (largeImgSrc) openModal(largeImgSrc, altText);
-                    }
-                }
-            });
-        });
-
-        if (modalCloseButton) modalCloseButton.addEventListener('click', closeModal);
-        if (portfolioModal) {
-            portfolioModal.addEventListener('click', (e) => { if (e.target === portfolioModal) closeModal(); });
-        }
-        document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && portfolioModal.classList.contains('active')) closeModal(); });
-
-        const slideshowContainer = document.getElementById('portfolioSlideshowMobile');
-        const slideshowTrack = document.getElementById('slideshowTrackMobile');
-        const prevButton = document.getElementById('slidePrevMobile');
-        const nextButton = document.getElementById('slideNextMobile');
-        const indicatorsContainer = document.getElementById('slideIndicatorsMobile');
-        const portfolioItemsDataSource = document.querySelectorAll('#portfolio .portfolio-grid .portfolio-item'); 
-
-        let currentSlideIndex = 0;
-        let slideshowInitialized = false;
-
-        function initializeMobileSlideshow() {
-            // Do not initialize if the 2010s era style is active for the portfolio section,
-            // as it uses a different layout and hides the mobile slideshow.
-            if (portfolioSection.classList.contains('era-2010s')) {
-                if(slideshowContainer) slideshowContainer.style.display = 'none';
-                return;
-            }
-
-            if (slideshowInitialized || !slideshowContainer || !slideshowTrack || portfolioItemsDataSource.length === 0) {
-                 if (slideshowContainer && portfolioItemsDataSource.length === 0) {
-                    slideshowContainer.innerHTML = '<p class="slideshow-no-items">No projects to display.</p>';
-                    if(prevButton) prevButton.style.display = 'none'; 
-                    if(nextButton) nextButton.style.display = 'none';
-                    if(indicatorsContainer) indicatorsContainer.style.display = 'none';
-                }
-                return;
-            }
-            
-            slideshowTrack.innerHTML = ''; 
-            if(indicatorsContainer) indicatorsContainer.innerHTML = ''; 
-
-            portfolioItemsDataSource.forEach((itemData, index) => {
-                const imgSrc = itemData.dataset.imgSrc || (itemData.querySelector('img') ? itemData.querySelector('img').src : 'https://placehold.co/600x400/cccccc/333333?text=Image+Missing&font=Inter');
-                const altText = itemData.querySelector('img') ? itemData.querySelector('img').alt : 'Portfolio project image';
-                const title = itemData.querySelector('.portfolio-item-overlay h4') ? itemData.querySelector('.portfolio-item-overlay h4').textContent : 'Project Title';
-                const category = itemData.querySelector('.portfolio-item-overlay p.category') ? itemData.querySelector('.portfolio-item-overlay p.category').textContent : 'Category';
-
-                const slide = document.createElement('div');
-                slide.className = 'slide-mobile';
-                slide.innerHTML = `
-                    <div class="slide-image-wrapper-mobile">
-                        <img src="${imgSrc}" alt="${altText}" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Image+Not+Found&font=Inter';">
-                    </div>
-                    <div class="slide-caption-mobile">
-                        <h4>${title}</h4>
-                        <p>${category}</p>
-                    </div>
-                `;
-                slideshowTrack.appendChild(slide);
-
-                if (indicatorsContainer) {
-                    const indicator = document.createElement('button');
-                    indicator.className = 'indicator-dot-mobile';
-                    indicator.setAttribute('aria-label', `Go to project ${index + 1}: ${title}`);
-                    indicator.addEventListener('click', () => showSlide(index));
-                    indicatorsContainer.appendChild(indicator);
-                }
-            });
-            
-            slideshowInitialized = true; 
-            updateSlideshowUI(); 
-            showSlide(0); 
-        }
-
-        function showSlide(index) {
-            const totalSlides = portfolioItemsDataSource.length;
-            if (totalSlides === 0 || !slideshowTrack) return; 
-
-            if (index >= totalSlides) currentSlideIndex = 0;
-            else if (index < 0) currentSlideIndex = totalSlides - 1;
-            else currentSlideIndex = index;
-            
-            slideshowTrack.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
-            updateIndicators(); 
-        }
-
-        function updateIndicators() {
-            if (!indicatorsContainer) return;
-            const indicators = indicatorsContainer.children;
-            for (let i = 0; i < indicators.length; i++) {
-                indicators[i].classList.toggle('active', i === currentSlideIndex);
-            }
+        // --- Update Footer Year ---
+        const currentYearSpan = document.getElementById('currentYear');
+        if (currentYearSpan) { // Set a "retro" end year
+            const startYear = 1997; // Or whenever your GeoCities site "started"
+            const retroCurrentYear = new Date().getFullYear() > 2003 ? 2003 : new Date().getFullYear(); // Cap at 2003 for authenticity
+            // currentYearSpan.textContent = retroCurrentYear; // Or a fixed year like 1999
         }
         
-        function updateSlideshowUI() {
-            if (portfolioSection.classList.contains('era-2010s')) return; // Don't run if 2010s style is active
-
-            const totalSlides = portfolioItemsDataSource.length;
-            const displayStyle = totalSlides <= 1 ? 'none' : 'flex'; 
-
-            if(prevButton) prevButton.style.display = displayStyle;
-            if(nextButton) nextButton.style.display = displayStyle;
-            if(indicatorsContainer) indicatorsContainer.style.display = totalSlides <= 1 ? 'none' : 'flex'; 
-
-            if (totalSlides === 0 && slideshowContainer) {
-                slideshowContainer.innerHTML = '<p class="slideshow-no-items">No projects to display.</p>';
-                 if(prevButton) prevButton.style.display = 'none'; 
-                if(nextButton) nextButton.style.display = 'none';
-            }
+        const lastUpdatedSpan = document.getElementById('lastUpdated');
+        if(lastUpdatedSpan) {
+            // Create a plausible retro date
+            const retroDate = new Date(1998, Math.floor(Math.random() * 12), Math.floor(Math.random() * 28) + 1);
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            lastUpdatedSpan.textContent = retroDate.toLocaleDateString('en-US', options);
         }
 
-        if (prevButton) prevButton.addEventListener('click', () => showSlide(currentSlideIndex - 1));
-        if (nextButton) nextButton.addEventListener('click', () => showSlide(currentSlideIndex + 1));
-        
-        function checkAndInitSlideshow() {
-            const isMobileView = window.innerWidth <= 768;
-            const desktopGridPortfolio = document.querySelector('#portfolio .portfolio-grid'); // Modern grid
 
-            if (portfolioSection.classList.contains('era-2010s')) {
-                 if(slideshowContainer) slideshowContainer.style.display = 'none';
-                 // The .era-2010s CSS rules already handle showing its specific grid
-                 return; 
-            }
+        // --- Early 2000s Hit Counter ---
+        const hitCounterEl = document.getElementById('hitCounterText');
+        let hitCount = Math.floor(Math.random() * 500) + 12000; // Start with a random-ish high number
 
-            if (isMobileView) {
-                if (!slideshowInitialized) { 
-                    initializeMobileSlideshow(); 
-                }
-                if (slideshowContainer) slideshowContainer.style.display = 'block';
-                if (desktopGridPortfolio) desktopGridPortfolio.style.display = 'none';
-            } else { 
-                if (slideshowContainer) slideshowContainer.style.display = 'none';
-                if (desktopGridPortfolio) desktopGridPortfolio.style.display = 'grid'; 
+        function updateHitCounter() {
+            hitCount++;
+            if (hitCounterEl) {
+                hitCounterEl.textContent = hitCount.toString();
             }
         }
+        // Update counter every few seconds for "activity"
+        setInterval(updateHitCounter, Math.floor(Math.random() * 3000) + 2000); // Random interval 2-5 seconds
+        updateHitCounter(); // Initial call
 
-        window.addEventListener('resize', checkAndInitSlideshow); 
-        checkAndInitSlideshow(); 
-
+        // --- Contact Form Alert ---
         const contactForm = document.getElementById('contactForm');
         if (contactForm) {
             contactForm.addEventListener('submit', function(e) {
                 e.preventDefault();
-                const isGeoCities = contactSection.classList.contains('era-early-2000s');
-                let messageText = 'Thank you for your message! We\'ll be in touch soon.';
-                if (isGeoCities) {
-                    messageText = '!!! THANX 4 UR E-MAIL !!! We will read it on our Pentium II !!!';
-                }
-
-                const tempMsg = document.createElement('p');
-                tempMsg.textContent = messageText;
-                
-                if (isGeoCities) {
-                    tempMsg.style.color = '#FF00FF'; // Magenta
-                    tempMsg.style.fontWeight = 'bold';
-                    tempMsg.style.fontFamily = '"Comic Sans MS", cursive';
-                    tempMsg.style.textAlign = 'center';
-                    tempMsg.style.border = '2px dashed #00FF00';
-                    tempMsg.style.padding = '10px';
-                    tempMsg.style.backgroundColor = '#FFFF00';
-                    tempMsg.style.marginTop = '15px';
-                } else {
-                    tempMsg.style.textAlign = 'center';
-                    tempMsg.style.color = 'var(--accent-primary)';
-                    tempMsg.style.marginTop = '1rem';
-                }
-                
-                contactForm.parentNode.insertBefore(tempMsg, contactForm.nextSibling);
+                const name = this.name.value || "Cyber Friend";
+                alert('HEY ' + name.toUpperCase() + '!!!\n\nTHX for your e-mail! We got it on our server (which is probably an old Pentium II under a desk somewhere).\n\nWe\'ll get back to you... eventually! Keep surfin\' the web! COWABUNGA!');
                 contactForm.reset();
-                setTimeout(() => tempMsg.remove(), isGeoCities ? 7000 : 5000);
             });
         }
 
-        // --- Early 2000s Hit Counter ---
-        const hitCounterEl = document.getElementById('hitCounter');
-        let hitCount = 12340; // Starting number
+        // --- Blinking Text using JS as <blink> is deprecated ---
+        // CSS animation is preferred, but here's a JS way if needed for more "control"
+        // This is an alternative if CSS animation `blink-text-geocities` isn't enough.
+        // const blinkElements = document.querySelectorAll('.blinking-text-js'); 
+        // if (blinkElements.length > 0) {
+        //     setInterval(() => {
+        //         blinkElements.forEach(el => {
+        //             el.style.visibility = (el.style.visibility === 'hidden' ? 'visible' : 'hidden');
+        //         });
+        //     }, 700); // Blink speed
+        // }
         
-        function setHitCounterDigit(digitElId, number) {
-            const digitEl = document.getElementById(digitElId);
-            if (digitEl) {
-                // In a real GeoCities counter, each digit is a separate image.
-                // We'll simulate by changing alt text, or one could use different image URLs per digit.
-                // For now, we're using generic placeholder images, so this won't visually change them much.
-                // The text 'hitCounter' span will show the number.
-                digitEl.alt = number.toString();
-                // Example: digitEl.src = `path/to/digit_${number}.gif`;
-            }
-        }
-
-        function updateHitCounter() {
-            if (contactSection.classList.contains('era-early-2000s')) { // Only run if in GeoCities mode
-                hitCount++;
-                const countString = hitCount.toString().padStart(5, '0');
-                if (hitCounterEl) {
-                    hitCounterEl.textContent = countString; // Update the text version
-                }
-                // Update individual digit images (if they were unique per number)
-                setHitCounterDigit('hitCounterDigit0', countString[0]);
-                setHitCounterDigit('hitCounterDigit1', countString[1]);
-                setHitCounterDigit('hitCounterDigit2', countString[2]);
-                setHitCounterDigit('hitCounterDigit3', countString[3]);
-                setHitCounterDigit('hitCounterDigit4', countString[4]);
-            }
-        }
-        // Initial call if page loads directly into the section (less likely with scroll restoration off)
-        // updateHitCounter();
-        // The eraObserver will call updateHitCounter when contact section becomes visible.
+        // --- Console message - an Easter egg ---
+        console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        console.log("   WelCoMe tO ThE CoNSoLe, HaX0R!  (づ｡◕‿‿◕｡)づ   ");
+        console.log("   This site runs on pure 90s nostalgia & <marquee> tags! ");
+        console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        console.log("Remember Angelfire? Lycos? Ask Jeeves?");
+        console.log("The good ol' days of dial-up... *shreeeeek screech bing bong*");
 
     });
     </script>
 
 </body>
 </html>
-
