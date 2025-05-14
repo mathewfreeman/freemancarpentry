@@ -14,7 +14,8 @@
             color: #00FF00; /* Bright Green text on black as a common default */
             margin: 0;
             padding: 0;
-            background-image: url('https://gifcities.org/images/bg/15/STARS15.GIF'); /* Starry night background - GifCities */
+            /* Using a more reliable generic animated stars, specific old ones are hard to guarantee */
+            background-image: url('https://www.animatedimages.org/data/media/467/animated-star-image-0011.gif');
             background-repeat: repeat;
             background-attachment: fixed; /* Stars stay in place! */
         }
@@ -46,7 +47,7 @@
             width: 90%;
             max-width: 850px; /* Wider than typical GeoCities, but still constrained */
             margin: 20px auto;
-            background-color: rgba(0, 0, 50, 0.6); /* Dark, slightly transparent blue over stars */
+            background-color: rgba(0, 0, 50, 0.75); /* Dark, slightly transparent blue over stars */
             border: 5px ridge #00CCCC; /* Teal 3D border */
             box-shadow: 0 0 25px #00FFFF, 0 0 10px #FFFFFF inset; /* Glowing effect */
             padding: 10px;
@@ -58,7 +59,8 @@
             padding: 15px;
             border-bottom: 5px double #00FF00; /* Bright Green double border */
             text-align: center;
-            background-image: url('https://gifcities.org/images/bg/22/techno.gif'); /* Techy header background - GifCities */
+            /* Using a more generic techno background if the specific GifCities one is unreliable */
+            background-image: url('https://www.animatedimages.org/data/media/58/animated-background-image-0020.gif');
         }
         .logo-container-wild .logo-maugans-wild {
             font-family: "Impact", Haettenschweiler, "Arial Narrow Bold", sans-serif;
@@ -176,8 +178,8 @@
 
         hr.section-divider-wild {
             border: 0;
-            height: 30px; /* Adjust to GIF height */
-            background-image: url('https://gifcities.org/images/hr/37/glitterline.gif'); /* Glitter line - GifCities */
+            height: 25px; 
+            background-image: url('https://www.fg-a.com/lines/black-orange-flame-animated-line.gif'); /* Example from fg-a.com */
             background-repeat: repeat-x;
             background-position: center;
             margin: 30px 0;
@@ -419,77 +421,79 @@
 <body>
 
     <div id="modern-site-link-banner-wild">
-        <img src="https://gifcities.org/images/ACTION/1/newred.gif" alt="NEW!" class="small-gif-icon"> Looking for our SUPER SLEEK 2025+ DESIGNS?! 
+        <img src="https://www.animatedimages.org/data/media/113/animated-new-image-0200.gif" alt="NEW!" class="small-gif-icon"> Looking for our SUPER SLEEK 2025+ DESIGNS?! 
         <a href="modern_site.html" title="View our main contemporary website">CLICK HERE for the FUTURE!</a>
-        <img src="https://gifcities.org/images/ACTION/1/newred.gif" alt="NEW!" class="small-gif-icon"> </div>
+        <img src="https://www.animatedimages.org/data/media/113/animated-new-image-0200.gif" alt="NEW!" class="small-gif-icon">
+    </div>
 
     <div id="page-wrapper-wild">
         <header class="main-header-wild">
             <div class="logo-container-wild">
                 <a href="#">
-                    <img src="https://gifcities.org/images/fire/1/flameani.gif" alt="flames" class="rotating-gif"> <span class="logo-maugans-wild">
+                    <img src="https://www.animatedimages.org/data/media/159/animated-fire-image-0070.gif" alt="flames" class="rotating-gif"> <span class="logo-maugans-wild">
                         <span class="char m">M</span><span class="char a1">A</span><span class="char u">U</span><span class="char g">G</span><span class="char a2">A</span><span class="char n">N</span><span class="char s">S</span>
                     </span>
                     <span class="logo-maugans-wild co">Co.</span>
-                     <img src="https://gifcities.org/images/fire/1/flameani.gif" alt="flames" class="rotating-gif"> </a>
+                     <img src="https://www.animatedimages.org/data/media/159/animated-fire-image-0070.gif" alt="flames" class="rotating-gif">
+                </a>
             </div>
             <nav class="main-nav-wild">
                 <ul>
                     <li><a href="#about-section-wild">About US!</a></li>
                     <li><a href="#services-section-wild">Our X-TREME Services!</a></li>
                     <li><a href="#portfolio-section-wild">KOOL Work!</a></li>
-                    <li><a href="#contact-section-wild">E-MAIL US! <img src="https://gifcities.org/images/email/1/NEWEMAIL.GIF" alt="Email" class="small-gif-icon"></a></li> </ul>
+                    <li><a href="#contact-section-wild">E-MAIL US! <img src="https://www.animatedimages.org/data/media/110/animated-e-mail-image-0025.gif" alt="Email" class="small-gif-icon"></a></li> </ul>
             </nav>
         </header>
 
         <div class="content-padding-wild">
 
             <section id="hero-wild-section" class="hero-wild">
-                <img src="https://gifcities.org/images/ACTION/1/welcome2.gif" alt="WELCOME TO OUR WEBSITE Banner" class="animated-banner-wild"> <h1 class="page-title-wild">MAUGANS CO. - WE BUILD WEBSITES THAT <span class="blinking-text-wild" style="color:#FF0000;">ROCK</span>!</h1>
+                <img src="https://www.textanim.com/gifs/images/welcome-banner-anim.gif" alt="WELCOME TO OUR WEBSITE Banner" class="animated-banner-wild"> <h1 class="page-title-wild">MAUGANS CO. - WE BUILD WEBSITES THAT <span class="blinking-text-wild" style="color:#FF0000;">ROCK</span>!</h1>
                 <p class="subtitle-wild">Get Ready to Enter the <span style="color:#00FFFF; font-weight:bold;">CYBER-ZONE</span> with a Website That's <span style="color:#FF00FF; font-style:italic;">TOTALLY WIRED</span>!</p>
-                <img src="https://gifcities.org/images/ACTION/1/animate.gif" alt="Spinning Computer Globe" style="height:80px; margin: 10px 0;"> <p style="font-size:18px; color:#FFFF00;">We're not just designers, we're <span style="font-family:'Courier New'; background-color:#333; padding:2px 4px;">WEB WIZARDS!</span></p>
-                <a href="#contact-section-wild" class="cta-button-wild">CLICK HERE FOR A FREE QUOTE! <img src="https://gifcities.org/images/ACTION/1/clickhereanim.gif" alt="click here" style="height:20px; vertical-align:middle;"></a> </section>
+                <img src="https://www.animatedimages.org/data/media/679/animated-globe-image-0083.gif" alt="Spinning Computer Globe" style="height:80px; margin: 10px 0;"> <p style="font-size:18px; color:#FFFF00;">We're not just designers, we're <span style="font-family:'Courier New'; background-color:#333; padding:2px 4px;">WEB WIZARDS!</span></p>
+                <a href="#contact-section-wild" class="cta-button-wild">CLICK HERE FOR A FREE QUOTE! <img src="https://www.animatedimages.org/data/media/146/animated-click-here-image-0010.gif" alt="click here" style="height:20px; vertical-align:middle;"></a> </section>
 
             <hr class="section-divider-wild">
             
             <div class="marquee-wild">
                 <marquee scrollamount="6" behavior="scroll" direction="left">
-                    <img src="https://gifcities.org/images/shine/1/sparklelamerblue.gif" class="small-gif-icon" alt="sparkle"> ** SPECIAL OFFER!! GET YOUR WEBSITE ONLINE FAST! **
-                    <img src="https://gifcities.org/images/shine/1/sparklelamerblue.gif" class="small-gif-icon" alt="sparkle">
+                    <img src="https://www.animatedimages.org/data/media/467/animated-star-image-0073.gif" class="small-gif-icon" alt="sparkle"> ** SPECIAL OFFER!! GET YOUR WEBSITE ONLINE FAST! **
+                    <img src="https://www.animatedimages.org/data/media/467/animated-star-image-0073.gif" class="small-gif-icon" alt="sparkle">
                     VISIT OUR PORTFOLIO! ** WE USE CUTTING EDGE HTML AND JAVA-SCRIPT! **
-                    <img src="https://gifcities.org/images/shine/1/sparklelamerblue.gif" class="small-gif-icon" alt="sparkle">
+                    <img src="https://www.animatedimages.org/data/media/467/animated-star-image-0073.gif" class="small-gif-icon" alt="sparkle">
                     CALLING ALL E-BUSINESSES! LET'S MAKE SOME NOISE ONLINE! **
-                    <img src="https://gifcities.org/images/shine/1/sparklelamerblue.gif" class="small-gif-icon" alt="sparkle">
+                    <img src="https://www.animatedimages.org/data/media/467/animated-star-image-0073.gif" class="small-gif-icon" alt="sparkle">
                 </marquee>
             </div>
 
             <section id="about-section-wild">
                 <h2 class="section-title-wild">
-                    <img src="https://gifcities.org/images/bulb/1/lightbulbflash.gif" alt="lightbulb gif" class="heading-gif-wild"> WHO ARE THESE <span style="color:#FFFF00;">WEB GURUS</span>?!
-                    <img src="https://gifcities.org/images/bulb/1/lightbulbflash.gif" alt="lightbulb gif" class="heading-gif-wild">
+                    <img src="https://www.animatedimages.org/data/media/132/animated-light-bulb-image-0015.gif" alt="lightbulb gif" class="heading-gif-wild"> WHO ARE THESE <span style="color:#FFFF00;">WEB GURUS</span>?!
+                    <img src="https://www.animatedimages.org/data/media/132/animated-light-bulb-image-0015.gif" alt="lightbulb gif" class="heading-gif-wild">
                 </h2>
-                <p style="text-align:center;"><img src="https://gifcities.org/images/people/1/surfer.gif" alt="surfer gif" style="height:50px; float:left; margin-right:10px;">Greetings, Fellow Netizen! We are <strong style="color:#00CCCC;">Maugans Co.</strong>, your friendly neighborhood navigators of the Information Superhighway! We eat, sleep, and breathe the World Wide Web! Our mission? To craft the most <span class="blinking-text-wild" style="color:#FF00FF;">DAZZLING</span>, attention-grabbing websites this side of the modem! We believe your website should be an <strong style="font-family:'Comic Sans MS'; color:#FFFF00;">EXPERIENCE</strong>, not just a page!</p>
+                <p style="text-align:center;"><img src="https://www.gifcen.com/wp-content/uploads/2022/04/surfer-gif-1.gif" alt="surfer gif" style="height:50px; float:left; margin-right:10px;">Greetings, Fellow Netizen! We are <strong style="color:#00CCCC;">Maugans Co.</strong>, your friendly neighborhood navigators of the Information Superhighway! We eat, sleep, and breathe the World Wide Web! Our mission? To craft the most <span class="blinking-text-wild" style="color:#FF00FF;">DAZZLING</span>, attention-grabbing websites this side of the modem! We believe your website should be an <strong style="font-family:'Comic Sans MS'; color:#FFFF00;">EXPERIENCE</strong>, not just a page!</p>
                 <p style="text-align:center;">We're passionate about pixels, fanatical about fonts (especially <strong style="color:#00FF00;">Comic Sans</strong> and <strong style="color:#FF6600;">Impact</strong>!), and obsessed with making your online presence <strong style="font-size:1.2em; color:#FF0000;">UNFORGETTABLE!</strong> So, buckle up, buttercup, and let's take your ideas to the <span style="text-decoration:underline; color:#00FFFF;">MAX!</span></p>
-                <p class="centered-text"><img src="https://gifcities.org/images/globe/1/globe2.gif" alt="spinning globe" style="height:60px;"></p> </section>
+                <p class="centered-text"><img src="https://www.animatedimages.org/data/media/679/animated-globe-image-0020.gif" alt="spinning globe" style="height:60px;"></p> </section>
 
             <hr class="section-divider-wild">
 
             <section id="services-section-wild">
                 <h2 class="section-title-wild">
-                    <img src="https://gifcities.org/images/bar/1/anibar.gif" alt="animated bar" class="heading-gif-wild" style="height:20px;"> OUR <span style="color:red;">S</span><span style="color:orange;">P</span><span style="color:yellow;">E</span><span style="color:green;">C</span><span style="color:blue;">I</span><span style="color:purple;">A</span><span style="color:red;">L</span><span style="color:orange;">T</span><span style="color:yellow;">I</span><span style="color:green;">E</span><span style="color:blue;">S</span>!
-                    <img src="https://gifcities.org/images/bar/1/anibar.gif" alt="animated bar" class="heading-gif-wild" style="height:20px;">
+                    <img src="https://www.animatedimages.org/data/media/1145/animated-dividing-line-image-0080.gif" alt="animated bar" class="heading-gif-wild" style="height:20px;"> OUR <span style="color:red;">S</span><span style="color:orange;">P</span><span style="color:yellow;">E</span><span style="color:green;">C</span><span style="color:blue;">I</span><span style="color:purple;">A</span><span style="color:red;">L</span><span style="color:orange;">T</span><span style="color:yellow;">I</span><span style="color:green;">E</span><span style="color:blue;">S</span>!
+                    <img src="https://www.animatedimages.org/data/media/1145/animated-dividing-line-image-0080.gif" alt="animated bar" class="heading-gif-wild" style="height:20px;">
                 </h2>
                 <div class="service-item-wild">
-                    <h3 class="subsection-title-wild"><img src="https://gifcities.org/images/computer/1/comp08.gif" alt="computer gif" class="service-icon-wild">Full-Blast Web Page Construction!</h3> <p>We use the latest <strong style="color:#FFFF00;">HTML</strong> tricks and even some <strong style="color:#00FF00;">Java-Applets</strong> (if you're feeling brave!) to build pages that will make your competitors jealous! Optimized for Netscape AND Internet Explorer! <span class="blinking-text-wild" style="color:#00FFFF;">WOW!</span></p>
+                    <h3 class="subsection-title-wild"><img src="https://www.animatedimages.org/data/media/66/animated-computer-image-0068.gif" alt="computer gif" class="service-icon-wild">Full-Blast Web Page Construction!</h3> <p>We use the latest <strong style="color:#FFFF00;">HTML</strong> tricks and even some <strong style="color:#00FF00;">Java-Applets</strong> (if you're feeling brave!) to build pages that will make your competitors jealous! Optimized for Netscape AND Internet Explorer! <span class="blinking-text-wild" style="color:#00FFFF;">WOW!</span></p>
                 </div>
                 <div class="service-item-wild">
-                     <h3 class="subsection-title-wild"><img src="https://gifcities.org/images/mouse/1/mouseworld.gif" alt="mouse world" class="service-icon-wild">Graphics That Go <span style="font-size:1.3em; color:#FF0000;">BOOM!</span></h3> <p>Need a logo that <strong style="color:#FF6600;">FLAMES</strong>? How about some <strong style="color:#FF00FF;">3D text</strong> that spins right off the page? Our graphic artists are masters of Paint Shop Pro and know how to make your images POP! We love <strong style="color:#00CCCC;">Animated GIFs!</strong></p>
+                     <h3 class="subsection-title-wild"><img src="https://www.animatedimages.org/data/media/71/animated-mouse-image-0032.gif" alt="mouse world" class="service-icon-wild">Graphics That Go <span style="font-size:1.3em; color:#FF0000;">BOOM!</span></h3> <p>Need a logo that <strong style="color:#FF6600;">FLAMES</strong>? How about some <strong style="color:#FF00FF;">3D text</strong> that spins right off the page? Our graphic artists are masters of Paint Shop Pro and know how to make your images POP! We love <strong style="color:#00CCCC;">Animated GIFs!</strong></p>
                 </div>
                 <div class="service-item-wild">
-                   <h3 class="subsection-title-wild"><img src="https://gifcities.org/images/email/1/E-mailme.gif" alt="email me" class="service-icon-wild">E-Mail Links & <span style="font-family:'Comic Sans MS'; color:#00FF00;">Guestbooks!</span></h3> <p>Let your visitors get in touch with a cool animated e-mail link! And what's a website without a <strong style="color:#FFFF00;">GUESTBOOK</strong> for all your fans to sign?! We'll set you up, no problem!</p>
+                   <h3 class="subsection-title-wild"><img src="https://www.animatedimages.org/data/media/110/animated-e-mail-image-0050.gif" alt="email me" class="service-icon-wild">E-Mail Links & <span style="font-family:'Comic Sans MS'; color:#00FF00;">Guestbooks!</span></h3> <p>Let your visitors get in touch with a cool animated e-mail link! And what's a website without a <strong style="color:#FFFF00;">GUESTBOOK</strong> for all your fans to sign?! We'll set you up, no problem!</p>
                 </div>
                 <div class="service-item-wild">
-                    <h3 class="subsection-title-wild"><img src="https://gifcities.org/images/counter/1/counter2.gif" alt="counter gif" class="service-icon-wild">Hit Counters & Site Promotion!</h3> <p>Want to see how <strong style="color:#00FF00;">POPULAR</strong> your site is? We'll install a <strong style="color:#FF00FF;">HIT COUNTER</strong> that ticks up with every visitor! We can also submit your site to all the <strong style="color:#FFFF00;">HOTTEST</strong> search engines like AltaVista, Lycos, and WebCrawler!</p>
+                    <h3 class="subsection-title-wild"><img src="https://www.picgifs.com/graphics/c/counters/graphics-counters-971007.gif" alt="counter gif" class="service-icon-wild">Hit Counters & Site Promotion!</h3> <p>Want to see how <strong style="color:#00FF00;">POPULAR</strong> your site is? We'll install a <strong style="color:#FF00FF;">HIT COUNTER</strong> that ticks up with every visitor! We can also submit your site to all the <strong style="color:#FFFF00;">HOTTEST</strong> search engines like AltaVista, Lycos, and WebCrawler!</p>
                 </div>
             </section>
 
@@ -497,8 +501,8 @@
 
             <section id="portfolio-section-wild">
                 <h2 class="section-title-wild">
-                    <img src="https://gifcities.org/images/ACTION/1/camera.gif" alt="camera gif" class="heading-gif-wild"> OUR <span class="blinking-text-wild" style="color:#FFFF00;">AWESOME</span> PORTFOLIO!
-                    <img src="https://gifcities.org/images/ACTION/1/camera.gif" alt="camera gif" class="heading-gif-wild">
+                    <img src="https://www.animatedimages.org/data/media/60/animated-camera-image-0030.gif" alt="camera gif" class="heading-gif-wild"> OUR <span class="blinking-text-wild" style="color:#FFFF00;">AWESOME</span> PORTFOLIO!
+                    <img src="https://www.animatedimages.org/data/media/60/animated-camera-image-0030.gif" alt="camera gif" class="heading-gif-wild">
                 </h2>
                 <p class="centered-text" style="color:#00FF00;">Feast your eyes on these digital masterpieces! (Actual client sites are even <strong style="color:#FF00FF;">MORE</strong> mind-blowing!)</p>
                 <div class="portfolio-grid-wild">
@@ -526,17 +530,17 @@
 
             <section id="why-us-wild">
                 <h2 class="section-title-wild" style="color:#FF00FF;">
-                    <img src="https://gifcities.org/images/star/1/wwwgamelanstar.gif" alt="spinning star" class="heading-gif-wild"> WHY ARE WE SO <span style="font-size:1.2em;">RAD</span>?!
-                    <img src="https://gifcities.org/images/star/1/wwwgamelanstar.gif" alt="spinning star" class="heading-gif-wild">
+                    <img src="https://www.animatedimages.org/data/media/467/animated-star-image-0110.gif" alt="spinning star" class="heading-gif-wild"> WHY ARE WE SO <span style="font-size:1.2em;">RAD</span>?!
+                    <img src="https://www.animatedimages.org/data/media/467/animated-star-image-0110.gif" alt="spinning star" class="heading-gif-wild">
                 </h2>
                 <div class="why-us-point-wild">
-                    <h4><img src="https://gifcities.org/images/eye/1/eyeball.gif" alt="eye" class="small-gif-icon"> WE SPEAK YOUR LANGUAGE (HTML, GIF, and <span class="blinking-text-wild" style="color:#00FF00;">AWESOME!</span>)</h4> <p>No confusing corporate mumbo-jumbo here! We're straight shooters who love to make cool stuff for the web. We were here when it all started!</p>
+                    <h4><img src="https://www.animatedimages.org/data/media/117/animated-eye-image-0035.gif" alt="eye" class="small-gif-icon"> WE SPEAK YOUR LANGUAGE (HTML, GIF, and <span class="blinking-text-wild" style="color:#00FF00;">AWESOME!</span>)</h4> <p>No confusing corporate mumbo-jumbo here! We're straight shooters who love to make cool stuff for the web. We were here when it all started!</p>
                 </div>
                 <div class="why-us-point-wild">
-                    <h4><img src="https://gifcities.org/images/ACTION/1/hotanim.gif" alt="hot" class="small-gif-icon"> OUR DESIGNS ARE <span style="color:#FF6600; font-weight:bold;">HOTTER</span> THAN A DIAL-UP MODEM AFTER DOWNLOADING A JPEG!</h4> <p>Forget boring, cookie-cutter websites. We inject <strong style="color:#00CCCC;">PERSONALITY</strong> and <strong style="color:#FF00FF;">ENERGY</strong> into every pixel we place. Your visitors won't know what hit 'em!</p>
+                    <h4><img src="https://www.animatedimages.org/data/media/113/animated-hot-image-0005.gif" alt="hot" class="small-gif-icon"> OUR DESIGNS ARE <span style="color:#FF6600; font-weight:bold;">HOTTER</span> THAN A DIAL-UP MODEM AFTER DOWNLOADING A JPEG!</h4> <p>Forget boring, cookie-cutter websites. We inject <strong style="color:#00CCCC;">PERSONALITY</strong> and <strong style="color:#FF00FF;">ENERGY</strong> into every pixel we place. Your visitors won't know what hit 'em!</p>
                 </div>
                 <div class="why-us-point-wild">
-                    <h4><img src="https://gifcities.org/images/smiley/1/excite.gif" alt="excited" class="small-gif-icon"> WE'RE <span style="text-decoration:underline wavy #FFFF00;">OBSESSED</span> WITH MAKING YOU HAPPY!</h4> <p>Your vision + our caffeine-fueled creativity = A website that will make you wanna do the Macarena! We won't rest until your site is the talk of the chatrooms!</p>
+                    <h4><img src="https://www.animatedimages.org/data/media/169/animated-smiley-image-0115.gif" alt="excited" class="small-gif-icon"> WE'RE <span style="text-decoration:underline wavy #FFFF00;">OBSESSED</span> WITH MAKING YOU HAPPY!</h4> <p>Your vision + our caffeine-fueled creativity = A website that will make you wanna do the Macarena! We won't rest until your site is the talk of the chatrooms!</p>
                 </div>
             </section>
             
@@ -544,12 +548,12 @@
 
             <section id="contact-section-wild">
                 <h2 class="section-title-wild" style="color:#FFFF00;">
-                    <img src="https://gifcities.org/images/email/1/emailme.gif" alt="email envelope flying" class="heading-gif-wild" style="height:40px;"> REACH OUT & TOUCH SOMEONE (VIA E-MAIL)!
-                    <img src="https://gifcities.org/images/email/1/emailme.gif" alt="email envelope flying" class="heading-gif-wild" style="height:40px;">
+                    <img src="https://www.animatedimages.org/data/media/110/animated-e-mail-image-0078.gif" alt="email envelope flying" class="heading-gif-wild" style="height:40px;"> REACH OUT & TOUCH SOMEONE (VIA E-MAIL)!
+                    <img src="https://www.animatedimages.org/data/media/110/animated-e-mail-image-0078.gif" alt="email envelope flying" class="heading-gif-wild" style="height:40px;">
                 </h2>
                 
                 <p class="centered-text" style="font-size:18px; color:#00FF00;">Got a <span class="blinking-text-wild" style="color:#FF0000;">BURNING DESIRE</span> for an <span style="font-family:'Comic Sans MS'; color:#00FFFF;">OUTRAGEOUS</span> website? Don't be a stranger! Drop us a line, send a carrier pigeon, or use this <strong style="color:#FFFF00;">FUTURISTIC</strong> form below!</p>
-                <p class="centered-text"><img src="https://gifcities.org/images/construct/1/CONSTRUCTION.GIF" alt="Under Construction" style="height: 60px; margin:10px 0;"></p> <form class="contact-form-wild" id="contactFormWild">
+                <p class="centered-text"><img src="https://www.animatedimages.org/data/media/69/animated-construction-image-0017.gif" alt="Under Construction" style="height: 60px; margin:10px 0;"></p> <form class="contact-form-wild" id="contactFormWild">
                     <div>
                         <label for="contactNameWild">YoUr NaMe (OR ALIAS!):</label>
                         <input type="text" id="contactNameWild" name="name" required placeholder="e.g. CyberSurferX2000">
@@ -569,16 +573,15 @@
 
         </div> <footer class="main-footer-wild">
             <p class="blinking-text-wild" style="color:#FFFF00; font-size:16px;">&copy; 1998 - <span id="currentYearWild">2001</span> MAUGANS CO. - Rockin' The Web Since The Dial-Up Days!</p>
-            <p><img src="https://gifcities.org/images/button/2/ns_anim.gif" alt="Netscape Now!" class="small-gif-icon"> This site is best viewed with Netscape Navigator 4.0+ or Internet Explorer 5.0+! <img src="https://gifcities.org/images/button/2/iepower.gif" alt="Powered by IE" class="small-gif-icon"></p>
+            <p><img src="https://www.animatedimages.org/data/media/1155/animated-netscape-image-0002.gif" alt="Netscape Now!" class="small-gif-icon"> This site is best viewed with Netscape Navigator 4.0+ or Internet Explorer 5.0+! <img src="https://www.gifimages.org/data/media/348/powered-by-internet-explorer-animated-image-0008.gif" alt="Powered by IE" class="small-gif-icon"></p>
             <p>Set your monitors to 800x600 for <strong style="color:#00FF00;">MAXIMUM</strong> impact!</p>
             <div class="hit-counter-wild">
                 U R Visitor # <span id="hitCounterWild">12345</span> !!!
             </div>
             <div class="footer-badges-wild">
-                <a href="#"><img src="https://gifcities.org/images/button/1/htmlgtea.gif" alt="HTML Guru"></a>
-                <a href="#"><img src="https://gifcities.org/images/button/1/notepad.gif" alt="Made with Notepad"></a>
-                <a href="#"><img src="https://gifcities.org/images/button/1/madeyes.gif" alt="Made with Windows"></a>
-                <a href="#"><img src="https://gifcities.org/images/construct/1/dudecomp21.gif" alt="Site Under Construction Dude"></a>
+                <a href="#"><img src="https://www.picgifs.com/graphics/h/html-goodies/graphics-html-goodies-230916.gif" alt="HTML Goodies"></a>
+                <a href="#"><img src="https://www.picgifs.com/graphics/n/notepad/graphics-notepad-400200.gif" alt="Notepad"></a> <a href="#"><img src="https://www.animatedimages.org/data/media/133/animated-windows-image-0010.gif" alt="Windows Flag"></a>
+                <a href="#"><img src="https://www.animatedimages.org/data/media/69/animated-construction-image-0078.gif" alt="Site Under Construction Dude"></a>
             </div>
              <p style="margin-top:10px; font-size:11px; color:#888888;">Last Updated: <span id="lastUpdatedWild">Whenever we felt like it! (Probably yesterday)</span></p>
         </footer>
