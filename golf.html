@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zeke Berry Charity Golf Outing</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        maize: '#FFCB05',
+                        maizeHover: '#E5B600',
+                        navy: '#00274C',
+                        navyLight: '#003A70',
+                        offWhite: '#F8F9FA'
+                    },
+                    fontFamily: {
+                        block: ['"Bebas Neue"', 'sans-serif'],
+                        body: ['"Outfit"', 'sans-serif']
+                    },
+                    boxShadow: {
+                        'plush': '0 20px 40px -15px rgba(0, 39, 76, 0.2)',
+                        'float': '0 30px 60px -20px rgba(0, 39, 76, 0.3)',
+                    },
+                    transitionTimingFunction: {
+                        'bounce': 'cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Animations & Styles */
+        body {
+            background-color: #F8F9FA;
+            overflow-x: hidden;
+        }
+
+        /* Scroll Reveal Utility */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 { transition-delay: 100ms; }
+        .reveal-delay-2 { transition-delay: 200ms; }
+        .reveal-delay-3 { transition-delay: 300ms; }
+
+        /* Floating elements animation */
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(2deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        .animate-float-delayed {
+            animation: float 7s ease-in-out infinite;
+            animation-delay: 2s;
+        }
+
+        /* Dynamic Background Pattern */
+        .bg-pattern {
+            background-image: radial-gradient(#FFCB05 2px, transparent 2px);
+            background-size: 40px 40px;
+            opacity: 0.05;
+        }
+
+        /* Slanted Section Dividers */
+        .slant-bottom {
+            clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%);
+        }
+        .slant-top {
+            clip-path: polygon(0 5%, 100% 0, 100% 100%, 0 100%);
+            margin-top: -5%;
+        }
+
+        /* Blocky Text Stroke Effect */
+        .text-stroke-maize {
+            -webkit-text-stroke: 2px #FFCB05;
+            color: transparent;
+        }
+
+        /* Hide scrollbar for cleaner look */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F8F9FA;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #00274C;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body class="font-body text-navy antialiased">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-4 px-6 md:px-12">
+        <div class="max-w-7xl mx-auto flex justify-between items-center bg-navy/95 backdrop-blur-md rounded-full shadow-lg px-6 py-3 border border-white/10">
+            <a href="#" class="font-block text-2xl tracking-wide text-white flex items-center gap-2">
+                <i class="ph-fill ph-golf text-maize text-3xl"></i>
+                ZB<span class="text-maize">10</span> GOLF
+            </a>
+            <div class="hidden md:flex gap-8 font-semibold text-sm tracking-widest uppercase text-white/90">
+                <a href="#event" class="hover:text-maize transition-colors">The Event</a>
+                <a href="#foundation" class="hover:text-maize transition-colors">The Foundation</a>
+                <a href="#zeke" class="hover:text-maize transition-colors">About Zeke</a>
+            </div>
+            <a href="#register" class="bg-maize text-navy px-6 py-2 rounded-full font-bold uppercase tracking-wide hover:bg-white transition-all duration-300 hover:shadow-plush hover:-translate-y-1">
+                Register
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative min-h-screen flex items-center justify-center pt-40 pb-48 overflow-hidden bg-navy slant-bottom">
+        <!-- Abstract Background Elements -->
+        <div class="absolute inset-0 bg-pattern"></div>
+        <div class="absolute top-20 right-10 w-64 h-64 bg-maize rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-float"></div>
+        <div class="absolute bottom-10 left-10 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float-delayed"></div>
+        
+        <div class="relative z-10 max-w-7xl mx-auto px-6 text-center">
+            <div class="reveal">
+                <p class="text-maize font-bold tracking-[0.3em] uppercase mb-4 text-sm md:text-lg">The Inaugural</p>
+            </div>
+            
+            <h1 class="reveal reveal-delay-1 font-block text-7xl md:text-[9rem] lg:text-[12rem] leading-none tracking-normal text-white mb-2 drop-shadow-2xl flex flex-col">
+                <span class="block hover:scale-105 transition-transform duration-500 ease-bounce">ZEKE BERRY</span>
+                <span class="block text-stroke-maize hover:scale-105 transition-transform duration-500 ease-bounce">CHARITY GOLF</span>
+                <span class="block text-maize hover:scale-105 transition-transform duration-500 ease-bounce">OUTING</span>
+            </h1>
+            
+            <div class="reveal reveal-delay-2 mt-8 md:mt-12 max-w-2xl mx-auto">
+                <p class="text-xl md:text-3xl text-offWhite font-light leading-relaxed">
+                    Trading the gridiron for the green to benefit the <br/>
+                    <strong class="font-semibold text-white">Hadley Huffman Foundation</strong>.
+                </p>
+            </div>
+
+            <div class="reveal reveal-delay-3 mt-12 flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#register" class="bg-maize text-navy px-10 py-4 rounded-full font-bold text-lg uppercase tracking-widest hover:bg-white transition-all duration-300 shadow-float hover:-translate-y-2 flex items-center justify-center gap-2">
+                    Secure Your Spot <i class="ph-bold ph-arrow-right"></i>
+                </a>
+                <a href="#foundation" class="bg-white/10 text-white border border-white/30 px-10 py-4 rounded-full font-bold text-lg uppercase tracking-widest hover:bg-white/20 transition-all duration-300 flex items-center justify-center gap-2 backdrop-blur-sm">
+                    Learn More
+                </a>
+            </div>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-20 md:bottom-16 left-1/2 -translate-x-1/2 animate-bounce text-white/50 z-20">
+            <i class="ph-bold ph-caret-down text-3xl"></i>
+        </div>
+    </header>
+
+    <!-- The Event Section -->
+    <section id="event" class="py-24 relative bg-offWhite">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="reveal">
+                    <h2 class="font-block text-6xl md:text-8xl text-navy mb-6 leading-none">A Day on <br>the <span class="text-maize">Links</span></h2>
+                    <p class="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed">
+                        Join standout defensive back Zeke Berry for an unforgettable day of golf at <strong>Lake Forest Golf Club</strong> in Ann Arbor. Enjoy 18 holes of championship golf, exclusive apparel, food, drinks, and the chance to interact with local sports heroes—all for an incredible cause.
+                    </p>
+                    
+                    <div class="bg-white p-6 md:p-8 rounded-3xl shadow-plush mb-8">
+                        <div class="flex flex-col md:flex-row md:items-end justify-between border-b border-gray-100 pb-4 mb-6">
+                            <h3 class="font-block text-3xl text-navy">Event Schedule</h3>
+                            <span class="font-bold text-maizeHover text-lg">June 7, 2026</span>
+                        </div>
+                        <ul class="space-y-3 text-base md:text-lg">
+                            <li class="flex flex-col sm:flex-row sm:items-center border-b border-gray-50 pb-2 last:border-0 last:pb-0"><span class="font-bold text-maizeHover w-32 shrink-0">7:15 a.m.</span> <span class="text-navy flex-1">Registration / Driving Range</span></li>
+                            <li class="flex flex-col sm:flex-row sm:items-center border-b border-gray-50 pb-2 last:border-0 last:pb-0"><span class="font-bold text-maizeHover w-32 shrink-0">7:45 a.m.</span> <span class="text-navy flex-1">Welcome Remarks</span></li>
+                            <li class="flex flex-col sm:flex-row sm:items-center border-b border-gray-50 pb-2 last:border-0 last:pb-0"><span class="font-bold text-maizeHover w-32 shrink-0">8:00 a.m.</span> <span class="text-navy flex-1">Shotgun</span></li>
+                            <li class="flex flex-col sm:flex-row sm:items-center border-b border-gray-50 pb-2 last:border-0 last:pb-0"><span class="font-bold text-maizeHover w-32 shrink-0">10:00 a.m.</span> <span class="text-navy flex-1">Lunch on The Turn (Until 12:00 p.m.)</span></li>
+                            <li class="flex flex-col sm:flex-row sm:items-center border-b border-gray-50 pb-2 last:border-0 last:pb-0"><span class="font-bold text-maizeHover w-32 shrink-0">2:00 p.m.</span> <span class="text-navy flex-1">Golf Concludes</span></li>
+                            <li class="flex flex-col sm:flex-row sm:items-center border-b border-gray-50 pb-2 last:border-0 last:pb-0"><span class="font-bold text-maizeHover w-32 shrink-0">2:00 p.m.</span> <span class="text-navy flex-1">Dinner, Drinks, & Remarks (Until 4:00 p.m.)</span></li>
+                            <li class="flex flex-col sm:flex-row sm:items-center border-b border-gray-50 pb-2 last:border-0 last:pb-0"><span class="font-bold text-maizeHover w-32 shrink-0">3:00 p.m.</span> <span class="text-navy flex-1">Closing Program & Raffles</span></li>
+                            <li class="flex flex-col sm:flex-row sm:items-center"><span class="font-bold text-maizeHover w-32 shrink-0">4:00 p.m.</span> <span class="text-navy flex-1">Event Concludes</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="reveal reveal-delay-1 relative h-full flex flex-col">
+                    <!-- Stylized Image Placeholder / Graphic -->
+                    <div class="flex-1 rounded-[3rem] overflow-hidden bg-navy relative shadow-float group min-h-[500px]">
+                        <div class="absolute inset-0 bg-pattern opacity-20"></div>
+                        <div class="absolute top-10 right-10">
+                            <i class="ph-fill ph-flag-pennant text-maize opacity-10 group-hover:scale-110 transition-transform duration-700" style="font-size: 15rem;"></i>
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-navy via-navy/80 to-transparent opacity-90"></div>
+                        
+                        <div class="absolute inset-0 p-8 flex flex-col justify-end">
+                            <div class="inline-block bg-maize text-navy font-bold px-4 py-1 rounded-full mb-6 self-start text-sm tracking-widest uppercase shadow-lg">
+                                New Special Challenges!
+                            </div>
+                            
+                            <div class="space-y-4">
+                                <div class="bg-white/10 backdrop-blur-md border border-white/20 p-5 md:p-6 rounded-2xl text-white hover:bg-white/20 transition-colors">
+                                    <h3 class="font-block text-2xl tracking-wide text-maize flex items-center gap-3">
+                                        <i class="ph-bold ph-strategy text-3xl"></i> Outdrive the Lineman!
+                                    </h3>
+                                    <p class="text-sm font-light mt-2 leading-relaxed">Challenge current Michigan Defensive Lineman <strong>Blake Frazier</strong> to a long-drive competition on a specified hole! (Non-contact, of course!)</p>
+                                </div>
+                                
+                                <div class="bg-white/10 backdrop-blur-md border border-white/20 p-5 md:p-6 rounded-2xl text-white hover:bg-white/20 transition-colors">
+                                    <h3 class="font-block text-2xl tracking-wide text-maize flex items-center gap-3">
+                                        <i class="ph-bold ph-t-shirt text-3xl"></i> Win Autographed Merch
+                                    </h3>
+                                    <p class="text-sm font-light mt-2 leading-relaxed">Chance to win exclusive, signed Michigan Wolverines gear from Zeke and other Wolverine players in challenges and raffles.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Foundation Section (Crucial context based on search) -->
+    <section id="foundation" class="py-32 bg-maize relative slant-top slant-bottom text-navy overflow-hidden">
+        <div class="absolute top-0 right-0 w-1/2 h-full bg-white opacity-10 transform skew-x-12 translate-x-32"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="text-center max-w-4xl mx-auto mb-16 reveal">
+                <i class="ph-fill ph-heartbeat text-6xl text-navy mb-6"></i>
+                <h2 class="font-block text-6xl md:text-8xl mb-6 leading-none">The Hadley Huffman <br><span class="text-white">Foundation</span></h2>
+                <a href="#" class="inline-block bg-white text-navy px-8 py-3 rounded-full font-bold uppercase tracking-wide hover:bg-navy hover:text-white transition-all duration-300 shadow-float mt-4">Donate Now</a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 bg-white/40 backdrop-blur-sm p-8 md:p-12 rounded-[3rem] border border-white/50 reveal reveal-delay-1">
+                <div class="space-y-6 text-navyLight font-medium leading-relaxed">
+                    <p>
+                        This golf outing is proud to support the Hadley Huffman Foundation. Founded in 2019 while Hadley was a student at Wayne State University, the foundation is dedicated to addressing systemic barriers to medical access and supporting organizations that are working to advance equitable and accessible healthcare for underserved communities.
+                    </p>
+                    <p>
+                        From a young age, Hadley demonstrated a deep commitment to equity, using her voice and platform to advocate for marginalized communities. Through attending marches, writing to lawmakers, and using her online presence to raise awareness, she recognized the importance of community engagement and the role we all play in challenging systemic inequities.
+                    </p>
+                </div>
+                <div class="space-y-6 text-navyLight font-medium leading-relaxed">
+                    <p>
+                        During her time at Wayne State University, Hadley participated in a medical volunteer program in Portugal that further shaped her perspective on global healthcare disparities in the United States. This experience, coupled with her passion for equity, led her to establish Students Against Medical Racism, an initiative set in the belief that accessible, equitable, and affordable healthcare is a fundamental human right, not a privilege.
+                    </p>
+                    <p>
+                        Although she passed away in 2021, this foundation has become part of her legacy, ensuring that all people, regardless of race, class, or gender, can easily access safe, equitable, and affordable healthcare. Today, Hadley's vision lives on through the continued efforts of her family, friends, and the community she inspired.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Zeke Section -->
+    <section id="zeke" class="py-24 bg-offWhite relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col-reverse lg:flex-row gap-16 items-center">
+                
+                <div class="w-full lg:w-5/12 reveal relative">
+                    <div class="relative rounded-[3rem] overflow-hidden aspect-[3/4] bg-navy shadow-float">
+                        <!-- Abstract Player Representation -->
+                        <div class="absolute inset-0 flex items-center justify-center flex-col">
+                            <span class="font-block text-[15rem] text-white/5 leading-none absolute top-10">10</span>
+                            <i class="ph-fill ph-football text-maize/80 text-9xl z-10 mb-8 hover:rotate-12 transition-transform duration-500"></i>
+                            <h3 class="font-block text-5xl text-white z-10 tracking-widest">BERRY</h3>
+                        </div>
+                    </div>
+                    <!-- Stats Card Floating -->
+                    <div class="absolute -bottom-10 -right-6 md:-right-10 bg-white p-6 rounded-3xl shadow-plush w-64 border-b-4 border-maize">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-bold text-navy uppercase text-sm tracking-wider">Status</span>
+                            <span class="bg-green-100 text-green-700 px-2 py-1 rounded-full text-xs font-bold">ACTIVE</span>
+                        </div>
+                        <h4 class="font-block text-3xl text-navy">#10</h4>
+                        <p class="text-sm text-gray-500">Defensive Back</p>
+                    </div>
+                </div>
+
+                <div class="w-full lg:w-7/12 reveal reveal-delay-1">
+                    <h2 class="font-block text-6xl md:text-8xl text-navy mb-6 leading-none">Making an Impact <br><span class="text-maize">Off the Field</span></h2>
+                    
+                    <div class="space-y-6 text-lg text-gray-600 mb-8 leading-relaxed">
+                        <p>
+                            <strong class="text-navy">Zeke Berry</strong> is a defensive back for the Michigan Wolverines, known for his physicality, versatility, and instinctive playmaking in the secondary. A De La Salle High School standout, Berry has been part of Michigan's championship-level defense and continues to develop as a leader on and off the field.
+                        </p>
+                        
+                        <div class="bg-white p-8 rounded-3xl border-l-4 border-maize shadow-plush mt-8">
+                            <h3 class="font-block text-3xl mb-4 text-navy">Zeke Berry Foundation</h3>
+                            <p class="mb-4 text-base">
+                                The Zeke Berry Foundation is dedicated to supporting individuals and families experiencing homelessness and uplifting communities in need. Built on a commitment to giving back, the foundation focuses on providing resources, support, and meaningful outreach to those facing difficult circumstances.
+                            </p>
+                            <p class="mb-4 text-base">
+                                From a young age, Zeke grew up in an environment where homelessness was highly visible. Seeing people struggle on a daily basis left a lasting impression and shaped his understanding of how real and widespread these challenges are. Those early experiences helped form a strong sense of responsibility to give back and be part of the solution.
+                            </p>
+                            <p class="text-base">
+                                This foundation is built on the belief that everyone deserves dignity, support, and the opportunity to move forward. Today, that vision continues to grow, with a commitment to expanding efforts, strengthening communities, and finding new ways to support those who need it most.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration / Packages Section -->
+    <section id="register" class="py-32 bg-navy relative slant-top text-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <div class="inline-block bg-maize text-navy font-bold px-8 py-2 rounded-full mb-6 uppercase tracking-widest text-sm">
+                    Registration Ends May 26th
+                </div>
+                <h2 class="font-block text-6xl md:text-8xl mb-4 text-white">Secure Your <span class="text-maize">Tee Time</span></h2>
+                <p class="text-xl text-white/80">Select your package or sponsorship level to support the foundation.</p>
+            </div>
+
+            <!-- Golf Packages -->
+            <h3 class="font-block text-4xl text-center text-maize mb-8 reveal">Golf & Dinner Tickets</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16 reveal">
+                <!-- Foursome -->
+                <div class="bg-white/10 backdrop-blur-md rounded-[2.5rem] p-8 border border-white/20 hover:-translate-y-2 transition-transform duration-300">
+                    <h3 class="font-block text-3xl mb-2">Foursome</h3>
+                    <div class="text-4xl font-bold mb-6 text-maize">$540</div>
+                    <button class="w-full bg-white text-navy font-bold py-3 rounded-full hover:bg-maize transition-colors uppercase tracking-widest">Register</button>
+                </div>
+                
+                <!-- Individual -->
+                <div class="bg-white/5 rounded-[2.5rem] p-8 border border-white/10 hover:-translate-y-2 transition-transform duration-300">
+                    <h3 class="font-block text-3xl mb-2">Individual</h3>
+                    <div class="text-4xl font-bold mb-6 text-maize">$150</div>
+                    <button class="w-full bg-white text-navy font-bold py-3 rounded-full hover:bg-maize transition-colors uppercase tracking-widest">Register</button>
+                </div>
+
+                <!-- Dinner Only -->
+                <div class="bg-white/5 rounded-[2.5rem] p-8 border border-white/10 hover:-translate-y-2 transition-transform duration-300">
+                    <h3 class="font-block text-3xl mb-2">Dinner Only</h3>
+                    <div class="text-4xl font-bold mb-6 text-maize">$60</div>
+                    <button class="w-full bg-white text-navy font-bold py-3 rounded-full hover:bg-maize transition-colors uppercase tracking-widest">Register</button>
+                </div>
+            </div>
+
+            <!-- Sponsorships -->
+            <h3 class="font-block text-4xl text-center text-maize mb-8 reveal reveal-delay-1">Sponsorship Opportunities</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 reveal reveal-delay-2">
+                
+                <!-- Hole Sponsor -->
+                <div class="bg-gradient-to-br from-navyLight to-navy rounded-[2.5rem] p-6 border border-white/10 hover:-translate-y-2 transition-transform duration-300 flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-block text-2xl mb-2">Hole Sponsor</h3>
+                        <div class="text-3xl font-bold mb-6 text-white/90">$500</div>
+                    </div>
+                    <button class="w-full bg-maize text-navy font-bold py-3 rounded-full hover:bg-white transition-colors uppercase tracking-widest text-sm">Sponsor</button>
+                </div>
+
+                <!-- Goal Line Sponsor -->
+                <div class="bg-gradient-to-br from-navyLight to-navy rounded-[2.5rem] p-6 border border-white/10 hover:-translate-y-2 transition-transform duration-300 flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-block text-2xl mb-2">Goal Line <br>Sponsor</h3>
+                        <div class="text-3xl font-bold mb-6 text-white/90">$1,000</div>
+                    </div>
+                    <button class="w-full bg-maize text-navy font-bold py-3 rounded-full hover:bg-white transition-colors uppercase tracking-widest text-sm">Sponsor</button>
+                </div>
+
+                <!-- Lockdown Sponsor -->
+                <div class="bg-gradient-to-br from-navyLight to-navy rounded-[2.5rem] p-6 border border-white/10 hover:-translate-y-2 transition-transform duration-300 flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-block text-2xl mb-2">Lockdown Sponsor</h3>
+                        <div class="text-3xl font-bold mb-6 text-white/90">$3,000</div>
+                    </div>
+                    <button class="w-full bg-maize text-navy font-bold py-3 rounded-full hover:bg-white transition-colors uppercase tracking-widest text-sm">Sponsor</button>
+                </div>
+
+                <!-- Gift Sponsor -->
+                <div class="bg-gradient-to-br from-maize/20 to-transparent rounded-[2.5rem] p-6 border border-maize/50 hover:-translate-y-2 transition-transform duration-300 flex flex-col justify-between">
+                    <div>
+                        <div class="text-maize text-xs font-bold tracking-widest mb-2 uppercase">Premier</div>
+                        <h3 class="font-block text-2xl mb-2 text-maize">Gift Sponsor</h3>
+                        <div class="text-3xl font-bold mb-6 text-white">$3,500</div>
+                    </div>
+                    <button class="w-full bg-maize text-navy font-bold py-3 rounded-full hover:bg-white transition-colors uppercase tracking-widest text-sm">Sponsor</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white/60 py-12 text-center border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="font-block text-3xl text-white flex items-center gap-2">
+                ZB<span class="text-maize">10</span>
+            </div>
+            
+            <div class="flex flex-col items-center text-sm font-light text-white/60 gap-2">
+                <p>&copy; 2026 Zeke Berry Charity Golf Outing.</p>
+                <p>Benefiting the Hadley Huffman Foundation & Zeke Berry Foundation.</p>
+                <div class="flex flex-col sm:flex-row gap-2 sm:gap-4 mt-2 font-medium text-white/80">
+                    <a href="mailto:zekeberryofficial@gmail.com" class="hover:text-maize transition-colors">zekeberryofficial@gmail.com</a>
+                    <span class="hidden sm:inline">|</span>
+                    <a href="tel:2317368066" class="hover:text-maize transition-colors">(231) 736-8066</a>
+                </div>
+            </div>
+
+            <div class="flex gap-4">
+                <a href="#" class="hover:text-maize transition-colors text-2xl"><i class="ph-fill ph-instagram-logo"></i></a>
+                <a href="#" class="hover:text-maize transition-colors text-2xl"><i class="ph-fill ph-twitter-logo"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive JS -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Navbar Scroll Effect
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('py-2');
+                    navbar.classList.remove('py-4');
+                } else {
+                    navbar.classList.add('py-4');
+                    navbar.classList.remove('py-2');
+                }
+            });
+
+            // Intersection Observer for Scroll Reveals
+            const revealElements = document.querySelectorAll('.reveal');
+            
+            const revealOptions = {
+                threshold: 0.15,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) return;
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                });
+            }, revealOptions);
+
+            revealElements.forEach(el => {
+                revealOnScroll.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
