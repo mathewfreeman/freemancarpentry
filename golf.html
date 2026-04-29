@@ -153,7 +153,7 @@
             <div class="reveal reveal-delay-2 mt-8 md:mt-12 max-w-2xl mx-auto">
                 <p class="text-xl md:text-3xl text-offWhite font-light leading-relaxed">
                     Trading the gridiron for the green to benefit the <br/>
-                    <strong class="font-semibold text-white">Hadley Huffman Foundation</strong>.
+                    <strong class="font-semibold text-white">Hadley Huffman Foundation</strong>
                 </p>
             </div>
 
@@ -248,7 +248,7 @@
                 <a href="#" class="inline-block bg-white text-navy px-8 py-3 rounded-full font-bold uppercase tracking-wide hover:bg-navy hover:text-white transition-all duration-300 shadow-float mt-4">Donate Now</a>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 bg-white/40 backdrop-blur-sm p-8 md:p-12 rounded-[3rem] border border-white/50 reveal reveal-delay-1">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 bg-white/40 backdrop-blur-sm p-8 md:p-12 rounded-[3rem] border border-white/50 reveal reveal-delay-1 mb-16">
                 <div class="space-y-6 text-navyLight font-medium leading-relaxed">
                     <p>
                         This golf outing is proud to support the Hadley Huffman Foundation. Founded in 2019 while Hadley was a student at Wayne State University, the foundation is dedicated to addressing systemic barriers to medical access and supporting organizations that are working to advance equitable and accessible healthcare for underserved communities.
@@ -266,6 +266,19 @@
                     </p>
                 </div>
             </div>
+
+            <!-- Photo Gallery -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 reveal reveal-delay-2">
+                <div class="rounded-[2.5rem] overflow-hidden aspect-square md:aspect-[4/5] shadow-plush group border-[6px] border-white/40">
+                    <img src="images/hadley portrait.jpg" alt="Hadley Huffman Portrait" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                </div>
+                <div class="rounded-[2.5rem] overflow-hidden aspect-square md:aspect-[4/5] shadow-plush group border-[6px] border-white/40 md:translate-y-8">
+                    <img src="images/hadley childhood.jpg" alt="Hadley as a child in nurse outfit" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                </div>
+                <div class="rounded-[2.5rem] overflow-hidden aspect-square md:aspect-[4/5] shadow-plush group border-[6px] border-white/40">
+                    <img src="images/hadley medical.jpg" alt="Hadley in scrubs during medical volunteer program" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                </div>
+            </div>
         </div>
     </section>
 
@@ -275,22 +288,20 @@
             <div class="flex flex-col-reverse lg:flex-row gap-16 items-center">
                 
                 <div class="w-full lg:w-5/12 reveal relative">
-                    <div class="relative rounded-[3rem] overflow-hidden aspect-[3/4] bg-navy shadow-float">
-                        <!-- Abstract Player Representation -->
-                        <div class="absolute inset-0 flex items-center justify-center flex-col">
-                            <span class="font-block text-[15rem] text-white/5 leading-none absolute top-10">10</span>
-                            <i class="ph-fill ph-football text-maize/80 text-9xl z-10 mb-8 hover:rotate-12 transition-transform duration-500"></i>
-                            <h3 class="font-block text-5xl text-white z-10 tracking-widest">BERRY</h3>
-                        </div>
+                    <div class="relative rounded-[3rem] overflow-hidden aspect-[3/4] bg-navy shadow-float group">
+                        <!-- High Quality Photo -->
+                        <img src="images/zeke.jpg" alt="Zeke Berry" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        
+                        <!-- Optional gradient overlay to ensure the card below it always pops -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-navy/30 to-transparent pointer-events-none"></div>
                     </div>
                     <!-- Stats Card Floating -->
-                    <div class="absolute -bottom-10 -right-6 md:-right-10 bg-white p-6 rounded-3xl shadow-plush w-64 border-b-4 border-maize">
-                        <div class="flex justify-between items-center mb-2">
-                            <span class="font-bold text-navy uppercase text-sm tracking-wider">Status</span>
-                            <span class="bg-green-100 text-green-700 px-2 py-1 rounded-full text-xs font-bold">ACTIVE</span>
+                    <div class="absolute -bottom-10 -right-6 md:-right-10 bg-white p-6 md:p-8 rounded-3xl shadow-plush w-72 border-b-4 border-maize z-20">
+                        <h4 class="font-block text-4xl text-navy leading-none mb-3">Zeke Berry</h4>
+                        <div class="flex items-center gap-3">
+                            <span class="font-block text-2xl text-maize bg-navy px-3 py-1 rounded-lg leading-none">#10</span>
+                            <span class="text-sm font-bold text-gray-500 uppercase tracking-wider">Defensive Back</span>
                         </div>
-                        <h4 class="font-block text-3xl text-navy">#10</h4>
-                        <p class="text-sm text-gray-500">Defensive Back</p>
                     </div>
                 </div>
 
@@ -328,31 +339,28 @@
                     Registration Ends May 26th
                 </div>
                 <h2 class="font-block text-6xl md:text-8xl mb-4 text-white">Secure Your <span class="text-maize">Tee Time</span></h2>
-                <p class="text-xl text-white/80">Select your package or sponsorship level to support the foundation.</p>
+                <p class="text-xl text-white/80">Review our packages and sponsorship levels below before registering.</p>
             </div>
 
             <!-- Golf Packages -->
             <h3 class="font-block text-4xl text-center text-maize mb-8 reveal">Golf & Dinner Tickets</h3>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16 reveal">
                 <!-- Foursome -->
-                <div class="bg-white/10 backdrop-blur-md rounded-[2.5rem] p-8 border border-white/20 hover:-translate-y-2 transition-transform duration-300">
+                <div class="bg-white/10 backdrop-blur-md rounded-[2.5rem] p-8 border border-white/20 hover:-translate-y-2 transition-transform duration-300 flex flex-col items-center justify-center text-center">
                     <h3 class="font-block text-3xl mb-2">Foursome</h3>
-                    <div class="text-4xl font-bold mb-6 text-maize">$540</div>
-                    <button class="w-full bg-white text-navy font-bold py-3 rounded-full hover:bg-maize transition-colors uppercase tracking-widest">Register</button>
+                    <div class="text-4xl font-bold text-maize">$540</div>
                 </div>
                 
                 <!-- Individual -->
-                <div class="bg-white/5 rounded-[2.5rem] p-8 border border-white/10 hover:-translate-y-2 transition-transform duration-300">
+                <div class="bg-white/5 rounded-[2.5rem] p-8 border border-white/10 hover:-translate-y-2 transition-transform duration-300 flex flex-col items-center justify-center text-center">
                     <h3 class="font-block text-3xl mb-2">Individual</h3>
-                    <div class="text-4xl font-bold mb-6 text-maize">$150</div>
-                    <button class="w-full bg-white text-navy font-bold py-3 rounded-full hover:bg-maize transition-colors uppercase tracking-widest">Register</button>
+                    <div class="text-4xl font-bold text-maize">$150</div>
                 </div>
 
                 <!-- Dinner Only -->
-                <div class="bg-white/5 rounded-[2.5rem] p-8 border border-white/10 hover:-translate-y-2 transition-transform duration-300">
+                <div class="bg-white/5 rounded-[2.5rem] p-8 border border-white/10 hover:-translate-y-2 transition-transform duration-300 flex flex-col items-center justify-center text-center">
                     <h3 class="font-block text-3xl mb-2">Dinner Only</h3>
-                    <div class="text-4xl font-bold mb-6 text-maize">$60</div>
-                    <button class="w-full bg-white text-navy font-bold py-3 rounded-full hover:bg-maize transition-colors uppercase tracking-widest">Register</button>
+                    <div class="text-4xl font-bold text-maize">$60</div>
                 </div>
             </div>
 
@@ -361,41 +369,37 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 reveal reveal-delay-2">
                 
                 <!-- Hole Sponsor -->
-                <div class="bg-gradient-to-br from-navyLight to-navy rounded-[2.5rem] p-6 border border-white/10 hover:-translate-y-2 transition-transform duration-300 flex flex-col justify-between">
-                    <div>
-                        <h3 class="font-block text-2xl mb-2">Hole Sponsor</h3>
-                        <div class="text-3xl font-bold mb-6 text-white/90">$500</div>
-                    </div>
-                    <button class="w-full bg-maize text-navy font-bold py-3 rounded-full hover:bg-white transition-colors uppercase tracking-widest text-sm">Sponsor</button>
+                <div class="bg-gradient-to-br from-navyLight to-navy rounded-[2.5rem] p-8 border border-white/10 hover:-translate-y-2 transition-transform duration-300 flex flex-col items-center justify-center text-center">
+                    <h3 class="font-block text-2xl mb-2">Hole Sponsor</h3>
+                    <div class="text-3xl font-bold text-white/90">$500</div>
                 </div>
 
                 <!-- Goal Line Sponsor -->
-                <div class="bg-gradient-to-br from-navyLight to-navy rounded-[2.5rem] p-6 border border-white/10 hover:-translate-y-2 transition-transform duration-300 flex flex-col justify-between">
-                    <div>
-                        <h3 class="font-block text-2xl mb-2">Goal Line <br>Sponsor</h3>
-                        <div class="text-3xl font-bold mb-6 text-white/90">$1,000</div>
-                    </div>
-                    <button class="w-full bg-maize text-navy font-bold py-3 rounded-full hover:bg-white transition-colors uppercase tracking-widest text-sm">Sponsor</button>
+                <div class="bg-gradient-to-br from-navyLight to-navy rounded-[2.5rem] p-8 border border-white/10 hover:-translate-y-2 transition-transform duration-300 flex flex-col items-center justify-center text-center">
+                    <h3 class="font-block text-2xl mb-2">Goal Line <br>Sponsor</h3>
+                    <div class="text-3xl font-bold text-white/90">$1,000</div>
                 </div>
 
                 <!-- Lockdown Sponsor -->
-                <div class="bg-gradient-to-br from-navyLight to-navy rounded-[2.5rem] p-6 border border-white/10 hover:-translate-y-2 transition-transform duration-300 flex flex-col justify-between">
-                    <div>
-                        <h3 class="font-block text-2xl mb-2">Lockdown Sponsor</h3>
-                        <div class="text-3xl font-bold mb-6 text-white/90">$3,000</div>
-                    </div>
-                    <button class="w-full bg-maize text-navy font-bold py-3 rounded-full hover:bg-white transition-colors uppercase tracking-widest text-sm">Sponsor</button>
+                <div class="bg-gradient-to-br from-navyLight to-navy rounded-[2.5rem] p-8 border border-white/10 hover:-translate-y-2 transition-transform duration-300 flex flex-col items-center justify-center text-center">
+                    <h3 class="font-block text-2xl mb-2">Lockdown Sponsor</h3>
+                    <div class="text-3xl font-bold text-white/90">$3,000</div>
                 </div>
 
                 <!-- Gift Sponsor -->
-                <div class="bg-gradient-to-br from-maize/20 to-transparent rounded-[2.5rem] p-6 border border-maize/50 hover:-translate-y-2 transition-transform duration-300 flex flex-col justify-between">
-                    <div>
-                        <div class="text-maize text-xs font-bold tracking-widest mb-2 uppercase">Premier</div>
-                        <h3 class="font-block text-2xl mb-2 text-maize">Gift Sponsor</h3>
-                        <div class="text-3xl font-bold mb-6 text-white">$3,500</div>
-                    </div>
-                    <button class="w-full bg-maize text-navy font-bold py-3 rounded-full hover:bg-white transition-colors uppercase tracking-widest text-sm">Sponsor</button>
+                <div class="bg-gradient-to-br from-maize/20 to-transparent rounded-[2.5rem] p-8 border border-maize/50 hover:-translate-y-2 transition-transform duration-300 flex flex-col items-center justify-center text-center">
+                    <div class="text-maize text-xs font-bold tracking-widest mb-2 uppercase">Premier</div>
+                    <h3 class="font-block text-2xl mb-2 text-maize">Gift Sponsor</h3>
+                    <div class="text-3xl font-bold text-white">$3,500</div>
                 </div>
+            </div>
+
+            <!-- Master CTA Button -->
+            <div class="mt-16 text-center reveal reveal-delay-3">
+                <a href="https://checkout.square.site/merchant/MLR9P7CF6MRPF/checkout/6FTEG3CN7QBPGZLBKVVSAYLD" target="_blank" rel="noopener noreferrer" class="inline-block bg-maize text-navy px-12 py-5 rounded-full font-bold text-xl md:text-2xl uppercase tracking-widest hover:bg-white transition-all duration-300 shadow-float hover:-translate-y-2">
+                    Proceed to Registration
+                </a>
+                <p class="mt-6 text-white/70 text-sm font-medium">You will select your desired ticket package or sponsorship level on the next page.</p>
             </div>
         </div>
     </section>
